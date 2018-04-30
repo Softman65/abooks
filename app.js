@@ -66,8 +66,9 @@ xmlReader.readXML(fs.readFileSync(FILE), function (err, data) {
     var json = JSON.parse(parser.toJson( encoding.convert( data.content, 'utf-8', data.encoding )));
 
     var go = function(BookListing,_e, fn, callback ){
-        _e++
-        if(BookListing.length<_e){
+        
+        if(BookListing.length>_e){
+            _e++
             var record = convertToRecord(BookListing[e])
             console.log(record.title)
             fn(BookListing,_e, fn, callback )
