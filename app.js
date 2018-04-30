@@ -2,7 +2,16 @@
 
 console.log('Hello world');
 
-
+const mysql = {
+    engine: require('mysql'),
+    credentials: {
+    host: '35.204.32.143',
+    user: 'root',
+    password: 'wotanonline',
+    database: 'wotan_dev'
+    }
+}
+mysql.connection = mysql.engine.createConnection(mysql.credentials);
 
 var fs = require('fs'),
     path = require('path'),
@@ -21,7 +30,7 @@ xmlReader.readXML(fs.readFileSync(FILE), function (err, data) {
     console.log('Decoded xml:', data.content);
 
     var parser = require('xml2json');
-    var json = parser.toJson(data.content);
+    var json = JSON.parse(parser.toJson(data.content));
     debugger
 });
 
