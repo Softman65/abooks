@@ -15,8 +15,7 @@ mysql.connection = mysql.engine.createConnection(mysql.credentials);
 
 var fs = require('fs'),
     path = require('path'),
-    xmlReader = require('read-xml'),
-    encoding = require("encoding");
+    xmlReader = require('read-xml')
 
 var FILE = path.join(__dirname, './20180318_InventarioAbeBooks.xml');
 const cheerio = require('cheerio');
