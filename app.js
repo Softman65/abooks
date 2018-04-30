@@ -73,10 +73,11 @@ xmlReader.readXML(fs.readFileSync(FILE), function (err, data) {
 
     var go = function(BookListing,_e, fn, callback ){
         
-        if(_e<BookListing.length){
-            _e++
+        if(BookListing[_e]!=null){
+            
             var record = convertToRecord(BookListing[_e])
             console.log(_e, record.title)
+            _e++
             fn(BookListing,_e, fn, callback )
         }else{
             callback()
