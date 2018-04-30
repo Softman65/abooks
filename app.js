@@ -24,7 +24,7 @@ const convertToRecord = function(JsonRecord){
         return _ret
     }
     var _out = {
-        vendorListingid:JsonRecord.vendorListingid,
+        vendorListingid:JsonRecord.vendorListingid!=null?JsonRecord.vendorListingid:0,
         author:JsonRecord.author,
         title:JsonRecord.title,
         description:JsonRecord.description,
