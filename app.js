@@ -103,7 +103,7 @@ xmlReader.readXML(fs.readFileSync(FILE), function (err, data) {
                 }else{
                     debugger
                 }
-                mysql.connection.query(cadsql,[record.vendorListingid], function(err,dbdata){
+                mysql.connection.query(cadsql,params, function(err,dbdata){
                     console.log(_e, record.title)
                     _e++
                     fn(BookListing,_e, fn, callback )
