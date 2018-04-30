@@ -95,19 +95,19 @@ xmlReader.readXML(fs.readFileSync(FILE), function (err, data) {
         if(BookListing[_e]!=null){
             
             var record = convertToRecord(BookListing[_e])
-            var cadsql = "SELECT * FROM abooks where vendorListingid=?"
+            var cadsql = "SELECT * FROM books where vendorListingid=?"
             mysql.connection.query(cadsql,[record.vendorListingid], function(err,dbdata){
                 if(dbdata.length==0){
-                    cadsql = "INSERT INTO abooks ('vendorListingid','tittle','author','price_currency','price_quantity','quantity_limit','quantity_amount','publishYear','publishYearText','description','bookCondition','bindingText','universalIdentifier_isvalid','universalIdentifier_numberType','universalIdentifier_number','buyerSearchAttribute') VALUES (?,?,?,?,?,?,?,?,?,?,?,,?,?,?)"
+                    cadsql = "INSERT INTO books ('vendorListingid','tittle','author','price_currency','price_quantity','quantity_limit','quantity_amount','publishYear','publishYearText','description','bookCondition','bindingText','universalIdentifier_isvalid','universalIdentifier_numberType','universalIdentifier_number','buyerSearchAttribute') VALUES (?,?,?,?,?,?,?,?,?,?,?,,?,?,?)"
                     params = RecordToParamsInsert(record)
                 }else{
                     debugger
                 }
-               // mysql.connection.query(cadsql,[record.vendorListingid], function(err,dbdata){
+                mysql.connection.query(cadsql,[record.vendorListingid], function(err,dbdata){
                     console.log(_e, record.title)
                     _e++
                     fn(BookListing,_e, fn, callback )
-                //})
+                })
                 
             })
         }else{
