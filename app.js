@@ -45,6 +45,12 @@ const convertToRecord = function(JsonRecord){
         _out.universalIdentifier_numberType=JsonRecord.universalIdentifier.numberType
         _out.universalIdentifier_number=JsonRecord.universalIdentifier.number
     }
+
+    if(JsonRecord.publisher){
+        _out.publisherName=JsonRecord.publisher.publisherName
+        _out.publishYear=JsonRecord.publisher.publishYear
+        _out.publishYearText=JsonRecord.publisher.publishYearText
+    }
     return _out
 }
 
