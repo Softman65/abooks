@@ -23,7 +23,7 @@ const convertToRecord = function(JsonRecord){
         })
         return _ret
     }
-    return {
+    var _out = {
         vendorListingid:JsonRecord.vendorListingid,
         author:JsonRecord.author,
         title:JsonRecord.title,
@@ -38,11 +38,14 @@ const convertToRecord = function(JsonRecord){
         publishYear:JsonRecord.publisher.publishYear,
         publishYearText:JsonRecord.publisher.publishYearText,
         bindingText:JsonRecord.bindingText,
-        universalIdentifier_isvalid:JsonRecord.universalIdentifier.isvalid,
-        universalIdentifier_numberType:JsonRecord.universalIdentifier.numberType,
-        universalIdentifier_number:JsonRecord.universalIdentifier.number,
         buyerSearchAttribute: getcodes(JsonRecord.buyerSearchAttribute)
     }
+    if(JsonRecord.universalIdentifier){
+        _out.universalIdentifier_isvalid=JsonRecord.universalIdentifier.isvalid
+        _out.universalIdentifier_numberType=JsonRecord.universalIdentifier.numberType
+        _out.universalIdentifier_number=JsonRecord.universalIdentifier.number
+    }
+    return _out
 }
 
 
