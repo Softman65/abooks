@@ -66,7 +66,7 @@ xmlReader.readXML(fs.readFileSync(FILE), function (err, data) {
     var json = JSON.parse(parser.toJson( encoding.convert( data.content, 'utf-8', data.encoding )));
     _.each(json.BookListingInventory.BookListing, function(book){
         
-        record = convertToRecord(book)
+        var record = convertToRecord(book)
         debugger
     })
 });
