@@ -19,11 +19,10 @@ xmlReader.readXML(fs.readFileSync(FILE), function (err, data) {
 
     console.log('xml encoding:', data.encoding);
     console.log('Decoded xml:', data.content);
-    const $ = cheerio.load(encoding.convert(data.content, 'utf-8', data.encoding), {
-        normalizeWhitespace: true,
-        xmlMode: true
-    })
-    $('BookListing').length
+
+    var parser = require('xml2json');
+    var json = parser.toJson(data.content);
+    debugger
 });
 
 
