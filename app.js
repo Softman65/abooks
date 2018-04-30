@@ -19,7 +19,6 @@ var fs = require('fs'),
     encoding = require("encoding");
 
 var FILE = path.join(__dirname, './20180318_InventarioAbeBooks.xml');
-const cheerio = require('cheerio');
 // pass a buffer or a path to a xml file
 xmlReader.readXML(fs.readFileSync(FILE), function (err, data) {
     if (err) {
