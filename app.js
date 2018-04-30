@@ -14,7 +14,26 @@ const mysql = {
 mysql.connection = mysql.engine.createConnection(mysql.credentials);
 mysql.connection.connect();
 
-
+const RecordToParamsInsert = function(JsonRecord){
+ return [
+    JsonRecord.vendorListingid!=null?JsonRecord.vendorListingid:null,
+    JsonRecord.tittle!=null?JsonRecord.tittle:null,
+    JsonRecord.author!=null?JsonRecord.author:null,
+    JsonRecord.price_currency!=null?JsonRecord.price_currency:null,
+    JsonRecord.price_quantity!=null?JsonRecord.price_quantity:null,
+    JsonRecord.quantity_limit!=null?JsonRecord.quantity_limit:null,
+    JsonRecord.quantity_amount!=null?JsonRecord.quantity_amount:null,
+    JsonRecord.publishYear!=null?JsonRecord.publishYear:null,
+    JsonRecord.publishYearText!=null?JsonRecord.publishYearText:null,
+    JsonRecord.description!=null?JsonRecord.description:null,
+    JsonRecord.bookCondition!=null?JsonRecord.bookCondition:null,
+    JsonRecord.bindingText!=null?JsonRecord.bindingText:null,
+    JsonRecord.universalIdentifier_isvalid!=null?JsonRecord.universalIdentifier_isvalid:null,
+    JsonRecord.universalIdentifier_numberType!=null?JsonRecord.universalIdentifier_numberType:null,
+    JsonRecord.universalIdentifier_number!=null?JsonRecord.universalIdentifier_number:null,
+    JsonRecord.buyerSearchAttribute!=null?JsonRecord.buyerSearchAttribute:null
+ ]
+}
 const convertToRecord = function(JsonRecord){
     const getcodes = function(codes){
         var _ret = []
@@ -24,7 +43,7 @@ const convertToRecord = function(JsonRecord){
         return _ret
     }
     var _out = {
-        vendorListingid:JsonRecord.vendorListingid!=null?JsonRecord.vendorListingid:0,
+        vendorListingid:JsonRecord.vendorListingid,
         author:JsonRecord.author,
         title:JsonRecord.title,
         description:JsonRecord.description,
@@ -76,9 +95,21 @@ xmlReader.readXML(fs.readFileSync(FILE), function (err, data) {
         if(BookListing[_e]!=null){
             
             var record = convertToRecord(BookListing[_e])
-            console.log(_e, record.title)
-            _e++
-            fn(BookListing,_e, fn, callback )
+            var cadsql = "SELECT * FROM abooks where vendorListingid=?"
+            mysql.connection(cadsql,[record.vendorListingid], function(err,dbdata){
+                if(dbdata.length==0){
+                    cadsql = "INSERT INTO abooks ('vendorListingid','tittle','author','price_currency','price_quantity','quantity_limit','quantity_amount','publishYear','publishYearText','description','bookCondition','bindingText','universalIdentifier_isvalid','universalIdentifier_numberType','universalIdentifier_number','buyerSearchAttribute') VALUES (?,?,?,?,?,?,?,?,?,?,?,,?,?,?)"
+                    params = RecordToParamsInsert(record)
+                }else{
+                    debugger
+                }
+               // mysql.connection(cadsql,[record.vendorListingid], function(err,dbdata){
+                    console.log(_e, record.title)
+                    _e++
+                    fn(BookListing,_e, fn, callback )
+                //})
+                
+            })
         }else{
             callback()
         }
