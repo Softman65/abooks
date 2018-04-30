@@ -34,9 +34,6 @@ const convertToRecord = function(JsonRecord){
         price_quantity:JsonRecord.price.$t,
         quantity_limit:JsonRecord.quantity.limit,
         quantity_amount:JsonRecord.quantity.amount,
-        publisherName:JsonRecord.publisher.publisherName,
-        publishYear:JsonRecord.publisher.publishYear,
-        publishYearText:JsonRecord.publisher.publishYearText,
         bindingText:JsonRecord.bindingText,
         buyerSearchAttribute: getcodes(JsonRecord.buyerSearchAttribute)
     }
