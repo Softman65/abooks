@@ -69,7 +69,7 @@ xmlReader.readXML(fs.readFileSync(FILE), function (err, data) {
         
         if(BookListing.length>_e){
             _e++
-            var record = convertToRecord(BookListing[e])
+            var record = convertToRecord(BookListing[_e])
             console.log(record.title)
             fn(BookListing,_e, fn, callback )
         }else{
