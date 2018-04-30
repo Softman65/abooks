@@ -18,7 +18,7 @@ mysql.connection.connect();
 const convertToRecord = function(JsonRecord){
     const getcodes = function(codes){
         var _ret = []
-        _.each(codes, function(code){
+        _.each(codes, function(data){
             _ret.push(data.bsacode)
         })
         return _ret
