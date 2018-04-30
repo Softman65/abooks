@@ -75,7 +75,7 @@ xmlReader.readXML(fs.readFileSync(FILE), function (err, data) {
             callback()
         }
     }
-    go(json.BookListing,0, go, function(){
+    go(json.BookListingInventory.BookListing,0, go, function(){
         debugger
     })
 });
