@@ -34,9 +34,9 @@ const convertToRecord = function(JsonRecord){
         price_quantity:JsonRecord.price.$t,
         quantity_limit:JsonRecord.quantity.limit,
         quantity_amount:JsonRecord.quantity.amount,
-        publisherName:JsonRecord.publisher.Name,
-        publishYear:JsonRecord.publish.Year,
-        publishYearText:JsonRecord.publish.YearText,
+        publisherName:JsonRecord.publisher.publisherName,
+        publishYear:JsonRecord.publish.publishYear,
+        publishYearText:JsonRecord.publish.publishYearText,
         bindingText:JsonRecord.bindingText,
         universalIdentifier_isvalid:JsonRecord.universalIdentifier.isvalid,
         universalIdentifier_numberType:JsonRecord.universalIdentifier.numberType,
@@ -65,6 +65,7 @@ xmlReader.readXML(fs.readFileSync(FILE), function (err, data) {
     var parser = require('xml2json');
     var json = JSON.parse(parser.toJson( encoding.convert( data.content, 'utf-8', data.encoding )));
     _.each(json.BookListingInventory.BookListing, function(book){
+        
         record = convertToRecord(book)
         debugger
     })
