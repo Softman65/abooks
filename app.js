@@ -35,8 +35,8 @@ const convertToRecord = function(JsonRecord){
         quantity_limit:JsonRecord.quantity.limit,
         quantity_amount:JsonRecord.quantity.amount,
         publisherName:JsonRecord.publisher.publisherName,
-        publishYear:JsonRecord.publish.publishYear,
-        publishYearText:JsonRecord.publish.publishYearText,
+        publishYear:JsonRecord.publisher.publishYear,
+        publishYearText:JsonRecord.publisher.publishYearText,
         bindingText:JsonRecord.bindingText,
         universalIdentifier_isvalid:JsonRecord.universalIdentifier.isvalid,
         universalIdentifier_numberType:JsonRecord.universalIdentifier.numberType,
@@ -59,8 +59,8 @@ xmlReader.readXML(fs.readFileSync(FILE), function (err, data) {
         console.error(err);
     }
 
-    console.log('xml encoding:', data.encoding);
-    console.log('Decoded xml:', data.content);
+    //console.log('xml encoding:', data.encoding);
+    //console.log('Decoded xml:', data.content);
 
     var parser = require('xml2json');
     var json = JSON.parse(parser.toJson( encoding.convert( data.content, 'utf-8', data.encoding )));
