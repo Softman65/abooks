@@ -32,7 +32,10 @@ xmlReader.readXML(fs.readFileSync(FILE), function (err, data) {
 
     var parser = require('xml2json');
     var json = JSON.parse(parser.toJson( encoding.convert( data.content, 'utf-8', data.encoding )));
-    _.each()
+    _.each(json.BookListingInventory.BookListing, function(book){
+        debugger
+
+    })
 });
 
 
