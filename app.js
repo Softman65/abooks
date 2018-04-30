@@ -93,7 +93,7 @@ xmlReader.readXML(fs.readFileSync(FILE), function (err, data) {
     var go = function(BookListing,_e, fn, callback ){
         
         if(BookListing[_e]!=null){
-            
+            var params = []
             var record = convertToRecord(BookListing[_e])
             var cadsql = "SELECT * FROM books where vendorListingid=?"
             mysql.connection.query(cadsql,[record.vendorListingid], function(err,dbdata){
