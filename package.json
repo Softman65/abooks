@@ -1,0 +1,14 @@
+{
+  "name": "program_db",
+  "version": "0.0.0",
+  "description": "program_db",
+  "main": "app.js",
+  "author": {
+    "name": "Ricardo"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "encoding": "^0.1.12",
+    "read-xml": "^3.0.0"
+  }
+}
