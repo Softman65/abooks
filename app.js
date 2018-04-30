@@ -64,9 +64,18 @@ xmlReader.readXML(fs.readFileSync(FILE), function (err, data) {
 
     var parser = require('xml2json');
     var json = JSON.parse(parser.toJson( encoding.convert( data.content, 'utf-8', data.encoding )));
-    _.each(json.BookListingInventory.BookListing, function(book){
-        
-        var record = convertToRecord(book)
+
+    var go = function(BookListing,_e, fn, callback ){
+        _e++
+        if(BookListing.length<_e){
+            var record = convertToRecord(BookListing[e])
+            console.log(record.title)
+            fn(BookListing,_e, fn, callback )
+        }else{
+            callback()
+        }
+    }
+    go(json.BookListing,0, go, function(){
         debugger
     })
 });
