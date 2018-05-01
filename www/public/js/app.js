@@ -65,7 +65,11 @@ $(document).ready(function() {
         
                 fields: [
                     { title: "id", name: "idbooks", type: "number", width: 25, visible:false },
-                    { name: "vendorListingid", title:'ref' ,type: "text", width: 80, align: "center", filtering:false },
+                    { name: "vendorListingid", title:'ref' ,type: "text", width: 80, align: "center", filtering:false
+                        ,itemTemplate: function(value) {
+                                return $("<div>").append('<b>'+value+'</b>');
+                         } 
+                    },
                     //{ name: "Rating", type: "number", width: 50, align: "center",
                     //    itemTemplate: function(value) {
                     //        return $("<div>").addClass("rating").append(Array(value + 1).join("&#9733;"));
