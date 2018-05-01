@@ -33,8 +33,10 @@ router.get('/', function (req, res) {
 router.get('/api/books/page', function (req, res) {
     var order =""
     var filter=""
+
     if(req.query.sortField!=null)
         order = " ORDER BY "+req.query.sortField+" "+req.query.sortOrder
+        
     if(req.query.title.length>0)
         filter = filter + (filter.length==0?" WHERE ":"")+"title LIKE '%"+req.query.title+"%' "
 
