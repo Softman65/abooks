@@ -9,8 +9,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
+var routes = require('./www/routes/index');
+var users = require('./www/routes/users');
 var app = express();
 
 
@@ -30,7 +30,7 @@ mysql.connection.connect();
 
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'www/views'));
 app.set('view engine', 'pug');
 
 // uncomment after placing your favicon in /public
@@ -38,7 +38,7 @@ app.set('view engine', 'pug');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'www/public')));
 
 app.use('/', routes);
 app.use('/users', users);
