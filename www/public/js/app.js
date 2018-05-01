@@ -83,6 +83,7 @@ $(document).ready(function() {
                             return $("<div>").append(value);
                         }
                     },
+                    
                     { name: "author", type: "text", width: 300,
                     itemTemplate: function(value) {
                         var _f = $("#jsGrid").jsGrid("getFilter")
@@ -92,6 +93,16 @@ $(document).ready(function() {
                                 value = _.replace(value, _v, '<span class="red"><b>'+_v+'</b></span>');
                             })
                         }
+                        return $("<div>").append(value);
+                    }},
+                    {  title: "loc", name: "description", type: "text", width: 30,
+                    itemTemplate: function(value) {
+
+                            //var exp = new RegExp(_f.author, 'gi')                            
+                            _.each(value.match(/XSLIB\n{1,2}/g),function(_v){
+                                value = $("<div>").append(_v);
+                            })
+                        
                         return $("<div>").append(value);
                     }}
                 ]
