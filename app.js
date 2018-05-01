@@ -58,7 +58,7 @@ const convertToRecord = function(JsonRecord){
         buyerSearchAttribute: getcodes(JsonRecord.buyerSearchAttribute)
     }
     if(JsonRecord.universalIdentifier){
-        _out.universalIdentifier_isvalid=JsonRecord.universalIdentifier.isvalid
+        _out.universalIdentifier_isvalid=JsonRecord.universalIdentifier.isvalid=='true'?true:false,
         _out.universalIdentifier_numberType=JsonRecord.universalIdentifier.numberType
         _out.universalIdentifier_number=JsonRecord.universalIdentifier.number
     }
