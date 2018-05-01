@@ -53,7 +53,7 @@ $(document).ready(function() {
                 },
         
                 fields: [
-                    { name: "idbooks", type: "number" },
+                    { field: "idbooks", name: "idbooks", type: "number" },
                     { name: "vendorListingid", type: "text", width: 150 },
                     //{ name: "Rating", type: "number", width: 50, align: "center",
                     //    itemTemplate: function(value) {
