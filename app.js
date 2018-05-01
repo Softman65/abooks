@@ -90,7 +90,19 @@ xmlReader.readXML(fs.readFileSync(FILE), function (err, data) {
 
     var parser = require('xml2json');
     var json = JSON.parse(parser.toJson( encoding.convert( data.content, 'utf-8', data.encoding )));
-
+    var detectVariations = function(newData,oldData){
+        var _resp = ''
+        _.each(oldData, function(value,key){
+            var _sep = ""
+            if(oldData[key]!=value){
+                 
+                if(_.isString(value))
+                    sep="'"
+                _resp =_resp + (_resp.length>0?',':'') + key + "=" + _sep + value + _sep
+            }
+        })
+        return _resp
+    }
     var go = function(BookListing,_e, fn, callback ){
         
         if(BookListing[_e]!=null){
@@ -102,17 +114,24 @@ xmlReader.readXML(fs.readFileSync(FILE), function (err, data) {
                     cadsql = "INSERT INTO books (vendorListingid,tittle,author,price_currency,price_quantity,quantity_limit,quantity_amount,publisherName,publishYear,publishYearText,description,bookCondition,bindingText,universalIdentifier_isvalid,universalIdentifier_numberType,universalIdentifier_number,buyerSearchAttribute) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
                     params = RecordToParamsInsert(record)
                 }else{
-                    debugger
+                    var fields = detectVariations(record,dbdata[0])
+                    if(fields.length>0){
+                        cadsql = "UPDATE books SET " + fields + " WHERE vendorListingid=?"
+                        params = [record.vendorListingid]
+                    }
                 }
-                mysql.connection.query(cadsql,params, function(err,dbdata){
-                    if(err)
-                        debugger
-
-
-                    console.log(_e, record.title)
-                    _e++
-                    fn(BookListing,_e, fn, callback )
-                })
+                if(cadsql.length>0){
+                    mysql.connection.query(cadsql,params, function(err,dbdata){
+                        if(err)
+                            debugger    
+                        console.log(_e, record.title)
+                        _e++
+                        fn(BookListing,_e, fn, callback )
+                    })
+            }else{
+                _e++
+                fn(BookListing,_e, fn, callback )
+            }
                 
             })
         }else{
