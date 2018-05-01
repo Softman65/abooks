@@ -13,24 +13,33 @@ $(document).ready(function() {
         { Name: "Canada", Id: 2 },
         { Name: "United Kingdom", Id: 3 }
     ];
+    
     $("#jsGrid").jsGrid({
+        height: "80%",
         width: "100%",
-        height: "400px",
  
-        inserting: true,
-        editing: true,
-        sorting: true,
+        autoload: true,
         paging: true,
+        pageLoading: true,
+        pageSize: 15,
+        pageIndex: 2,
  
-        data: clients,
+        controller: {
+            loadData: function(filter) {
+                var startIndex = (filter.pageIndex - 1) * filter.pageSize;
+                return {
+                    data: db.clients.slice(startIndex, startIndex + filter.pageSize),
+                    itemsCount: db.clients.length
+                };
+            }
+        },
  
         fields: [
-            { name: "Name", type: "text", width: 150, validate: "required" },
+            { name: "Name", type: "text", width: 150 },
             { name: "Age", type: "number", width: 50 },
             { name: "Address", type: "text", width: 200 },
-            { name: "Country", type: "select", items: countries, valueField: "Id", textField: "Name" },
-            { name: "Married", type: "checkbox", title: "Is Married", sorting: false },
-            { type: "control" }
+            { name: "Country", type: "select", items: db.countries, valueField: "Id", textField: "Name" },
+            { name: "Married", type: "checkbox", title: "Is Married" }
         ]
     });
 
