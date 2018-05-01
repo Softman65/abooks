@@ -11,6 +11,10 @@
     "lodash": "^4.17.5",
     "read-xml": "^3.0.0",
     "xml2json": "^0.11.2",
-    "mysql": "^2.15.0"
+    "mysql": "^2.15.0",
+    "body-parser": "^1.15.0",
+    "cookie-parser": "^1.4.0",
+    "express": "^4.14.0",
+    "pug": "^2.0.0-beta6"
   }
 }
