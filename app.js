@@ -16,17 +16,7 @@ var app = express();
 
 
 
-const mysql = {
-    engine: require('mysql'),
-    credentials: {
-        host: 'localhost',
-        user: 'root',
-        password: 'guatemala016',
-        database: 'abooks'
-    }
-}
-mysql.connection = mysql.engine.createConnection(mysql.credentials);
-mysql.connection.connect();
+
 
 
 // view engine setup
