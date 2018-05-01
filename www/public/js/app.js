@@ -27,7 +27,7 @@ $(document).ready(function() {
                 autoload: true,
                 paging: true,
                 pageLoading: true,
-                pageSize: 50,
+                pageSize: 25,
                 pageIndex:1,
 
                 controller: {
@@ -53,8 +53,8 @@ $(document).ready(function() {
                 },
         
                 fields: [
-                    { field: "idbooks", name: "idbooks", type: "number" },
-                    { name: "vendorListingid", type: "text", width: 150 },
+                    { field: "idbooks", name: "idbooks", type: "number", width: 50 },
+                    { name: "vendorListingid", type: "text", width: 50 },
                     //{ name: "Rating", type: "number", width: 50, align: "center",
                     //    itemTemplate: function(value) {
                     //        return $("<div>").addClass("rating").append(Array(value + 1).join("&#9733;"));
