@@ -31,7 +31,7 @@ router.get('/', function (req, res) {
 });
 router.get('/api/books/page', function (req, res) {
     mysql.connection.query("SELECT * FROM books LIMIT "+(req.query.total*(req.query.page-1)+1)+","+req.query.total, function(err,records) {
-         res.send(JSON.stringify(records));
+         res.json(records);
          //debugger
      //res.send('hi')
      })
@@ -41,7 +41,7 @@ router.get('/api/books/page', function (req, res) {
         //debugger
         records[0].pages = cint(records[0].total / req.query.elems)
         records[0].elemsperpage = req.query.elems *1
-        res.send(JSON.stringify(records[0]));
+        res.json(records[0]);
          //debugger
      //res.send('hi')
      })
