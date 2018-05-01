@@ -31,7 +31,11 @@ router.get('/', function (req, res) {
     res.render('index', { title: 'Express' });
 });
 router.get('/api/books/page', function (req, res) {
-    mysql.connection.query("SELECT count(*) as total FROM books;SELECT * FROM books LIMIT "+(req.query.pageSize*(req.query.pageIndex-1)+1)+","+req.query.pageSize, function(err,records) {
+    var order =""
+    if(req.query.sortField!=null)
+        order = " ORDER BY "+req.query.sortField+" "+req.query.sortOrder
+
+    mysql.connection.query("SELECT count(*) as total FROM books;SELECT * FROM books "+order+" LIMIT "+(req.query.pageSize*(req.query.pageIndex-1)+1)+","+req.query.pageSize, function(err,records) {
          res.json({data:records[1],itemsCount:records[0][0].total*1});
          //debugger
      //res.send('hi')
