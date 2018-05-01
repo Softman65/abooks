@@ -21,8 +21,8 @@ $(document).ready(function() {
         
     
             $("#jsGrid").jsGrid({
-                //height: "700px",
-                width: "80%",
+                height: "auto",
+                width: "auto",
         
                 autoload: true,
                 paging: true,
