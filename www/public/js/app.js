@@ -99,11 +99,11 @@ $(document).ready(function() {
                     itemTemplate: function(value) {
 
                             //var exp = new RegExp(_f.author, 'gi') 
-                            var _s = value.match(/XSLIB\n{1,2}/g)
+                            var _s = value.match(/XSLIB\d{1,2}\w/g)
                             value=""
                             if(_s!=null)                          
                                 _.each(_s,function(_v){
-                                    value = $("<div>").append(_v);
+                                    value = $("<div>").append(replace(_v,'XSLIB',''));
                                 })
                                 
                         return value;
