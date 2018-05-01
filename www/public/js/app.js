@@ -1,3 +1,6 @@
 $(document).ready(function() {
-    $('.ui.top.attached.menu').menu();
+    $('.ui.menu .item').on('click', function() {
+        $('.ui .item').removeClass('active');
+        $(this).addClass('active');
+     }); 
 });
