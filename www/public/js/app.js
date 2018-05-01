@@ -18,7 +18,7 @@ $(document).ready(function() {
         dataType: "json"
     }).done(function(response) {
         debugger
-        d.resolve(response.value);
+        
     
             $("#jsGrid").jsGrid({
                 height: "80%",
