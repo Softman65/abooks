@@ -23,7 +23,7 @@ $(document).ready(function() {
             $("#jsGrid").jsGrid({
                
                 width: "90%",
-                height: "300",
+                height: "auto",
 
                 viewrecords : true,
                 gridview : true,
