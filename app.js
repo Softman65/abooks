@@ -73,28 +73,40 @@ var server = app.listen(app.get('port'), function () {
 
 
 function upgradeDb(){
+    const mysql = {
+        engine: require('mysql'),
+        credentials: {
+            multipleStatements: true,
+            host: 'localhost',
+            user: 'root',
+            password: 'guatemala016',
+            database: 'abooks'
+        }
+    }
+    mysql.connection = mysql.engine.createConnection(mysql.credentials);
+    mysql.connection.connect();
 
     const RecordToParamsInsert = function(JsonRecord){
-    return [
-        JsonRecord.vendorListingid!=null?JsonRecord.vendorListingid:null,
-        JsonRecord.title!=null?JsonRecord.title:null,
-        JsonRecord.author!=null?JsonRecord.author:null,
-        JsonRecord.price_currency!=null?JsonRecord.price_currency:null,
-        JsonRecord.price_quantity!=null?JsonRecord.price_quantity:null,
-        JsonRecord.quantity_limit!=null?JsonRecord.quantity_limit:null,
-        JsonRecord.quantity_amount!=null?JsonRecord.quantity_amount:null,
-        JsonRecord.publisherName!=null?JsonRecord.publisherName:null,
-        JsonRecord.publishYear!=null?JsonRecord.publishYear:null,
-        JsonRecord.publishYearText!=null?JsonRecord.publishYearText:null,
-        JsonRecord.description!=null?JsonRecord.description:null,
-        JsonRecord.bookCondition!=null?JsonRecord.bookCondition:null,
-        JsonRecord.bindingText!=null?JsonRecord.bindingText:null,
-        JsonRecord.universalIdentifier_isvalid!=null?JsonRecord.universalIdentifier_isvalid:null,
-        JsonRecord.universalIdentifier_numberType!=null?JsonRecord.universalIdentifier_numberType:null,
-        JsonRecord.universalIdentifier_number!=null?JsonRecord.universalIdentifier_number:null,
-        JsonRecord.buyerSearchAttribute!=null? JsonRecord.buyerSearchAttribute.join(','):null,
-        JsonRecord._loc!=null? JsonRecord._loc:null
-    ]
+        return [
+            JsonRecord.vendorListingid!=null?JsonRecord.vendorListingid:null,
+            JsonRecord.title!=null?JsonRecord.title:null,
+            JsonRecord.author!=null?JsonRecord.author:null,
+            JsonRecord.price_currency!=null?JsonRecord.price_currency:null,
+            JsonRecord.price_quantity!=null?JsonRecord.price_quantity:null,
+            JsonRecord.quantity_limit!=null?JsonRecord.quantity_limit:null,
+            JsonRecord.quantity_amount!=null?JsonRecord.quantity_amount:null,
+            JsonRecord.publisherName!=null?JsonRecord.publisherName:null,
+            JsonRecord.publishYear!=null?JsonRecord.publishYear:null,
+            JsonRecord.publishYearText!=null?JsonRecord.publishYearText:null,
+            JsonRecord.description!=null?JsonRecord.description:null,
+            JsonRecord.bookCondition!=null?JsonRecord.bookCondition:null,
+            JsonRecord.bindingText!=null?JsonRecord.bindingText:null,
+            JsonRecord.universalIdentifier_isvalid!=null?JsonRecord.universalIdentifier_isvalid:null,
+            JsonRecord.universalIdentifier_numberType!=null?JsonRecord.universalIdentifier_numberType:null,
+            JsonRecord.universalIdentifier_number!=null?JsonRecord.universalIdentifier_number:null,
+            JsonRecord.buyerSearchAttribute!=null? JsonRecord.buyerSearchAttribute.join(','):null,
+            JsonRecord._loc!=null? JsonRecord._loc:null
+        ]
     }
     const convertToRecord = function(JsonRecord){
         const cleanDesc = function(value){
