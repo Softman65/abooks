@@ -40,11 +40,12 @@ $(document).ready(function() {
 
                 pageSize: 18,
                 pageIndex:1,
-                finishLoad: function(loadedData) {
-                    $('.sale.icon').parent().parent().css({color:'red'})
-                },                     // handles the finish of loading data by controller.loadData
+                                     // handles the finish of loading data by controller.loadData
 
                 controller: {
+                    finishLoad: function(loadedData) {
+                        $('.sale.icon').parent().parent().css({color:'red'})
+                    },
                     loadData: function(filter) {
 
                         return $.ajax({
