@@ -96,7 +96,7 @@ function upgradeDb(){
     ]
     }
     const convertToRecord = function(JsonRecord){
-        const getDesc = function(value){
+        const cleanDesc = function(value){
             var _ret = value
             var _s = value.match(/xslib\d{1,2}\w{0,3}/gi)
 
