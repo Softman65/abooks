@@ -23,7 +23,7 @@ $(document).ready(function() {
             $("#jsGrid").jsGrid({
                
                 width: "90%",
-                height: "calc(100% - 10px)",
+                height: "300",
 
                 rowNum : 1000,
                 viewrecords : true,
