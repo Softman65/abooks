@@ -74,8 +74,14 @@ $(document).ready(function() {
                     { name: "title", type: "text", width: 300 ,
                         itemTemplate: function(value) {
                             var _f = $("#jsGrid").jsGrid("getFilter")
-                            var v = _.replace(value, _f.title, '<b>'+_f.title+'</b>');
-                            return $("<div>").append(v);
+                            if(_f.title.length>0){
+                                var exp = new RegExp(_f.title, 'gi')
+                            
+                                _.each(value.match(exp,"gi"),function(_v){
+                                    var value = _.replace(value, _v, '<b>'+_v+'</b>');
+                                })
+                            }
+                            return $("<div>").append(value);
                         }
                     },
                     { name: "author", type: "text", width: 300,
