@@ -22,7 +22,6 @@ $(document).ready(function() {
         paging: true,
         pageLoading: true,
         pageSize: 15,
-        pageIndex: 2,
  
         controller: {
             loadData: function(filter) {
@@ -32,6 +31,7 @@ $(document).ready(function() {
                     url: "http://services.odata.org/V3/(S(3mnweai3qldmghnzfshavfok))/OData/OData.svc/Products",
                     dataType: "json"
                 }).done(function(response) {
+                    debugger
                     d.resolve(response.value);
                 });
  
