@@ -126,7 +126,7 @@ function upgradeDb(){
 
             if(_s!=null)                                      
                 _.each(_s,function(_v){
-                    _ret = _v
+                    _ret = _v.toLowerCase().replace('xslib','').toUpperCase()
                 })
 
             return _ret
