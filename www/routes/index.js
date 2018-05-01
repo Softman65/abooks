@@ -20,7 +20,7 @@ router.get('/', function (req, res) {
 router.get('/api/books', function (req, res) {
     mysql.connection.query("SELECT * FROM books LIMIT "+(req.query.total*(req.query.page-1)+1)+","+req.query.total, function(err,records) {
          res.send(JSON.stringify(records));
-         debugger
+         //debugger
      //res.send('hi')
      })
  });
