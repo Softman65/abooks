@@ -61,7 +61,7 @@ $(document).ready(function() {
         
                 fields: [
                     { title: "id", name: "idbooks", type: "number", width: 25, visible:false },
-                    { name: "vendorListingid", title:'ref' ,type: "text", width: 30, align: "center" },
+                    { name: "vendorListingid", title:'ref' ,type: "text", width: 50, align: "center" },
                     //{ name: "Rating", type: "number", width: 50, align: "center",
                     //    itemTemplate: function(value) {
                     //        return $("<div>").addClass("rating").append(Array(value + 1).join("&#9733;"));
