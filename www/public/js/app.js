@@ -23,8 +23,8 @@ $(document).ready(function() {
             $("#jsGrid").jsGrid({
                
                 width: "90%",
-                height: "calc(100% - 10px);",
-                
+                height: "calc(100% - 10px)",
+
                 autoload: true,
                 paging: true,
                 pageLoading: true,
