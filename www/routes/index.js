@@ -35,10 +35,10 @@ router.get('/api/books/page', function (req, res) {
     var filter=""
     if(req.query.sortField!=null)
         order = " ORDER BY "+req.query.sortField+" "+req.query.sortOrder
-    if(req.query.title!=null)
+    if(req.query.title.length>0)
         filter = filter.length==0?" WHERE ":""+"title LIKE '%"+req.query.title+"%' "
 
-    if(req.query.author!=null)
+    if(req.query.author.length>0)
         filter = filter.length==0?" WHERE ":" AND "+"author LIKE '%"+req.query.author+"%' "
 
     mysql.connection.query("SELECT count(*) as total FROM books;SELECT * FROM books "+filter+order+" LIMIT "+(req.query.pageSize*(req.query.pageIndex-1)+1)+","+req.query.pageSize, function(err,records) {
