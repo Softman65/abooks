@@ -43,7 +43,18 @@ $(document).ready(function() {
                 onRefreshed: function(grid) {
                         $('.sale.icon').parent().parent().css({color:'red'})
                 },                     // handles the finish of loading data by controller.loadData
-
+                rowClick: function(args) {
+                    console.log(args)
+                    var getData = args.item;
+                    var keys = Object.keys(getData);
+                    var text = [];
+                
+                    $.each(keys, function(idx, value) {
+                      text.push(value + " : " + getData[value])
+                    });
+                
+                    $("#label").text(text.join(", "))                    
+                },
                 controller: {
 
                     loadData: function(filter) {
