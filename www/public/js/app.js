@@ -32,7 +32,7 @@ $(document).ready(function() {
                 inserting: false,
                 editing: false,
                 selecting: true,
-                sorting: false,
+                sorting: true,
 
                 pageSize: 20,
                 pageIndex:1,
@@ -61,14 +61,14 @@ $(document).ready(function() {
         
                 fields: [
                     { title: "id", name: "idbooks", type: "number", width: 25, visible:false },
-                    { name: "vendorListingid", title:'ref' ,type: "text", width: 50, align: "center" },
+                    { name: "vendorListingid", title:'ref' ,type: "text", width: 80, align: "center" },
                     //{ name: "Rating", type: "number", width: 50, align: "center",
                     //    itemTemplate: function(value) {
                     //        return $("<div>").addClass("rating").append(Array(value + 1).join("&#9733;"));
                     //    }
                     //},
-                    { name: "title", type: "text", width: 250},
-                    { name: "author", type: "text", width: 250}
+                    { name: "title", type: "text", width: 300},
+                    { name: "author", type: "text", width: 300}
                 ]
             });
     //});
