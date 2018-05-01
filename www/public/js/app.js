@@ -27,12 +27,12 @@ $(document).ready(function() {
                 autoload: true,
                 paging: true,
                 pageLoading: true,
-                
-                filtering: true,
-                inserting: true,
-                editing: true,
-                sorting: true,
-                sorter: "string",
+
+                filtering: false,
+                inserting: false,
+                editing: false,
+                selecting: true,
+                sorting: false,
 
                 pageSize: 20,
                 pageIndex:1,
@@ -60,7 +60,7 @@ $(document).ready(function() {
                 },
         
                 fields: [
-                    { title: "id", name: "idbooks", type: "number", width: 25 },
+                    { title: "id", name: "idbooks", type: "number", width: 25, visible:false },
                     { name: "vendorListingid", title:'ref' ,type: "text", width: 30, align: "center" },
                     //{ name: "Rating", type: "number", width: 50, align: "center",
                     //    itemTemplate: function(value) {
