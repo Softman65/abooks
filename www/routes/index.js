@@ -44,6 +44,9 @@ router.get('/api/books/page', function (req, res) {
     if(req.query._loc.length>0)
         filter = filter + (filter.length==0?" WHERE ":" AND ")+"_Loc LIKE '"+req.query._loc+"%' "
     
+    if(req.query._sale.length>0)
+        filter = filter + (filter.length==0?" WHERE ":" AND ")+"_Sale LIKE '"+req.query._sale+"%' "
+    
 
     var cadsql = "SELECT count(*) as total FROM books " + filter + ";SELECT * FROM books " + filter + order + " LIMIT "+(req.query.pageSize*(req.query.pageIndex-1)+1)+","+req.query.pageSize
     console.log(cadsql)
