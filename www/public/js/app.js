@@ -27,6 +27,13 @@ $(document).ready(function() {
                 autoload: true,
                 paging: true,
                 pageLoading: true,
+                
+                filtering: true,
+                inserting: true,
+                editing: true,
+                sorting: true,
+                sorter: "string",
+
                 pageSize: 20,
                 pageIndex:1,
 
