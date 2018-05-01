@@ -95,18 +95,8 @@ $(document).ready(function() {
                         }
                         return $("<div>").append(value);
                     }},
-                    {  title: "loc", name: "description", type: "text", width: 30,
-                    itemTemplate: function(value) {
-
-                            //var exp = new RegExp(_f.author, 'gi') 
-                            console.log(value)
-                            var _s = value.match(/xslib\d{1,2}\w{0,3}/gi)
-                            value=""
-                            if(_s!=null)                          
-                                _.each(_s,function(_v){
-                                    value = $("<div>").append(_.replace(_v.toLowerCase(),'xslib','').toUpperCase() );
-                                })
-                                
+                    {  title: "loc", name: "_loc", type: "text", width: 30,
+                    itemTemplate: function(value) {        
                         return value;
                     }}
                 ]
