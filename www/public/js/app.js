@@ -39,7 +39,7 @@ $(document).ready(function() {
                             dataType: "json"
                         }).done(function(response) {
                             debugger
-                            d.resolve(response.value);
+                            d.resolve(response);
                         });
         
                         return d.promise();
@@ -47,17 +47,14 @@ $(document).ready(function() {
                 },
         
                 fields: [
-                    { name: "Name", type: "text" },
-                    { name: "Description", type: "textarea", width: 150 },
-                    { name: "Rating", type: "number", width: 50, align: "center",
-                        itemTemplate: function(value) {
-                            return $("<div>").addClass("rating").append(Array(value + 1).join("&#9733;"));
-                        }
-                    },
-                    { name: "Price", type: "number", width: 50,
-                        itemTemplate: function(value) {
-                            return value.toFixed(2) + "$"; }
-                    }
+                    { name: "idbooks", type: "number" },
+                    { name: "vendorListingid", type: "string", width: 150 },
+                    //{ name: "Rating", type: "number", width: 50, align: "center",
+                    //    itemTemplate: function(value) {
+                    //        return $("<div>").addClass("rating").append(Array(value + 1).join("&#9733;"));
+                    //    }
+                    //},
+                    { name: "title", type: "string", width: 250}
                 ]
             });
     });
