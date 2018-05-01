@@ -100,11 +100,11 @@ $(document).ready(function() {
 
                             //var exp = new RegExp(_f.author, 'gi') 
                             console.log(value)
-                            var _s = value.match(/XSLIB\d{1,2}\w/g)
+                            var _s = value.match(/xslib\d{1,2}\w/gi)
                             value=""
                             if(_s!=null)                          
                                 _.each(_s,function(_v){
-                                    value = $("<div>").append(replace(_v,'XSLIB',''));
+                                    value = $("<div>").append(replace(_v.lowerCase(),'xslib','').upperCase() );
                                 })
                                 
                         return value;
