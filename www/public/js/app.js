@@ -22,7 +22,7 @@ $(document).ready(function() {
     
             $("#jsGrid").jsGrid({
                 height: "80%",
-                width: "100%",
+                width: "800px",
         
                 autoload: true,
                 paging: true,
