@@ -101,7 +101,7 @@ $(document).ready(function() {
                             //var exp = new RegExp(_f.author, 'gi') 
                             var _s = value.match(/XSLIB\n{1,2}/g)
                             value=""
-                            if(_s.length>0)                          
+                            if(_s!=null)                          
                                 _.each(_s,function(_v){
                                     value = $("<div>").append(_v);
                                 })
