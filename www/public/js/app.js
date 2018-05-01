@@ -65,18 +65,21 @@ $(document).ready(function() {
         
                 fields: [
                     { title: "id", name: "idbooks", type: "number", width: 25, visible:false },
-                    { name: "vendorListingid", title:'ref' ,type: "text", width: 80, align: "center", filtering:false
-                        ,itemTemplate: function(value) {
-                                return $("<div>").append('<b>'+value+'</b>');
-                         } 
-                    },
+                    { name: "vendorListingid", title:'ref' ,type: "text", width: 80, align: "center", filtering:false },
                     //{ name: "Rating", type: "number", width: 50, align: "center",
                     //    itemTemplate: function(value) {
                     //        return $("<div>").addClass("rating").append(Array(value + 1).join("&#9733;"));
                     //    }
                     //},
-                    { name: "title", type: "text", width: 300},
-                    { name: "author", type: "text", width: 300}
+                    { name: "title", type: "text", width: 300 ,
+                        itemTemplate: function(value) {
+                            return $("<div>").append('<b>'+value+'</b>');
+                        }
+                    },
+                    { name: "author", type: "text", width: 300,
+                    itemTemplate: function(value) {
+                        return $("<div>").append('<b>'+value+'</b>');
+                    }}
                 ]
             });
     //});
