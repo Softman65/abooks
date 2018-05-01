@@ -6,5 +6,11 @@ var router = express.Router();
 router.get('/', function (req, res) {
     res.render('index', { title: 'Express' });
 });
-
+router.get('/api/books', function (req, res) {
+    // mysql.connection("SELECT * FROM books LIMIT 1,50", function(err,records) {
+     //    res.send(JSON.stringify(records));
+     debugger
+     res.send('hi')
+     //})
+ });
 module.exports = router;
