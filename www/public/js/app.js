@@ -98,11 +98,14 @@ $(document).ready(function() {
                     {  title: "loc", name: "description", type: "text", width: 30,
                     itemTemplate: function(value) {
 
-                            //var exp = new RegExp(_f.author, 'gi')                            
-                            _.each(value.match(/XSLIB\n{1,2}/g),function(_v){
-                                value = $("<div>").append(_v);
-                            })
-                        
+                            //var exp = new RegExp(_f.author, 'gi') 
+                            var _s = value.match(/XSLIB\n{1,2}/g)
+                            value=""
+                            if(_s.length>0)                          
+                                _.each(_s,function(_v){
+                                    value = $("<div>").append(_v);
+                                })
+                                
                         return value;
                     }}
                 ]
