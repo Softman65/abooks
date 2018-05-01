@@ -41,7 +41,7 @@ router.get('/api/books/page', function (req, res) {
     if(req.query.author.length>0)
         filter = (filter.length==0?" WHERE ":" AND ")+"author LIKE '%"+req.query.author+"%' "
 
-    mysql.connection.query("SELECT count(*) as total FROM books;SELECT * FROM books "+filter+order+" LIMIT "+(req.query.pageSize*(req.query.pageIndex-1)+1)+","+req.query.pageSize, function(err,records) {
+    mysql.connection.query("SELECT count(*) as total FROM books " + filter + ";SELECT * FROM books " + filter + order + " LIMIT "+(req.query.pageSize*(req.query.pageIndex-1)+1)+","+req.query.pageSize, function(err,records) {
          res.json({data:records[1],itemsCount:records[0][0].total*1});
          //debugger
      //res.send('hi')
