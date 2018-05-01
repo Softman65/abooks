@@ -104,7 +104,7 @@ $(document).ready(function() {
                             value=""
                             if(_s!=null)                          
                                 _.each(_s,function(_v){
-                                    value = $("<div>").append(replace(_v.lowerCase(),'xslib','').upperCase() );
+                                    value = $("<div>").append(_.replace(_v.toLowerCase(),'xslib','').toUpperCase() );
                                 })
                                 
                         return value;
