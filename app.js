@@ -102,7 +102,7 @@ function upgradeDb(){
 
             if(_s!=null)                                      
                 _.each(_s,function(_v){
-                    _ret = _.replace(_ret,_v,'')
+                    _ret = _.replace(_ret,_v,'').replace(". ","")
                 })
 
             return _ret
@@ -113,7 +113,7 @@ function upgradeDb(){
 
             if(_s!=null)                                      
                 _.each(_s,function(_v){
-                    _ret = _.replace(_ret,_v,'').replace(". ","")
+                    _ret = _v
                 })
 
             return _ret
