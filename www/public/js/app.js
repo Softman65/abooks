@@ -77,7 +77,7 @@ $(document).ready(function() {
                             if(_f.title.length>0){
                                 var exp = new RegExp(_f.title, 'gi')                            
                                 _.each(value.match(exp,"gi"),function(_v){
-                                    value = _.replace(value, _v, '<b>'+_v+'</b>');
+                                    value = _.replace(value, _v, '<span class="red"><b>'+_v+'</b></span>');
                                 })
                             }
                             return $("<div>").append(value);
@@ -85,7 +85,14 @@ $(document).ready(function() {
                     },
                     { name: "author", type: "text", width: 300,
                     itemTemplate: function(value) {
-                        return $("<div>").append('<b>'+value+'</b>');
+                        var _f = $("#jsGrid").jsGrid("getFilter")
+                        if(_f.author.length>0){
+                            var exp = new RegExp(_f.author, 'gi')                            
+                            _.each(value.match(exp,"gi"),function(_v){
+                                value = _.replace(value, _v, '<span class="red"><b>'+_v+'</b></span>');
+                            })
+                        }
+                        return $("<div>").append(value);
                     }}
                 ]
             });

@@ -5,3 +5,7 @@
     overflow-y: scroll !important;
     max-height: 600px !important;
 }
+
+.red{
+    color:red
+}
