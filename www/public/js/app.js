@@ -103,7 +103,7 @@ $(document).ready(function() {
                                 value = $("<div>").append(_v);
                             })
                         
-                        return $("<div>").append(value);
+                        return value;
                     }}
                 ]
             });
