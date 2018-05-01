@@ -23,7 +23,7 @@ const RecordToParamsInsert = function(JsonRecord){
     JsonRecord.price_quantity!=null?JsonRecord.price_quantity:null,
     JsonRecord.quantity_limit!=null?JsonRecord.quantity_limit:null,
     JsonRecord.quantity_amount!=null?JsonRecord.quantity_amount:null,
-    JsonRecord.publishName!=null?JsonRecord.publishName:null,
+    JsonRecord.publisherName!=null?JsonRecord.publisherName:null,
     JsonRecord.publishYear!=null?JsonRecord.publishYear:null,
     JsonRecord.publishYearText!=null?JsonRecord.publishYearText:null,
     JsonRecord.description!=null?JsonRecord.description:null,
@@ -99,7 +99,7 @@ xmlReader.readXML(fs.readFileSync(FILE), function (err, data) {
             var cadsql = "SELECT * FROM books where vendorListingid=?"
             mysql.connection.query(cadsql,[record.vendorListingid], function(err,dbdata){
                 if(dbdata.length==0){
-                    cadsql = "INSERT INTO books (vendorListingid,tittle,author,price_currency,price_quantity,quantity_limit,quantity_amount,publishName,publishYear,publishYearText,description,bookCondition,bindingText,universalIdentifier_isvalid,universalIdentifier_numberType,universalIdentifier_number,buyerSearchAttribute) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+                    cadsql = "INSERT INTO books (vendorListingid,tittle,author,price_currency,price_quantity,quantity_limit,quantity_amount,publisherName,publishYear,publishYearText,description,bookCondition,bindingText,universalIdentifier_isvalid,universalIdentifier_numberType,universalIdentifier_number,buyerSearchAttribute) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
                     params = RecordToParamsInsert(record)
                 }else{
                     debugger
