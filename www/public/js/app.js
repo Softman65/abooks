@@ -13,11 +13,11 @@ $(document).ready(function() {
         { Name: "Canada", Id: 2 },
         { Name: "United Kingdom", Id: 3 }
     ];
-    $.ajax({
-        url: "/api/books/total?elems=50",
-        dataType: "json"
-    }).done(function(response) {
-        debugger
+   // $.ajax({
+   //     url: "/api/books/total?elems=50",
+   //     dataType: "json"
+   // }).done(function(response) {
+   //     debugger
         
     
             $("#jsGrid").jsGrid({
@@ -57,7 +57,7 @@ $(document).ready(function() {
                     { name: "title", type: "string", width: 250}
                 ]
             });
-    });
+    //});
 
 
 

@@ -17,6 +17,7 @@ function cint(num, opt_infinityBiased) {
 const mysql = {
     engine: require('mysql'),
     credentials: {
+        multipleStatements: true,
         host: 'localhost',
         user: 'root',
         password: 'guatemala016',
@@ -30,8 +31,8 @@ router.get('/', function (req, res) {
     res.render('index', { title: 'Express' });
 });
 router.get('/api/books/page', function (req, res) {
-    mysql.connection.query("SELECT * FROM books LIMIT "+(req.query.total*(req.query.page-1)+1)+","+req.query.total, function(err,records) {
-         res.json(records);
+    mysql.connection.query("SELECT count(*) as total FROM books;SELECT * FROM books LIMIT "+(req.query.total*(req.query.page-1)+1)+","+req.query.total, function(err,records) {
+         res.json({data:records[1],itemsCount:records[0].total});
          //debugger
      //res.send('hi')
      })
