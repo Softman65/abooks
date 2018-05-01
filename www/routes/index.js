@@ -36,7 +36,7 @@ router.get('/api/books/page', function (req, res) {
 
     if(req.query.sortField!=null)
         order = " ORDER BY "+req.query.sortField+" "+req.query.sortOrder
-        
+
     if(req.query.title.length>0)
         filter = filter + (filter.length==0?" WHERE ":"")+"title LIKE '%"+req.query.title+"%' "
 
@@ -50,7 +50,7 @@ router.get('/api/books/page', function (req, res) {
         filter = filter + (filter.length==0?" WHERE ":" AND ")+"_Sale LIKE '"+req.query._sale+"%' "
     
 
-    var cadsql = "SELECT count(*) as total FROM books " + filter + ";SELECT * FROM books " + filter + order + (filter.length>0? " LIMIT "+(req.query.pageSize*(req.query.pageIndex-1)+1)+","+req.query.pageSize:'')
+    var cadsql = "SELECT count(*) as total FROM books " + filter + ";SELECT * FROM books " + filter + order + (filter.length==0? " LIMIT "+(req.query.pageSize*(req.query.pageIndex-1)+1)+","+req.query.pageSize:'')
     console.log(cadsql)
     mysql.connection.query(cadsql, function(err,records) {
          res.json({data:records[1],itemsCount:records[0][0].total*1});
