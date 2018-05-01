@@ -17,7 +17,7 @@ mysql.connection.connect();
 const RecordToParamsInsert = function(JsonRecord){
  return [
     JsonRecord.vendorListingid!=null?JsonRecord.vendorListingid:null,
-    JsonRecord.tittle!=null?JsonRecord.tittle:null,
+    JsonRecord.title!=null?JsonRecord.title:null,
     JsonRecord.author!=null?JsonRecord.author:null,
     JsonRecord.price_currency!=null?JsonRecord.price_currency:null,
     JsonRecord.price_quantity!=null?JsonRecord.price_quantity:null,
@@ -108,7 +108,7 @@ xmlReader.readXML(fs.readFileSync(FILE), function (err, data) {
                     if(err)
                         debugger
 
-                        
+
                     console.log(_e, record.title)
                     _e++
                     fn(BookListing,_e, fn, callback )
