@@ -1,11 +1,27 @@
 ﻿extends layout
 
 block content
-  .ui.pointing.menu
-    a.item Home 
-    a.item Messages 
-    a.item.active Amigos 
-    .right.menu
-      a.ui.item Salir 
-  .ui.segment
-    p
+.ui.top.attached.menu
+	.ui.dropdown.icon.item
+		i.wrench.icon
+		.menu
+			.item
+				i.dropdown.icon
+				span.text New
+				.menu
+					.item Document
+					.item Imágenes
+			.item Open... 
+			.item Guardar... 
+			.item Edit Permissions
+			.divider
+			.header Exportar 
+			.item Compartir... 
+	.right.menu
+		.ui.right.aligned.category.search.item
+			.ui.transparent.icon.input
+				input.prompt(type='text', placeholder='Search animals...')
+				i.search.link.icon
+			.results
+.ui.bottom.attached.segment
+	p
