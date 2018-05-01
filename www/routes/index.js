@@ -32,10 +32,16 @@ router.get('/', function (req, res) {
 });
 router.get('/api/books/page', function (req, res) {
     var order =""
+    var filter=""
     if(req.query.sortField!=null)
         order = " ORDER BY "+req.query.sortField+" "+req.query.sortOrder
+    if(req.query.title!=null)
+        filter = filter.length==0?" WHERE ":""+"title LIKE '%"+req.query.title+"%' "
 
-    mysql.connection.query("SELECT count(*) as total FROM books;SELECT * FROM books "+order+" LIMIT "+(req.query.pageSize*(req.query.pageIndex-1)+1)+","+req.query.pageSize, function(err,records) {
+    if(req.query.author!=null)
+        filter = filter.length==0?" WHERE ":" AND "+"author LIKE '%"+req.query.author+"%' "
+
+    mysql.connection.query("SELECT count(*) as total FROM books;SELECT * FROM books "+filter+order+" LIMIT "+(req.query.pageSize*(req.query.pageIndex-1)+1)+","+req.query.pageSize, function(err,records) {
          res.json({data:records[1],itemsCount:records[0][0].total*1});
          //debugger
      //res.send('hi')
