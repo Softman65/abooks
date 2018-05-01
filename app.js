@@ -118,7 +118,7 @@ function upgradeDb(){
                     _ret = _.replace(_ret,_v,'').replace(". ","")
                 })
 
-            return _ret
+            return _ret.length>0?_ret:null
         }
         const getLoc = function(value){
             var _ret = null
