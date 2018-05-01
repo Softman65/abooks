@@ -27,7 +27,7 @@ $(document).ready(function() {
                 autoload: true,
                 paging: true,
                 pageLoading: true,
-                pageSize: 25,
+                pageSize: 20,
                 pageIndex:1,
 
                 controller: {
