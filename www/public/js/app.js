@@ -100,8 +100,9 @@ $(document).ready(function() {
                         return value;
                     }},
                     {  title: "sale", name: "_sale", type: "text", width: 40,
-                    itemTemplate: function(value) {        
-                        return value;
+                    itemTemplate: function(value) {
+                        var _t = value=='IBER'?'leanpub':'amazon'       
+                        return $('<i class="'+_t+' icon">');
                     }}
                 ]
             });
