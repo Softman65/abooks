@@ -99,6 +99,7 @@ $(document).ready(function() {
                     itemTemplate: function(value) {
 
                             //var exp = new RegExp(_f.author, 'gi') 
+                            console.log(value)
                             var _s = value.match(/XSLIB\d{1,2}\w/g)
                             value=""
                             if(_s!=null)                          
