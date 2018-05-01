@@ -28,7 +28,7 @@ $(document).ready(function() {
                 var d = $.Deferred();
  
                 $.ajax({
-                    url: "http://services.odata.org/V3/(S(3mnweai3qldmghnzfshavfok))/OData/OData.svc/Products",
+                    url: "/api/books",
                     dataType: "json"
                 }).done(function(response) {
                     debugger
