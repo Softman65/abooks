@@ -32,7 +32,7 @@ router.get('/', function (req, res) {
 });
 router.get('/api/books/page', function (req, res) {
     mysql.connection.query("SELECT count(*) as total FROM books;SELECT * FROM books LIMIT "+(req.query.elemsperpage*(req.query.page-1)+1)+","+req.query.elemsperpage, function(err,records) {
-         res.json({data:records[1],pageIndex:req.query.page,pageSize:req.query.elemsperpage*1,itemsCount:records[0][0].total});
+         res.json({data:records[1],pageIndex:req.query.page*1,pageSize:req.query.elemsperpage*1,itemsCount:records[0][0].total*1});
          //debugger
      //res.send('hi')
      })
