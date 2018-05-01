@@ -25,6 +25,12 @@ $(document).ready(function() {
                 width: "90%",
                 height: "calc(100% - 10px)",
 
+                rowNum : 1000,
+                viewrecords : true,
+                gridview : true,
+                autoencode : true,
+                loadonce : true,
+
                 autoload: true,
                 paging: true,
                 pageLoading: true,
