@@ -54,13 +54,13 @@ $(document).ready(function() {
         
                 fields: [
                     { field: "idbooks", name: "idbooks", type: "number" },
-                   // { name: "vendorListingid", type: "text", width: 150 },
+                    { name: "vendorListingid", type: "text", width: 150 },
                     //{ name: "Rating", type: "number", width: 50, align: "center",
                     //    itemTemplate: function(value) {
                     //        return $("<div>").addClass("rating").append(Array(value + 1).join("&#9733;"));
                     //    }
                     //},
-                   // { name: "title", type: "text", width: 250}
+                    { name: "title", type: "text", width: 250}
                 ]
             });
     //});
