@@ -92,7 +92,8 @@ function upgradeDb(){
         JsonRecord.universalIdentifier_isvalid!=null?JsonRecord.universalIdentifier_isvalid:null,
         JsonRecord.universalIdentifier_numberType!=null?JsonRecord.universalIdentifier_numberType:null,
         JsonRecord.universalIdentifier_number!=null?JsonRecord.universalIdentifier_number:null,
-        JsonRecord.buyerSearchAttribute!=null? JsonRecord.buyerSearchAttribute.join(','):null
+        JsonRecord.buyerSearchAttribute!=null? JsonRecord.buyerSearchAttribute.join(','):null,
+        JsonRecord._loc!=null? JsonRecord._loc:null
     ]
     }
     const convertToRecord = function(JsonRecord){
@@ -108,7 +109,7 @@ function upgradeDb(){
             return _ret
         }
         const getLoc = function(value){
-            var _ret = value
+            var _ret = null
             var _s = value.match(/xslib\d{1,2}\w{0,3}/gi)
 
             if(_s!=null)                                      
