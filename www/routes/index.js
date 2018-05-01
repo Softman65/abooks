@@ -38,6 +38,7 @@ router.get('/api/books/page', function (req, res) {
  });
  router.get('/api/books/total', function (req, res) {
     mysql.connection.query("SELECT count(*) as total, FROM books ", function(err,records) {
+        debugger
         records[0].pages = cint(records[0].pages / req.query.elems)
         records[0].elemsperpage = req.query.elems
         res.send(JSON.stringify(records));
