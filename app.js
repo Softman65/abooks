@@ -111,24 +111,26 @@ function upgradeDb(){
     const convertToRecord = function(JsonRecord){
         const cleanDesc = function(value){
             var _ret = value
-            var _s = value.match(/xslib\d{1,2}\w{0,3}/gi)
+            if(_ret!=null){
+                var _s = value.match(/xslib\d{1,2}\w{0,3}/gi)
 
-            if(_s!=null)                                      
-                _.each(_s,function(_v){
-                    _ret = _.replace(_ret,_v,'').replace(". ","")
-                })
-
+                if(_s!=null)                                      
+                    _.each(_s,function(_v){
+                        _ret = _.replace(_ret,_v,'').replace(". ","")
+                    })
+            }
             return _ret.length>0?_ret:null
         }
         const getLoc = function(value){
             var _ret = null
-            var _s = value.match(/xslib\d{1,2}\w{0,3}/gi)
+            if(value!=null){
+                var _s = value.match(/xslib\d{1,2}\w{0,3}/gi)
 
-            if(_s!=null)                                      
-                _.each(_s,function(_v){
-                    _ret = _v.toLowerCase().replace('xslib','').toUpperCase()
-                })
-
+                if(_s!=null)                                      
+                    _.each(_s,function(_v){
+                        _ret = _v.toLowerCase().replace('xslib','').toUpperCase()
+                    })
+            }
             return _ret
         }
         const getcodes = function(codes){
