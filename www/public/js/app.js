@@ -40,6 +40,9 @@ $(document).ready(function() {
 
                 pageSize: 18,
                 pageIndex:1,
+                finishLoad: function(loadedData) {
+                    $('.sale.icon').parent().parent().css({color:'red'})
+                },                     // handles the finish of loading data by controller.loadData
 
                 controller: {
                     loadData: function(filter) {
@@ -102,7 +105,7 @@ $(document).ready(function() {
                     {  title: "sale", name: "_sale", type: "text", width: 40,
                     itemTemplate: function(value) {
                         var _t = value=='IBER'?'leanpub':'amazon'       
-                        return value==null?null:$('<i class="'+_t+' icon">');
+                        return value==null?null:$('<i class="'+_t+' icon sale">');
                     }}
                 ]
             });
