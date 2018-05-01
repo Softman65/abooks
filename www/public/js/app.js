@@ -38,7 +38,7 @@ $(document).ready(function() {
                 selecting: true,
                 sorting: true,
 
-                pageSize: 20,
+                pageSize: 18,
                 pageIndex:1,
 
                 controller: {

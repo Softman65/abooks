@@ -41,6 +41,9 @@ router.get('/api/books/page', function (req, res) {
     if(req.query.author.length>0)
         filter = filter + (filter.length==0?" WHERE ":" AND ")+"author LIKE '%"+req.query.author+"%' "
     
+    if(req.query.description.length>0)
+        filter = filter + (filter.length==0?" WHERE ":" AND ")+"description LIKE 'xslib"+req.query.description+"%' "
+    
 
     var cadsql = "SELECT count(*) as total FROM books " + filter + ";SELECT * FROM books " + filter + order + " LIMIT "+(req.query.pageSize*(req.query.pageIndex-1)+1)+","+req.query.pageSize
     console.log(cadsql)
