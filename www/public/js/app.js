@@ -32,17 +32,23 @@ $(document).ready(function() {
 
                 controller: {
                     loadData: function(filter) {
-                        var d = $.Deferred();
-        
-                        $.ajax({
-                            url: "/api/books/page?page="+filter.pageIndex+"&elemsperpage="+filter.pageSize,
-                            dataType: "json"
-                        }).done(function(response) {
-                            debugger
-                            d.resolve(response);
+
+                        return $.ajax({
+                            type: "GET",
+                            url: "/api/books/page",
+                            data: filter
                         });
+                       // var d = $.Deferred();
         
-                        return d.promise();
+                      //  $.ajax({
+                      //      url: "/api/books/page?page="+filter.pageIndex+"&elemsperpage="+filter.pageSize,
+                       //     dataType: "json"
+                      //  }).done(function(response) {
+                      //      debugger
+                      //      d.resolve(response);
+                      //  });
+        
+                      //  return d.promise();
                     }
                 },
         
