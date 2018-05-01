@@ -35,7 +35,7 @@ $(document).ready(function() {
                         var d = $.Deferred();
         
                         $.ajax({
-                            url: "/api/books/page?page="+filter.pageIndex+"&total="+filter.pageSize,
+                            url: "/api/books/page?page="+filter.pageIndex+"&elemsperpage="+filter.pageSize,
                             dataType: "json"
                         }).done(function(response) {
                             debugger
