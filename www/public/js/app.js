@@ -100,7 +100,7 @@ $(document).ready(function() {
 
                             //var exp = new RegExp(_f.author, 'gi') 
                             console.log(value)
-                            var _s = value.match(/xslib\d{1,2}\w/gi)
+                            var _s = value.match(/xslib\d{1,2}\w{0,3}/gi)
                             value=""
                             if(_s!=null)                          
                                 _.each(_s,function(_v){
