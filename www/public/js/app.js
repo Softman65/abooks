@@ -95,7 +95,7 @@ $(document).ready(function() {
                         }
                         return $("<div>").append(value);
                     }},
-                    {  title: "loc", name: "_loc", type: "text", width: 30,
+                    {  title: "loc", name: "_loc", type: "text", width: 40,
                     itemTemplate: function(value) {        
                         return value;
                     }}
