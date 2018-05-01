@@ -108,8 +108,8 @@ xmlReader.readXML(fs.readFileSync(FILE), function (err, data) {
         if(BookListing[_e]!=null){
             var params = []
             var record = convertToRecord(BookListing[_e])
-            var cadsql = "SELECT * FROM books where vendorListingid=?"
-            mysql.connection.query(cadsql,[record.vendorListingid], function(err,dbdata){
+            var cadsql = ""
+            mysql.connection.query( "SELECT * FROM books where vendorListingid=?",[record.vendorListingid], function(err,dbdata){
                 if(dbdata.length==0){
                     cadsql = "INSERT INTO books (vendorListingid,tittle,author,price_currency,price_quantity,quantity_limit,quantity_amount,publisherName,publishYear,publishYearText,description,bookCondition,bindingText,universalIdentifier_isvalid,universalIdentifier_numberType,universalIdentifier_number,buyerSearchAttribute) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
                     params = RecordToParamsInsert(record)
