@@ -18,7 +18,7 @@ router.get('/', function (req, res) {
     res.render('index', { title: 'Express' });
 });
 router.get('/api/books', function (req, res) {
-    mysql.connection.query("SELECT * FROM books LIMIT 1,50", function(err,records) {
+    mysql.connection.query("SELECT * FROM books LIMIT ?,?",[req.query.page,req.query.total], function(err,records) {
          res.send(JSON.stringify(records));
          debugger
      //res.send('hi')
