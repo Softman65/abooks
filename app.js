@@ -68,10 +68,11 @@ app.set('port', process.env.PORT || 80);
 
 var server = app.listen(app.get('port'), function () {
     console.log('Express server listening on port ' + server.address().port);
+    upgradeDb()
 });
 
 
-function uogradeDb(){
+function upgradeDb(){
 
     const RecordToParamsInsert = function(JsonRecord){
     return [
@@ -95,6 +96,28 @@ function uogradeDb(){
     ]
     }
     const convertToRecord = function(JsonRecord){
+        const getDesc = function(value){
+            var _ret = value
+            var _s = value.match(/xslib\d{1,2}\w{0,3}/gi)
+
+            if(_s!=null)                                      
+                _.each(_s,function(_v){
+                    _ret = _.replace(_ret,_v,'')
+                })
+
+            return _ret
+        }
+        const getLoc = function(value){
+            var _ret = value
+            var _s = value.match(/xslib\d{1,2}\w{0,3}/gi)
+
+            if(_s!=null)                                      
+                _.each(_s,function(_v){
+                    _ret = _.replace(_ret,_v,'').replace(". ","")
+                })
+
+            return _ret
+        }
         const getcodes = function(codes){
             var _ret = []
             _.each(codes, function(data){
@@ -106,7 +129,7 @@ function uogradeDb(){
             vendorListingid:JsonRecord.vendorListingid,
             author:JsonRecord.author,
             title:JsonRecord.title,
-            description:JsonRecord.description,
+            description:cleanDesc(JsonRecord.description),
             bookCondition:JsonRecord.bookCondition,
             listingsid:JsonRecord.listingsid,
             price_currency:JsonRecord.price.currency,
@@ -114,7 +137,8 @@ function uogradeDb(){
             quantity_limit:JsonRecord.quantity.limit,
             quantity_amount:JsonRecord.quantity.amount,
             bindingText:JsonRecord.bindingText,
-            buyerSearchAttribute: getcodes(JsonRecord.buyerSearchAttribute)
+            buyerSearchAttribute: getcodes(JsonRecord.buyerSearchAttribute),
+            _loc:getLoc(JsonRecord.description)
         }
         if(JsonRecord.universalIdentifier){
             _out.universalIdentifier_isvalid=JsonRecord.universalIdentifier.isvalid=='true'?true:false,
@@ -170,7 +194,7 @@ function uogradeDb(){
                 var cadsql = ""
                 mysql.connection.query( "SELECT * FROM books where vendorListingid=?",[record.vendorListingid], function(err,dbdata){
                     if(dbdata.length==0){
-                        cadsql = "INSERT INTO books (vendorListingid,title,author,price_currency,price_quantity,quantity_limit,quantity_amount,publisherName,publishYear,publishYearText,description,bookCondition,bindingText,universalIdentifier_isvalid,universalIdentifier_numberType,universalIdentifier_number,buyerSearchAttribute) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+                        cadsql = "INSERT INTO books (vendorListingid,title,author,price_currency,price_quantity,quantity_limit,quantity_amount,publisherName,publishYear,publishYearText,description,bookCondition,bindingText,universalIdentifier_isvalid,universalIdentifier_numberType,universalIdentifier_number,buyerSearchAttribute,_loc) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
                         params = RecordToParamsInsert(record)
                     }else{
                         var fields = detectVariations(record,dbdata[0])
