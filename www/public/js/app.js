@@ -13,45 +13,53 @@ $(document).ready(function() {
         { Name: "Canada", Id: 2 },
         { Name: "United Kingdom", Id: 3 }
     ];
+    $.ajax({
+        url: "/api/books/total?elems=50",
+        dataType: "json"
+    }).done(function(response) {
+        debugger
+        d.resolve(response.value);
+    
+            $("#jsGrid").jsGrid({
+                height: "80%",
+                width: "100%",
+        
+                autoload: true,
+                paging: true,
+                pageLoading: true,
+                pageSize: response.elemsperpage,
+                pageIndex:1,
 
-    $("#jsGrid").jsGrid({
-        height: "80%",
-        width: "100%",
- 
-        autoload: true,
-        paging: true,
-        pageLoading: true,
-        pageSize: 15,
- 
-        controller: {
-            loadData: function(filter) {
-                var d = $.Deferred();
- 
-                $.ajax({
-                    url: "/api/books",
-                    dataType: "json"
-                }).done(function(response) {
-                    debugger
-                    d.resolve(response.value);
-                });
- 
-                return d.promise();
-            }
-        },
- 
-        fields: [
-            { name: "Name", type: "text" },
-            { name: "Description", type: "textarea", width: 150 },
-            { name: "Rating", type: "number", width: 50, align: "center",
-                itemTemplate: function(value) {
-                    return $("<div>").addClass("rating").append(Array(value + 1).join("&#9733;"));
-                }
-            },
-            { name: "Price", type: "number", width: 50,
-                itemTemplate: function(value) {
-                    return value.toFixed(2) + "$"; }
-            }
-        ]
+                controller: {
+                    loadData: function(filter) {
+                        var d = $.Deferred();
+        
+                        $.ajax({
+                            url: "/api/books/page?page="+filter.pageIndex+"&total="+filter.pageSize,
+                            dataType: "json"
+                        }).done(function(response) {
+                            debugger
+                            d.resolve(response.value);
+                        });
+        
+                        return d.promise();
+                    }
+                },
+        
+                fields: [
+                    { name: "Name", type: "text" },
+                    { name: "Description", type: "textarea", width: 150 },
+                    { name: "Rating", type: "number", width: 50, align: "center",
+                        itemTemplate: function(value) {
+                            return $("<div>").addClass("rating").append(Array(value + 1).join("&#9733;"));
+                        }
+                    },
+                    { name: "Price", type: "number", width: 50,
+                        itemTemplate: function(value) {
+                            return value.toFixed(2) + "$"; }
+                    }
+                ]
+            });
     });
 
 
