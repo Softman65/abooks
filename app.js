@@ -32,7 +32,7 @@ const RecordToParamsInsert = function(JsonRecord){
     JsonRecord.universalIdentifier_isvalid!=null?JsonRecord.universalIdentifier_isvalid:null,
     JsonRecord.universalIdentifier_numberType!=null?JsonRecord.universalIdentifier_numberType:null,
     JsonRecord.universalIdentifier_number!=null?JsonRecord.universalIdentifier_number:null,
-    JsonRecord.buyerSearchAttribute!=null?JsonRecord.buyerSearchAttribute:null
+    JsonRecord.buyerSearchAttribute!=null? JsonRecord.buyerSearchAttribute.join(','):null
  ]
 }
 const convertToRecord = function(JsonRecord){
