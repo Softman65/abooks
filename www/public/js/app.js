@@ -184,7 +184,7 @@ $(document).ready(function() {
     $('.ui.menu .item').on('click', function() {
 
         if($(this).hasClass('new')){
-            $('#edit .ui.approve.button').html('Guardar')
+            $('#edit .ui.approve.button').html('Crear')
             $('#edit .header.book').html('Nuevo Libro')
             $('#edit').modal().modal('show')
             $('#edit input').each(function(obj){
