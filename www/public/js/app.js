@@ -197,6 +197,32 @@ $(document).ready(function() {
                 }
             })
             $('#edit textarea').attr("disabled","").text('')
+            $('#id').keydown(function( event ) {
+                if ( event.which == 13 ) {
+                  event.preventDefault();
+                  $.ajax({
+                    type: "POST",
+                    url: "/api/books/key?value=" + $('#id').val()
+                  }).done(function(data){
+
+                    if(!data.ok){
+                        alert('referencia ya existente, prueba con otra')
+                    }else{
+                        $('#edit input').each(function(obj){
+                            var q = $('#edit input')[obj]
+                            if(q.hasAttribute("disabled")){
+                                $(q).removeAttr("disabled")
+                            }else{
+                                $(q).attr("disabled","")
+                            }
+                        })                        
+                    }
+                
+                  });
+                }
+            });
+
+           
         }else{
             $('.ui .item').removeClass('active');
             $(this).addClass('active');            
