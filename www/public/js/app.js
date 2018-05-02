@@ -187,6 +187,9 @@ $(document).ready(function() {
             $('#edit .ui.approve.button').html('Guardar')
             $('#edit .header.book').html('Nuevo Libro')
             $('#edit').modal().modal('show')
+            $('#edit input').each(function(obj){
+                obj.text('')
+            })
         }else{
             $('.ui .item').removeClass('active');
             $(this).addClass('active');            
