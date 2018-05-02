@@ -1,4 +1,16 @@
 $(document).ready(function() {
+
+    function getFormData($form){
+        var unindexed_array = $form.serializeArray();
+        var indexed_array = {};
+    
+        $.map(unindexed_array, function(n, i){
+            indexed_array[n['name']] = n['value'];
+        });
+    
+        return indexed_array;
+    }
+
     var clients = [
         { "Name": "Otto Clay", "Age": 25, "Country": 1, "Address": "Ap #897-1459 Quam Avenue", "Married": false },
         { "Name": "Connor Johnston", "Age": 45, "Country": 2, "Address": "Ap #370-4647 Dis Av.", "Married": true },
@@ -69,14 +81,16 @@ $(document).ready(function() {
                         return false;
                       },
                       onApprove : function() {
-                          debugger
-                          $.ajax({
+                        var $form = $("form.editForm")
+                        debugger
+                          
+                        $.ajax({
                             type: "POST",
                             url: "/api/books/Update",
-                            data: $( "form" ).serializeObject()
-                          }).done(function( data ) {
-                                debugger
-                          });
+                            data: getFormData($form)
+                        }).done(function( data ) {
+                            debugger
+                        });
                         
                       }}).modal('show')
                     
