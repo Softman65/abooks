@@ -84,8 +84,7 @@ $(document).ready(function() {
                     $('#edit .header.book').html('<span><span class="left green">'+getData.title+'</span><span class="right">'+getData.vendorListingid+'-<span class="red">'+(getData._loc==null?'?':getData._loc)+'</span></span></span>')
                     $('#edit').modal({
                       onDeny    : function(){
-                        window.alert('Wait not yet!');
-                        return false;
+                        return true;
                       },
                       onApprove : function() {
                         var $form = $("form.editForm")
