@@ -188,7 +188,13 @@ $(document).ready(function() {
             $('#edit .header.book').html('Nuevo Libro')
             $('#edit').modal().modal('show')
             $('#edit input').each(function(obj){
-                obj.text('')
+                var $q = $($('#edit input')[obj])
+                $q.text('')
+                if($q.hasAttribute("disabled")){
+                    $q.removeAttr("disabled")
+                }else{
+                    $q.attr("disabled","")
+                }
             })
         }else{
             $('.ui .item').removeClass('active');
