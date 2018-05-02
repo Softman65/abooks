@@ -54,7 +54,7 @@ $(document).ready(function() {
                             $('#edit textarea[name="'+value+'"]').text(getData[value])
                         }else{
                             if(value == '_sales'){
-                                $('#edit.ui.toggle.checkbox').checkbox(getData[value].length>0?'check':'uncheck')
+                                $('#edit .ui.toggle.checkbox').checkbox(getData[value].length>0?'check':'uncheck')
                             }else{
                                 $('#edit input[name="'+value+'"]').val(getData[value])
                             }
