@@ -72,8 +72,12 @@ router.get('/api/books/page', function (req, res) {
     
     if(req.query.price_quantity.length>0)
         filter = filter + (filter.length==0?" WHERE ":" AND ")+"price_quantity = '"+req.query.price_quantity+"' "
-   
+    
+    if(req.query.vendorListingid.length>0)
+        filter = filter + (filter.length==0?" WHERE ":" AND ")+"vendorListingid = '"+req.query.vendorListingid+"' "
 
+        
+        
 
     var cadsql = "SELECT count(*) as total FROM books " + filter + ";SELECT * FROM books " + filter + order + (filter.length==0? " LIMIT "+(req.query.pageSize*(req.query.pageIndex-1)+1)+","+req.query.pageSize:'')
     console.log(cadsql)
