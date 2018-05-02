@@ -96,7 +96,8 @@ $(document).ready(function() {
                                 url: "/api/books/update?id="+args.item.idbooks,
                                 data: _JsonArgs
                             }).done(function( data ) {
-                                debugger
+                                data.body.idbooks = args.item.idbooks
+                                $("#jsGrid").jsGrid( "updateItem" ,data.body );   
                             });
                         
                       }}).modal('show')
