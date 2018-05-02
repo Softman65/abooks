@@ -86,7 +86,7 @@ $(document).ready(function() {
                           
                         $.ajax({
                             type: "POST",
-                            url: "/api/books/Update",
+                            url: "/api/books/update",
                             data: getFormData($form)
                         }).done(function( data ) {
                             debugger
