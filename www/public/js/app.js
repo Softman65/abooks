@@ -93,7 +93,7 @@ $(document).ready(function() {
                         if(_JsonArgs!=null)  
                             $.ajax({
                                 type: "POST",
-                                url: "/api/books/update",
+                                url: "/api/books/update?id="+args.item.idbooks,
                                 data: _JsonArgs
                             }).done(function( data ) {
                                 debugger
