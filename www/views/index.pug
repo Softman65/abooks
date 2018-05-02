@@ -24,11 +24,11 @@ block content
           .fields
               .four.wide.field
                 label ISBN
-                input(type='text', name='ISBN', placeholder='ISBN')
+                input(type='text', name='universalIdentifier_number', placeholder='ISBN')
               .twelve.wide.field
                 span.right
                   label PRECIO
-                  input( css="text-align:right", type='text', name='PRECIO', placeholder='PRECIO')
+                  input(style="text-align:right", type='text', name='price_quantity', placeholder='PRECIO')
         .field
           .two.fields
             .field
@@ -36,7 +36,7 @@ block content
               input(type='text', name='title', placeholder='Titulo de la obra')
             .field
               label Autor
-              input(type='text', name='autor', placeholder='Autor de la Obra')
+              input(type='text', name='author', placeholder='Autor de la Obra')
         .field
           label Dirección de facturación
           .fields
