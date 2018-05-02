@@ -42,7 +42,7 @@ router.post('/api/books/update', function (req, res) {
             params.push(value)
         })
         debugger
-        mysql.connection.query(cadsql+" WHERE idbooks="+ req.params.id ,params, function(err,records) {
+        mysql.connection.query(cadsql+" WHERE idbooks="+ req.query.id ,params, function(err,records) {
             if(err)
                 debugger
             res.json({body:req.body,err:err,records:records});
