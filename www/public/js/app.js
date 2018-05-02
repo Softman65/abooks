@@ -52,7 +52,7 @@ $(document).ready(function() {
                     $.each(keys, function(idx, value) {
                       text.push(value + " : " + getData[value])
                     });
-                    $('#edit .header').html('<span><span class="left">'+getData.title+'</span><span class="right">'+getData.vendorListingid+'</span></span>')
+                    $('#edit .header.book').html('<span><span class="left">'+getData.title+'</span><span class="right">'+getData.vendorListingid+'</span></span>')
                     $('#edit').modal('show')
                     $("#label").text(text.join(", "))                    
                 },
