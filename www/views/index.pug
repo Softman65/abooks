@@ -26,9 +26,15 @@ block content
                 label ISBN
                 input(type='text', name='universalIdentifier_number', placeholder='ISBN')
               .twelve.wide.field
-                span.right
                   label PRECIO
                   input(style="text-align:right", type='text', name='price_quantity', placeholder='PRECIO')
+              .field
+                span.right
+                  .ui.toggle.checkbox
+                    input.hidden(type='checkbox', name='_sales', tabindex='0')
+                    label en venta
+        
+        
         .field
           .two.fields
             .field
@@ -49,75 +55,7 @@ block content
           .thirteen.field
             label Año
             input(type='text', name='publishYear', placeholder='Año',style="width:90px;text-align:right")
-        .field
-          label Tipo de tarjeta
-          .ui.selection.dropdown
-            input(type='hidden', name='card[type]')
-            .default.text Tipo
-            i.dropdown.icon
-            .menu
-              .item(data-value='visa')
-                i.visa.icon
-                |  Visa
-              .item(data-value='amex')
-                i.amex.icon
-                |  American Express
-              .item(data-value='discover')
-                i.discover.icon
-                |  Descubrir
-        .fields
-          .seven.wide.field
-            label Número de tarjeta
-            input(type='text', name='card[number]', maxlength='16', placeholder='Tarjeta #')
-          .three.wide.field
-            label CVC
-            input(type='text', name='card[cvc]', maxlength='3', placeholder='CVC')
-          .six.wide.field
-            label Expiración
-            .two.fields
-              .field
-                select.ui.fluid.search.dropdown(name='card[expire-month]')
-                  option(value='') Mes
-                  option(value='1') Enero
-                  option(value='2') Febrero
-                  option(value='3') Marzo
-                  option(value='4') Abril
-                  option(value='5') Mayo
-                  option(value='6') Junio
-                  option(value='7') Julio
-                  option(value='8') Agosto
-                  option(value='9') Septiembre
-                  option(value='10') Octubre
-                  option(value='11') November
-                  option(value='12') December
-              .field
-                input(type='text', name='card[expire-year]', maxlength='4', placeholder='Year')
-        h4.ui.dividing.header Receipt
-        .field
-          label Send Receipt To:
-          .ui.fluid.multiple.search.selection.dropdown
-            input(type='hidden', name='receipt')
-            i.dropdown.icon
-            .default.text Contactos guardados
-            .menu
-              .item(data-value='jenny', data-text='Jenny')
-                img.ui.mini.avatar.image(src='/images/avatar/small/jenny.jpg')
-                |  Jenny Hess
-              .item(data-value='elliot', data-text='Elliot')
-                img.ui.mini.avatar.image(src='/images/avatar/small/elliot.jpg')
-                |  Elliot Fu
-              .item(data-value='stevie', data-text='Esteban')
-                img.ui.mini.avatar.image(src='/images/avatar/small/stevie.jpg')
-                |  Stevie Feliciano
-              .item(data-value='christian', data-text='Christian')
-                img.ui.mini.avatar.image(src='/images/avatar/small/christian.jpg')
-                |  Christian
-              .item(data-value='matt', data-text='Matt')
-                img.ui.mini.avatar.image(src='/images/avatar/small/matt.jpg')
-                |  Matt
-              .item(data-value='justen', data-text='Justen')
-                img.ui.mini.avatar.image(src='/images/avatar/small/justen.jpg')
-                |  Justen Kitsune
+        
         .ui.segment
           .field
             .ui.toggle.checkbox
