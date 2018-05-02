@@ -34,12 +34,13 @@ router.post('/api/books/update', function (req, res) {
     var cadsql= "UPDATE books SET "
     var counter = 0
     var params = []
-    _.each(req.body, function(value,key){
-        counter++
-        cadsql=cadsql+(counter>1?',':'')+key+"=?"
-        params.push[value]
-    })
-    if(counter>0){
+    if(!_.isEmpty(req.body)){
+        _.each(req.body, function(value,key){
+            counter++
+            cadsql=cadsql+(counter>1?',':'')+key+"=?"
+            params.push[value]
+        })
+    
         mysql.connection.query(cadsql,params, function(err,records) {
             if(err)
                 debugger
