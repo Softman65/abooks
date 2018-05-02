@@ -30,6 +30,10 @@ mysql.connection.connect();
 router.get('/', function (req, res) {
     res.render('index', { title: 'Express' });
 });
+router.post('/api/books/update', function (req, res) {
+    debugger
+
+});
 router.get('/api/books/page', function (req, res) {
     var order =""
     var filter=""
