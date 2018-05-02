@@ -123,6 +123,10 @@ $(document).ready(function() {
                     {  title: "loc", name: "_loc", type: "text", width: 40,
                     itemTemplate: function(value) {        
                         return value;
+                    }},,
+                    {  title: "€", name: "price_quantity", type: "text", width: 40, align: "right", 
+                    itemTemplate: function(value) {        
+                        return value+" €";
                     }},
                     {  title: "sale", name: "_sale", type: "text", width: 40,
                     itemTemplate: function(value) {
