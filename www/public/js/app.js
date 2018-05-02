@@ -51,7 +51,7 @@ $(document).ready(function() {
                 
                     $.each(keys, function(idx, value) {
                         if(value == 'description'){
-                            $('#edit input[name="'+value+'"]').text(getData[value])
+                            $('#edit textarea[name="'+value+'"]').text(getData[value])
                         }else{
                             $('#edit input[name="'+value+'"]').val(getData[value])
                         }
