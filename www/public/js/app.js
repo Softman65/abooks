@@ -52,7 +52,7 @@ $(document).ready(function() {
                     $.each(keys, function(idx, value) {
                       text.push(value + " : " + getData[value])
                     });
-                
+                    $('#edit').modal('show')
                     $("#label").text(text.join(", "))                    
                 },
                 controller: {
