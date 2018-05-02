@@ -52,6 +52,7 @@ $(document).ready(function() {
                     $.each(keys, function(idx, value) {
                       text.push(value + " : " + getData[value])
                     });
+                    $('#edit .header').html(keys.title)
                     $('#edit').modal('show')
                     $("#label").text(text.join(", "))                    
                 },
