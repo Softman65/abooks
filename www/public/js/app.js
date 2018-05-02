@@ -57,7 +57,7 @@ $(document).ready(function() {
                         }
                       //text.push(value + " : " + getData[value])
                     });
-                    $('#edit .header.book').html('<span><span class="left">'+getData.title+'</span><span class="right">'+getData.vendorListingid+'-'+getData._loc+'</span></span>')
+                    $('#edit .header.book').html('<span><span class="left">'+getData.title+'</span><span class="right">'+getData.vendorListingid+'-'+(getData._loc==null?'?':getData._loc)+'</span></span>')
                     $('#edit').modal('show')
                     //$("#label").text(text.join(", "))                    
                 },
