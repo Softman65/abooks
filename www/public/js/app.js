@@ -80,7 +80,7 @@ $(document).ready(function() {
                         }
                       //text.push(value + " : " + getData[value])
                     });
-                    $('#edit .ui.approve.button').html('Modificar')
+                    $('#edit .ui.approve.button').html('Guardar')
                     $('#edit .header.book').html('<span><span class="left green">'+getData.title+'</span><span class="right">'+getData.vendorListingid+'-<span class="red">'+(getData._loc==null?'?':getData._loc)+'</span></span></span>')
                     $('#edit').modal({
                       onDeny    : function(){
