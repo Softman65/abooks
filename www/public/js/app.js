@@ -50,11 +50,12 @@ $(document).ready(function() {
                     var text = [];
                 
                     $.each(keys, function(idx, value) {
-                      text.push(value + " : " + getData[value])
+                        $('#edit input[name="'+value+'"]').value(getData[value])
+                      //text.push(value + " : " + getData[value])
                     });
                     $('#edit .header.book').html('<span><span class="left">'+getData.title+'</span><span class="right">'+getData.vendorListingid+'</span></span>')
                     $('#edit').modal('show')
-                    $("#label").text(text.join(", "))                    
+                    //$("#label").text(text.join(", "))                    
                 },
                 controller: {
 
