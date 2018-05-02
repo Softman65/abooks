@@ -184,12 +184,11 @@ $(document).ready(function() {
     $('.ui.menu .item').on('click', function() {
 
         if($(this).hasClass('new')){
-            $('#edit .ui.approve.button').attr("disabled","").html('Crear')
+            $('#edit .ui.approve.button').addClass("disabled").html('Crear')
             $('#edit .header.book').html('Nuevo Libro')
             $('#edit').modal().modal('show')
             $('#edit input').each(function(obj){
                 var q = $('#edit input')[obj]
-                $(q).text('')
                 $(q).val('')
                 if(q.hasAttribute("disabled")){
                     $(q).removeAttr("disabled")
@@ -197,7 +196,7 @@ $(document).ready(function() {
                     $(q).attr("disabled","")
                 }
             })
-            $('#edit textarea').attr("disabled","")
+            $('#edit textarea').attr("disabled","").text('')
         }else{
             $('.ui .item').removeClass('active');
             $(this).addClass('active');            
