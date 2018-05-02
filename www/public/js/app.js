@@ -90,7 +90,7 @@ $(document).ready(function() {
                         var $form = $("form.editForm")
                         var _JsonArgs = diferences(getFormData($form),args.item)
                         
-                        if(_JsonArgs!=null)  
+                        if(_JsonArgs!=null){ 
                             $.ajax({
                                 type: "POST",
                                 url: "/api/books/update?id="+args.item.idbooks,
@@ -100,7 +100,9 @@ $(document).ready(function() {
                                 $("#jsGrid").jsGrid( "updateItem" , data.body ); 
                                 $("#jsGrid").jsGrid( "loadData" );   
                             });
-                        
+                        }else{
+                            alert('Sin cambios que guardar')
+                        }
                       }}).modal('show')
                     
                     //$("#label").text(text.join(", "))                    
