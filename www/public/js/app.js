@@ -190,6 +190,7 @@ $(document).ready(function() {
             $('#edit input').each(function(obj){
                 var q = $('#edit input')[obj]
                 $(q).text('')
+                $(q).val('')
                 if(q.hasAttribute("disabled")){
                     $(q).removeAttr("disabled")
                 }else{
