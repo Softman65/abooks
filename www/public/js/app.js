@@ -94,7 +94,7 @@ $(document).ready(function() {
                         $.ajax({
                             type: "POST",
                             url: "/api/books/update",
-                            data: diferences(getFormData($form),args)
+                            data: diferences(getFormData($form),args.item)
                         }).done(function( data ) {
                             debugger
                         });
