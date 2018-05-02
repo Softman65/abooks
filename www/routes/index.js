@@ -50,7 +50,7 @@ router.get('/api/books/page', function (req, res) {
         filter = filter + (filter.length==0?" WHERE ":" AND ")+"_Sale LIKE '"+req.query._sale+"%' "
     
     if(req.query.price_quantity.length>0)
-        filter = filter + (filter.length==0?" WHERE ":" AND ")+"price_quantity = '"+req.query._sale+"' "
+        filter = filter + (filter.length==0?" WHERE ":" AND ")+"price_quantity = '"+req.query.price_quantity+"' "
    
 
 
