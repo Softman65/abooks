@@ -31,7 +31,7 @@ router.get('/', function (req, res) {
     res.render('index', { title: 'Express' });
 });
 router.post('/api/books/update', function (req, res) {
-    debugger
+    res.json(req.body);
 
 });
 router.get('/api/books/page', function (req, res) {

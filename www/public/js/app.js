@@ -10,7 +10,14 @@ $(document).ready(function() {
     
         return indexed_array;
     }
-
+    function diferences(modificado,original){
+        var _ret = {}
+        _.each(modificado, function(value,key){
+            if(value!=original[key])
+                _ret[key]=value
+        })
+        return _ret
+    }
     var clients = [
         { "Name": "Otto Clay", "Age": 25, "Country": 1, "Address": "Ap #897-1459 Quam Avenue", "Married": false },
         { "Name": "Connor Johnston", "Age": 45, "Country": 2, "Address": "Ap #370-4647 Dis Av.", "Married": true },
@@ -82,12 +89,12 @@ $(document).ready(function() {
                       },
                       onApprove : function() {
                         var $form = $("form.editForm")
-                        debugger
+                      
                           
                         $.ajax({
                             type: "POST",
                             url: "/api/books/update",
-                            data: getFormData($form)
+                            data: diferences(getFormData($form),args)
                         }).done(function( data ) {
                             debugger
                         });
