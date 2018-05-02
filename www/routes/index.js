@@ -51,7 +51,7 @@ router.post('/api/books/update', function (req, res) {
         res.json(req.body);
     }
 });
-router.get('/api/books/key', function (req, res) {
+router.post('/api/books/key', function (req, res) {
     var cadsql = "SELECT count(*) as total FROM books WHERE vendorListingid= "+req.query.value 
     mysql.connection.query(cadsql, function(err,records) {
         res.json({ok:records[0].total==0});
