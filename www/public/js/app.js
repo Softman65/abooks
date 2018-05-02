@@ -50,7 +50,7 @@ $(document).ready(function() {
                     var text = [];
                 
                     $.each(keys, function(idx, value) {
-                        $('#edit input[name="'+value+'"]').value(getData[value])
+                        $('#edit input[name="'+value+'"]').val(getData[value])
                       //text.push(value + " : " + getData[value])
                     });
                     $('#edit .header.book').html('<span><span class="left">'+getData.title+'</span><span class="right">'+getData.vendorListingid+'</span></span>')
