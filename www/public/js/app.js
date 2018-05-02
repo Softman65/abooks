@@ -97,6 +97,7 @@ $(document).ready(function() {
                                 data: _JsonArgs
                             }).done(function( data ) {
                                 data.body.idbooks = args.item.idbooks
+                                $("#jsGrid").jsGrid( "updateItem" ,data.body ); 
                                 $("#jsGrid").jsGrid( "refresh" );   
                             });
                         
