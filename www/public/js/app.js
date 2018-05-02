@@ -70,7 +70,14 @@ $(document).ready(function() {
                       },
                       onApprove : function() {
                           debugger
-                        $( "form" ).serialize()
+                          $.ajax({
+                            type: "POST",
+                            url: "/api/books/Update",
+                            data: $( "form" ).serializeObject()
+                          }).done(function( data ) {
+                                debugger
+                          });
+                        
                       }}).modal('show')
                     
                     //$("#label").text(text.join(", "))                    
