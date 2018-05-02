@@ -31,8 +31,23 @@ router.get('/', function (req, res) {
     res.render('index', { title: 'Express' });
 });
 router.post('/api/books/update', function (req, res) {
-    res.json(req.body);
-
+    var cadsql= "UPDATE books SET "
+    var counter = 0
+    var params = []
+    _.each(req.body, function(value,key){
+        counter++
+        cadsql=cadsql+(counter>1?',':'')+key+"=?"
+        params.push[value]
+    })
+    if(counter>0){
+        mysql.connection.query(cadsql,params, function(err,records) {
+            if(err)
+                debugger
+            res.json({body:req.body,err:err,records:records});
+        })
+    }else{
+        res.json(req.body);
+    }
 });
 router.get('/api/books/page', function (req, res) {
     var order =""
