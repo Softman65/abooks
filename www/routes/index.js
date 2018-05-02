@@ -1,6 +1,7 @@
 ﻿'use strict';
 var express = require('express');
 var router = express.Router();
+var _ = require('lodash');
 
 function cint(num, opt_infinityBiased) {
     var m = Math, c = m.ceil, f = m.floor, r = m.round;
