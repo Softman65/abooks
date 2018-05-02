@@ -16,7 +16,7 @@ $(document).ready(function() {
             if(value!=original[key] && (value.length>0 && original[key]!=null) )
                 _ret[key]=value
         })
-        return _ret
+        return _ret!={}?_ret:null
     }
     var clients = [
         { "Name": "Otto Clay", "Age": 25, "Country": 1, "Address": "Ap #897-1459 Quam Avenue", "Married": false },
@@ -89,15 +89,16 @@ $(document).ready(function() {
                       },
                       onApprove : function() {
                         var $form = $("form.editForm")
-                      
-                          
-                        $.ajax({
-                            type: "POST",
-                            url: "/api/books/update",
-                            data: diferences(getFormData($form),args.item)
-                        }).done(function( data ) {
-                            debugger
-                        });
+                        var _JsonArgs = diferences(getFormData($form),args.item)
+                        
+                        if(_JsonArgs!=null)  
+                            $.ajax({
+                                type: "POST",
+                                url: "/api/books/update",
+                                data: _JsonArgs
+                            }).done(function( data ) {
+                                debugger
+                            });
                         
                       }}).modal('show')
                     
