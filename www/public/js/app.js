@@ -69,7 +69,8 @@ $(document).ready(function() {
                         return false;
                       },
                       onApprove : function() {
-                        window.alert('Approved!');
+                          debugger
+                        $( "form" ).serialize()
                       }}).modal('show')
                     
                     //$("#label").text(text.join(", "))                    
