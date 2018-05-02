@@ -39,7 +39,7 @@ router.post('/api/books/update', function (req, res) {
         _.each(req.body, function(value,key){
             counter++
             cadsql=cadsql+(counter>1?',':'')+key+"=?"
-            params.push[value]
+            params.push(value)
         })
     
         mysql.connection.query(cadsql,params, function(err,records) {
