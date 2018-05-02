@@ -184,7 +184,9 @@ $(document).ready(function() {
     $('.ui.menu .item').on('click', function() {
 
         if($(this).hasClass('new')){
-            alert('new')
+            $('#edit .ui.approve.button').html('Guardar')
+            $('#edit .header.book').html('Nuevo Libro')
+            $('#edit').modal({})
         }else{
             $('.ui .item').removeClass('active');
             $(this).addClass('active');            
