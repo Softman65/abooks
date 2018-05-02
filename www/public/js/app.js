@@ -53,7 +53,11 @@ $(document).ready(function() {
                         if(value == 'description'){
                             $('#edit textarea[name="'+value+'"]').text(getData[value])
                         }else{
-                            $('#edit input[name="'+value+'"]').val(getData[value])
+                            if(value == '_sales'){
+                                $('#edit.ui.toggle.checkbox').checkbox(getData[value].length>0?'check':'uncheck')
+                            }else{
+                                $('#edit input[name="'+value+'"]').val(getData[value])
+                            }
                         }
                       //text.push(value + " : " + getData[value])
                     });
