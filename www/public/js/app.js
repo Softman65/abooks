@@ -186,7 +186,7 @@ $(document).ready(function() {
         if($(this).hasClass('new')){
             $('#edit .ui.approve.button').html('Guardar')
             $('#edit .header.book').html('Nuevo Libro')
-            $('#edit').modal()
+            $('#edit').modal().modal('show')
         }else{
             $('.ui .item').removeClass('active');
             $(this).addClass('active');            
