@@ -184,7 +184,7 @@ $(document).ready(function() {
     $('.ui.menu .item').on('click', function() {
 
         if($(this).hasClass('new')){
-            $('#edit .ui.approve.button').html('Crear')
+            $('#edit .ui.approve.button').attr("disabled","").html('Crear')
             $('#edit .header.book').html('Nuevo Libro')
             $('#edit').modal().modal('show')
             $('#edit input').each(function(obj){
@@ -197,6 +197,7 @@ $(document).ready(function() {
                     $(q).attr("disabled","")
                 }
             })
+            $('#edit textarea').attr("disabled","")
         }else{
             $('.ui .item').removeClass('active');
             $(this).addClass('active');            
