@@ -70,8 +70,8 @@ $(document).ready(function() {
                       onApprove : function() {
                         window.alert('Approved!');
                       }}).modal('show')
-                    $('#edit.ui.approve.button').html('Modificar').click(function(){
-
+                    $('#edit .ui.approve.button').html('Modificar').click(function(){
+debugger
                     })
                     //$("#label").text(text.join(", "))                    
                 },
