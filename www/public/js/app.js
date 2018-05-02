@@ -188,7 +188,7 @@ $(document).ready(function() {
             $('#edit .header.book').html('Nuevo Libro')
             $('#edit').modal().modal('show')
             $('#edit input').each(function(obj){
-                var q = $($('#edit input')[obj])
+                var q = $('#edit input')[obj]
                 $(q).text('')
                 if(q.hasAttribute("disabled")){
                     $(q).removeAttr("disabled")
