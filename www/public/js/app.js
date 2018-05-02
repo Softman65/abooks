@@ -50,7 +50,11 @@ $(document).ready(function() {
                     var text = [];
                 
                     $.each(keys, function(idx, value) {
-                        $('#edit input[name="'+value+'"]').val(getData[value])
+                        if(value == 'description'){
+                            $('#edit input[name="'+value+'"]').text(getData[value])
+                        }else{
+                            $('#edit input[name="'+value+'"]').val(getData[value])
+                        }
                       //text.push(value + " : " + getData[value])
                     });
                     $('#edit .header.book').html('<span><span class="left">'+getData.title+'</span><span class="right">'+getData.vendorListingid+'</span></span>')
