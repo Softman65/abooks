@@ -45,28 +45,22 @@ $(document).ready(function() {
                 data[row.name]=''
                 data[row.name] = data[row.name] +'<div class="item" data-value="'+row.Description+'">'+row.Description+'</div>' 
             })
-            $('#edit .ui.dropdown.productType .menu').html(data.productType)
-            $('#edit .ui.dropdown.productType .text[type="hidden"]').val(data.productType)
+            $('#edit .ui.dropdown.productType .menu').html(data.productType) 
             $('#edit .ui.dropdown.productType').dropdown('refresh')
 
             $('#edit .ui.dropdown.bookCondition .menu').html(data.bookCondition)
-            $('#edit .ui.dropdown.bookCondition .text[type="hidden"]').val(data.bookCondition)
             $('#edit .ui.dropdown.bookCondition').dropdown('refresh')
 
             $('#edit .ui.dropdown.jacketCondition .menu').html(data.jacketCondition)
-            $('#edit .ui.dropdown.jacketCondition .text[type="hidden"]').val(data.jacketCondition)
             $('#edit .ui.dropdown.jacketCondition').dropdown('refresh')
 
             $('#edit .ui.dropdown.inscriptionType .menu').html(data.inscriptionType)
-            $('#edit .ui.dropdown.inscriptionType .text[type="hidden"]').val(data.inscriptionType)
             $('#edit .ui.dropdown.inscriptionType').dropdown('refresh')
 
             $('#edit .ui.dropdown.bindingText .menu').html(data.binding)
-            $('#edit .ui.dropdown.bindingText .text[type="hidden"]').val(data.bindingText)
             $('#edit .ui.dropdown.bindingText').dropdown('refresh')
 
             $('#edit .ui.dropdown.edition .menu').html(data.edition)
-            $('#edit .ui.dropdown.edition .text[type="hidden"]').val(data.edition)
             $('#edit .ui.dropdown.edition').dropdown('refresh')
 
           
