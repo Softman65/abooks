@@ -55,17 +55,19 @@ block content
         .field
           .two.fields
             .field
-              label Estado físico
-              input(type='text', name='bookCondition', placeholder='Estado')
+              label Estado Físico
+              .ui.search.selection.dropdown.bookCondition
+                input(type='hidden', name='bookCondition', value='')
+                i.dropdown.icon
+                .default.text  Estado físico 
+                .menu  
             .field
               label Encuadernación
               .ui.search.selection.dropdown.bindingText
-                input(type='hidden', value='')
+                input(type='hidden', name='bindingText', value='')
                 i.dropdown.icon
+                .default.text Encuadernación 
                 .menu
-            .field
-              label Encuadernación
-              input(type='text', name='bindingText', placeholder='Encuadernación')
         h4.ui.dividing.header Datos de publicación
         .two.fields
           .field
