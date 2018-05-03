@@ -128,8 +128,8 @@ $(document).ready(function() {
                                 url: "/api/books/update?id="+args.item.idbooks,
                                 data: _JsonArgs
                             }).done(function( data ) {
-                                data.body.idbooks = args.item.idbooks
-                                $("#jsGrid").jsGrid( "updateItem" , data.body ); 
+                                //data.body.idbooks = args.item.idbooks
+                                //$("#jsGrid").jsGrid( "updateItem" , data.body ); 
                                 $("#jsGrid").jsGrid( "loadData" );   
                             });
                         }else{
