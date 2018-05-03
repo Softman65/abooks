@@ -37,15 +37,13 @@ $(document).ready(function() {
         dataType: "json"
     }).done(function(tables) {
             debugger
-    
-            
-            $('#edit .ui.dropdown.bindingText')
-            .dropdown({
-              apiSettings: {
-                // this url parses query server side and returns filtered results
-                url: '/api/books/tables?table=binding'
-              },
+            _.each(tables,function(){
+
             })
+            $('#edit .ui.dropdown.bindingText .menu').html()
+
+
+
           
 
     
