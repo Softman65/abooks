@@ -62,18 +62,39 @@ block content
                 .default.text  Tipo 
                 .menu 
             .field
-              label Estado Físico
+              label Estado General
               .ui.search.selection.dropdown.bookCondition
                 input(type='hidden', name='bookCondition', value='')
                 i.dropdown.icon
-                .default.text  Estado físico 
+                .default.text  Estado General 
                 .menu  
+            .field
+              label Estado Cubierta
+              .ui.search.selection.dropdown.jacketCondition
+                input(type='hidden', name='jacketCondition', value='')
+                i.dropdown.icon
+                .default.text  Estado cubierta 
+                .menu 
             .field
               label Encuadernación
               .ui.search.selection.dropdown.bindingText
                 input(type='hidden', name='bindingText', value='')
                 i.dropdown.icon
                 .default.text Encuadernación 
+                .menu
+            .field
+              label Firmas y dedicatorias
+              .ui.search.selection.dropdown.inscriptionType
+                input(type='hidden', name='inscriptionType', value='')
+                i.dropdown.icon
+                .default.text Firmas y dedicatorias 
+                .menu
+            .field
+              label Edición
+              .ui.search.selection.dropdown.edition
+                input(type='hidden', name='edition', value='')
+                i.dropdown.icon
+                .default.text Edición 
                 .menu
         h4.ui.dividing.header Datos de publicación
         .two.fields

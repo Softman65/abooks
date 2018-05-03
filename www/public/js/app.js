@@ -50,6 +50,12 @@ $(document).ready(function() {
             $('#edit .ui.dropdown.bookCondition .menu').html(data.bookCondition)
             $('#edit .ui.dropdown.bookCondition').dropdown()
 
+            $('#edit .ui.dropdown.jacketCondition .menu').html(data.jacketCondition)
+            $('#edit .ui.dropdown.jacketCondition').dropdown()
+
+            $('#edit .ui.dropdown.inscriptionType .menu').html(data.inscriptionType)
+            $('#edit .ui.dropdown.inscriptionType').dropdown()
+
             $('#edit .ui.dropdown.bindingText .menu').html(data.binding)
             $('#edit .ui.dropdown.bindingText').dropdown()
 
