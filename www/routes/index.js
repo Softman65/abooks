@@ -53,7 +53,7 @@ router.post('/api/books/update', function (req, res) {
             iberRecord = iberRecord + '<title>'+records[0].title+'</title>'
             iberRecord = iberRecord + '<author>'+records[0].author+'</author>'
             iberRecord = iberRecord + '<publisher>'+records[0].publisherName+'</publisher>'
-            iberRecord = iberRecord + '<price currency="'+record[0].price_currency+'">'+records[0].price_quantity+'</price>'
+            iberRecord = iberRecord + '<price currency="'+records[0].price_currency+'">'+records[0].price_quantity+'</price>'
 
             res.json({body:req.body,err:err,records:records});
         })
