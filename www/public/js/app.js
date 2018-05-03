@@ -32,11 +32,11 @@ $(document).ready(function() {
         { Name: "Canada", Id: 2 },
         { Name: "United Kingdom", Id: 3 }
     ];
-   // $.ajax({
-   //     url: "/api/books/total?elems=50",
-   //     dataType: "json"
-   // }).done(function(response) {
-   //     debugger
+    $.ajax({
+        url: "/api/books/tables",
+        dataType: "json"
+    }).done(function(tables) {
+            debugger
         
     
             $("#jsGrid").jsGrid({
@@ -177,7 +177,7 @@ $(document).ready(function() {
                     }}
                 ]
             });
-    //});
+    
 
 
 
@@ -228,4 +228,6 @@ $(document).ready(function() {
             $(this).addClass('active');            
         }
      }); 
+
+    });
 });

@@ -2,6 +2,7 @@
 var express = require('express');
 var router = express.Router();
 var _ = require('lodash');
+var xml = require('xml');
 
 function cint(num, opt_infinityBiased) {
     var m = Math, c = m.ceil, f = m.floor, r = m.round;
@@ -32,7 +33,7 @@ router.get('/', function (req, res) {
     res.render('index', { title: 'Express' });
 });
 router.post('/api/books/update', function (req, res) {
-    var cadsql= "UPDATE books SET "
+    var cadsql= "SELECT *  FROM books WHERE idbooks="+ req.query.id+"; UPDATE books SET "
     var counter = 0
     var params = []
     if(!_.isEmpty(req.body)){
@@ -41,10 +42,19 @@ router.post('/api/books/update', function (req, res) {
             cadsql=cadsql+(counter>1?',':'')+key+"=?"
             params.push(value)
         })
-        debugger
+        
         mysql.connection.query(cadsql+" WHERE idbooks="+ req.query.id ,params, function(err,records) {
             if(err)
                 debugger
+            
+            var iberRecord = '<?xml version="1.0" encoding="ISO-8859-1"?><inventoryUpdateRequest version="1.0"><action name="bookupdate"><username>artebooks39@gmail.com</username><password>guatemala016</password></action><AbebookList><Abebook>'
+            iberRecord = iberRecord + '<transactionType>add</transactionType>'
+            iberRecord = iberRecord + '<vendorBookID>'+records[0].vendorBookID+'</vendorBookID>'
+            iberRecord = iberRecord + '<title>'+records[0].title+'</title>'
+            iberRecord = iberRecord + '<author>'+records[0].author+'</author>'
+            iberRecord = iberRecord + '<publisher>'+records[0].publisherName+'</publisher>'
+            iberRecord = iberRecord + '<price currency="'+record[0].price_currency+'">'+records[0].price_quantity+'</price>'
+
             res.json({body:req.body,err:err,records:records});
         })
     }else{
@@ -101,6 +111,14 @@ router.get('/api/books/page', function (req, res) {
         records[0].pages = cint(records[0].total / req.query.elems)
         records[0].elemsperpage = req.query.elems *1
         res.json(records[0]);
+         //debugger
+     //res.send('hi')
+     })
+ });
+ router.get('/api/books/tables', function (req, res) {
+    mysql.connection.query("SELECT DISTINCT name FROM iberTables; SELECT * FROM iberTables order by name,Description asc", function(err,records) {
+        //debugger
+        res.json(records);
          //debugger
      //res.send('hi')
      })
