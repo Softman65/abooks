@@ -38,14 +38,17 @@ $(document).ready(function() {
     }).done(function(tables) {
             debugger
 
-            var cadSql = {}
+            var data = {}
             _.each(tables[1],function(row){
-                if(cadSql[row.name]==null)
-                    cadSql[row.name]=''
-
-                cadSql[row.name] = cadSql[row.name] +'<div class="item" data-value="'+row.Description+'">'+row.Description+'</div>' 
+                if(data[row.name]==null)
+                data[row.name]=''
+                data[row.name] = data[row.name] +'<div class="item" data-value="'+row.Description+'">'+row.Description+'</div>' 
             })
-            $('#edit .ui.dropdown.bindingText .menu').html(cadSql.binding)
+
+            $('#edit .ui.dropdown.bookCondition .menu').html(data.bookCondition)
+            $('#edit .ui.dropdown.bookCondition').dropdown()
+
+            $('#edit .ui.dropdown.bindingText .menu').html(data.binding)
             $('#edit .ui.dropdown.bindingText').dropdown()
 
 
