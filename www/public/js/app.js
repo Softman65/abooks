@@ -37,13 +37,13 @@ $(document).ready(function() {
         dataType: "json"
     }).done(function(tables) {
             debugger
-            
+
             var cadSql = {}
             _.each(tables[1],function(row){
                 if(cadSql[row.name]==null)
                     cadSql[row.name]=''
 
-                cadSql[row.name] = cadSql[row.name] +'<div class="item" data-value="'+row.Descrption+'">'+row.Descrption+'</div>' 
+                cadSql[row.name] = cadSql[row.name] +'<div class="item" data-value="'+row.Description+'">'+row.Description+'</div>' 
             })
             $('#edit .ui.dropdown.bindingText .menu').html(cadSql.binding)
 
