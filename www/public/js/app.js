@@ -44,7 +44,7 @@ $(document).ready(function() {
                 data[row.name]=''
                 data[row.name] = data[row.name] +'<div class="item" data-value="'+row.Description+'">'+row.Description+'</div>' 
             })
-            $('#edit .ui.dropdown.productType .menu').html(data.bookCondition)
+            $('#edit .ui.dropdown.productType .menu').html(data.productType)
             $('#edit .ui.dropdown.productType').dropdown('refresh')
 
             $('#edit .ui.dropdown.bookCondition .menu').html(data.bookCondition)
@@ -59,6 +59,8 @@ $(document).ready(function() {
             $('#edit .ui.dropdown.bindingText .menu').html(data.binding)
             $('#edit .ui.dropdown.bindingText').dropdown('refresh')
 
+            $('#edit .ui.dropdown.edition .menu').html(data.edition)
+            $('#edit .ui.dropdown.edition').dropdown('refresh')
 
           
 
