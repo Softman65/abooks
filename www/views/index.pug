@@ -59,6 +59,12 @@ block content
               input(type='text', name='bookCondition', placeholder='Estado')
             .field
               label Encuadernación
+              .ui.search.selection.dropdown.bindingText
+                input(type='hidden', value='')
+                i.dropdown.icon
+                input.search(type='text', tabindex='0')
+            .field
+              label Encuadernación
               input(type='text', name='bindingText', placeholder='Encuadernación')
         h4.ui.dividing.header Datos de publicación
         .two.fields
