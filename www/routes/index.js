@@ -49,7 +49,7 @@ router.post('/api/books/update', function (req, res) {
             
             var iberRecord = '<?xml version="1.0" encoding="ISO-8859-1"?><inventoryUpdateRequest version="1.0"><action name="bookupdate"><username>artebooks39@gmail.com</username><password>guatemala016</password></action><AbebookList><Abebook>'
             iberRecord = iberRecord + '<transactionType>add</transactionType>'
-            iberRecord = iberRecord + '<vendorBookID>'+records[0].vendorBookID+'</vendorBookID>'
+            iberRecord = iberRecord + '<vendorBookID>'+records[0].idbooks+'</vendorBookID>'
             iberRecord = iberRecord + '<title>'+records[0].title+'</title>'
             iberRecord = iberRecord + '<author>'+records[0].author+'</author>'
             iberRecord = iberRecord + '<publisher>'+records[0].publisherName+'</publisher>'
