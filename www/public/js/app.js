@@ -102,7 +102,7 @@ $(document).ready(function() {
                                 if($('#edit input[name="'+value+'"]').attr('type')!='hidden'){
                                     $('#edit input[name="'+value+'"]').val(getData[value])
                                 }else{
-                                    $('#edit input[name="'+value+'"]').dropdown('set selected',getData[value])
+                                    $('#edit .'+value+' .text').html(getData[value])
                                 }
                             }
                         }
