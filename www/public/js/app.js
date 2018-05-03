@@ -14,7 +14,7 @@ $(document).ready(function() {
     function diferences(modificado,original){
         var _ret = {}
         _.each(modificado, function(value,key){
-            if(value!=original[key]) // && (value.length>0 && original[key]!=null) )
+            if(value!=original[key] && (value.length>0 && original[key]==null) )
                 _ret[key]=value
         })
         return _ret!={}?_ret:null
