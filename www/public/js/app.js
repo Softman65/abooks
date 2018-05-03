@@ -4,7 +4,7 @@ $(document).ready(function() {
         var unindexed_array = $form.serializeArray();
         var indexed_array = {};
         debugger
-        
+
         $.map(unindexed_array, function(n, i){
             indexed_array[n['name']] = n['value'];
         });
@@ -106,6 +106,7 @@ $(document).ready(function() {
                                     $('#edit input[name="'+value+'"]').val(getData[value])
                                 }else{
                                     $('#edit .'+value+' .text').removeClass('default').html(getData[value])
+                                    $('#edit .'+value+' .text[type="hidden"]').val(getData[value])
                                 }
                             }
                         }
