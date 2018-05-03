@@ -106,7 +106,7 @@ $(document).ready(function() {
                                     $('#edit input[name="'+value+'"]').val(getData[value])
                                 }else{
                                     $('#edit .'+value+' .text').removeClass('default').html(getData[value])
-                                    $('#edit .'+value+' .text[type="hidden"]').val(getData[value])
+                                    $('#edit .'+value+' [type="hidden"]').val(getData[value])
                                 }
                             }
                         }
