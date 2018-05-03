@@ -44,6 +44,8 @@ $(document).ready(function() {
                 data[row.name]=''
                 data[row.name] = data[row.name] +'<div class="item" data-value="'+row.Description+'">'+row.Description+'</div>' 
             })
+            $('#edit .ui.dropdown.productType .menu').html(data.bookCondition)
+            $('#edit .ui.dropdown.productType').dropdown()
 
             $('#edit .ui.dropdown.bookCondition .menu').html(data.bookCondition)
             $('#edit .ui.dropdown.bookCondition').dropdown()
