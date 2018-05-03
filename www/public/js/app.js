@@ -45,19 +45,19 @@ $(document).ready(function() {
                 data[row.name] = data[row.name] +'<div class="item" data-value="'+row.Description+'">'+row.Description+'</div>' 
             })
             $('#edit .ui.dropdown.productType .menu').html(data.bookCondition)
-            $('#edit .ui.dropdown.productType').dropdown()
+            $('#edit .ui.dropdown.productType').dropdown('refresh')
 
             $('#edit .ui.dropdown.bookCondition .menu').html(data.bookCondition)
-            $('#edit .ui.dropdown.bookCondition').dropdown()
+            $('#edit .ui.dropdown.bookCondition').dropdown('refresh')
 
             $('#edit .ui.dropdown.jacketCondition .menu').html(data.jacketCondition)
-            $('#edit .ui.dropdown.jacketCondition').dropdown()
+            $('#edit .ui.dropdown.jacketCondition').dropdown('refresh')
 
             $('#edit .ui.dropdown.inscriptionType .menu').html(data.inscriptionType)
-            $('#edit .ui.dropdown.inscriptionType').dropdown()
+            $('#edit .ui.dropdown.inscriptionType').dropdown('refresh')
 
             $('#edit .ui.dropdown.bindingText .menu').html(data.binding)
-            $('#edit .ui.dropdown.bindingText').dropdown()
+            $('#edit .ui.dropdown.bindingText').dropdown('refresh')
 
 
           
