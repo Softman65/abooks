@@ -99,7 +99,7 @@ $(document).ready(function() {
                             if(value == '_sale'){
                                 $('#edit .ui.toggle.checkbox').checkbox(getData[value]==null?'uncheck':getData[value].length>0?'check':'uncheck')
                             }else{
-                                if($('#edit input[name="'+value+'"]').attr('hidden')==null){
+                                if($('#edit input[name="'+value+'"]').attr('type')!='hidden'){
                                     $('#edit input[name="'+value+'"]').val(getData[value])
                                 }else{
                                     $('#edit input[name="'+value+'"]').dropdown('set selected',getData[value])
