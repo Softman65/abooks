@@ -45,7 +45,7 @@ $(document).ready(function() {
 
                 cadSql[row.name] = cadSql[row.name] +'<div class="item" data-value="'+row.Description+'">'+row.Description+'</div>' 
             })
-            $('#edit .ui.dropdown.bindingText .menu').html(cadSql.binding)
+            $('#edit .ui.dropdown.bindingText .menu').html(cadSql.binding).dropdown()
 
 
 
