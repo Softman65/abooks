@@ -226,7 +226,11 @@ $(document).ready(function() {
                   }).done(function(data){
 
                     if(!data.ok){
-                        alert('referencia ya existente, prueba con otra')
+                        if(data.error){
+                            alert('problemas con el formato, causan errores\nreferencia no valida')
+                        }else{
+                            alert('referencia ya existente, prueba con otra')
+                        }
                     }else{
                         $('#edit input').each(function(obj){
                             var q = $('#edit input')[obj]
