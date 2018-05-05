@@ -39,7 +39,7 @@ $(document).ready(function() {
                 }
             })
             $('#edit textarea').attr("disabled","").text('')
-            $('#id').keydown(function( event ) {
+            $('#id').removeAttr("disabled").keydown(function( event ) {
                 if ( event.which == 13 ) {
                   event.preventDefault();
                   $.ajax({
@@ -66,7 +66,7 @@ $(document).ready(function() {
                 
                   });
                 }
-            }).removeAttr("disabled").parent().removeClass('disabled');
+            }).parent().removeClass('disabled');
 
             $('#edit .header.book').html('Nuevo Libro')
             $('#edit .ui.approve.button').addClass("disabled").html('Crear')
