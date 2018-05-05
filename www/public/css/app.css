@@ -1,22 +1,22 @@
 .ui-jqgrid-view {
-    max-height: 642px;
+    max-height: 642px!important;;
 }
 .ui-jqgrid-bdiv {
     overflow-y: scroll !important;
     max-height: 600px !important;
 }
 .blue{
-    color:blue
+    color:blue!important;
 }
 .red{
-    color:red
+    color:red!important;
 }
 .green{
-    color:green;
+    color:green!important;
 }
 .right{
-    float:right
+    float:right!important;
 }
 .left{
-    float:left;
+    float:left!important;;
 }
