@@ -6,11 +6,13 @@ $(document).ready(function() {
         $('#edit').modal(
             {
                 onVisible: function(){
-                    if(_type=='edit'){
-                        $('#edit [name="universalIdentifier_number"]').focus()
-                    }else{
-                        $('#id').focus()
-                    }
+                    setTimeout(function(){
+                            if(_type=='edit'){
+                                $('#edit [name="universalIdentifier_number"]').focus()
+                            }else{
+                                $('#id').focus()
+                            }
+                        },100)
                 },
                 onDeny    : function(){
                   return true;
