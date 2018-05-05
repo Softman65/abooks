@@ -23,7 +23,7 @@ block content
         h4.ui.dividing.header Información de libro
         .field
           .fields
-              .five.wide.field
+              .five.wide.field.validate
                 label
                   span
                     span REF
@@ -33,7 +33,7 @@ block content
               .five.wide.field
                 label Isbn
                 input(type='text', name='universalIdentifier_number', placeholder='ISBN')
-              .five.wide.field
+              .five.wide.field.validate
                   label 
                     span
                       span PRECIO
@@ -49,13 +49,13 @@ block content
                     label Vendido      
         .field
           .two.fields
-            .field
+            .field.validate
               label
                 span
                   span TITULO
                   span.red *
               input(type='text', name='title', placeholder='Titulo de la obra')
-            .field
+            .field.validate
               label 
                 span
                   span AUTOR
@@ -113,7 +113,7 @@ block content
                 .menu
         h4.ui.dividing.header Datos de publicación
         .two.fields
-          .field
+          .field.validate
             label
               span
                 span PUBLICADO POR

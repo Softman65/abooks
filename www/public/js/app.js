@@ -1,5 +1,8 @@
 $(document).ready(function() {
-
+    function validateForm($form){
+        var _e = $('.validate').find('input')
+        debugger
+    }
     function getFormData($form){
         var unindexed_array = $form.serializeArray();
         var indexed_array = {};
@@ -215,7 +218,7 @@ $(document).ready(function() {
                   var $form = $("form.editForm")
                   var _JsonArgs = diferences(getFormData($form),args.item)
                   debugger
-                  
+
                   if(_JsonArgs!=null){ 
                       $.ajax({
                           type: "POST",
@@ -271,7 +274,9 @@ $(document).ready(function() {
                   });
                 }
             });
-
+            $('.validate input').keyup(function(event){
+                debugger
+            })
            
         }else{
             $('.ui .item').removeClass('active');
