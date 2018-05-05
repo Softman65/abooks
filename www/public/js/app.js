@@ -137,7 +137,7 @@ $(document).ready(function() {
         url: "/api/books/tables",
         dataType: "json"
     }).done(function(tables) {
-            debugger
+            //debugger
 
             var data = {}
             _.each(tables[1],function(row){
