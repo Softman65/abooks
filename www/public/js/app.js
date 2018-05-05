@@ -81,7 +81,7 @@ $(document).ready(function() {
               var $form = $("form.editForm")
               var _JsonArgs={}
               if(_type=='edit'){
-              var _JsonArgs = diferences(getFormData($form),args.item)
+                _JsonArgs = diferences(getFormData($form),args.item)
               }else{
                 _JsonArgs = getFormData($form)
               }
