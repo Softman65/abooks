@@ -95,8 +95,8 @@ $(document).ready(function() {
                                 if($('#edit input[name="'+value+'"]').attr('type')!='hidden'){
                                     $('#edit input[name="'+value+'"]').val(getData[value])
                                 }else{
-                                    $('#edit .'+value+' .text').removeClass('default').html(getData[value])
-                                    $('#edit .'+value+' [type="hidden"]').val(getData[value])
+                                    $('#edit .'+value+' .text').removeAttr("disabled").removeClass('default').html(getData[value])
+                                    $('#edit .'+value+' [type="hidden"]').removeAttr("disabled").val(getData[value])
                                 }
                             }
                         }
