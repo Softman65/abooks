@@ -80,7 +80,7 @@ $(document).ready(function() {
                 }
             })
             $('#edit textarea').attr("disabled","").text('')
-            $('#id').removeAttr("disabled").keydown(function( event ) {
+            $('#id').removeAttr("disabled").keyup(function( event ) {
                 if ( event.which == 13 ) {
                   event.preventDefault();
                   $.ajax({
@@ -115,7 +115,11 @@ $(document).ready(function() {
 
 
         
-
+        $('.validate input').keydown(function(event){
+            if ( event.which <48 &&  event.which >63 && event.which !=13) {
+                return false
+            }
+        })
 
         $('.validate input').keyup(function(event){
             if($(this).val().length==0){
