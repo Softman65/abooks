@@ -66,7 +66,7 @@ $(document).ready(function() {
                 
                   });
                 }
-            });
+            }).parent().removeClass('disabled');
 
             $('#edit .header.book').html('Nuevo Libro')
             $('#edit .ui.approve.button').addClass("disabled").html('Crear')
