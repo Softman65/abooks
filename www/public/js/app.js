@@ -1,6 +1,6 @@
 $(document).ready(function() {
     function editForm(_type,args){
-        if(type=='edit'){
+        if(_type=='edit'){
             var getData = args.item;
             var keys = Object.keys(getData);
             var text = [];
