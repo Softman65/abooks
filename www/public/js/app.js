@@ -1,4 +1,5 @@
 $(document).ready(function() {
+
     function editForm(_type,args){
         if(_type=='edit'){
             var getData = args.item;
@@ -101,11 +102,12 @@ $(document).ready(function() {
             }
         }).modal('show')
 
-
-
-
         $('.validate input').keyup(function(event){
-            debugger
+            if($(this).val().length==0){
+                $(this).parent().addClass('error')
+            }else{
+                $(this).parent().removeClass('error')
+            }
         })
 
     }
