@@ -1,4 +1,114 @@
 $(document).ready(function() {
+    function editForm(_type,args){
+        if(type=='edit'){
+            var getData = args.item;
+            var keys = Object.keys(getData);
+            var text = [];
+        
+            $.each(keys, function(idx, value) {
+                if(value == 'description'){
+                    $('#edit textarea[name="'+value+'"]').text(getData[value])
+                }else{
+                    if(value == '_sale'){
+                        $('#edit .ui.toggle.checkbox').checkbox(getData[value]==null?'uncheck':getData[value].length>0?'check':'uncheck')
+                    }else{
+                        if($('#edit input[name="'+value+'"]').attr('type')!='hidden'){
+                            $('#edit input[name="'+value+'"]').val(getData[value]).removeAttr("disabled")
+                        }else{
+                            $('#edit .'+value+' .text').removeClass('default').html(getData[value])
+                            $('#edit .'+value+' [type="hidden"]').val(getData[value])
+                        }
+                    }
+                }
+              //text.push(value + " : " + getData[value])
+            });
+            $('#edit .ui.approve.button').html('Guardar')
+            $('#edit .header.book').html('<span><span class="left green">'+getData.title+'</span><span class="right">'+getData.vendorListingid+'-<span class="red">'+(getData._loc==null?'?':getData._loc)+'</span></span></span>')
+
+        }else{
+
+            $('#edit input').each(function(obj){
+                var q = $('#edit input')[obj]
+                $(q).val('')
+                if(q.hasAttribute("disabled")){
+                    $(q).removeAttr("disabled")
+                }else{
+                    $(q).attr("disabled","")
+                }
+            })
+            $('#edit textarea').attr("disabled","").text('')
+            $('#id').keydown(function( event ) {
+                if ( event.which == 13 ) {
+                  event.preventDefault();
+                  $.ajax({
+                    type: "POST",
+                    url: "/api/books/key?value=" + $('#id').val()
+                  }).done(function(data){
+    
+                    if(!data.ok){
+                        if(data.error){
+                            alert('problemas con el formato, causan errores\nreferencia no valida')
+                        }else{
+                            alert('referencia ya existente, prueba con otra')
+                        }
+                    }else{
+                        $('#edit input').each(function(obj){
+                            var q = $('#edit input')[obj]
+                            if(q.hasAttribute("disabled")){
+                                $(q).removeAttr("disabled")
+                            }else{
+                                $(q).attr("disabled","")
+                            }
+                        })                        
+                    }
+                
+                  });
+                }
+            });
+
+            $('#edit .header.book').html('Nuevo Libro')
+            $('#edit .ui.approve.button').addClass("disabled").html('Crear')
+        }
+
+
+        
+        $('#edit').modal(
+        {
+            onDeny    : function(){
+              return true;
+            },
+            onApprove : function() {
+              var $form = $("form.editForm")
+              var _JsonArgs={}
+              if(_type=='edit'){
+              var _JsonArgs = diferences(getFormData($form),args.item)
+              }else{
+                _JsonArgs = getFormData($form)
+              }
+              debugger
+
+              if(_JsonArgs!=null){ 
+                  $.ajax({
+                      type: "POST",
+                      url: "/api/books/" + _type +(_type=='edit'?"?id="+args.item.idbooks:''),
+                      data: _JsonArgs
+                  }).done(function( data ) {
+                      $("#jsGrid").jsGrid( "loadData" );   
+                  });
+              }else{
+                  alert('Sin cambios que guardar')
+              }
+            }
+        }).modal('show')
+
+
+
+
+        $('.validate input').keyup(function(event){
+            debugger
+        })
+
+    }
     function validateForm($form){
         var _e = $('.validate').find('input')
         debugger
@@ -80,54 +190,7 @@ $(document).ready(function() {
                         $('.sale.icon').parent().parent().css({color:'red'})
                 },                     // handles the finish of loading data by controller.loadData
                 rowClick: function(args) {
-                    console.log(args)
-                    var getData = args.item;
-                    var keys = Object.keys(getData);
-                    var text = [];
-                
-                    $.each(keys, function(idx, value) {
-                        if(value == 'description'){
-                            $('#edit textarea[name="'+value+'"]').text(getData[value])
-                        }else{
-                            if(value == '_sale'){
-                                $('#edit .ui.toggle.checkbox').checkbox(getData[value]==null?'uncheck':getData[value].length>0?'check':'uncheck')
-                            }else{
-                                if($('#edit input[name="'+value+'"]').attr('type')!='hidden'){
-                                    $('#edit input[name="'+value+'"]').val(getData[value]).removeAttr("disabled")
-                                }else{
-                                    $('#edit .'+value+' .text').removeClass('default').html(getData[value])
-                                    $('#edit .'+value+' [type="hidden"]').val(getData[value])
-                                }
-                            }
-                        }
-                      //text.push(value + " : " + getData[value])
-                    });
-                    $('#edit .ui.approve.button').html('Guardar')
-                    $('#edit .header.book').html('<span><span class="left green">'+getData.title+'</span><span class="right">'+getData.vendorListingid+'-<span class="red">'+(getData._loc==null?'?':getData._loc)+'</span></span></span>')
-                    $('#edit').modal({
-                      onDeny    : function(){
-                        return true;
-                      },
-                      onApprove : function() {
-                        var $form = $("form.editForm")
-                        var _JsonArgs = diferences(getFormData($form),args.item)
-                        
-                        if(_JsonArgs!=null){ 
-                            $.ajax({
-                                type: "POST",
-                                url: "/api/books/update?id="+args.item.idbooks,
-                                data: _JsonArgs
-                            }).done(function( data ) {
-                                //data.body.idbooks = args.item.idbooks
-                                //$("#jsGrid").jsGrid( "updateItem" , data.body ); 
-                                $("#jsGrid").jsGrid( "loadData" );   
-                            });
-                        }else{
-                            alert('Sin cambios que guardar')
-                        }
-                      }}).modal('show')
-                    
-                    //$("#label").text(text.join(", "))                    
+                    editForm('edit',args)                
                 },
                 controller: {
 
@@ -206,78 +269,7 @@ $(document).ready(function() {
     $('.ui.menu .item').on('click', function() {
 
         if($(this).hasClass('new')){
-            
-            $('#edit .ui.approve.button').addClass("disabled").html('Crear')
-            $('#edit .header.book').html('Nuevo Libro')
-            $('#edit').modal(
-            {
-                onDeny    : function(){
-                  return true;
-                },
-                onApprove : function() {
-                  var $form = $("form.editForm")
-                  var _JsonArgs = diferences(getFormData($form),args.item)
-                  debugger
-
-                  if(_JsonArgs!=null){ 
-                      $.ajax({
-                          type: "POST",
-                          url: "/api/books/update?id="+args.item.idbooks,
-                          data: _JsonArgs
-                      }).done(function( data ) {
-                          //data.body.idbooks = args.item.idbooks
-                          //$("#jsGrid").jsGrid( "updateItem" , data.body ); 
-                          $("#jsGrid").jsGrid( "loadData" );   
-                      });
-                  }else{
-                      alert('Sin cambios que guardar')
-                  }
-                }}).modal('show')
-
-
-
-            $('#edit input').each(function(obj){
-                var q = $('#edit input')[obj]
-                $(q).val('')
-                if(q.hasAttribute("disabled")){
-                    $(q).removeAttr("disabled")
-                }else{
-                    $(q).attr("disabled","")
-                }
-            })
-            $('#edit textarea').attr("disabled","").text('')
-            $('#id').keydown(function( event ) {
-                if ( event.which == 13 ) {
-                  event.preventDefault();
-                  $.ajax({
-                    type: "POST",
-                    url: "/api/books/key?value=" + $('#id').val()
-                  }).done(function(data){
-
-                    if(!data.ok){
-                        if(data.error){
-                            alert('problemas con el formato, causan errores\nreferencia no valida')
-                        }else{
-                            alert('referencia ya existente, prueba con otra')
-                        }
-                    }else{
-                        $('#edit input').each(function(obj){
-                            var q = $('#edit input')[obj]
-                            if(q.hasAttribute("disabled")){
-                                $(q).removeAttr("disabled")
-                            }else{
-                                $(q).attr("disabled","")
-                            }
-                        })                        
-                    }
-                
-                  });
-                }
-            });
-            $('.validate input').keyup(function(event){
-                debugger
-            })
-           
+            editForm('new',args)
         }else{
             $('.ui .item').removeClass('active');
             $(this).addClass('active');            
