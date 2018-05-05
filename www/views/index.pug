@@ -24,17 +24,20 @@ block content
         .field
           .fields
               .five.wide.field
-                label ref
+                label
                   span
-                    span ref
+                    span REF
                     span.red *
                 input(id='id' type='text', name='idbooks', placeholder='referencia',disabled="")
 
               .five.wide.field
-                label ISBN
+                label Isbn
                 input(type='text', name='universalIdentifier_number', placeholder='ISBN')
               .five.wide.field
-                  label PRECIO
+                  label 
+                    span
+                      span PRECIO
+                      span.red *
                   input(style="text-align:right", type='text', name='price_quantity', placeholder='PRECIO')
               .five.wide.field
                   label LOCALIZACIÓN
@@ -47,10 +50,16 @@ block content
         .field
           .two.fields
             .field
-              label Titulo
+              label
+                span
+                  span TITULO
+                  span.red *
               input(type='text', name='title', placeholder='Titulo de la obra')
             .field
-              label Autor
+              label 
+                span
+                  span AUTOR
+                  span.red *
               input(type='text', name='author', placeholder='Autor de la Obra')
         .field
           label Descripcion
@@ -105,8 +114,11 @@ block content
         h4.ui.dividing.header Datos de publicación
         .two.fields
           .field
-            label Nombre
-            input(type='text', name='publisherName', placeholder='Publicado por ....')
+            label
+              span
+                span PUBLICADO POR
+                span.red *            
+            input(type='text', name='publisherName', placeholder='Nombre')
           .thirteen.field
             label Año
             input(type='text', name='publishYear', placeholder='Año',style="width:90px;text-align:right")
