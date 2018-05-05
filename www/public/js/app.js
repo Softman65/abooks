@@ -93,10 +93,10 @@ $(document).ready(function() {
                                 $('#edit .ui.toggle.checkbox').checkbox(getData[value]==null?'uncheck':getData[value].length>0?'check':'uncheck')
                             }else{
                                 if($('#edit input[name="'+value+'"]').attr('type')!='hidden'){
-                                    $('#edit input[name="'+value+'"]').val(getData[value])
+                                    $('#edit input[name="'+value+'"]').val(getData[value]).removeAttr("disabled")
                                 }else{
-                                    $('#edit .'+value+' .text').removeAttr("disabled").removeClass('default').html(getData[value])
-                                    $('#edit .'+value+' [type="hidden"]').removeAttr("disabled").val(getData[value])
+                                    $('#edit .'+value+' .text').removeClass('default').html(getData[value])
+                                    $('#edit .'+value+' [type="hidden"]').val(getData[value])
                                 }
                             }
                         }
