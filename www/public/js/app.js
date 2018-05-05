@@ -1,6 +1,38 @@
 $(document).ready(function() {
 
     function editForm(_type,args){
+
+
+        $('#edit').modal(
+            {
+                onDeny    : function(){
+                  return true;
+                },
+                onApprove : function() {
+                  var $form = $("form.editForm")
+                  var _JsonArgs={}
+                  if(_type=='edit'){
+                    _JsonArgs = diferences(getFormData($form),args.item)
+                  }else{
+                    _JsonArgs = getFormData($form)
+                  }
+                  debugger
+    
+                  if(_JsonArgs!=null){ 
+                      $.ajax({
+                          type: "POST",
+                          url: "/api/books/" + _type +(_type=='edit'?"?id="+args.item.idbooks:''),
+                          data: _JsonArgs
+                      }).done(function( data ) {
+                          $("#jsGrid").jsGrid( "loadData" );   
+                      });
+                  }else{
+                      alert('Sin cambios que guardar')
+                  }
+                }
+        }).modal('show')
+
+
         if(_type=='edit'){
             var getData = args.item;
             var keys = Object.keys(getData);
@@ -74,34 +106,7 @@ $(document).ready(function() {
 
 
         
-        $('#edit').modal(
-        {
-            onDeny    : function(){
-              return true;
-            },
-            onApprove : function() {
-              var $form = $("form.editForm")
-              var _JsonArgs={}
-              if(_type=='edit'){
-                _JsonArgs = diferences(getFormData($form),args.item)
-              }else{
-                _JsonArgs = getFormData($form)
-              }
-              debugger
 
-              if(_JsonArgs!=null){ 
-                  $.ajax({
-                      type: "POST",
-                      url: "/api/books/" + _type +(_type=='edit'?"?id="+args.item.idbooks:''),
-                      data: _JsonArgs
-                  }).done(function( data ) {
-                      $("#jsGrid").jsGrid( "loadData" );   
-                  });
-              }else{
-                  alert('Sin cambios que guardar')
-              }
-            }
-        }).modal('show')
 
         $('.validate input').keyup(function(event){
             if($(this).val().length==0){
