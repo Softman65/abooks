@@ -116,7 +116,7 @@ $(document).ready(function() {
 
         
         $(' input.numeric').keydown(function(event){
-            return ( event.which <48 &&  event.which >63 || event.which !=13) 
+            return ( event.which >48 &&  event.which <63 || event.which ==13) 
         })
 
         $('.validate input').keyup(function(event){
