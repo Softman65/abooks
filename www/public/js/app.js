@@ -108,6 +108,12 @@ $(document).ready(function() {
             }else{
                 $(this).parent().removeClass('error')
             }
+
+            if($('#edit .error').length>0){
+                $('.ui.approve.button').addClass('disabled')
+            }else{
+                $('.ui.approve.button').removeClass('disabled')
+            }
         })
 
     }
