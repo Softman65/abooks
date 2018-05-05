@@ -58,7 +58,7 @@ $(document).ready(function() {
             $('#id').parent().addClass('disabled')
             $('#edit .ui.approve.button').html('Guardar')
             $('#edit .header.book').html('<span><span class="left green">'+getData.title+'</span><span class="right">'+getData.vendorListingid+'-<span class="red">'+(getData._loc==null?'?':getData._loc)+'</span></span></span>')
-
+            $('#edit [name="universalIdentifier_number"]').focus()
         }else{
 
             $('#edit input').each(function(obj){
