@@ -206,7 +206,33 @@ $(document).ready(function() {
             
             $('#edit .ui.approve.button').addClass("disabled").html('Crear')
             $('#edit .header.book').html('Nuevo Libro')
-            $('#edit').modal().modal('show')
+            $('#edit').modal(
+            {
+                onDeny    : function(){
+                  return true;
+                },
+                onApprove : function() {
+                  var $form = $("form.editForm")
+                  var _JsonArgs = diferences(getFormData($form),args.item)
+                  debugger
+                  
+                  if(_JsonArgs!=null){ 
+                      $.ajax({
+                          type: "POST",
+                          url: "/api/books/update?id="+args.item.idbooks,
+                          data: _JsonArgs
+                      }).done(function( data ) {
+                          //data.body.idbooks = args.item.idbooks
+                          //$("#jsGrid").jsGrid( "updateItem" , data.body ); 
+                          $("#jsGrid").jsGrid( "loadData" );   
+                      });
+                  }else{
+                      alert('Sin cambios que guardar')
+                  }
+                }}).modal('show')
+
+
+
             $('#edit input').each(function(obj){
                 var q = $('#edit input')[obj]
                 $(q).val('')
