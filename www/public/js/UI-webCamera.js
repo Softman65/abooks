@@ -94,7 +94,7 @@
                 defaults.download_photo_btn.classList.remove("disabled");
 
                 // Set the href attribute of the download button to the snap url.
-                defaults.download_photo_btn.href = snap;
+                defaults.download_photo_btn.href = defaults.snap;
 
                 // Pause video playback of stream.
                 defaults.video.pause();
