@@ -94,8 +94,8 @@
                   defaults.video.src = window.URL.createObjectURL(stream);
       
                   // Play the video element to start the stream.
-                  video.play();
-                  video.onplay = function() {
+                  defaults.video.play();
+                  defaults.video.onplay = function() {
                     settings.showVideo();
                     _this.captureEvents( defaults.video)
                   };
