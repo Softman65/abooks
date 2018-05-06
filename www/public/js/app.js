@@ -247,7 +247,8 @@ $(document).ready(function() {
                             var _src =document.domain+'/img/book?ref='+(item.img==0?'':item.vendorListingid)
                             return $("<img>").attr("src", _src)
                                              .css({ height: 50, width: 50 })
-                                             .click(function(){
+                                             .click(function(event){
+                                                 event.preventDefault()
                                                  alert('comming soon, pronto')
                                              })
                         }                    
