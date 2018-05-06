@@ -245,7 +245,11 @@ $(document).ready(function() {
                     { title: "img", type: "number", visible:true , width: 50,  filtering: false,
                         itemTemplate: function(val,item) {
                             var _src =document.domain+'/img/book?ref='+(item.img==0?'':item.vendorListingid)
-                            return $("<img>").attr("src", _src).css({ height: 50, width: 50 })
+                            return $("<img>").attr("src", _src)
+                                             .css({ height: 50, width: 50 })
+                                             .click(function(){
+                                                 alert('comming soon, pronto')
+                                             })
                         }                    
                     },
                     { name: "vendorListingid", title:'ref' ,type: "text", width: 80, align: "center" },
