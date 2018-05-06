@@ -14,7 +14,60 @@ block content
         i.big.plus.circle.icon.blue 
   .ui.segment
     #jsGrid
-  
+
+
+  #images.ui.modal
+      // The fileinput-button span is used to style the file input field as button
+    span.btn.btn-success.fileinput-button
+      i.glyphicon.glyphicon-plus
+      span Select files...
+      // The file input field used as target for the file upload widget
+      input#fileupload(type='file', name='files[]', multiple='')
+    br
+    br
+    // The global progress bar
+    #progress.progress
+      .progress-bar.progress-bar-success
+    // The container for the uploaded files
+    #files.files
+    br
+    .panel.panel-default
+      .panel-heading
+        h3.panel-title Demo Notes
+      .panel-body
+        ul
+          li
+            | The maximum file size for uploads in this demo is 
+            strong 999 KB
+            |  (default file size is unlimited).
+          li
+            | Only image files (
+            strong JPG, GIF, PNG
+            | ) are allowed in this demo (by default there is no file type restriction).
+          li
+            | Uploaded files will be deleted automatically after 
+            strong 5 minutes or less
+            |  (demo files are stored in memory).
+          li
+            | You can 
+            strong drag & drop
+            |  files from your desktop on this webpage (see 
+            a(href='https://github.com/blueimp/jQuery-File-Upload/wiki/Browser-support') Browser support
+            | ).
+          li
+            | Please refer to the 
+            a(href='https://github.com/blueimp/jQuery-File-Upload') project website
+            |  and 
+            a(href='https://github.com/blueimp/jQuery-File-Upload/wiki') documentation
+            |  for more information.
+          li
+            | Built with the 
+            a(href='http://getbootstrap.com/') Bootstrap
+            |  CSS framework and Icons from 
+            a(href='http://glyphicons.com/') Glyphicons
+            | .
+
+
   #edit.ui.modal
     .header.book(style="height:50px;") Header
     .content

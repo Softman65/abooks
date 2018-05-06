@@ -1,5 +1,11 @@
 $(document).ready(function() {
-
+    function imageForm(item){
+        $('#images').modal({
+            onApprove : function() {
+                debugger
+            } 
+        })
+    }
     function editForm(_type,args){
 
 
@@ -249,7 +255,8 @@ $(document).ready(function() {
                                              .css({ height: 50, width: 50 })
                                              .click(function(event){
                                                  event.stopPropagation()
-                                                 alert('comming soon, pronto gestión de fotitos')
+                                                 imageForm(item)
+                                                // alert('comming soon, pronto gestión de fotitos')
                                              })
                         }                    
                     },
