@@ -64,55 +64,6 @@
           defaults.video.classList.remove("visible");
           defaults.snap.classList.remove("visible");
           defaults.error_message.classList.remove("visible");
-        }
-
-      }
-
-      var methods = { 
-        init:function(){
-          const _this = this
-          navigator.getMedia = ( navigator.getUserMedia ||
-            navigator.webkitGetUserMedia ||
-            navigator.mozGetUserMedia ||
-            navigator.msGetUserMedia);
-
-            if(!navigator.getMedia){
-              settings.displayErrorMessage("Your browser doesn't have support for the navigator.getUserMedia interface.");
-            }
-            else{
-      
-              // Request the camera.
-              navigator.getMedia(
-                {
-                  video: true
-                },
-                // Success Callback
-                function(stream){
-      
-                  // Create an object URL for the video stream and
-                  // set it as src of our HTLM video element.
-                  defaults.video.src = window.URL.createObjectURL(stream);
-      
-                  // Play the video element to start the stream.
-                  defaults.video.play();
-                  defaults.video.onplay = function() {
-                    settings.showVideo();
-                    _this.captureEvents( defaults.video)
-                  };
-      
-                },
-                // Error Callback
-                function(err){
-                  settings.displayErrorMessage("There was an error with accessing the camera stream: " + err.name, err);
-                }
-
-                
-
-                
-
-              );
-      
-            }  
         },
         captureEvents:function(video){
                 // Mobile browsers cannot play video without user input,
@@ -167,6 +118,55 @@
                 defaults.video.play();
 
               });
+        }
+
+      }
+
+      var methods = { 
+        init:function(){
+          const _this = this
+          navigator.getMedia = ( navigator.getUserMedia ||
+            navigator.webkitGetUserMedia ||
+            navigator.mozGetUserMedia ||
+            navigator.msGetUserMedia);
+
+            if(!navigator.getMedia){
+              settings.displayErrorMessage("Your browser doesn't have support for the navigator.getUserMedia interface.");
+            }
+            else{
+      
+              // Request the camera.
+              navigator.getMedia(
+                {
+                  video: true
+                },
+                // Success Callback
+                function(stream){
+      
+                  // Create an object URL for the video stream and
+                  // set it as src of our HTLM video element.
+                  defaults.video.src = window.URL.createObjectURL(stream);
+      
+                  // Play the video element to start the stream.
+                  defaults.video.play();
+                  defaults.video.onplay = function() {
+                    settings.showVideo();
+                    settings.captureEvents( defaults.video)
+                  };
+      
+                },
+                // Error Callback
+                function(err){
+                  settings.displayErrorMessage("There was an error with accessing the camera stream: " + err.name, err);
+                }
+
+                
+
+                
+
+              );
+      
+            }  
         }
       }
     if (methods[method]) {
