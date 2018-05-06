@@ -242,7 +242,7 @@ $(document).ready(function() {
         
                 fields: [
                     { title: "id", name: "idbooks", type: "number", width: 25, visible:false },
-                    { title: "img", type: "number", width: 25, visible:false ,
+                    { title: "img", type: "number", visible:true ,
                         itemTemplate: function(val,item) {
                             debugger
                             return $("<img>").attr("src", val).css({ height: 50, width: 50 })
