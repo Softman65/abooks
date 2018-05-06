@@ -17,7 +17,7 @@ var certificate = fs.readFileSync('/home/debian/cert/certificate.crt');
 
 var credentials = {key: privateKey, cert: certificate};
 
-var app =   require('express').createServer(credentials);
+var app =   express.createServer();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'www/views'));
@@ -64,7 +64,7 @@ app.use(function (err, req, res, next) {
     });
 });
 
-app.set('port', 8080);
+app.set('port', 80);
 
 var server = app.listen(app.get('port'), function () {
     console.log('Express server listening on port ' + server.address().port);
