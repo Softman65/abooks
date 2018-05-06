@@ -242,9 +242,9 @@ $(document).ready(function() {
         
                 fields: [
                     { title: "id", name: "idbooks", type: "number", width: 25, visible:false },
-                    { title: "img", type: "number", visible:true ,
+                    { title: "img", type: "number", visible:true , width: 25,  filtering: false,
                         itemTemplate: function(val,item) {
-                            var _src =document.domain+'/img/book?ref='+item.img==0?'':item.vendorListingid
+                            var _src =document.domain+'/img/book?ref='+(item.img==0?'':item.vendorListingid)
                             return $("<img>").attr("src", _src).css({ height: 50, width: 50 })
                         }                    
                     },
