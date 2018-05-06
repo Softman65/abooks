@@ -16,12 +16,12 @@
 
       var settings = {
          showVideo:function(){
-          // Display the video stream and the controls.
-  
-          this.hideUI();
-          defaults.video.classList.add("visible");
-          defaults.controls.classList.add("visible");
-        },
+            // Display the video stream and the controls.
+    
+            this.hideUI();
+            defaults.video.classList.add("visible");
+            defaults.controls.classList.add("visible");
+          },
 
          takeSnapshot:function(){
             // Here we're using a trick that involves a hidden canvas element.  

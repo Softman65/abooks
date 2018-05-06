@@ -2,8 +2,8 @@
 
 console.log('Hello world');
 
-
-var express = require('express');
+var fs = require('fs');
+//var express = require('express');
 var path = require('path');
 
 var cookieParser = require('cookie-parser');
@@ -11,13 +11,13 @@ var bodyParser = require('body-parser');
 
 var routes = require('./www/routes/index');
 
-var app = express();
 
+var privateKey = fs.readFileSync('/home/debian/cert/private.key');
+var certificate = fs.readFileSync('/home/debian/cert/certificate.crt');
 
+var credentials = {key: privateKey, cert: certificate};
 
-
-
-
+var app =   require('express').createServer(credentials);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'www/views'));
@@ -64,7 +64,7 @@ app.use(function (err, req, res, next) {
     });
 });
 
-app.set('port', process.env.PORT || 80);
+app.set('port', 443);
 
 var server = app.listen(app.get('port'), function () {
     console.log('Express server listening on port ' + server.address().port);
