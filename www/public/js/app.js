@@ -249,7 +249,7 @@ $(document).ready(function() {
                                              .css({ height: 50, width: 50 })
                                              .click(function(event){
                                                  event.stopPropagation()
-                                                 alert('comming soon, pronto')
+                                                 alert('comming soon, pronto gestión de fotitos')
                                              })
                         }                    
                     },
