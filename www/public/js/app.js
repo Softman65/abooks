@@ -1,5 +1,7 @@
 $(document).ready(function() {
     function imageForm(item){
+        $.webCamera('init')
+
         $('#images').modal({
             onApprove : function() {
                 debugger

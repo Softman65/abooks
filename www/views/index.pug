@@ -17,51 +17,20 @@ block content
 
 
   #images.ui.modal
-    .upload-btn-wrapper
-      button.btn Upload a file
-      input(type='file', name='myfile')
-    br
-    
-    #progress.progress
-      .progress-bar.progress-bar-success
-    
-    #files.files
-    br
-    .ui.segment
-      .panel-heading
-        h3.panel-title Demo Notes
-      .panel-body
-        ul
-          li
-            | The maximum file size for uploads in this demo is 
-            strong 999 KB
-            |  (default file size is unlimited).
-          li
-            | Only image files (
-            strong JPG, GIF, PNG
-            | ) are allowed in this demo (by default there is no file type restriction).
-          li
-            | Uploaded files will be deleted automatically after 
-            strong 5 minutes or less
-            |  (demo files are stored in memory).
-          li
-            | You can 
-            strong drag & drop
-            |  files from your desktop on this webpage (see 
-            a(href='https://github.com/blueimp/jQuery-File-Upload/wiki/Browser-support') Browser support
-            | ).
-          li
-            | Please refer to the 
-            a(href='https://github.com/blueimp/jQuery-File-Upload') project website
-            |  and 
-            a(href='https://github.com/blueimp/jQuery-File-Upload/wiki') documentation
-            |  for more information.
-          li
-            | Built with the 
-            a(href='http://getbootstrap.com/') Bootstrap
-            |  CSS framework and Icons from 
-            a(href='http://glyphicons.com/') Glyphicons
-            | .
+    .app
+      a#start-camera.visible(href='#') Touch here to start the app.
+      video#camera-stream
+      img#snap
+      p#error-message
+      .controls
+        a#delete-photo.disabled(href='#', title='Delete Photo')
+          i.material-icons delete
+        a#take-photo(href='#', title='Take Photo')
+          i.material-icons camera_alt
+        a#download-photo.disabled(href='#', download='selfie.png', title='Save Photo')
+          i.material-icons file_download
+      // Hidden canvas element. Used for taking snapshot of video.
+      canvas
 
 
   #edit.ui.modal
