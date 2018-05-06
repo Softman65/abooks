@@ -16,8 +16,8 @@ var bodyParser = require('body-parser');
 var routes = require('./www/routes/index');
 
 
-var privateKey = fs.readFileSync('D:/home/debian/cert/private.key');
-var certificate = fs.readFileSync('D:/home/debian/cert/certificate.crt');
+var privateKey = fs.readFileSync('//home/debian/cert/private.key');
+var certificate = fs.readFileSync('//home/debian/cert/certificate.crt');
 
 var credentials = {key: privateKey, cert: certificate};
 
