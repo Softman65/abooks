@@ -33,7 +33,7 @@ router.get('/', function (req, res) {
     res.render('index', { title: 'Express' });
 });
 router.post('/api/books/update', function (req, res) {
-    var cadsql= "SELECT *  FROM books WHERE idbooks="+ req.query.id+"; UPDATE books SET "
+    var cadsql= "SELECT *  FROM books WHERE idbooks="+ req.body.id+";SELECT * FROM pictures WHERE vendirListinid="+req.query.vendorListinid+"; UPDATE books SET "
     var counter = 0
     var params = []
     if(!_.isEmpty(req.body)){
@@ -47,13 +47,7 @@ router.post('/api/books/update', function (req, res) {
             if(err)
                 debugger
             
-            var iberRecord = '<?xml version="1.0" encoding="ISO-8859-1"?><inventoryUpdateRequest version="1.0"><action name="bookupdate"><username>artebooks39@gmail.com</username><password>guatemala016</password></action><AbebookList><Abebook>'
-            iberRecord = iberRecord + '<transactionType>add</transactionType>'
-            iberRecord = iberRecord + '<vendorBookID>'+records[0].idbooks+'</vendorBookID>'
-            iberRecord = iberRecord + '<title>'+records[0].title+'</title>'
-            iberRecord = iberRecord + '<author>'+records[0].author+'</author>'
-            iberRecord = iberRecord + '<publisher>'+records[0].publisherName+'</publisher>'
-            iberRecord = iberRecord + '<price currency="'+records[0].price_currency+'">'+records[0].price_quantity+'</price>'
+                var xml = require('./node_app/xml_prepare').xmlIberbooks(records[0],records[1],"update")
 
             res.json({body:req.body,err:err,records:records});
         })
@@ -127,4 +121,8 @@ router.get('/api/books/page', function (req, res) {
      //res.send('hi')
      })
  });
+
+
+
+
 module.exports = router;
