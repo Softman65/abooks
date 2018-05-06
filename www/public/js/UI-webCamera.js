@@ -5,6 +5,7 @@
       var defaults = {
         video : document.querySelector('#camera-stream'),
         image : document.querySelector('#snap'),
+        snap : document.querySelector('#snap'),
         start_camera : document.querySelector('#start-camera'),
         controls : document.querySelector('.controls'),
         take_photo_btn : document.querySelector('#take-photo'),
@@ -131,7 +132,7 @@
 
                 e.preventDefault();
 
-                var snap = settings.takeSnapshot();
+                defaults.snap = settings.takeSnapshot();
 
                 // Show image. 
                 defaults.image.setAttribute('src', snap);
