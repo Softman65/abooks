@@ -17,11 +17,9 @@ block content
 
 
   #images.ui.modal
-    span.btn.btn-success.fileinput-button
-      i.glyphicon.glyphicon-plus
-      span Select files...
-      input#fileupload(type='file', name='files[]', multiple='')
-    br
+    .upload-btn-wrapper
+      button.btn Upload a file
+      input(type='file', name='myfile')
     br
     
     #progress.progress
@@ -29,7 +27,7 @@ block content
     
     #files.files
     br
-    .panel.panel-default
+    .ui.segment
       .panel-heading
         h3.panel-title Demo Notes
       .panel-body
