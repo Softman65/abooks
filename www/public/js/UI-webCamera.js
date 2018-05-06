@@ -29,8 +29,8 @@
             var hidden_canvas = document.querySelector('canvas'),
                 context = hidden_canvas.getContext('2d');
     
-            var width = settings.video.Width,
-                height = settings.video.Height;
+            var width = defaults.video.Width,
+                height = defaults.video.Height;
     
             if (width && height) {
     
