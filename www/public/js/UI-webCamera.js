@@ -145,7 +145,7 @@
       
                   // Create an object URL for the video stream and
                   // set it as src of our HTLM video element.
-                  defaults.video.src = window.URL.createObjectURL(stream);
+                  defaults.video.src = stream;
       
                   // Play the video element to start the stream.
                   defaults.video.play();
