@@ -22,7 +22,7 @@ module.exports = function () {
                 iberRecord = iberRecord + (libro.edition.length>0?'<edition>'+libro.publishYear+'</edition>':'')
                 iberRecord = iberRecord + '<quantity  amount="1"></quantity>'
                 debugger
-                if(records[1].length>0){
+                if(imagenes.length>0){
                     iberRecord = iberRecord + '<pictureList>'
                     _.each(imagenes, function(_rPictures){
                         iberRecord = iberRecord + '<pictureURL>'+_rPictures.idpictures +'.jpg<pictureURL>'
