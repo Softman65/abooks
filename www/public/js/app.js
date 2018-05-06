@@ -4,7 +4,7 @@ $(document).ready(function() {
             onApprove : function() {
                 debugger
             } 
-        })
+        }).modal('show')
     }
     function editForm(_type,args){
 
