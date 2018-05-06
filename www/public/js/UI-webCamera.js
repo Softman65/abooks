@@ -91,13 +91,13 @@
       
                   // Create an object URL for the video stream and
                   // set it as src of our HTLM video element.
-                  video.src = window.URL.createObjectURL(stream);
+                  defaults.video.src = window.URL.createObjectURL(stream);
       
                   // Play the video element to start the stream.
                   video.play();
                   video.onplay = function() {
                     settings.showVideo();
-                    _this.captureEvents(video)
+                    _this.captureEvents( defaults.video)
                   };
       
                 },
@@ -122,7 +122,7 @@
                 e.preventDefault();
 
                 // Start video playback manually.
-                video.play();
+                defaults.video.play();
                 settings.showVideo();
 
               });
@@ -146,7 +146,7 @@
                 defaults.download_photo_btn.href = snap;
 
                 // Pause video playback of stream.
-                video.pause();
+                defaults.video.pause();
 
               });
 
@@ -164,7 +164,7 @@
                 defaults.download_photo_btn.classList.add("disabled");
 
                 // Resume playback of stream.
-                video.play();
+                defaults.video.play();
 
               });
         }
