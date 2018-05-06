@@ -113,13 +113,19 @@ block content
                 .default.text Edición 
                 .menu
         h4.ui.dividing.header Datos de publicación
-        .two.fields
+        .tree.fields
           .field.validate
             label
               span
                 span.blue PUBLICADO POR
                 span.red *            
             input(type='text', name='publisherName', placeholder='Nombre')
+          .field
+            label
+              span
+                span.blue PUBLICADO EN
+                span.red *            
+            input(type='text', name='publishPlace', placeholder='Lugar')
           .thirteen.field
             label.blue Año
             input.numeric(type='text', name='publishYear', placeholder='Año',style="width:90px;text-align:right",maxlength="4")

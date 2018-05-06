@@ -17,7 +17,7 @@ module.exports = function () {
                 iberRecord = iberRecord + (libro.bookCondition.length>0?'<bookCondition>'+libro.bookCondition+'</bookCondition>':'')
                 iberRecord = iberRecord + (libro.jacketCondition.length>0?'<jacketCondition>'+libro.jacketCondition+'</jacketCondition>':'')
                 iberRecord = iberRecord + (libro.universalIdentifier_number.length>0?'<isbn>'+libro.universalIdentifier_number+'</isbn>':'')
-            //    iberRecord = iberRecord + (libro.title.publishPlace.length>0?'<publishPlace>'+libro.publishPlace+'</publishPlace>':'')
+                iberRecord = iberRecord + (libro.publishPlace.length>0?'<publishPlace>'+libro.publishPlace+'</publishPlace>':'')
                 iberRecord = iberRecord + (libro.publishYear.length>0?'<publishYear>'+libro.publishYear+'</publishYear>':'')
                 iberRecord = iberRecord + (libro.edition.length>0?'<edition>'+libro.publishYear+'</edition>':'')
                 iberRecord = iberRecord + '<quantity  amount="1"></quantity>'
