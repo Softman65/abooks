@@ -86,7 +86,7 @@
                 defaults.snap = settings.takeSnapshot();
 
                 // Show image. 
-                defaults.image.setAttribute('src', snap);
+                defaults.image.setAttribute('src', defaults.snap);
                 defaults.image.classList.add("visible");
 
                 // Enable delete and save buttons
