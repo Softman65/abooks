@@ -242,6 +242,12 @@ $(document).ready(function() {
         
                 fields: [
                     { title: "id", name: "idbooks", type: "number", width: 25, visible:false },
+                    { title: "img", type: "number", width: 25, visible:false ,
+                        itemTemplate: function(val,item) {
+                            debugger
+                            return $("<img>").attr("src", val).css({ height: 50, width: 50 })
+                        }                    
+                    },
                     { name: "vendorListingid", title:'ref' ,type: "text", width: 80, align: "center" },
                     //{ name: "Rating", type: "number", width: 50, align: "center",
                     //    itemTemplate: function(value) {

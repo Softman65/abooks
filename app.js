@@ -152,6 +152,7 @@ function upgradeDb(){
             quantity_limit:JsonRecord.quantity.limit,
             quantity_amount:JsonRecord.quantity.amount,
             bindingText:JsonRecord.bindingText,
+            
             buyerSearchAttribute: getcodes(JsonRecord.buyerSearchAttribute),
             _loc:getLoc(JsonRecord.description)
         }
@@ -162,6 +163,7 @@ function upgradeDb(){
         }
 
         if(JsonRecord.publisher){
+            _out.publishPlace=JsonRecord.publishPlace,
             _out.publisherName=JsonRecord.publisher.publisherName
             _out.publishYear=JsonRecord.publisher.publishYear
             _out.publishYearText=JsonRecord.publisher.publishYearText
