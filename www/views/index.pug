@@ -21,14 +21,15 @@ block content
       
       form.ui.form.editForm
         h4.ui.dividing.header Información de libro
+        input.numeric(id='id' type='hidden', name='idbooks')
         .field
           .fields
               .five.wide.field.validate
                 label
                   span
                     span.blue REF
-                    span.red *
-                input.numeric(id='id' type='text', name='idbooks', placeholder='referencia',disabled="")
+                    span.red * 
+                input.numeric(id='id' type='text', name='vendorListingid', placeholder='referencia',disabled="")
 
               .five.wide.field
                 label.blue Isbn

@@ -77,7 +77,7 @@ function upgradeDb(){
         engine: require('mysql'),
         credentials: {
             multipleStatements: true,
-            host: 'localhost',
+            host: 'abooks.bbdd.ovh',
             user: 'root',
             password: 'guatemala016',
             database: 'abooks'

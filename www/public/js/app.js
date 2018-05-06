@@ -30,7 +30,7 @@ $(document).ready(function() {
                   if(_JsonArgs!=null){ 
                       $.ajax({
                           type: "POST",
-                          url: "/api/books/" + _type +(_type=='edit'?"?id="+args.item.idbooks:''),
+                          url: "/api/books/" + _type +(_type=='edit'?"?id="+args.item.idbooks+'&vendorListingid='+args.item.vendorListingid:''),
                           data: _JsonArgs
                       }).done(function( data ) {
                           $("#jsGrid").jsGrid( "loadData" );   
@@ -41,7 +41,7 @@ $(document).ready(function() {
                 }
         }).modal('show')
 
-
+        debugger
         if(_type=='edit'){
             var getData = args.item;
             var keys = Object.keys(getData);
@@ -64,7 +64,7 @@ $(document).ready(function() {
                 }
               //text.push(value + " : " + getData[value])
             });
-            $('#id').parent().addClass('disabled')
+            $('#id').val(args.item.idbooks).parent().addClass('disabled')
             $('#edit .ui.approve.button').html('Guardar')
             $('#edit .header.book').html('<span><span class="left green">'+getData.title+'</span><span class="right">'+getData.vendorListingid+'-<span class="red">'+(getData._loc==null?'?':getData._loc)+'</span></span></span>')
            

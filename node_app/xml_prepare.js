@@ -1,5 +1,5 @@
 
-module.exports = function (socket, callback) {
+module.exports = function () {
 
     return {
         xmlIberbooks : function(libro, imagenes, accion){
@@ -21,6 +21,7 @@ module.exports = function (socket, callback) {
             iberRecord = iberRecord + (libro.title.publishYear.length>0?'<publishYear>'+libro.publishYear+'</publishYear>':'')
             iberRecord = iberRecord + (libro.title.edition.length>0?'<edition>'+libro.publishYear+'</edition>':'')
             iberRecord = iberRecord + '<quantity  amount="1"></quantity>'
+            debugger
             if(records[1].length>0){
                 iberRecord = iberRecord + '<pictureList>'
                 _.each(imagenes, function(_rPictures){

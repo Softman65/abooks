@@ -20,7 +20,7 @@ const mysql = {
     engine: require('mysql'),
     credentials: {
         multipleStatements: true,
-        host: 'localhost',
+        host: 'abooks.bbdd.ovh',
         user: 'root',
         password: 'guatemala016',
         database: 'abooks'
@@ -32,8 +32,9 @@ mysql.connection.connect();
 router.get('/', function (req, res) {
     res.render('index', { title: 'Express' });
 });
-router.post('/api/books/update', function (req, res) {
-    var cadsql= "SELECT *  FROM books WHERE idbooks="+ req.body.id+";SELECT * FROM pictures WHERE vendirListinid="+req.query.vendorListinid+"; UPDATE books SET "
+router.post('/api/books/edit', function (req, res) {
+    debugger
+    var cadsql= "SELECT *  FROM books WHERE idbooks="+ req.query.id+";SELECT * FROM pictures WHERE vendirListinid="+req.query.vendorListinid+"; UPDATE books SET "
     var counter = 0
     var params = []
     if(!_.isEmpty(req.body)){
@@ -47,7 +48,7 @@ router.post('/api/books/update', function (req, res) {
             if(err)
                 debugger
             
-                var xml = require('./node_app/xml_prepare').xmlIberbooks(records[0],records[1],"update")
+                var xml = require('../../node_app/xml_prepare.js')().xmlIberbooks(records[0],records[1],"update")
 
             res.json({body:req.body,err:err,records:records});
         })
