@@ -17,18 +17,16 @@ block content
 
 
   #images.ui.modal
-      // The fileinput-button span is used to style the file input field as button
     span.btn.btn-success.fileinput-button
       i.glyphicon.glyphicon-plus
       span Select files...
-      // The file input field used as target for the file upload widget
       input#fileupload(type='file', name='files[]', multiple='')
     br
     br
-    // The global progress bar
+    
     #progress.progress
       .progress-bar.progress-bar-success
-    // The container for the uploaded files
+    
     #files.files
     br
     .panel.panel-default
