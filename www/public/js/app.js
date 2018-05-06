@@ -248,7 +248,7 @@ $(document).ready(function() {
                             return $("<img>").attr("src", _src)
                                              .css({ height: 50, width: 50 })
                                              .click(function(event){
-                                                 event.preventDefault()
+                                                 event.stopPropagation()
                                                  alert('comming soon, pronto')
                                              })
                         }                    
