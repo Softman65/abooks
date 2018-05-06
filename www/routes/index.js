@@ -34,7 +34,7 @@ router.get('/', function (req, res) {
 });
 router.post('/api/books/edit', function (req, res) {
     debugger
-    var cadsql= "SELECT *  FROM books WHERE idbooks="+ req.query.id+";SELECT * FROM pictures WHERE vendirListinid="+req.query.vendorListinid+"; UPDATE books SET "
+    var cadsql= "SELECT *  FROM books WHERE idbooks="+ req.query.id+";SELECT * FROM pictures WHERE vendorListingid="+req.query.vendorListingid+"; UPDATE books SET "
     var counter = 0
     var params = []
     if(!_.isEmpty(req.body)){
@@ -48,7 +48,7 @@ router.post('/api/books/edit', function (req, res) {
             if(err)
                 debugger
             
-                var xml = require('../../node_app/xml_prepare.js')().xmlIberbooks(records[0],records[1],"update")
+                var xml = require('../../node_app/xml_prepare.js')().xmlIberbooks(records[0][0],records[1],"update")
 
             res.json({body:req.body,err:err,records:records});
         })
