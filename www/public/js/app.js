@@ -1,6 +1,6 @@
 $(document).ready(function() {
     function imageForm(item){
-        $.webCamera('init')
+        $.fn.webCamera('init')
 
         $('#images').modal({
             onApprove : function() {
