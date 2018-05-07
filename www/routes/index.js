@@ -32,6 +32,9 @@ mysql.connection.connect();
 router.get('/', function (req, res) {
     res.render('index', { title: 'Express' });
 });
+router.post('/api/books/imageSave', function (req, res) {
+    res.json(req.body);
+})
 router.post('/api/books/edit', function (req, res) {
     debugger
     var cadsql= "SELECT *  FROM books WHERE idbooks="+ req.query.id+";SELECT * FROM pictures WHERE vendorListingid="+req.query.vendorListingid+"; UPDATE books SET "

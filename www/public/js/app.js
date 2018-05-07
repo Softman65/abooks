@@ -6,7 +6,7 @@ $(document).ready(function() {
 
             $.ajax({
                 type: "POST",
-                url: "/api/images/save?&vendorListingid="+$(objdestino).attr("data") ,
+                url: "/api/books/imageSave?vendorListingid="+$(objdestino).attr("data") ,
                 data: { image : imgData}
             }).done(function( data ) {
                 
