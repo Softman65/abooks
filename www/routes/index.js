@@ -33,7 +33,12 @@ router.get('/', function (req, res) {
     res.render('index', { title: 'Express' });
 });
 router.post('/api/books/imageSave', function (req, res) {
-    res.json(req.body);
+
+    req.query.vendorListingid
+    var cadsql = "INSERT INTO pictures (vendorListingid,image) VALUES (?,'" +  req.body.image + "') ON DUPLICATE KEY UPDATE image='" +  req.body.image + "'"
+    mysql.connection.query(cadsql, [], function(err, record){
+        res.json({err:err, record:record, image: req.body.image});
+    })
 })
 router.post('/api/books/edit', function (req, res) {
     debugger
@@ -64,6 +69,19 @@ router.post('/api/books/key', function (req, res) {
     mysql.connection.query(cadsql, function(err,records) {
         if(err!=null){
             res.json({error:err, ok:false});
+        }else{
+            res.json({ok:records[0].total==0});
+        }
+        //debugger
+    //res.send('hi')
+    })
+})
+router.post('/api/books/img', function (req, res) {
+    var cadsql = "SELECT image FROM pictures WHERE vendorListingid= "+req.query.ref 
+    mysql.connection.query(cadsql, function(err,records) {
+        if(err!=null){
+            if(records.length==1)
+                res.write(records[0].image);
         }else{
             res.json({ok:records[0].total==0});
         }
