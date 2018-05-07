@@ -1,8 +1,18 @@
 $(document).ready(function() {
     function imageForm(item,objdestino){
         $.fn.webCamera('init',function(imgData){
-            $(objdestino).attr("src",imgData)
-            $('#images').modal('hide')
+
+            $.ajax({
+                type: "POST",
+                url: "/api/images/save?&vendorListingid="+$(objdestino).attr("data") ,
+                data: { image : imgData}
+            }).done(function( data ) {
+                $(objdestino).attr("src",imgData)
+                $('#images').modal('hide')  
+            });
+
+
+
         })
 
         $('#images').modal({
