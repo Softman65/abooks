@@ -45,7 +45,7 @@
               context.scale(0.2,1);
               // Turn the canvas image into a dataURL that can be used as a src for our photo.
               var imgData = hidden_canvas.toDataURL('image/jpeg');
-              defaults.objDestino.image.setAttribute('src', imgData); 
+              defaults.objDestino.setAttribute('src', imgData); 
               return imgData;
             }
         },
