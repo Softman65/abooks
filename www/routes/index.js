@@ -33,10 +33,8 @@ router.get('/', function (req, res) {
     res.render('index', { title: 'Express' });
 });
 router.post('/api/books/imageSave', function (req, res) {
-
-    req.query.vendorListingid
-    var cadsql = "INSERT INTO pictures (vendorListingid,image) VALUES (?,'" +  req.body.image + "') ON DUPLICATE KEY UPDATE image='" +  req.body.image + "'"
-    mysql.connection.query(cadsql, [], function(err, record){
+    var cadsql = "call saveImageBook(?,?)"
+    mysql.connection.query(cadsql, [req.query.vendorListingid,req.body.image], function(err, record){
         res.json({err:err, record:record, image: req.body.image});
     })
 })
