@@ -28,7 +28,8 @@
     
             var hidden_canvas = document.querySelector('canvas'),
                 context = hidden_canvas.getContext('2d');
-    
+                context.scale(0.2,1);
+                
             var width = defaults.video.clientWidth,
                 height = defaults.video.clientHeight;
     
@@ -42,8 +43,29 @@
               context.drawImage(defaults.video, 0, 0, width, height);
     
               // Turn the canvas image into a dataURL that can be used as a src for our photo.
-              return hidden_canvas.toDataURL('image/png');
-          }
+              return hidden_canvas.toDataURL('image/jpeg');
+            }
+        },resizeImageToSpecificWidth:function(width){
+          var img = new Image();
+          img.onload = function() {
+            if (img.width > width) {
+              var oc = document.createElement('canvas'), 
+              octx = oc.getContext('2d');
+              oc.width = img.width;
+              oc.height = img.height;
+              octx.drawImage(img, 0, 0);
+              while (oc.width * 0.5 > width) {
+                oc.width *= 0.5;
+                oc.height *= 0.5;
+                octx.drawImage(oc, 0, 0, oc.width, oc.height);
+              }
+              oc.width = width;
+              oc.height = oc.width * img.height / img.width;
+              octx.drawImage(img, 0, 0, oc.width, oc.height);
+              document.getElementById('great-image').src = oc.toDataURL();
+            } else {
+              document.getElementById('small-image').src = img.src;
+            }
         },
          displayErrorMessage:function(error_msg, error){
           error = error || "";
