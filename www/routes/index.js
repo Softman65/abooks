@@ -112,7 +112,7 @@ router.get('/api/books/page', function (req, res) {
     if(req.query.vendorListingid.length>0)
         filter = filter + (filter.length==0?" WHERE ":" AND ")+"vendorListingid = '"+req.query.vendorListingid+"' "
 
-    var cadsql = "SELECT count(*) as total FROM books " + filter + ";SELECT books.*,pictures.image as img FROM books LEFT JOIN pictures on pictures.vendorListingid = books.vendorListingid " + filter + order + (filter.length==0? " LIMIT "+(req.query.pageSize*(req.query.pageIndex-1)+1)+","+req.query.pageSize:'')
+    var cadsql = "SELECT count(*) as total FROM books " + filter + ";SELECT books.*,pictures.image as img FROM books LEFT JOIN pictures on pictures.vendorListingid = books.vendorListingid " + filter + order + (filter.length==0? " LIMIT "+(req.query.pageSize*(req.query.pageIndex-1))+","+req.query.pageSize:'')
     console.log(cadsql)
     mysql.connection.query(cadsql, function(err,records) {
          res.json({data:records[1],itemsCount:records[0][0].total*1});
