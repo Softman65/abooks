@@ -1,9 +1,9 @@
 ;(function($) {
  
-  $.fn.webCamera = function(method,objDestino) {
+  $.fn.webCamera = function(method,pushPicture) {
 
       var defaults = {
-        objDestino : objDestino,
+        //objDestino : objDestino,
         video : document.querySelector('#camera-stream'),
         image : document.querySelector('#snap'),
         snap : document.querySelector('#snap'),
@@ -16,6 +16,7 @@
       }
 
       var settings = {
+         pushPicture:pushPicture,
          showVideo:function(){
             // Display the video stream and the controls.
     
@@ -45,7 +46,7 @@
               context.scale(0.2,1);
               // Turn the canvas image into a dataURL that can be used as a src for our photo.
               var imgData = hidden_canvas.toDataURL('image/jpeg');
-              defaults.objDestino.setAttribute('src', imgData); 
+              settings.pushPicture(imgData) //defaults.objDestino.setAttribute('src', imgData); 
               return imgData;
             }
         },

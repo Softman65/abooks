@@ -1,6 +1,8 @@
 $(document).ready(function() {
     function imageForm(item,objdestino){
-        $.fn.webCamera('init',objdestino)
+        $.fn.webCamera('init',function(imgData){
+            $(objdestino).attr("src",imgData)
+        })
 
         $('#images').modal({
             onApprove : function() {
