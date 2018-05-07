@@ -1,8 +1,9 @@
 ;(function($) {
  
-  $.fn.webCamera = function(method) {
+  $.fn.webCamera = function(method,objDestino) {
 
       var defaults = {
+        objDestino : objDestino,
         video : document.querySelector('#camera-stream'),
         image : document.querySelector('#snap'),
         snap : document.querySelector('#snap'),
@@ -43,7 +44,9 @@
               context.drawImage(defaults.video, 0, 0, width, height);
               context.scale(0.2,1);
               // Turn the canvas image into a dataURL that can be used as a src for our photo.
-              return hidden_canvas.toDataURL('image/jpeg');
+              var imgData = hidden_canvas.toDataURL('image/jpeg');
+              defaults.objDestino.image.setAttribute('src', imgData); 
+              return imgData;
             }
         },
          displayErrorMessage:function(error_msg, error){
