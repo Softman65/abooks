@@ -268,7 +268,7 @@ $(document).ready(function() {
                     { title: "id", name: "idbooks", type: "number", width: 25, visible:false },
                     { title: "img", type: "number", visible:true , width: 50,  filtering: false,
                         itemTemplate: function(val,item) {
-                            var _src ='/books/img?ref='+item.vendorListingid
+                            var _src ='/api/books/img?ref='+item.vendorListingid
                             return $("<img>").attr("src", _src).attr("data", item.vendorListingid)
                                              .css({ height: 50, width: 50 })
                                              .click(function(event){
