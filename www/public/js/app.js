@@ -269,7 +269,7 @@ $(document).ready(function() {
                     { title: "img", type: "number", visible:true , width: 50,  filtering: false,
                         itemTemplate: function(val,item) {
                             var _src ='/api/books/img?ref='+item.vendorListingid
-                            return $("<img>").attr("src", _src).attr("data", item.vendorListingid)
+                            return $("<img>").attr("src", item.img).attr("data", item.vendorListingid)
                                              .css({ height: 50, width: 50 })
                                              .click(function(event){
                                                  event.stopPropagation()
