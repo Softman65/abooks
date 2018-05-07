@@ -270,7 +270,7 @@ $(document).ready(function() {
                         itemTemplate: function(val,item) {
                             var _src ='/api/books/img?ref='+item.vendorListingid
                             return $("<img>").attr("src", item.img).attr("data", item.vendorListingid)
-                                             .css({ height: 50, width: 50 })
+                                             .css({ height: 40, width: 40 })
                                              .click(function(event){
                                                  event.stopPropagation()
                                                  imageForm(item,this)
