@@ -28,7 +28,7 @@
     
             var hidden_canvas = document.querySelector('canvas'),
                 context = hidden_canvas.getContext('2d');
-                context.scale(0.2,1);
+                
 
             var width = defaults.video.clientWidth,
                 height = defaults.video.clientHeight;
@@ -41,7 +41,7 @@
     
               // Make a copy of the current frame in the video on the canvas.
               context.drawImage(defaults.video, 0, 0, width, height);
-    
+              context.scale(0.2,1);
               // Turn the canvas image into a dataURL that can be used as a src for our photo.
               return hidden_canvas.toDataURL('image/jpeg');
             }
