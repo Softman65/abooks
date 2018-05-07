@@ -1,6 +1,6 @@
 $(document).ready(function() {
-    function imageForm(item){
-        $.fn.webCamera('init',this)
+    function imageForm(item,objdestino){
+        $.fn.webCamera('init',objdestino)
 
         $('#images').modal({
             onApprove : function() {
@@ -257,7 +257,7 @@ $(document).ready(function() {
                                              .css({ height: 50, width: 50 })
                                              .click(function(event){
                                                  event.stopPropagation()
-                                                 imageForm(item)
+                                                 imageForm(item,this)
                                                 // alert('comming soon, pronto gestión de fotitos')
                                              })
                         }                    
