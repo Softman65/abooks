@@ -256,7 +256,7 @@ $(document).ready(function() {
                     { title: "img", type: "number", visible:true , width: 50,  filtering: false,
                         itemTemplate: function(val,item) {
                             var _src =document.domain+'/img/book?ref='+(item.img==0?'':item.vendorListingid)
-                            return $("<img>").attr("src", _src)
+                            return $("<img>").attr("src", _src).attr("data", item.vendorListingid)
                                              .css({ height: 50, width: 50 })
                                              .click(function(event){
                                                  event.stopPropagation()
