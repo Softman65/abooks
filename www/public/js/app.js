@@ -233,7 +233,7 @@ $(document).ready(function() {
                 selecting: true,
                 sorting: true,
 
-                pageSize: 18,
+                pageSize: 10,
                 pageIndex:1,
                 onRefreshed: function(grid) {
                         $('.sale.icon').parent().parent().css({color:'red'})
