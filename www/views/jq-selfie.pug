@@ -15,6 +15,14 @@ html
     script(src='/js/UI-webCamera.js')
     script(src='/js/selfie.js')
 
+
+
+.ui.vertical.buttons
+	button.ui.button.photo photo
+	button.ui.button.video video
+	button.ui.button.audio audio
+    img.photo.hidden
+
 #images.ui.modal
     .app
       a#start-camera.visible(href='#') Touch here to start the app.
