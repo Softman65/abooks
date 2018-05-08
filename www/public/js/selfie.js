@@ -4,7 +4,7 @@ $(document).ready(function() {
     function imageForm(objdestino){
         $.fn.webCamera('photo',function(imgData){
             $('#images').modal('hide')
-            $(objdestino).attr("src",imgData).removeClass('hidden').show()
+            $(objdestino).attr("src",imgData).removeAttr('style').show()
 
            // $.ajax({
            //     type: "POST",
