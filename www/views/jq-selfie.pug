@@ -29,7 +29,7 @@ video.destino(id="recorded", loop, controls)
 #images.ui.modal
     .app
       a#start-camera.visible(href='#') Touch here to start the app.
-      video#camera-stream
+      video#camera-stream(  autoplay, muted )
       img#snap
       p#error-message
       .controls
