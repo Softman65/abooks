@@ -147,9 +147,10 @@
                     // Set the href attribute of the download button to the snap url.
                 }else{
                     if( $('#take-photo .material-icons').html()!='stop'){
-                      //play
+                      //record
                       $('#take-photo .material-icons').html('stop')
                     }else{
+                      //stop record
                       $('#take-photo .material-icons').html('play_arrow')
                     }
                 }
