@@ -41,8 +41,9 @@
               hidden_canvas.height = height;
     
               // Make a copy of the current frame in the video on the canvas.
+              context.scale(0.5,0.5);
               context.drawImage(defaults.video, 0, 0, width, height);
-              context.scale(0.2,1);
+              
               // Turn the canvas image into a dataURL that can be used as a src for our photo.
               var imgData = hidden_canvas.toDataURL('image/jpeg');
               settings.pushPicture(imgData) //defaults.objDestino.setAttribute('src', imgData); 
