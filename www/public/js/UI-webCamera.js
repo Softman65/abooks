@@ -1,14 +1,17 @@
 ;(function($) {
  
+  var isSecureOrigin = location.protocol === 'https:' ||
+  location.hostname === 'localhost';
+  if (!isSecureOrigin) {
+    alert('getUserMedia() must be run from a secure origin: HTTPS or localhost.' +
+      '\n\nChanging protocol to HTTPS');
+    location.protocol = 'HTTPS';
+  }
+
+
   $.fn.webCamera = function(method,pushPicture) {
 
-      var isSecureOrigin = location.protocol === 'https:' ||
-      location.hostname === 'localhost';
-      if (!isSecureOrigin) {
-        alert('getUserMedia() must be run from a secure origin: HTTPS or localhost.' +
-          '\n\nChanging protocol to HTTPS');
-        location.protocol = 'HTTPS';
-      }
+
 
       var mediaSource = new MediaSource();
       mediaSource.addEventListener('sourceopen', function(){
