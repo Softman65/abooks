@@ -3,7 +3,7 @@ $(document).ready(function() {
     $('.destino').hide()
 
     function imageForm(item,objdestino){
-        $.fn.webCamera('init',function(imgData){
+        $.fn.webCamera('photo',function(imgData){
             $('#images').modal('hide')
             $(objdestino).attr("src",imgData).show()
 

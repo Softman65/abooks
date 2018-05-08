@@ -128,7 +128,7 @@
       }
 
       var methods = { 
-        init:function(){
+        photo:function(){
           const _this = this
           navigator.getMedia = ( navigator.getUserMedia ||
             navigator.webkitGetUserMedia ||
