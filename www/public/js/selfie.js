@@ -47,7 +47,7 @@ $(document).ready(function() {
                 } 
             }).modal('show')
         
-            mediaform('video')
+            mediaForm('video')
         }
 
     })
