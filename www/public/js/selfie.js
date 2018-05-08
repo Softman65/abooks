@@ -1,9 +1,9 @@
 $(document).ready(function() {
     $('.destino').hide()
     
-    function imageForm(objdestino){
+    function mediaForm(_type,objdestino){
         $('.destino').hide()
-        $.fn.webCamera('photo',function(imgData){
+        $.fn.webCamera(_type,function(imgData){
             $('#images').modal('hide')
             $(objdestino).attr("src",imgData).removeAttr('style').show()
 
@@ -38,7 +38,16 @@ $(document).ready(function() {
                 } 
             }).modal('show')
         
-            imageForm($('.destino.photo')[0])
+            mediaForm('photo',$('.destino.photo')[0])
+        }
+        if($(this).hasClass('video')){
+            $('#images').modal({
+                onApprove : function() {
+                    debugger
+                } 
+            }).modal('show')
+        
+            mediaform('video')
         }
 
     })
