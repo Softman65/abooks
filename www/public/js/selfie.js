@@ -36,7 +36,7 @@ $(document).ready(function() {
                 } 
             }).modal('show')
         
-            imageForm(item,$('.photo')[0])
+            imageForm($('.photo')[0])
         }
 
     })
