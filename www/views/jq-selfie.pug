@@ -1,1 +1,32 @@
-extends layout
+doctype html
+html
+  head
+    title jq-selfie demo
+    link(rel='stylesheet', href='/css/app.css')
+    link(rel='stylesheet', href='/css/webcam.css')
+    link(rel='stylesheet', href='/css/Semantic-UI/semantic.min.css')
+    link(rel='stylesheet', type="text/css", href='/js/plugins/jsgrid-1.5.3/jsgrid.min.css')
+    link(rel='stylesheet', type="text/css", href='/js/plugins/jsgrid-1.5.3/jsgrid-theme.min.css')
+
+    script(src='/js/plugins/jquery-3.3.1.min.js')
+    script(src='/js/plugins/lodash/lodash-4.17.10.js')
+    script(src='/css/Semantic-UI/semantic.min.js')
+    script(src='/js/plugins/jsgrid-1.5.3/jsgrid.min.js')
+    script(src='/js/UI-webCamera.js')
+    script(src='/js/selfie.js')
+
+#images.ui.modal
+    .app
+      a#start-camera.visible(href='#') Touch here to start the app.
+      video#camera-stream
+      img#snap
+      p#error-message
+      .controls
+        a#delete-photo.disabled(href='#', title='Delete Photo')
+          i.material-icons delete
+        a#take-photo(href='#', title='Take Photo')
+          i.material-icons camera_alt
+        a#download-photo.disabled(href='#', download='selfie.png', title='Save Photo')
+          i.material-icons file_download
+      // Hidden canvas element. Used for taking snapshot of video.
+      canvas
