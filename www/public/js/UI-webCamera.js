@@ -27,7 +27,7 @@
               settings.displayErrorMessage("Your browser doesn't have support for the navigator.getUserMedia interface.");
             }
             else{
-              $('#take-photo .material-icons').html( _type=='photo'?'camera_alt':'play_arrow')
+              $('#take-photo .material-icons').html( _type=='photo'?'videocam':'play_arrow')
               // Request the camera.
               navigator.getMedia(
                 {
@@ -45,7 +45,7 @@
                   defaults.video.play();
                   defaults.video.onplay = function() {
                     settings.showVideo();
-                    settings.captureEvents( defaults.video)
+                    settings.captureEvents(_type, defaults.video)
                   };
       
                 },
@@ -117,7 +117,7 @@
           defaults.snap.classList.remove("visible");
           defaults.error_message.classList.remove("visible");
         },
-        captureEvents:function(video){
+        captureEvents:function(_type,video){
                 // Mobile browsers cannot play video without user input,
               // so here we're using a button to start it manually.
               defaults.start_camera.addEventListener("click", function(e){
@@ -134,17 +134,25 @@
               defaults.take_photo_btn.addEventListener("click", function(e){
 
                 e.preventDefault();
+                if(_type=='photo'){
+                    defaults.snap = settings.takeSnapshot();
 
-                defaults.snap = settings.takeSnapshot();
+                    // Show image. 
+                    defaults.image.setAttribute('src', defaults.snap);
+                    defaults.image.classList.add("visible");
 
-                // Show image. 
-                defaults.image.setAttribute('src', defaults.snap);
-                defaults.image.classList.add("visible");
-
-                // Enable delete and save buttons
-                defaults.delete_photo_btn.classList.remove("disabled");
-                defaults.download_photo_btn.classList.remove("disabled");
-                // Set the href attribute of the download button to the snap url.
+                    // Enable delete and save buttons
+                    defaults.delete_photo_btn.classList.remove("disabled");
+                    defaults.download_photo_btn.classList.remove("disabled");
+                    // Set the href attribute of the download button to the snap url.
+                }else{
+                    if( $('#take-photo .material-icons').html()!='stop'){
+                      //play
+                      $('#take-photo .material-icons').html('stop')
+                    }else{
+                      $('#take-photo .material-icons').html('play_arrow')
+                    }
+                }
                 if(settings.pushPicture!=null){
                   defaults.download_photo_btn.addEventListener("click", function(e){
                     settings.pushPicture(defaults.snap)
