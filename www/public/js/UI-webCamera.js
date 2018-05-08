@@ -3,25 +3,23 @@
   var isSecureOrigin = location.protocol === 'https:' ||
   location.hostname === 'localhost';
   if (!isSecureOrigin) {
-    alert('getUserMedia() must be run from a secure origin: HTTPS or localhost.' +
-      '\n\nChanging protocol to HTTPS');
+    alert('getUserMedia() solo functiona desde origenes seguros HTTPS o localhost.' +
+      '\n\nCambiaremos automaticamente a HTTPS');
     location.protocol = 'HTTPS';
   }
 
 
   $.fn.webCamera = function(method,pushPicture) {
 
-
-
       var mediaSource = new MediaSource();
       mediaSource.addEventListener('sourceopen', function(){
         
         console.log('MediaSource opened');
-        sourceBuffer = mediaSource.addSourceBuffer('video/webm; codecs="vp8"');
-        console.log('Source buffer: ', sourceBuffer);
+        settings.sourceBuffer = mediaSource.addSourceBuffer('video/webm; codecs="vp8"');
+        console.log('Source buffer: ', settings.sourceBuffer);
 
       }, false);
-
+      
       var defaults = {
         video : document.querySelector('#camera-stream'),
         image : document.querySelector('#snap'),
@@ -31,7 +29,8 @@
         take_photo_btn : document.querySelector('#take-photo'),
         delete_photo_btn : document.querySelector('#delete-photo'),
         download_photo_btn : document.querySelector('#download-photo'),
-        error_message : document.querySelector('#error-message')
+        error_message : document.querySelector('#error-message'),
+        recordedVideo : document.querySelector('video#recorded')
       }
 
       var settings = {
@@ -48,37 +47,36 @@
             }
             else{
               $('#take-photo .material-icons').html( _type=='photo'?'videocam':'play_arrow')
-              // Request the camera.
-              navigator.getMedia(
-                {
-                  video: true
-                },
-                // Success Callback
-                function(stream){
-                  //defaults.delete_photo_btn.classList.add("hidden");
-                  //defaults.download_photo_btn.classList.add("hidden");
-                  // Create an object URL for the video stream and
-                  // set it as src of our HTLM video element.
-                  defaults.video.srcObject = stream;
-      
-                  // Play the video element to start the stream.
-                  defaults.video.play();
-                  defaults.video.onplay = function() {
-                    settings.showVideo();
-                    settings.captureEvents(_type, defaults.video)
-                  };
-      
-                },
-                // Error Callback
-                function(err){
-                  settings.displayErrorMessage("There was an error with accessing the camera stream: " + err.name, err);
-                }
-
-                
-
-                
-
-              );
+              if(_type=='photo'){
+                // Request the camera.
+                navigator.getMedia(
+                  {
+                    video: true
+                  },
+                  // Success Callback
+                  function(stream){
+                    //defaults.delete_photo_btn.classList.add("hidden");
+                    //defaults.download_photo_btn.classList.add("hidden");
+                    // Create an object URL for the video stream and
+                    // set it as src of our HTLM video element.
+                    defaults.video.srcObject = stream;
+        
+                    // Play the video element to start the stream.
+                    defaults.video.play();
+                    defaults.video.onplay = function() {
+                      settings.showVideo();
+                      settings.captureEvents(_type, defaults.video)
+                    };
+        
+                  },
+                  // Error Callback
+                  function(err){
+                    settings.displayErrorMessage("There was an error with accessing the camera stream: " + err.name, err);
+                  }
+                );
+              }else{
+                             
+              }
       
             }  
         },
@@ -91,7 +89,7 @@
           },
           video:{
             startRecording:function() {
-              recordedBlobs = [];
+              settings.recordedBlobs = [];
               var options = {mimeType: 'video/webm;codecs=vp9'};
               if (!MediaRecorder.isTypeSupported(options.mimeType)) {
                 console.log(options.mimeType + ' is not Supported');
@@ -106,21 +104,41 @@
                 }
               }
               try {
-                mediaRecorder = new MediaRecorder(window.stream, options);
+                settings.mediaRecorder = new MediaRecorder(window.stream, options);
               } catch (e) {
                 console.error('Exception while creating MediaRecorder: ' + e);
                 alert('Exception while creating MediaRecorder: '
                   + e + '. mimeType: ' + options.mimeType);
                 return;
               }
-              console.log('Created MediaRecorder', mediaRecorder, 'with options', options);
-              //recordButton.textContent = 'Stop Recording';
-              //playButton.disabled = true;
-              //downloadButton.disabled = true;
-              mediaRecorder.onstop = handleStop;
-              mediaRecorder.ondataavailable = handleDataAvailable;
-              mediaRecorder.start(10); // collect 10ms of data
-              console.log('MediaRecorder started', mediaRecorder);
+              settings. mediaRecorder.onstop = function(event) {
+                console.log('Recorder stopped: ', event);
+              };
+              settings.mediaRecorder.ondataavailable = function(event) {
+                if (event.data && event.data.size > 0) {
+                  settings.recordedBlobs.push(event.data);
+                }
+              };
+              settings.mediaRecorder.start(10); // collect 10ms of data  
+              console.log('MediaRecorder started',settings.mediaRecorder);
+            },
+            playRecording: function(){
+              var superBuffer = new Blob(settings.recordedBlobs, {type: 'video/webm'});
+              defaults.recordedVideo.src = window.URL.createObjectURL(superBuffer);
+              // workaround for non-seekable video taken from
+              // https://bugs.chromium.org/p/chromium/issues/detail?id=642012#c23
+              defaults.recordedVideo.addEventListener('loadedmetadata', function() {
+                if (defaults.recordedVideo.duration === Infinity) {
+                  defaults.recordedVideo.currentTime = 1e101;
+                  defaults.recordedVideo.ontimeupdate = function() {
+                    defaults.recordedVideo.currentTime = 0;
+                    defaults.recordedVideo.ontimeupdate = function() {
+                      delete defaults.recordedVideo.ontimeupdate;
+                      defaults.recordedVideo.play();
+                    };
+                  };
+                }
+              });
             }
           },
          takeSnapshot:function(){
@@ -199,13 +217,23 @@
                     defaults.download_photo_btn.classList.remove("disabled");
                     // Set the href attribute of the download button to the snap url.
                 }else{
+
+                  if( $('#take-photo .material-icons').html()!='play_arrow'){
                     if( $('#take-photo .material-icons').html()!='stop'){
-                      //record
+                      //start recording
+                      settings.video.startRecording()
                       $('#take-photo .material-icons').html('stop')
                     }else{
                       //stop record
+                      settings.mediaRecorder.stop();
+                      console.log('Recorded Blobs: ', settings.recordedBlobs);
+                      //recordedVideo.controls = true;
                       $('#take-photo .material-icons').html('play_arrow')
                     }
+                  }else{
+                    settings.video.playRecording()
+                  }
+
                 }
                 if(settings.pushPicture!=null){
                   defaults.download_photo_btn.addEventListener("click", function(e){
