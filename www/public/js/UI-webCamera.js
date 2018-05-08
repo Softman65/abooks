@@ -35,8 +35,8 @@
                 },
                 // Success Callback
                 function(stream){
-                  defaults.delete_photo_btn.classList.add("hidden");
-                  defaults.download_photo_btn.classList.add("hidden");
+                  //defaults.delete_photo_btn.classList.add("hidden");
+                  //defaults.download_photo_btn.classList.add("hidden");
                   // Create an object URL for the video stream and
                   // set it as src of our HTLM video element.
                   defaults.video.srcObject = stream;
