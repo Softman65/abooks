@@ -1,4 +1,7 @@
 $(document).ready(function() {
+    
+    $('.destino').hide()
+
     function imageForm(item,objdestino){
         $.fn.webCamera('init',function(imgData){
             $('#images').modal('hide')
