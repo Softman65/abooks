@@ -3,7 +3,7 @@ $(document).ready(function() {
     function imageForm(objdestino){
         $.fn.webCamera('init',function(imgData){
             $('#images').modal('hide')
-            $(objdestino).attr("src",imgData)
+            $(objdestino).attr("src",imgData).removeCalss('hidden')
 
            // $.ajax({
            //     type: "POST",
