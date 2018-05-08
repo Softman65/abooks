@@ -1,6 +1,11 @@
 ;(function($) {
  
   $.fn.webCamera = function(method,pushPicture) {
+    var mediaSource = new MediaSource();
+    mediaSource.addEventListener('sourceopen', function(){
+
+      
+    }, false);
 
       var defaults = {
         video : document.querySelector('#camera-stream'),
@@ -69,7 +74,40 @@
             defaults.video.classList.add("visible");
             defaults.controls.classList.add("visible");
           },
-
+          video:{
+            startRecording:function() {
+              recordedBlobs = [];
+              var options = {mimeType: 'video/webm;codecs=vp9'};
+              if (!MediaRecorder.isTypeSupported(options.mimeType)) {
+                console.log(options.mimeType + ' is not Supported');
+                options = {mimeType: 'video/webm;codecs=vp8'};
+                if (!MediaRecorder.isTypeSupported(options.mimeType)) {
+                  console.log(options.mimeType + ' is not Supported');
+                  options = {mimeType: 'video/webm'};
+                  if (!MediaRecorder.isTypeSupported(options.mimeType)) {
+                    console.log(options.mimeType + ' is not Supported');
+                    options = {mimeType: ''};
+                  }
+                }
+              }
+              try {
+                mediaRecorder = new MediaRecorder(window.stream, options);
+              } catch (e) {
+                console.error('Exception while creating MediaRecorder: ' + e);
+                alert('Exception while creating MediaRecorder: '
+                  + e + '. mimeType: ' + options.mimeType);
+                return;
+              }
+              console.log('Created MediaRecorder', mediaRecorder, 'with options', options);
+              //recordButton.textContent = 'Stop Recording';
+              //playButton.disabled = true;
+              //downloadButton.disabled = true;
+              mediaRecorder.onstop = handleStop;
+              mediaRecorder.ondataavailable = handleDataAvailable;
+              mediaRecorder.start(10); // collect 10ms of data
+              console.log('MediaRecorder started', mediaRecorder);
+            }
+          },
          takeSnapshot:function(){
             // Here we're using a trick that involves a hidden canvas element.  
     
