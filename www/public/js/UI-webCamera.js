@@ -27,7 +27,7 @@
               settings.displayErrorMessage("Your browser doesn't have support for the navigator.getUserMedia interface.");
             }
             else{
-              $('#take-photo .material-icons').html( _type=='photo'?'camera_alt':'play_arraw')
+              $('#take-photo .material-icons').html( _type=='photo'?'camera_alt':'play_arrow')
               // Request the camera.
               navigator.getMedia(
                 {
