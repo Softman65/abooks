@@ -2,6 +2,7 @@ $(document).ready(function() {
     $('.destino').hide()
     
     function imageForm(objdestino){
+        $('.destino').hide()
         $.fn.webCamera('photo',function(imgData){
             $('#images').modal('hide')
             $(objdestino).attr("src",imgData).removeAttr('style').show()

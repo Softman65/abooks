@@ -3,7 +3,6 @@
   $.fn.webCamera = function(method,pushPicture) {
 
       var defaults = {
-        //objDestino : objDestino,
         video : document.querySelector('#camera-stream'),
         image : document.querySelector('#snap'),
         snap : document.querySelector('#snap'),
