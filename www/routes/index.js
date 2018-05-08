@@ -32,6 +32,9 @@ mysql.connection.connect();
 router.get('/', function (req, res) {
     res.render('index', { title: 'Express' });
 });
+router.get('/jq-selfie', function (req, res) {
+    res.render('jq-selfie', { title: 'jq-selfie' });
+});
 router.post('/api/books/imageSave', function (req, res) {
     var cadsql = "call saveImageBook(?,?)"
     mysql.connection.query(cadsql, [req.query.vendorListingid,req.body.image], function(err, record){
