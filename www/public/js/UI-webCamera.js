@@ -27,7 +27,7 @@
               settings.displayErrorMessage("Your browser doesn't have support for the navigator.getUserMedia interface.");
             }
             else{
-              defaults.download_photo_btn.innerText = _type=='photo'?'camera_alt':'play_arraw'
+              defaults.take_photo_btn.innerText = _type=='photo'?'camera_alt':'play_arraw'
               // Request the camera.
               navigator.getMedia(
                 {
