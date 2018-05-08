@@ -1,11 +1,23 @@
 ;(function($) {
  
   $.fn.webCamera = function(method,pushPicture) {
-    var mediaSource = new MediaSource();
-    mediaSource.addEventListener('sourceopen', function(){
 
-      
-    }, false);
+      var isSecureOrigin = location.protocol === 'https:' ||
+      location.hostname === 'localhost';
+      if (!isSecureOrigin) {
+        alert('getUserMedia() must be run from a secure origin: HTTPS or localhost.' +
+          '\n\nChanging protocol to HTTPS');
+        location.protocol = 'HTTPS';
+      }
+
+      var mediaSource = new MediaSource();
+      mediaSource.addEventListener('sourceopen', function(){
+        
+        console.log('MediaSource opened');
+        sourceBuffer = mediaSource.addSourceBuffer('video/webm; codecs="vp8"');
+        console.log('Source buffer: ', sourceBuffer);
+
+      }, false);
 
       var defaults = {
         video : document.querySelector('#camera-stream'),
