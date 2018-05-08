@@ -16,6 +16,52 @@
 
       var settings = {
          pushPicture:pushPicture,
+         process:function(_type){
+          const _this = this
+          navigator.getMedia = ( navigator.getUserMedia ||
+            navigator.webkitGetUserMedia ||
+            navigator.mozGetUserMedia ||
+            navigator.msGetUserMedia);
+
+            if(!navigator.getMedia){
+              settings.displayErrorMessage("Your browser doesn't have support for the navigator.getUserMedia interface.");
+            }
+            else{
+              defaults.download_photo_btn.innerText = _type=='photo'?'camera_alt':'play_arraw'
+              // Request the camera.
+              navigator.getMedia(
+                {
+                  video: true
+                },
+                // Success Callback
+                function(stream){
+                  defaults.delete_photo_btn.classList.add("hidden");
+                  defaults.download_photo_btn.classList.add("hidden");
+                  // Create an object URL for the video stream and
+                  // set it as src of our HTLM video element.
+                  defaults.video.srcObject = stream;
+      
+                  // Play the video element to start the stream.
+                  defaults.video.play();
+                  defaults.video.onplay = function() {
+                    settings.showVideo();
+                    settings.captureEvents( defaults.video)
+                  };
+      
+                },
+                // Error Callback
+                function(err){
+                  settings.displayErrorMessage("There was an error with accessing the camera stream: " + err.name, err);
+                }
+
+                
+
+                
+
+              );
+      
+            }  
+        },
          showVideo:function(){
             // Display the video stream and the controls.
     
@@ -46,7 +92,8 @@
               
               // Turn the canvas image into a dataURL that can be used as a src for our photo.
               var imgData = hidden_canvas.toDataURL('image/jpeg');
-              settings.pushPicture(imgData) //defaults.objDestino.setAttribute('src', imgData); 
+              //settings.pushPicture(imgData) //defaults.objDestino.setAttribute('src', imgData); 
+
               return imgData;
             }
         },
@@ -97,13 +144,18 @@
                 // Enable delete and save buttons
                 defaults.delete_photo_btn.classList.remove("disabled");
                 defaults.download_photo_btn.classList.remove("disabled");
-
                 // Set the href attribute of the download button to the snap url.
-                defaults.download_photo_btn.href = defaults.snap;
+                if(settings.pushPicture!=null){
+                  defaults.download_photo_btn.addEventListener("click", function(e){
+                    settings.pushPicture(defaults.snap)
+                  })
+                }else{
+                  defaults.download_photo_btn.href = defaults.snap;
+                }
 
                 // Pause video playback of stream.
                 defaults.video.pause();
-
+                defaults.video.add("hidden")
               });
 
 
@@ -127,51 +179,12 @@
 
       }
 
-      var methods = { 
+      var methods = {
+        video:function(){
+          settings.process('video')
+        },
         photo:function(){
-          const _this = this
-          navigator.getMedia = ( navigator.getUserMedia ||
-            navigator.webkitGetUserMedia ||
-            navigator.mozGetUserMedia ||
-            navigator.msGetUserMedia);
-
-            if(!navigator.getMedia){
-              settings.displayErrorMessage("Your browser doesn't have support for the navigator.getUserMedia interface.");
-            }
-            else{
-      
-              // Request the camera.
-              navigator.getMedia(
-                {
-                  video: true
-                },
-                // Success Callback
-                function(stream){
-      
-                  // Create an object URL for the video stream and
-                  // set it as src of our HTLM video element.
-                  defaults.video.srcObject = stream;
-      
-                  // Play the video element to start the stream.
-                  defaults.video.play();
-                  defaults.video.onplay = function() {
-                    settings.showVideo();
-                    settings.captureEvents( defaults.video)
-                  };
-      
-                },
-                // Error Callback
-                function(err){
-                  settings.displayErrorMessage("There was an error with accessing the camera stream: " + err.name, err);
-                }
-
-                
-
-                
-
-              );
-      
-            }  
+          settings.process('photo')
         }
       }
     if (methods[method]) {
