@@ -255,7 +255,7 @@
                     }else{
                       //stop record
                       settings.mediaRecorder.stop();
-                      
+                      defaults.video.pause();
                       var superBuffer = new Blob(settings.recordedBlobs, {type: 'video/webm'});
                       defaults.video.src = window.URL.createObjectURL(superBuffer);
 
