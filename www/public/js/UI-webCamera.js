@@ -254,8 +254,8 @@
                       $('#take-photo .material-icons').html('stop')
                     }else{
                       //stop record
-                      settings.mediaRecorder.stop();
-                      defaults.video.stop();
+                      //settings.mediaRecorder.stop();
+                     // defaults.video.stop();
                       var superBuffer = new Blob(settings.recordedBlobs, {type: 'video/webm'});
                       defaults.video.src = window.URL.createObjectURL(superBuffer);
                       defaults.video.load();
