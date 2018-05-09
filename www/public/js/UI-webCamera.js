@@ -111,7 +111,7 @@
                   + e + '. mimeType: ' + options.mimeType);
                 return;
               }
-              settings. mediaRecorder.onstop = function(event) {
+              settings.mediaRecorder.onstop = function(event) {
                 console.log('Recorder stopped: ', event);
               };
               settings.mediaRecorder.ondataavailable = function(event) {
@@ -216,7 +216,18 @@
                     defaults.delete_photo_btn.classList.remove("disabled");
                     defaults.download_photo_btn.classList.remove("disabled");
                     // Set the href attribute of the download button to the snap url.
-                }else{
+                    if(settings.pushPicture!=null){
+                      defaults.download_photo_btn.addEventListener("click", function(e){
+                        settings.pushPicture(defaults.snap)
+                      })
+                    }else{
+                      defaults.download_photo_btn.href = defaults.snap;
+                    }
+    
+                    // Pause video playback of stream.
+                    defaults.video.pause();
+                    //defaults.video.add("hidden")
+                  }else{
 
                   if( $('#take-photo .material-icons').html()!='play_arrow'){
                     if( $('#take-photo .material-icons').html()!='stop'){
@@ -235,17 +246,7 @@
                   }
 
                 }
-                if(settings.pushPicture!=null){
-                  defaults.download_photo_btn.addEventListener("click", function(e){
-                    settings.pushPicture(defaults.snap)
-                  })
-                }else{
-                  defaults.download_photo_btn.href = defaults.snap;
-                }
 
-                // Pause video playback of stream.
-                defaults.video.pause();
-                defaults.video.add("hidden")
               });
 
 
