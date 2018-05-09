@@ -76,6 +76,18 @@
                   }
                 );
               }else{
+                navigator.mediaDevices.getUserMedia( {
+                  audio: true,
+                  video: true
+                }).then(function(stream) {
+                          recordButton.disabled = false;
+                          console.log('getUserMedia() got stream: ', stream);
+                          window.stream = stream;
+                          defaults.video.srcObject = stream;
+                }).catch(function handleError(error) {
+                  console.log('navigator.getUserMedia error: ', error);
+                });
+
                 settings.captureEvents( defaults.video)            
               }
       
