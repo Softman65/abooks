@@ -80,7 +80,7 @@
                   audio: true,
                   video: true
                 }).then(function(stream) {
-                          recordButton.disabled = false;
+                          //recordButton.disabled = false;
                           console.log('getUserMedia() got stream: ', stream);
                           window.stream = stream;
                           defaults.video.srcObject = stream;
