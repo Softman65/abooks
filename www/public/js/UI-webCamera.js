@@ -265,13 +265,13 @@
                         defaults.video.pause();
 
                         var superBuffer = new Blob(settings.recordedBlobs, {type: 'video/webm'});
-                        $(defaults.video).removeClass('visible')
+                       
                         defaults.video_player.src = window.URL.createObjectURL(superBuffer);
                         $(defaults.video_player).addClass('visible').removeClass('hidden') //.src = window.URL.createObjectURL(superBuffer);
                         
-                        const width = defaults.video.videoWidth,
-                        height = defaults.video.videoHeight;
-            
+                        const width = defaults.video.width,
+                        height = defaults.video.height;
+                        $(defaults.video).removeClass('visible')
                         if (width && height) {
                 
                           // Setup a canvas with the same dimensions as the video.
