@@ -48,7 +48,7 @@
             else{
              window._type = _type
               $('#take-photo .material-icons').html(window._type=='photo'?'camera_alt':'videocam')
-              if(defaults._type=='photo'){
+              if(window._type=='photo'){
                 // Request the camera.
                 navigator.getMedia(
                   {
