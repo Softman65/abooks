@@ -148,6 +148,7 @@
                     defaults.recordedVideo.currentTime = 0;
                     defaults.recordedVideo.ontimeupdate = function() {
                       delete defaults.recordedVideo.ontimeupdate;
+                      console.log('play')
                       defaults.recordedVideo.play();
                     };
                   };
