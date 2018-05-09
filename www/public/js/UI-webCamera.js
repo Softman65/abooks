@@ -139,7 +139,7 @@
             playRecording: function(){
               var superBuffer = new Blob(settings.recordedBlobs, {type: 'video/webm'});
               //defaults.video.src = window.URL.createObjectURL(superBuffer);
-                defaults.video.srcObject = superBuffer
+                defaults.video.srcObject = settings.recordedBlobs
               // workaround for non-seekable video taken from
               // https://bugs.chromium.org/p/chromium/issues/detail?id=642012#c23
               defaults.video.addEventListener('loadedmetadata', function() {
