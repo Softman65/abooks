@@ -211,11 +211,7 @@
                 // Mobile browsers cannot play video without user input,
               // so here we're using a button to start it manually.
               
-              defaults.video_player.onstop = function(event) {
-                $('#take-photo .material-icons').html('play_arrow')
-                debugger
-                console.log('Recorder stopped: ', event);
-              };
+
 
               defaults.start_camera.addEventListener("click", function(e){
 
@@ -269,7 +265,11 @@
                         $(defaults.video).removeClass('visible')
                         defaults.video_player.src = window.URL.createObjectURL(superBuffer);
                         $(defaults.video_player).addClass('visible').removeClass('hidden') //.src = window.URL.createObjectURL(superBuffer);
-                        //$('#')
+                        defaults.video_player.onstop = function(event) {
+                          $('#take-photo .material-icons').html('play_arrow')
+                          debugger
+                          console.log('Recorder stopped: ', event);
+                        };
                         console.log('Recorded Blobs: ', settings.recordedBlobs);
                         //recordedVideo.controls = true;
                       }else{
