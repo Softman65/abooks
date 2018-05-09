@@ -266,8 +266,8 @@
                         defaults.video_player.src = window.URL.createObjectURL(superBuffer);
                         $(defaults.video_player).addClass('visible').removeClass('hidden') //.src = window.URL.createObjectURL(superBuffer);
                         
-                        var width = defaults.video.clientWidth,
-                        height = defaults.video.clientHeight;
+                        var width = defaults.video.videoWidth,
+                        height = defaults.video.videoHeight;
             
                         if (width && height) {
                 
