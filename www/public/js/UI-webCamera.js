@@ -77,6 +77,8 @@
                   }
                 );
               }else{
+                
+                
                 navigator.mediaDevices.getUserMedia( {
                   audio: true,
                   video: true
@@ -200,7 +202,7 @@
         },
         hideUI:function (){
           // Helper function for clearing the app UI.
-  
+          $(defaults.video_player).removeClass('visible').addClass('hidden')
           defaults.controls.classList.remove("visible");
           defaults.start_camera.classList.remove("visible");
           defaults.video.classList.remove("visible");
@@ -261,12 +263,13 @@
                       if($(defaults.video_player).hasClass('hidden')){
                         settings.mediaRecorder.stop();
                         defaults.video.pause();
+
                         var superBuffer = new Blob(settings.recordedBlobs, {type: 'video/webm'});
                         $(defaults.video).removeClass('visible')
                         defaults.video_player.src = window.URL.createObjectURL(superBuffer);
                         $(defaults.video_player).addClass('visible').removeClass('hidden') //.src = window.URL.createObjectURL(superBuffer);
                         
-                        var width = defaults.video.videoWidth,
+                        const width = defaults.video.videoWidth,
                         height = defaults.video.videoHeight;
             
                         if (width && height) {
@@ -279,7 +282,7 @@
                           defaults.video_player.onended  = function(event) {
                             $('#take-photo .material-icons').html('play_arrow')
                             debugger
-                            console.log('Recorder stopped: ', event);
+                            console.log('Player stopped: ', event);
                           };
                           console.log('Recorded Blobs: ', settings.recordedBlobs);
                         }
