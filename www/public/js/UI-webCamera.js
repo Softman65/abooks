@@ -105,7 +105,7 @@
                 }
               }
               try {
-                settings.mediaRecorder = new MediaRecorder(window.stream, options);
+                settings.mediaRecorder = new MediaRecorder(window.stream, {mimeType: 'video/webm'});
               } catch (e) {
                 console.error('Exception while creating MediaRecorder: ' + e);
                 alert('Exception while creating MediaRecorder: '
