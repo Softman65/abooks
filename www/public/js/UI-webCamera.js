@@ -259,7 +259,7 @@
                       defaults.video.pause();
                       var superBuffer = new Blob(settings.recordedBlobs, {type: 'video/webm'});
                       $(defaults.video).removeClass('visible')
-                      //defaults.video.src = window.URL.createObjectURL(superBuffer);
+                      defaults.video_player.src = window.URL.createObjectURL(superBuffer);
                       $(defaults.video_player).addClass('visible').removeClass('hidden') //.src = window.URL.createObjectURL(superBuffer);
                       //$('#')
                       console.log('Recorded Blobs: ', settings.recordedBlobs);
