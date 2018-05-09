@@ -29,8 +29,7 @@
         take_photo_btn : document.querySelector('#take-photo'),
         delete_photo_btn : document.querySelector('#delete-photo'),
         download_photo_btn : document.querySelector('#download-photo'),
-        error_message : document.querySelector('#error-message'),
-        recordedVideo : document.querySelector('video#recorded')
+        error_message : document.querySelector('#error-message')
       }
 
       var settings = {
@@ -138,18 +137,18 @@
             },
             playRecording: function(){
               var superBuffer = new Blob(settings.recordedBlobs, {type: 'video/webm'});
-              defaults.recordedVideo.src = window.URL.createObjectURL(superBuffer);
+              defaults.video.src = window.URL.createObjectURL(superBuffer);
               // workaround for non-seekable video taken from
               // https://bugs.chromium.org/p/chromium/issues/detail?id=642012#c23
-              defaults.recordedVideo.addEventListener('loadedmetadata', function() {
-                if (defaults.recordedVideo.duration === Infinity) {
-                  defaults.recordedVideo.currentTime = 1e101;
-                  defaults.recordedVideo.ontimeupdate = function() {
-                    defaults.recordedVideo.currentTime = 0;
-                    defaults.recordedVideo.ontimeupdate = function() {
-                      delete defaults.recordedVideo.ontimeupdate;
+              defaults.video.addEventListener('loadedmetadata', function() {
+                if (defaults.video.duration === Infinity) {
+                  defaults.video.currentTime = 1e101;
+                  defaults.video.ontimeupdate = function() {
+                    defaults.video.currentTime = 0;
+                    defaults.video.ontimeupdate = function() {
+                      delete defaults.video.ontimeupdate;
                       console.log('play')
-                      defaults.recordedVideo.play();
+                      defaults.video.play();
                     };
                   };
                 }
