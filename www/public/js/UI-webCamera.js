@@ -84,6 +84,7 @@
                           console.log('getUserMedia() got stream: ', stream);
                           window.stream = stream;
                           defaults.video.srcObject = stream;
+                          settings.captureEvents( defaults.video) 
                 }).catch(function handleError(error) {
                   console.log('navigator.getUserMedia error: ', error);
                 });
