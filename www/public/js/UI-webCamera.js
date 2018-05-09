@@ -21,8 +21,7 @@
       }, false);
       
       var defaults = {
-        video_recorder : $('#camera-stream'),
-        video_play: $('#camera-play'),
+        video : document.querySelector('#camera-stream'),
         image : document.querySelector('#snap'),
         snap : document.querySelector('#snap'),
         start_camera : document.querySelector('#start-camera'),
@@ -61,12 +60,13 @@
                     //defaults.download_photo_btn.classList.add("hidden");
                     // Create an object URL for the video stream and
                     // set it as src of our HTLM video element.
-                    defaults.video_recorder.srcObject = stream;
+                    defaults.video.srcObject = stream;
         
                     // Play the video element to start the stream.
-                    defaults.video_recorder[0].play();
-                    defaults.video_recorder[0].onplay = function() {
-                      settings.captureEvents( defaults.video_recorder )
+                    defaults.video.play();
+                    defaults.video.onplay = function() {
+                      
+                      settings.captureEvents( defaults.video)
                     };
         
                   },
@@ -83,13 +83,13 @@
                           //recordButton.disabled = false;
                           console.log('getUserMedia() got stream: ', stream);
                           window.stream = stream;
-                          defaults.video_recorder.srcObject = stream;
-                          settings.captureEvents( defaults.video_recorder) 
+                          defaults.video.srcObject = stream;
+                          settings.captureEvents( defaults.video) 
                 }).catch(function handleError(error) {
                   console.log('navigator.getUserMedia error: ', error);
                 });
 
-                settings.captureEvents( defaults.video_recorder)            
+                settings.captureEvents( defaults.video)            
               }
       
             }  
@@ -98,7 +98,7 @@
             // Display the video stream and the controls.
     
             this.hideUI();
-            defaults.video_recorder.addClass("visible");
+            defaults.video.classList.add("visible");
             defaults.controls.classList.add("visible");
           },
           video:{
@@ -139,7 +139,7 @@
             playRecording: function(){
               //var superBuffer = new Blob(settings.recordedBlobs, {type: 'video/webm'});
               //defaults.video.src = window.URL.createObjectURL(superBuffer);
-              defaults.video_recorder.play();
+              defaults.video.play();
                // defaults.video.srcObject = settings.recordedBlobs
               // workaround for non-seekable video taken from
               // https://bugs.chromium.org/p/chromium/issues/detail?id=642012#c23
@@ -165,18 +165,18 @@
                 context = hidden_canvas.getContext('2d');
                 
 
-            var width = defaults.video_recorder.clientWidth,
-                height = defaults.video_recorder.clientHeight;
+            var width = defaults.video.clientWidth,
+                height = defaults.video.clientHeight;
     
             if (width && height) {
     
               // Setup a canvas with the same dimensions as the video.
-              hidden_canvas.width = width ///2;
-              hidden_canvas.height = height ///2;
+              hidden_canvas.width = width/2;
+              hidden_canvas.height = height/2;
     
               // Make a copy of the current frame in the video on the canvas.
               //context.scale(0.5,0.5);
-              context.drawImage(defaults.video_recorder, 0, 0, width, height);
+              context.drawImage(defaults.video, 0, 0, width, height);
               
               // Turn the canvas image into a dataURL that can be used as a src for our photo.
               var imgData = hidden_canvas.toDataURL('image/jpeg');
@@ -201,7 +201,7 @@
   
           defaults.controls.classList.remove("visible");
           defaults.start_camera.classList.remove("visible");
-          defaults.video_recorder.removeClass("visible");
+          defaults.video.classList.remove("visible");
           defaults.snap.classList.remove("visible");
           defaults.error_message.classList.remove("visible");
         },
@@ -214,7 +214,7 @@
                 e.preventDefault();
 
                 // Start video playback manually.
-                defaults.video_recorder[0].play();
+                defaults.video.play();
                 settings.showVideo();
 
               });
@@ -243,7 +243,7 @@
                     }
     
                     // Pause video playback of stream.
-                    defaults.video_recorder[0].pause();
+                    defaults.video.pause();
                     //defaults.video.add("hidden")
                   }else{
 
@@ -254,12 +254,11 @@
                       $('#take-photo .material-icons').html('stop')
                     }else{
                       //stop record
-                      //settings.mediaRecorder.stop();
-                     // defaults.video.stop();
+                      settings.mediaRecorder.stop();
+                      defaults.video.pause();
                       var superBuffer = new Blob(settings.recordedBlobs, {type: 'video/webm'});
-                      defaults.video_recorder.src = window.URL.createObjectURL(superBuffer);
-                      defaults.video_recorder[0].load();
-                      defaults.video_recorder[0].play();
+                      defaults.video.src = window.URL.createObjectURL(superBuffer);
+
                       console.log('Recorded Blobs: ', settings.recordedBlobs);
                       //recordedVideo.controls = true;
                       $('#take-photo .material-icons').html('play_arrow')
@@ -286,7 +285,7 @@
                 defaults.download_photo_btn.classList.add("disabled");
 
                 // Resume playback of stream.
-                defaults.video_recorder[0].play();
+                defaults.video.play();
 
               });
         }
