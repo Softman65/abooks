@@ -137,24 +137,25 @@
               console.log('MediaRecorder started',settings.mediaRecorder);
             },
             playRecording: function(){
-              var superBuffer = new Blob(settings.recordedBlobs, {type: 'video/webm'});
+              //var superBuffer = new Blob(settings.recordedBlobs, {type: 'video/webm'});
               //defaults.video.src = window.URL.createObjectURL(superBuffer);
-                defaults.video.srcObject = settings.recordedBlobs
+              defaults.video.play();
+               // defaults.video.srcObject = settings.recordedBlobs
               // workaround for non-seekable video taken from
               // https://bugs.chromium.org/p/chromium/issues/detail?id=642012#c23
-              defaults.video.addEventListener('loadedmetadata', function() {
-                if (defaults.video.duration === Infinity) {
-                  defaults.video.currentTime = 1e101;
-                  defaults.video.ontimeupdate = function() {
-                    defaults.video.currentTime = 0;
-                    defaults.video.ontimeupdate = function() {
-                      delete defaults.video.ontimeupdate;
-                      console.log('play')
-                      defaults.video.play();
-                    };
-                  };
-                }
-              });
+              //defaults.video.addEventListener('loadedmetadata', function() {
+              //  if (defaults.video.duration === Infinity) {
+              //    defaults.video.currentTime = 1e101;
+              //    defaults.video.ontimeupdate = function() {
+              //      defaults.video.currentTime = 0;
+              //      defaults.video.ontimeupdate = function() {
+              //        delete defaults.video.ontimeupdate;
+              //        console.log('play')
+              //        defaults.video.play();
+              //      };
+              //    };
+              //  }
+              //});
             }
           },
          takeSnapshot:function(){
@@ -174,7 +175,7 @@
               hidden_canvas.height = height/2;
     
               // Make a copy of the current frame in the video on the canvas.
-              context.scale(0.5,0.5);
+              //context.scale(0.5,0.5);
               context.drawImage(defaults.video, 0, 0, width, height);
               
               // Turn the canvas image into a dataURL that can be used as a src for our photo.
@@ -254,6 +255,10 @@
                     }else{
                       //stop record
                       settings.mediaRecorder.stop();
+                      
+                      var superBuffer = new Blob(settings.recordedBlobs, {type: 'video/webm'});
+                      defaults.video.src = window.URL.createObjectURL(superBuffer);
+
                       console.log('Recorded Blobs: ', settings.recordedBlobs);
                       //recordedVideo.controls = true;
                       $('#take-photo .material-icons').html('play_arrow')
