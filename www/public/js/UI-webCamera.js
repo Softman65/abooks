@@ -126,6 +126,7 @@
                   + e + '. mimeType: ' + options.mimeType);
                 return;
               }
+
               settings.mediaRecorder.onstop = function(event) {
                 console.log('Recorder stopped: ', event);
               };
@@ -209,7 +210,13 @@
         captureEvents:function(video){
                 // Mobile browsers cannot play video without user input,
               // so here we're using a button to start it manually.
-             
+              
+              defaults.video_player.onstop = function(event) {
+                $('#take-photo .material-icons').html('play_arrow')
+                debugger
+                console.log('Recorder stopped: ', event);
+              };
+
               defaults.start_camera.addEventListener("click", function(e){
 
                 e.preventDefault();
@@ -255,15 +262,19 @@
                       $('#take-photo .material-icons').html('stop')
                     }else{
                       //stop record
-                      settings.mediaRecorder.stop();
-                      defaults.video.pause();
-                      var superBuffer = new Blob(settings.recordedBlobs, {type: 'video/webm'});
-                      $(defaults.video).removeClass('visible')
-                      defaults.video_player.src = window.URL.createObjectURL(superBuffer);
-                      $(defaults.video_player).addClass('visible').removeClass('hidden') //.src = window.URL.createObjectURL(superBuffer);
-                      //$('#')
-                      console.log('Recorded Blobs: ', settings.recordedBlobs);
-                      //recordedVideo.controls = true;
+                      if($(defaults.video_player).hasClass('hidden')){
+                        settings.mediaRecorder.stop();
+                        defaults.video.pause();
+                        var superBuffer = new Blob(settings.recordedBlobs, {type: 'video/webm'});
+                        $(defaults.video).removeClass('visible')
+                        defaults.video_player.src = window.URL.createObjectURL(superBuffer);
+                        $(defaults.video_player).addClass('visible').removeClass('hidden') //.src = window.URL.createObjectURL(superBuffer);
+                        //$('#')
+                        console.log('Recorded Blobs: ', settings.recordedBlobs);
+                        //recordedVideo.controls = true;
+                      }else{
+                        defaults.video_player.pause()
+                      }
                       $('#take-photo .material-icons').html('play_arrow')
                     }
                   }else{
