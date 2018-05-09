@@ -250,7 +250,7 @@
                   if( $('#take-photo .material-icons').html()!='play_arrow'){
                     if( $('#take-photo .material-icons').html()!='stop'){
                       //start recording
-                      defaults.video_recorder[0].startRecording()
+                      settings.video.startRecording()
                       $('#take-photo .material-icons').html('stop')
                     }else{
                       //stop record
@@ -265,7 +265,7 @@
                       $('#take-photo .material-icons').html('play_arrow')
                     }
                   }else{
-                    settings.video_recorder[0].playRecording()
+                    settings.video.playRecording()
                   }
 
                 }
