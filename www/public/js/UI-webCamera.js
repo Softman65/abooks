@@ -64,9 +64,8 @@
                     defaults.video_recorder.srcObject = stream;
         
                     // Play the video element to start the stream.
-                    defaults.video_recorder.play();
-                    defaults.video_recorder.onplay = function() {
-                      
+                    defaults.video_recorder[0].play();
+                    defaults.video_recorder[0].onplay = function() {
                       settings.captureEvents( defaults.video_recorder )
                     };
         
