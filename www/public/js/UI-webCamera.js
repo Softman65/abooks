@@ -9,7 +9,7 @@
   }
 
 
-  $.fn.webCamera = function(method,pushPicture) {
+  $.fn.webCamera = function(method,callbackOut) {
 
       var mediaSource = new MediaSource();
       mediaSource.addEventListener('sourceopen', function(){
@@ -34,7 +34,7 @@
       }
 
       var settings = {
-         pushPicture:pushPicture,
+         out:callbackOut,
          process:function(_type){
           const _this = this
           navigator.getMedia = ( navigator.getUserMedia ||
@@ -209,10 +209,14 @@
           defaults.snap.classList.remove("visible");
           defaults.error_message.classList.remove("visible");
         },
-        exit:function(imageToProcess){
-          if(settings.pushPicture!=null){
+        exit:function(urlToProcess,superBuffer,recordedBlobs){
+          if(settings.out!=null){
             defaults.download_photo_btn.addEventListener("click", function(e){
-              settings.pushPicture(imageToProcess)
+              if(window._type=='photo'){
+                settings.out(urlToProcess,superBuffer,recordedBlobs)
+              }else{
+                settings.out(urlToProcess,superBuffer,recordedBlobs)
+              }
             })
           //}else{
           //  defaults.download_photo_btn.href = imageToProcess;
@@ -297,7 +301,7 @@
                               console.log('Player stopped: ', event);
                             };
                             console.log('Recorded Blobs: ', settings.recordedBlobs);
-                            settings.exit(window.URL.createObjectURL(superBuffer))
+                            settings.exit(window.URL.createObjectURL(superBuffer),superBuffer, settings.recordedBlobs)
                           }
                           //recordedVideo.controls = true;
                         }else{

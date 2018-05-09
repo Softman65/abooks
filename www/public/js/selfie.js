@@ -3,7 +3,7 @@ $(document).ready(function() {
     
     function mediaForm(_type,objdestino){
         $('.destino').hide()
-        $.fn.webCamera(_type,function(imgData){
+        $.fn.webCamera(_type,function(url,superbuffer,blobbuff){
             $('#images').modal('hide')
             $(objdestino).attr("src",imgData).removeAttr('style').show()
 
