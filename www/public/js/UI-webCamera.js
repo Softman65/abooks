@@ -251,8 +251,8 @@
 
               });
 
-
-              defaults.delete_photo_btn.addEventListener("click", function(e){
+              
+              $(defaults.delete_photo_btn).off().click( function(e){
 
                 e.preventDefault();
 
