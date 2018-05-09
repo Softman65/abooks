@@ -265,7 +265,7 @@
                         $(defaults.video).removeClass('visible')
                         defaults.video_player.src = window.URL.createObjectURL(superBuffer);
                         $(defaults.video_player).addClass('visible').removeClass('hidden') //.src = window.URL.createObjectURL(superBuffer);
-                        defaults.video_player.onstop = function(event) {
+                        defaults.video_player.onended  = function(event) {
                           $('#take-photo .material-icons').html('play_arrow')
                           debugger
                           console.log('Recorder stopped: ', event);
