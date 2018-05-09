@@ -217,7 +217,7 @@
               });
 
 
-              $(defaults.take_photo_btn).off().click(function(e){
+              $(defaults.take_photo_btn).off('click').click(function(e){
 
                 e.preventDefault();
                 if(window._type=='photo'){
@@ -265,7 +265,7 @@
               });
 
               
-              $(defaults.delete_photo_btn).off().click( function(e){
+              $(defaults.delete_photo_btn).off('click').click( function(e){
 
                 e.preventDefault();
 
