@@ -175,8 +175,8 @@
             if (width && height) {
     
               // Setup a canvas with the same dimensions as the video.
-              hidden_canvas.width = width/2;
-              hidden_canvas.height = height/2;
+              hidden_canvas.width = width;
+              hidden_canvas.height = height;
     
               // Make a copy of the current frame in the video on the canvas.
               //context.scale(0.5,0.5);
