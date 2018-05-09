@@ -21,7 +21,8 @@
       }, false);
       
       var defaults = {
-        video : document.querySelector('#camera-stream'),
+        video_recorder : $('#camera-stream'),
+        video_play: $('#camera-play'),
         image : document.querySelector('#snap'),
         snap : document.querySelector('#snap'),
         start_camera : document.querySelector('#start-camera'),
@@ -60,13 +61,13 @@
                     //defaults.download_photo_btn.classList.add("hidden");
                     // Create an object URL for the video stream and
                     // set it as src of our HTLM video element.
-                    defaults.video.srcObject = stream;
+                    defaults.video_recorder.srcObject = stream;
         
                     // Play the video element to start the stream.
-                    defaults.video.play();
-                    defaults.video.onplay = function() {
+                    defaults.video_recorder.play();
+                    defaults.video_recorder.onplay = function() {
                       
-                      settings.captureEvents( defaults.video)
+                      settings.captureEvents( defaults.video_recorder )
                     };
         
                   },
