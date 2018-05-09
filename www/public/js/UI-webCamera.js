@@ -277,7 +277,9 @@
                           // Setup a canvas with the same dimensions as the video.
                           defaults.video_player.width = width;
                           defaults.video_player.height = height;
-                        
+                                  // Disable delete and save buttons
+                          $(defaults.delete_photo_btn).removeClass("disabled");
+                          $(defaults.download_photo_btn).removeClass("disabled");
                         
                           defaults.video_player.onended  = function(event) {
                             $('#take-photo .material-icons').html('play_arrow')
