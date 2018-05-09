@@ -209,6 +209,15 @@
           defaults.snap.classList.remove("visible");
           defaults.error_message.classList.remove("visible");
         },
+        exit:function(imageToProcess){
+          if(settings.pushPicture!=null){
+            defaults.download_photo_btn.addEventListener("click", function(e){
+              settings.pushPicture(imageToProcess)
+            })
+          }else{
+            defaults.download_photo_btn.href = imageToProcess;
+          }
+        },
         captureEvents:function(video){
                 // Mobile browsers cannot play video without user input,
               // so here we're using a button to start it manually.
@@ -240,16 +249,17 @@
                     defaults.delete_photo_btn.classList.remove("disabled");
                     defaults.download_photo_btn.classList.remove("disabled");
                     // Set the href attribute of the download button to the snap url.
-                    if(settings.pushPicture!=null){
-                      defaults.download_photo_btn.addEventListener("click", function(e){
-                        settings.pushPicture(defaults.snap)
-                      })
-                    }else{
-                      defaults.download_photo_btn.href = defaults.snap;
-                    }
-    
+                    //if(settings.pushPicture!=null){
+                    //  defaults.download_photo_btn.addEventListener("click", function(e){
+                    //    settings.pushPicture(defaults.snap)
+                    //  })
+                    //}else{
+                    //  defaults.download_photo_btn.href = defaults.snap;
+                    //}
                     // Pause video playback of stream.
                     defaults.video.pause();
+                    settings.exit(defaults.snap)
+
                     //defaults.video.add("hidden")
                   }else{
 
