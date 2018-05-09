@@ -204,7 +204,7 @@
               });
 
 
-              $(defaults.take_photo_btn).click(function(e){
+              $(defaults.take_photo_btn).off().click(function(e){
 
                 e.preventDefault();
                 if( defaults._type=='photo'){
