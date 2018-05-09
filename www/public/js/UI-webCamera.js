@@ -84,13 +84,13 @@
                           //recordButton.disabled = false;
                           console.log('getUserMedia() got stream: ', stream);
                           window.stream = stream;
-                          defaults.video.srcObject = stream;
-                          settings.captureEvents( defaults.video) 
+                          defaults.video_recorder.srcObject = stream;
+                          settings.captureEvents( defaults.video_recorder) 
                 }).catch(function handleError(error) {
                   console.log('navigator.getUserMedia error: ', error);
                 });
 
-                settings.captureEvents( defaults.video)            
+                settings.captureEvents( defaults.video_recorder)            
               }
       
             }  
@@ -99,7 +99,7 @@
             // Display the video stream and the controls.
     
             this.hideUI();
-            defaults.video.classList.add("visible");
+            defaults.video_recorder.addClass("visible");
             defaults.controls.classList.add("visible");
           },
           video:{
@@ -140,7 +140,7 @@
             playRecording: function(){
               //var superBuffer = new Blob(settings.recordedBlobs, {type: 'video/webm'});
               //defaults.video.src = window.URL.createObjectURL(superBuffer);
-              defaults.video.play();
+              defaults.video_recorder.play();
                // defaults.video.srcObject = settings.recordedBlobs
               // workaround for non-seekable video taken from
               // https://bugs.chromium.org/p/chromium/issues/detail?id=642012#c23
@@ -166,18 +166,18 @@
                 context = hidden_canvas.getContext('2d');
                 
 
-            var width = defaults.video.clientWidth,
-                height = defaults.video.clientHeight;
+            var width = defaults.video_recorder.clientWidth,
+                height = defaults.video_recorder.clientHeight;
     
             if (width && height) {
     
               // Setup a canvas with the same dimensions as the video.
-              hidden_canvas.width = width/2;
-              hidden_canvas.height = height/2;
+              hidden_canvas.width = width ///2;
+              hidden_canvas.height = height ///2;
     
               // Make a copy of the current frame in the video on the canvas.
               //context.scale(0.5,0.5);
-              context.drawImage(defaults.video, 0, 0, width, height);
+              context.drawImage(defaults.video_recorder, 0, 0, width, height);
               
               // Turn the canvas image into a dataURL that can be used as a src for our photo.
               var imgData = hidden_canvas.toDataURL('image/jpeg');
@@ -202,7 +202,7 @@
   
           defaults.controls.classList.remove("visible");
           defaults.start_camera.classList.remove("visible");
-          defaults.video.classList.remove("visible");
+          defaults.video_recorder.removeClass("visible");
           defaults.snap.classList.remove("visible");
           defaults.error_message.classList.remove("visible");
         },
@@ -215,7 +215,7 @@
                 e.preventDefault();
 
                 // Start video playback manually.
-                defaults.video.play();
+                defaults.video_recorder.play();
                 settings.showVideo();
 
               });
@@ -244,29 +244,29 @@
                     }
     
                     // Pause video playback of stream.
-                    defaults.video.pause();
+                    defaults.video_recorder.pause();
                     //defaults.video.add("hidden")
                   }else{
 
                   if( $('#take-photo .material-icons').html()!='play_arrow'){
                     if( $('#take-photo .material-icons').html()!='stop'){
                       //start recording
-                      settings.video.startRecording()
+                      settings.video_recorder.startRecording()
                       $('#take-photo .material-icons').html('stop')
                     }else{
                       //stop record
                       //settings.mediaRecorder.stop();
                      // defaults.video.stop();
                       var superBuffer = new Blob(settings.recordedBlobs, {type: 'video/webm'});
-                      defaults.video.src = window.URL.createObjectURL(superBuffer);
-                      defaults.video.load();
-                      defaults.video.play();
+                      defaults.video_recorder.src = window.URL.createObjectURL(superBuffer);
+                      defaults.video_recorder.load();
+                      defaults.video_recorder.play();
                       console.log('Recorded Blobs: ', settings.recordedBlobs);
                       //recordedVideo.controls = true;
                       $('#take-photo .material-icons').html('play_arrow')
                     }
                   }else{
-                    settings.video.playRecording()
+                    settings.video_recorder.playRecording()
                   }
 
                 }
@@ -287,7 +287,7 @@
                 defaults.download_photo_btn.classList.add("disabled");
 
                 // Resume playback of stream.
-                defaults.video.play();
+                defaults.video_recorder.play();
 
               });
         }
