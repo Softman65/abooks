@@ -46,8 +46,8 @@
               settings.displayErrorMessage("Your browser doesn't have support for the navigator.getUserMedia interface.");
             }
             else{
-              defaults._type = _type
-              $('#take-photo .material-icons').html( defaults._type=='photo'?'camera_alt':'videocam')
+             window._type = _type
+              $('#take-photo .material-icons').html(window._type=='photo'?'camera_alt':'videocam')
               if(defaults._type=='photo'){
                 // Request the camera.
                 navigator.getMedia(
@@ -220,7 +220,7 @@
               $(defaults.take_photo_btn).off().click(function(e){
 
                 e.preventDefault();
-                if( defaults._type=='photo'){
+                if(window._type=='photo'){
                     defaults.snap = settings.takeSnapshot();
 
                     // Show image. 
