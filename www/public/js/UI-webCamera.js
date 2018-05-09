@@ -191,6 +191,7 @@
         captureEvents:function(_type,video){
                 // Mobile browsers cannot play video without user input,
               // so here we're using a button to start it manually.
+              defaults._type = _type
               defaults.start_camera.addEventListener("click", function(e){
 
                 e.preventDefault();
@@ -205,7 +206,7 @@
               defaults.take_photo_btn.addEventListener("click", function(e){
 
                 e.preventDefault();
-                if(_type=='photo'){
+                if( defaults._type=='photo'){
                     defaults.snap = settings.takeSnapshot();
 
                     // Show image. 
