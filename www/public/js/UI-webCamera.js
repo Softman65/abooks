@@ -46,6 +46,7 @@
             }
             else{
              window._type = _type
+             settings.showVideo();
               $('#take-photo .material-icons').html(window._type=='photo'?'camera_alt':'videocam')
               if(window._type=='photo'){
                 // Request the camera.
@@ -64,7 +65,7 @@
                     // Play the video element to start the stream.
                     defaults.video.play();
                     defaults.video.onplay = function() {
-                      settings.showVideo();
+                      
                       settings.captureEvents( defaults.video)
                     };
         
