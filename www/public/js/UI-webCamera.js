@@ -214,7 +214,7 @@
                 e.preventDefault();
 
                 // Start video playback manually.
-                defaults.video_recorder.play();
+                defaults.video_recorder[0].play();
                 settings.showVideo();
 
               });
@@ -243,14 +243,14 @@
                     }
     
                     // Pause video playback of stream.
-                    defaults.video_recorder.pause();
+                    defaults.video_recorder[0].pause();
                     //defaults.video.add("hidden")
                   }else{
 
                   if( $('#take-photo .material-icons').html()!='play_arrow'){
                     if( $('#take-photo .material-icons').html()!='stop'){
                       //start recording
-                      settings.video_recorder.startRecording()
+                      settings.video_recorder[0].startRecording()
                       $('#take-photo .material-icons').html('stop')
                     }else{
                       //stop record
@@ -258,14 +258,14 @@
                      // defaults.video.stop();
                       var superBuffer = new Blob(settings.recordedBlobs, {type: 'video/webm'});
                       defaults.video_recorder.src = window.URL.createObjectURL(superBuffer);
-                      defaults.video_recorder.load();
-                      defaults.video_recorder.play();
+                      defaults.video_recorder[0].load();
+                      defaults.video_recorder[0].play();
                       console.log('Recorded Blobs: ', settings.recordedBlobs);
                       //recordedVideo.controls = true;
                       $('#take-photo .material-icons').html('play_arrow')
                     }
                   }else{
-                    settings.video_recorder.playRecording()
+                    settings.video_recorder[0].playRecording()
                   }
 
                 }
@@ -286,7 +286,7 @@
                 defaults.download_photo_btn.classList.add("disabled");
 
                 // Resume playback of stream.
-                defaults.video_recorder.play();
+                defaults.video_recorder[0].play();
 
               });
         }
