@@ -75,7 +75,7 @@
                   }
                 );
               }else{
-                             
+                settings.captureEvents(_type, defaults.video)            
               }
       
             }  
