@@ -46,8 +46,9 @@
               settings.displayErrorMessage("Your browser doesn't have support for the navigator.getUserMedia interface.");
             }
             else{
-              $('#take-photo .material-icons').html( _type=='photo'?'camera_alt':'videocam')
-              if(_type=='photo'){
+              defaults._type = _type
+              $('#take-photo .material-icons').html( defaults._type=='photo'?'camera_alt':'videocam')
+              if(defaults._type=='photo'){
                 // Request the camera.
                 navigator.getMedia(
                   {
@@ -65,7 +66,7 @@
                     defaults.video.play();
                     defaults.video.onplay = function() {
                       settings.showVideo();
-                      settings.captureEvents(_type, defaults.video)
+                      settings.captureEvents( defaults.video)
                     };
         
                   },
@@ -75,7 +76,7 @@
                   }
                 );
               }else{
-                settings.captureEvents(_type, defaults.video)            
+                settings.captureEvents( defaults.video)            
               }
       
             }  
@@ -188,10 +189,10 @@
           defaults.snap.classList.remove("visible");
           defaults.error_message.classList.remove("visible");
         },
-        captureEvents:function(_type,video){
+        captureEvents:function(video){
                 // Mobile browsers cannot play video without user input,
               // so here we're using a button to start it manually.
-              defaults._type = _type
+             
               defaults.start_camera.addEventListener("click", function(e){
 
                 e.preventDefault();
