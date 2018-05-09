@@ -265,12 +265,24 @@
                         $(defaults.video).removeClass('visible')
                         defaults.video_player.src = window.URL.createObjectURL(superBuffer);
                         $(defaults.video_player).addClass('visible').removeClass('hidden') //.src = window.URL.createObjectURL(superBuffer);
-                        defaults.video_player.onended  = function(event) {
-                          $('#take-photo .material-icons').html('play_arrow')
-                          debugger
-                          console.log('Recorder stopped: ', event);
-                        };
-                        console.log('Recorded Blobs: ', settings.recordedBlobs);
+                        
+                        var width = defaults.video.clientWidth,
+                        height = defaults.video.clientHeight;
+            
+                        if (width && height) {
+                
+                          // Setup a canvas with the same dimensions as the video.
+                          defaults.video_player.width = width;
+                          defaults.video_player.height = height;
+                        
+                        
+                          defaults.video_player.onended  = function(event) {
+                            $('#take-photo .material-icons').html('play_arrow')
+                            debugger
+                            console.log('Recorder stopped: ', event);
+                          };
+                          console.log('Recorded Blobs: ', settings.recordedBlobs);
+                        }
                         //recordedVideo.controls = true;
                       }else{
                         defaults.video_player.pause()
