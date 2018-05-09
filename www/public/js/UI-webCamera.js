@@ -258,7 +258,7 @@
                     //}
                     // Pause video playback of stream.
                     defaults.video.pause();
-                    
+                    settings.exit(defaults.snap)
 
                     //defaults.video.add("hidden")
                   }else{
@@ -297,6 +297,7 @@
                               console.log('Player stopped: ', event);
                             };
                             console.log('Recorded Blobs: ', settings.recordedBlobs);
+                            settings.exit(window.URL.createObjectURL(superBuffer))
                           }
                           //recordedVideo.controls = true;
                         }else{
@@ -310,7 +311,7 @@
                     }
                     
                   }
-                  settings.exit(defaults.snap)
+                  
               });
 
               
