@@ -214,8 +214,8 @@
             defaults.download_photo_btn.addEventListener("click", function(e){
               settings.pushPicture(imageToProcess)
             })
-          }else{
-            defaults.download_photo_btn.href = imageToProcess;
+          //}else{
+          //  defaults.download_photo_btn.href = imageToProcess;
           }
         },
         captureEvents:function(video){
