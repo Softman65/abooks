@@ -258,59 +258,59 @@
                     //}
                     // Pause video playback of stream.
                     defaults.video.pause();
-                    settings.exit(defaults.snap)
+                    
 
                     //defaults.video.add("hidden")
                   }else{
 
-                  if( $('#take-photo .material-icons').html()!='play_arrow'){
-                    if( $('#take-photo .material-icons').html()!='stop'){
-                      //start recording
-                      settings.video.startRecording()
-                      $('#take-photo .material-icons').html('stop')
-                    }else{
-                      //stop record
-                      if($(defaults.video_player).hasClass('hidden')){
-                        settings.mediaRecorder.stop();
-                        defaults.video.pause();
-
-                        var superBuffer = new Blob(settings.recordedBlobs, {type: 'video/webm'});
-                       
-                        defaults.video_player.src = window.URL.createObjectURL(superBuffer);
-                        $(defaults.video_player).addClass('visible').removeClass('hidden') //.src = window.URL.createObjectURL(superBuffer);
-                        
-                        const width = defaults.video.offsetWidth,
-                        height = defaults.video.offsetHeight;
-                        $(defaults.video).removeClass('visible')
-                        if (width && height) {
-                
-                          // Setup a canvas with the same dimensions as the video.
-                          defaults.video_player.width = width;
-                          defaults.video_player.height = height;
-                                  // Disable delete and save buttons
-                          $(defaults.delete_photo_btn).removeClass("disabled");
-                          $(defaults.download_photo_btn).removeClass("disabled");
-                        
-                          defaults.video_player.onended  = function(event) {
-                            $('#take-photo .material-icons').html('play_arrow')
-                            debugger
-                            console.log('Player stopped: ', event);
-                          };
-                          console.log('Recorded Blobs: ', settings.recordedBlobs);
-                        }
-                        //recordedVideo.controls = true;
+                    if( $('#take-photo .material-icons').html()!='play_arrow'){
+                      if( $('#take-photo .material-icons').html()!='stop'){
+                        //start recording
+                        settings.video.startRecording()
+                        $('#take-photo .material-icons').html('stop')
                       }else{
-                        defaults.video_player.pause()
+                        //stop record
+                        if($(defaults.video_player).hasClass('hidden')){
+                          settings.mediaRecorder.stop();
+                          defaults.video.pause();
+
+                          var superBuffer = new Blob(settings.recordedBlobs, {type: 'video/webm'});
+                        
+                          defaults.video_player.src = window.URL.createObjectURL(superBuffer);
+                          $(defaults.video_player).addClass('visible').removeClass('hidden') //.src = window.URL.createObjectURL(superBuffer);
+                          
+                          const width = defaults.video.offsetWidth,
+                          height = defaults.video.offsetHeight;
+                          $(defaults.video).removeClass('visible')
+                          if (width && height) {
+                  
+                            // Setup a canvas with the same dimensions as the video.
+                            defaults.video_player.width = width;
+                            defaults.video_player.height = height;
+                                    // Disable delete and save buttons
+                            $(defaults.delete_photo_btn).removeClass("disabled");
+                            $(defaults.download_photo_btn).removeClass("disabled");
+                          
+                            defaults.video_player.onended  = function(event) {
+                              $('#take-photo .material-icons').html('play_arrow')
+                              debugger
+                              console.log('Player stopped: ', event);
+                            };
+                            console.log('Recorded Blobs: ', settings.recordedBlobs);
+                          }
+                          //recordedVideo.controls = true;
+                        }else{
+                          defaults.video_player.pause()
+                        }
+                        $('#take-photo .material-icons').html('play_arrow')
                       }
-                      $('#take-photo .material-icons').html('play_arrow')
+                    }else{
+                      $('#take-photo .material-icons').html('stop')
+                      defaults.video_player.play()
                     }
-                  }else{
-                    $('#take-photo .material-icons').html('stop')
-                    defaults.video_player.play()
+                    
                   }
-
-                }
-
+                  settings.exit(defaults.snap)
               });
 
               
