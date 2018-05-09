@@ -258,7 +258,7 @@
                       defaults.video.stop();
                       var superBuffer = new Blob(settings.recordedBlobs, {type: 'video/webm'});
                       defaults.video.src = window.URL.createObjectURL(superBuffer);
-
+                      defaults.video.load();
                       console.log('Recorded Blobs: ', settings.recordedBlobs);
                       //recordedVideo.controls = true;
                       $('#take-photo .material-icons').html('play_arrow')
