@@ -267,7 +267,8 @@
                       $('#take-photo .material-icons').html('play_arrow')
                     }
                   }else{
-                    settings.video.playRecording()
+                    $('#take-photo .material-icons').html('stop')
+                    defaults.video_player.play()
                   }
 
                 }
