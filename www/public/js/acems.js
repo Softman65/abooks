@@ -3,12 +3,15 @@ $(document).ready(function() {
       
         $('.ui.pointing.menu .item').removeClass('active')
         $(this).addClass('active')
-        
-        if($(this).attr("data")=="inicio"){
+        $('.ui.basic.segment').addClass('hidden')
 
+        if($(this).attr("data")=="inicio"){
+          
+          $('.ui.basic.segment.inicio').removeClass('hidden')
         } 
 
         if($(this).attr("data")=="directorio"){
+          $('.ui.basic.segment.directorio').removeClass('hidden')
           $('.context.acems .ui.sidebar')
           .sidebar({
             context: $('.context.acems .bottom.segment')
@@ -17,7 +20,7 @@ $(document).ready(function() {
         } 
 
         if($(this).attr("data")=="buscar"){
-          
+         
         } 
        
     })
