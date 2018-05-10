@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $('.ui.pointing.menu .item').click(function(){
+    $('.ui.pointing.menu a.item').click(function(){
         $('.ui.pointing.menu .item').removeClass('active')
         $(this).addClass('active')
         
