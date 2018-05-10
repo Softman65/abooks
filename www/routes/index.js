@@ -30,7 +30,7 @@ mysql.connection = mysql.engine.createConnection(mysql.credentials);
 mysql.connection.connect();
 /* GET home page. */
 router.get('/', function (req, res) {
-    res.render('inpushdex', { title: 'Express' });
+    res.render('index', { title: 'Express' });
 });
 router.get('/jq-selfie', function (req, res) {
     res.render('jq-selfie', { title: 'jq-selfie' });
