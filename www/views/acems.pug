@@ -16,22 +16,22 @@ html
 
 
 body
-.ui.segment.context.acems.full
+.ui.segment.context.full
     .ui.pointing.menu
-        a.item Home 
-        a.item Messages 
-        a.item.active Amigos 
+        a.item.active(data="inicio") Inicio 
+        a.item(data="directorio") Asociados 
         .right.menu
             .item
                 .ui.transparent.icon.input
                     input(type='text', placeholder='Buscar...')
                     i.search.link.icon
-    .ui.bottom.attached.segment.pushable
+
+    .ui.bottom.attached.segment.pushable.acems
         .ui.inverted.labeled.icon.left.inline.vertical.sidebar.menu(style='')
-            a.item(data="inicio")
+            a.item
                 
                 |  Inicio
-            a.item(data="directorio")
+            a.item
                 
                 |  Asociados
             a.item(data="map")
