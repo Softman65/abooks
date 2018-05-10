@@ -1,8 +1,8 @@
 $(document).ready(function() {
-    $('.context.example .ui.sidebar')
+    $('.context.acems .ui.sidebar')
     .sidebar({
-      context: $('.context.example .bottom.segment')
+      context: $('.context.acems .bottom.segment')
     })
-    .sidebar('attach events', '.context.example .menu .item')
+    .sidebar('attach events', '.context.acems .menu .item')
   ;
 })
