@@ -213,12 +213,13 @@
           if(settings.out!=null){
             $(defaults.download_photo_btn).off("click").click(
               function(e){
+                e.stopPropagation()
                 if(window._type=='photo'){
                   settings.out(window._type,urlToProcess)
                 }else{
                   settings.out(window._type,urlToProcess,superBuffer,recordedBlobs)
                 }
-                e.stopPropagation()
+                
               }
             )
           //}else{
