@@ -30,10 +30,13 @@ mysql.connection = mysql.engine.createConnection(mysql.credentials);
 mysql.connection.connect();
 /* GET home page. */
 router.get('/', function (req, res) {
-    res.render('index', { title: 'Express' });
+    res.render('inpushdex', { title: 'Express' });
 });
 router.get('/jq-selfie', function (req, res) {
     res.render('jq-selfie', { title: 'jq-selfie' });
+});
+router.get('/acems', function (req, res) {
+    res.render('acems', { title: 'acems' });
 });
 router.post('/api/books/imageSave', function (req, res) {
     var cadsql = "call saveImageBook(?,?)"

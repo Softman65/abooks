@@ -1,0 +1,44 @@
+doctype html
+html
+  head
+    title jq-selfie demo
+    link(rel='stylesheet', href='/css/app.css')
+    link(rel='stylesheet', href='/css/webcam.css')
+    link(rel='stylesheet', href='/css/Semantic-UI/semantic.min.css')
+    link(rel='stylesheet', type="text/css", href='/js/plugins/jsgrid-1.5.3/jsgrid.min.css')
+    link(rel='stylesheet', type="text/css", href='/js/plugins/jsgrid-1.5.3/jsgrid-theme.min.css')
+
+    script(src='/js/plugins/jquery-3.3.1.min.js')
+    script(src='/js/plugins/lodash/lodash-4.17.10.js')
+    script(src='/css/Semantic-UI/semantic.min.js')
+    script(src='/js/plugins/jsgrid-1.5.3/jsgrid.min.js')
+    script(src='/js/UI-webCamera.js')
+    script(src='/js/selfie.js')
+
+
+body
+    .ui.top.attached.demo.menu
+        a.item
+            i.sidebar.icon
+            |  Menú
+    .ui.bottom.attached.segment.pushable
+        .ui.inverted.labeled.icon.left.inline.vertical.sidebar.menu(style='')
+            a.item
+                i.home.icon
+                |  Inicio
+            a.item
+                i.block.layout.icon
+                |  Topics
+            a.item
+                i.smile.icon
+                |  Amigos
+            a.item
+                i.calendar.icon
+                |  History
+        .pusher
+            .ui.basic.segment
+                h3.ui.header Application Content
+                p
+                p
+                p
+                p

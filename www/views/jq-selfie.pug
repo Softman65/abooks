@@ -16,26 +16,26 @@ html
     script(src='/js/selfie.js')
 
 
+body
+  .ui.vertical.buttons
+      button.ui.button.photo photo
+      button.ui.button.video video
+      button.ui.button.audio audio
 
-.ui.vertical.buttons
-    button.ui.button.photo photo
-    button.ui.button.video video
-    button.ui.button.audio audio
 
-
-#images.ui.modal
-    .app
-      a#start-camera.visible(href='#') Touch here to start the app.
-      video#camera-stream(  autoplay, muted )
-      video#camera-play.hidden
-      img#snap
-      p#error-message
-      .controls
-        a#delete-photo.disabled(href='#', title='Delete Photo')
-          i.material-icons delete
-        a#take-photo(href='#', title='Take Photo')
-          i.material-icons camera_alt
-        a#download-photo.disabled(href='#', download='selfie.png', title='Save Photo')
-          i.material-icons file_download
-      // Hidden canvas element. Used for taking snapshot of video.
-      canvas
+  #images.ui.modal
+      .app
+        a#start-camera.visible(href='#') Touch here to start the app.
+        video#camera-stream(  autoplay, muted )
+        video#camera-play.hidden
+        img#snap
+        p#error-message
+        .controls
+          a#delete-photo.disabled(href='#', title='Delete Photo')
+            i.material-icons delete
+          a#take-photo(href='#', title='Take Photo')
+            i.material-icons camera_alt
+          a#download-photo.disabled(href='#', download='selfie.png', title='Save Photo')
+            i.material-icons file_download
+        // Hidden canvas element. Used for taking snapshot of video.
+        canvas
