@@ -17,15 +17,15 @@ html
 
 body
 .ui.segment.context.acems.full
-    .ui.top.attached.demo.menu
-        .ui.left.aligned.segment
-            a.item
-                i.sidebar.icon
-                |  Miraflores de la Sierra
-        .ui.right.aligned.segment
-            a.item.floated
-                i.sidebar.icon
-                |  Login
+    .ui.pointing.menu
+        a.item Home 
+        a.item Messages 
+        a.item.active Amigos 
+        .right.menu
+            .item
+                .ui.transparent.icon.input
+                    input(type='text', placeholder='Buscar...')
+                    i.search.link.icon
     .ui.bottom.attached.segment.pushable
         .ui.inverted.labeled.icon.left.inline.vertical.sidebar.menu(style='')
             a.item(data="inicio")
