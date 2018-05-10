@@ -3,19 +3,21 @@ $(document).ready(function() {
     
     function mediaForm(_type,objdestino){
         $('.destino').hide()
-        $.fn.webCamera(_type,function(url,superbuffer,blobbuff){
+        $.fn.webCamera(_type,function(_type,imgData,superbuffer,blobbuff){
             $('#images').modal('hide')
-            $(objdestino).attr("src",imgData).removeAttr('style').show()
+            if(_type=='photo')
+                $(objdestino).attr("src",imgData).removeAttr('style').show()
+            if(_type=='video')
+                //$(objdestino).attr("src",imgData).removeAttr('style').show()
 
-           // $.ajax({
-           //     type: "POST",
-           //     url: "/api/books/imageSave?vendorListingid="+$(objdestino).attr("data") ,
-           //     data: { image : imgData}
-           // }).done(function( data ) {
-           //     
-           //     alert('foto guardada')
-           //       
-           // });
+            $.ajax({
+                type: "GET",
+                url: imgData 
+            }).done(function( data ) {
+                debugger
+                alert('foto guardada')
+                  
+            });
 
 
 

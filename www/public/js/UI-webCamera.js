@@ -214,9 +214,9 @@
             $(defaults.download_photo_btn).off("click").click(
               function(e){
                 if(window._type=='photo'){
-                  settings.out(urlToProcess)
+                  settings.out(window._type,urlToProcess)
                 }else{
-                  settings.out(urlToProcess,superBuffer,recordedBlobs)
+                  settings.out(window._type,urlToProcess,superBuffer,recordedBlobs)
                 }
                 e.stopPropagation()
               }
