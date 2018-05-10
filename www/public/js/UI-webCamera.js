@@ -211,15 +211,16 @@
         },
         exit:function(urlToProcess,superBuffer,recordedBlobs){
           if(settings.out!=null){
-            $(defaults.stopPropagation).off("click").click(
+            $(defaults.download_photo_btn).off("click").click(
               function(e){
                 if(window._type=='photo'){
                   settings.out(urlToProcess)
                 }else{
                   settings.out(urlToProcess,superBuffer,recordedBlobs)
                 }
-                e.stop
-            })
+                e.stopPropagation()
+              }
+            )
           //}else{
           //  defaults.download_photo_btn.href = imageToProcess;
           }
