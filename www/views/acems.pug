@@ -24,30 +24,30 @@ body
             span.titulo Asociación de Comerciantes
     .ui.bottom.attached.segment.pushable
         .ui.inverted.labeled.icon.left.inline.vertical.sidebar.menu(style='')
-            a.item.inicio
+            a.item(data="inicio")
                 i.home.icon
                 |  Inicio
-            a.item.directorio
+            a.item(data="directorio")
                 i.block.layout.icon
                 |  Asociados
-            a.item.map
+            a.item(data="map")
                 i.smile.icon
                 |  Mapa
-            a.item.history
+            a.item(data="history")
                 i.calendar.icon
                 |  History
         .pusher
-            .ui.basic.segment
-                .ui.basic.segment.inicio.full
+            .ui.basic.segment.full
+                .ui.basic.segment.inicio
                     h3.ui.header Inicio
                 p
-                .ui.basic.segment.directorio.hidden.full
+                .ui.basic.segment.directorio.hidden
                     h3.ui.header Directorio
                 p
-                .ui.basic.segment.map.hidden.full
+                .ui.basic.segment.map.hidden
                     h3.ui.header google maps
                 p
-                .ui.basic.segment.history.hidden.full
+                .ui.basic.segment.history.hidden
                     h3.ui.header History
                 p
                 p
