@@ -19,8 +19,8 @@ $(document).ready(function() {
           .sidebar('attach events', '.context.acems .menu .item')          
         } 
 
-        if($(this).attr("data")=="buscar"){
-         
+        if($(this).attr("data")=="map"){
+          $('.ui.basic.segment .ui.basic.segment.map').removeClass('hidden')
         } 
        
     })
