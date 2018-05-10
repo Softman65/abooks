@@ -213,7 +213,7 @@
           if(settings.out!=null){
             defaults.download_photo_btn.addEventListener("click", function(e){
               if(window._type=='photo'){
-                settings.out(urlToProcess,superBuffer,recordedBlobs)
+                settings.out(urlToProcess)
               }else{
                 settings.out(urlToProcess,superBuffer,recordedBlobs)
               }
