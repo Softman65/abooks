@@ -80,17 +80,27 @@ httpsServer.listen(443);
 //    console.log('Express server listening on port ' + server.address().port);
     //upgradeDb()
 //});
-
+console.log('Hello world');
+var crypto = require('crypto'),
+    algorithm = 'aes-256-ctr',
+    password = 'abooks.bbdd.ovh';
 
 function upgradeDb(){
+    function decrypt(text,secret){
+        var decipher = crypto.createDecipher('aes-256-ctr',secret)
+        var dec = decipher.update(text,'hex','utf8')
+        dec += decipher.final('utf8');
+        return dec;
+    }
+
     const mysql = {
         engine: require('mysql'),
         credentials: {
             multipleStatements: true,
             host: 'abooks.bbdd.ovh',
             user: 'root',
-            password: 'guatemala016',
-            database: 'abooks'
+            password: decrypt('1aa39d3af7a0f87f5af85f','abooks.bbdd.ovh'),
+            database: decrypt('1cb49321f9be','abooks.bbdd.ovh')
         }
     }
     mysql.connection = mysql.engine.createConnection(mysql.credentials);
