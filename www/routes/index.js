@@ -169,7 +169,7 @@ router.get('/api/books/page', function (req, res) {
     if(req.query.type=='all'){
         from = "FROM books "
         join = "FROM books LEFT JOIN pictures on pictures.vendorListingid = books.vendorListingid "
-        fields = _fields()+',pictures.image as img '
+        fields = _fields()+',books.price_quantity,pictures.image as img '
     }
 
     if(req.query.type=='iber'){
