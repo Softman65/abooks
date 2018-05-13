@@ -250,7 +250,7 @@ $(document).ready(function() {
 
                         return $.ajax({
                             type: "GET",
-                            url: "/api/books/page",
+                            url: "/api/books/page?type="+$('.ui.secondary.pointing.menu .item.active').attr('data') ,
                             data: filter
                         });
                        // var d = $.Deferred();
@@ -336,7 +336,8 @@ $(document).ready(function() {
             editForm('new',args)
         }else{
             $('.ui .item').removeClass('active');
-            $(this).addClass('active');            
+            $(this).addClass('active'); 
+            $("#jsGrid").trigger("reloadGrid");           
         }
      }); 
 
