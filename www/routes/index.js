@@ -24,8 +24,8 @@ function decrypt(text,secret){
     return dec;
 }
 console.log( 'LOGIN')
-console.log( decrypt('1aa39d3af7a0f87f5af85f','abooks.bbdd.ovh') )
-console.log( decrypt('1cb49321f9be','abooks.bbdd.ovh') )
+//console.log( decrypt('1aa39d3af7a0f87f5af85f','abooks.bbdd.ovh') )
+//console.log( decrypt('1cb49321f9be','abooks.bbdd.ovh') )
 const mysql = {
     engine: require('mysql'),
     credentials: {
@@ -36,6 +36,7 @@ const mysql = {
         database: decrypt('1cb49321f9be','abooks.bbdd.ovh')
     }
 }
+console.log(mysql.credentials.password)
 
 mysql.connection = mysql.engine.createConnection(mysql.credentials);
 mysql.connection.connect();
