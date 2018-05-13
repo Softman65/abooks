@@ -40,6 +40,7 @@ console.log(mysql.credentials.password)
 
 mysql.connection = mysql.engine.createConnection(mysql.credentials);
 mysql.connection.connect();
+console.log('conected mysql')
 /* GET home page. */
 router.get('/', function (req, res) {
     res.render('index', { title: 'Express' });
