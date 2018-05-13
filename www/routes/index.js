@@ -167,13 +167,13 @@ router.get('/api/books/page', function (req, res) {
     if(req.query.vendorListingid.length>0)
         filter = filter + (filter.length==0?" WHERE ":" AND ")+"vendorListingid = '"+req.query.vendorListingid+"' "
     
-    if(req.query._type=='all'){
+    if(req.query.type=='all'){
         from = "FROM books "
         join = "FROM books LEFT JOIN pictures on pictures.vendorListingid = books.vendorListingid "
         fields = _fields()+',pictures.image as img '
     }
 
-    if(req.query._type=='iber'){
+    if(req.query.type=='iber'){
         from = "FROM books "
         join = "FROM iberlibro LEFT JOIN books on iberlibro.vendorListingid = books.vendorListingid LEFT JOIN pictures on pictures.vendorListingid = books.vendorListingid "
         fields = _fields()+',iberlibro.price_quantity,pictures.image as img '
