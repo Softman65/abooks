@@ -16,10 +16,7 @@ var bodyParser = require('body-parser');
 var routes = require('./www/routes/index');
 
 
-var privateKey = fs.readFileSync('//home/debian/cert/private.key');
-var certificate = fs.readFileSync('//home/debian/cert/certificate.crt');
 
-var credentials = {key: privateKey, cert: certificate};
 
 var app =   express() //.createServer(credentials);
 
@@ -68,22 +65,24 @@ app.use(function (err, req, res, next) {
     });
 });
 
-//app.set('port', 80);
+if (fs.existsSync('//home/debian/cert')) {
+    var privateKey = fs.readFileSync('//home/debian/cert/private.key');
+    var certificate = fs.readFileSync('//home/debian/cert/certificate.crt');
 
+    var credentials = {key: privateKey, cert: certificate};
+    var httpsServer = https.createServer(credentials, app);
+    httpsServer.listen(443);
+}
 var httpServer = http.createServer(app);
-var httpsServer = https.createServer(credentials, app);
-
 httpServer.listen(80);
-httpsServer.listen(443);
+
 
 //var server = app.listen(app.get('port'), function () {
 //    console.log('Express server listening on port ' + server.address().port);
     //upgradeDb()
 //});
-console.log('Hello world');
-var crypto = require('crypto'),
-    algorithm = 'aes-256-ctr',
-    password = 'abooks.bbdd.ovh';
+
+var crypto = require('crypto')
 
 function upgradeDb(){
     function decrypt(text,secret){
