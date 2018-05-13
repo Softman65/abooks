@@ -47,7 +47,7 @@ mysql.connection.connect(function(err) {
       return;
     }
   
-    console.log('connected as id ' + connection.threadId);
+    console.log('connected as id ' + mysql.connection.threadId);
 });
 
 console.log('conected mysql')
