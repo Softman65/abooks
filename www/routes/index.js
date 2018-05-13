@@ -119,9 +119,32 @@ router.post('/api/books/img', function (req, res) {
 router.get('/api/books/page', function (req, res) {
     var order =""
     var filter=""
-    var count_from = ""
-    var count_join = ""
+    var from = ""
+    var join = ""
+    var fields = ""
+    const fields = function(){
+        return [`vendorListingid`,`title`,`author`,`publisherName`
 
+                    `publishYear`,
+                    `publishPlace`,
+                    `publishYearText`,
+                    `description`,
+                    `productType`,
+                    `edition`,
+                    `bookCondition`,
+                    `inscriptionType`,
+                    `bindingText`,
+                    `jacketCondition`,
+                    `universalIdentifier_number`,
+                    `buyerSearchAttribute`,
+                    `_loc`,
+                    `_sale`,
+                    `_dateSale`,
+                    `subject`].join(",")
+
+        
+        
+    }
     if(req.query.sortField!=null)
         order = " ORDER BY "+req.query.sortField+" "+req.query.sortOrder
 
@@ -144,16 +167,18 @@ router.get('/api/books/page', function (req, res) {
         filter = filter + (filter.length==0?" WHERE ":" AND ")+"vendorListingid = '"+req.query.vendorListingid+"' "
     
     if(req.query._type=='all'){
-        count_from = "FROM books "
-        count_join = "FROM books LEFT JOIN pictures on pictures.vendorListingid = books.vendorListingid "
+        from = "FROM books "
+        join = "FROM books LEFT JOIN pictures on pictures.vendorListingid = books.vendorListingid "
+        fields = fields()+',pictures.image as img '
     }
 
     if(req.query._type=='iber'){
-        count_from = "FROM books "
-        count_join = "FROM iberlibro LEFT JOIN books on iberlibro.vendorListingid = books.vendorListingid LEFT JOIN pictures on pictures.vendorListingid = books.vendorListingid "
+        from = "FROM books "
+        join = "FROM iberlibro LEFT JOIN books on iberlibro.vendorListingid = books.vendorListingid LEFT JOIN pictures on pictures.vendorListingid = books.vendorListingid "
+        fields = fields()+'iberlibro.price_quantity,pictures.image as img '
     }
 
-    var cadsql = "SELECT count(*) as total "+  count_from + filter + ";SELECT books.*,pictures.image as img  " + count_join + filter + order + (filter.length==0? " LIMIT "+(req.query.pageSize*(req.query.pageIndex-1))+","+req.query.pageSize:'')
+    var cadsql = "SELECT count(*) as total "+  count_from + filter + ";SELECT "+ fields + join + filter + order + (filter.length==0? " LIMIT "+(req.query.pageSize*(req.query.pageIndex-1))+","+req.query.pageSize:'')
     console.log(cadsql)
     mysql.connection.query(cadsql, function(err,records) {
          res.json({data:records[1],itemsCount:records[0][0].total*1});
