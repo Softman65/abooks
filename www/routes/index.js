@@ -123,7 +123,7 @@ router.get('/api/books/page', function (req, res) {
     var join = ""
     var fields = ""
     const _fields = function(){
-        const arr = [`vendorListingid`,`title`,`author`,`publisherName`,
+        const arr = [`books.vendorListingid`,`title`,`author`,`publisherName`,
                     `publishYear`,
                     `publishPlace`,
                     `publishYearText`,
