@@ -337,7 +337,7 @@ $(document).ready(function() {
         }else{
             $('.ui .item').removeClass('active');
             $(this).addClass('active'); 
-            $("#jsGrid").trigger("reloadGrid");           
+            $("#jsGrid").jqGrid('setGridParam',{datatype:'json'}).trigger("reloadGrid");           
         }
      }); 
 
