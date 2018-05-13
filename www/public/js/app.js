@@ -218,7 +218,7 @@ $(document).ready(function() {
           
 
     
-            $("#jsGrid").jsGrid({
+            var grid = $("#jsGrid").jsGrid({
                
                 width: "90%",
                 height: "auto",
