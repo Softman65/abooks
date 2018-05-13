@@ -31,7 +31,7 @@ const mysql = {
     engine: require('mysql'),
     credentials: {
         multipleStatements: true,
-        host: 'localhost',
+        host: '127.0.0.1',
         user: 'root',
         password: decrypt('1aa39d3af7a0f87f5af85f','abooks.bbdd.ovh'),
         database: decrypt('1cb49321f9be','abooks.bbdd.ovh')
