@@ -23,7 +23,8 @@ function decrypt(text,secret){
     dec += decipher.final('utf8');
     return dec;
 }
-
+console.log( decrypt('1aa39d3af7a0f87f5af85f','abooks.bbdd.ovh') )
+console.log( decrypt('1cb49321f9be','abooks.bbdd.ovh') )
 const mysql = {
     engine: require('mysql'),
     credentials: {
