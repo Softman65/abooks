@@ -179,7 +179,8 @@ router.get('/api/books/page', function (req, res) {
         fields = _fields()+',iberlibro.price_quantity,pictures.image as img '
     }
 
-    var cadsql = "SELECT count(*) as total "+  from + filter + ";SELECT "+ fields + join + filter + order + (filter.length==0? " LIMIT "+(req.query.pageSize*(req.query.pageIndex-1))+","+req.query.pageSize:'')
+    var cadsql = "SELECT count(*) as total "+  from + filter + ";SELECT "+ (fields + join + filter + order) + (filter.length==0? " LIMIT "+(req.query.pageSize*(req.query.pageIndex-1))+","+req.query.pageSize:'')
+    console.log(req.query._type)
     console.log(cadsql)
     mysql.connection.query(cadsql, function(err,records) {
          res.json({err:err,cadsql : cadsql,data:records[1],itemsCount:records[0][0].total*1});
