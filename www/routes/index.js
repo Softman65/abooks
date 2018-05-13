@@ -39,7 +39,16 @@ const mysql = {
 console.log(mysql.credentials.password)
 
 mysql.connection = mysql.engine.createConnection(mysql.credentials);
-mysql.connection.connect();
+console.log('LOGIN')
+mysql.connection.connect(function(err) {
+    if (err) {
+      console.error('error connecting: ' + err.stack);
+      return;
+    }
+  
+    console.log('connected as id ' + connection.threadId);
+});
+
 console.log('conected mysql')
 /* GET home page. */
 router.get('/', function (req, res) {
