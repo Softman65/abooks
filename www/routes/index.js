@@ -123,7 +123,7 @@ router.get('/api/books/page', function (req, res) {
     var join = ""
     var fields = ""
     const _fields = function(){
-        return [`vendorListingid`,`title`,`author`,`publisherName`
+        const arr = [`vendorListingid`,`title`,`author`,`publisherName`
 
                     `publishYear`,
                     `publishPlace`,
@@ -140,7 +140,8 @@ router.get('/api/books/page', function (req, res) {
                     `_loc`,
                     `_sale`,
                     `_dateSale`,
-                    `subject`].join(",")
+                    `subject`]
+        return arr.join(",")
 
         
         
@@ -175,7 +176,7 @@ router.get('/api/books/page', function (req, res) {
     if(req.query._type=='iber'){
         from = "FROM books "
         join = "FROM iberlibro LEFT JOIN books on iberlibro.vendorListingid = books.vendorListingid LEFT JOIN pictures on pictures.vendorListingid = books.vendorListingid "
-        fields = _fields()+'iberlibro.price_quantity,pictures.image as img '
+        fields = _fields()+',iberlibro.price_quantity,pictures.image as img '
     }
 
     var cadsql = "SELECT count(*) as total "+  from + filter + ";SELECT "+ fields + join + filter + order + (filter.length==0? " LIMIT "+(req.query.pageSize*(req.query.pageIndex-1))+","+req.query.pageSize:'')
