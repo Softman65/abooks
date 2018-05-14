@@ -332,7 +332,7 @@ $(document).ready(function() {
                     {  title: "AMAZON", name: "C_amazon", type: "text", width: 40,filtering: false,
                     itemTemplate: function(value,record) {
                         var _t = value>0?'green':'red'       
-                        return value==null?null:$('<i class="amazon '+_t+' icon '+(record._sale.length>0?'hidden':'')+'">');
+                        return value==null?null:$('<i class="amazon '+_t+' icon '+(record._sale.length!=null?'hidden':'')+'">');
                     }}
                 ]
             });
