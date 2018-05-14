@@ -324,9 +324,14 @@ $(document).ready(function() {
                         var _t = value=='IBER'?'leanpub':'amazon'       
                         return value==null?null:$('<i class="'+_t+' icon sale">');
                     }},
-                    {  title: "IBER", name: "C_iberlibro", type: "text", width: 40,
+                    {  title: "IBER", name: "C_iberlibro", type: "text", width: 40,filtering: false,
                     itemTemplate: function(value) {
-                        var _t = value>0?'red':'green'       
+                        var _t = value>0?'green':'red'       
+                        return value==null?null:$('<i class="leanpub '+_t+' icon">');
+                    }},
+                    {  title: "AMAZON", name: "C_amazon", type: "text", width: 40,filtering: false,
+                    itemTemplate: function(value) {
+                        var _t = value>0?'green':'red'       
                         return value==null?null:$('<i class="leanpub '+_t+' icon">');
                     }}
                 ]
