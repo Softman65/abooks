@@ -123,7 +123,7 @@ router.get('/api/books/page', function (req, res) {
     var join = ""
     var fields = ""
     const _fields = function(){
-        const arr = [`books.vendorListingid`,`title`,`author`,`publisherName`,
+        const arr = [`title`,`author`,`publisherName`,
                     `publishYear`,
                     `publishPlace`,
                     `publishYearText`,
@@ -169,20 +169,24 @@ router.get('/api/books/page', function (req, res) {
     if(req.query.type=='all'){
         from = "FROM books "
         join = "FROM books LEFT JOIN pictures on pictures.vendorListingid = books.vendorListingid "
-        fields = _fields()+',books.price_quantity,pictures.image as img '
+        fields = _fields()+',books.vendorListingid,books.price_quantity,pictures.image as img '
     }
 
     if(req.query.type=='iber'){
-        from = "FROM books "
+        from = "FROM iberlibro "
         join = "FROM iberlibro LEFT JOIN books on iberlibro.vendorListingid = books.vendorListingid LEFT JOIN pictures on pictures.vendorListingid = books.vendorListingid "
-        fields = _fields()+',iberlibro.price_quantity,pictures.image as img '
+        fields = _fields()+',iberlibro.vendorListingid,iberlibro.price_quantity,pictures.image as img '
     }
-
-    var cadsql = "SELECT count(*) as total "+  from + filter + ";SELECT "+ (fields + join + filter + order) + (filter.length==0? " LIMIT "+(req.query.pageSize*(req.query.pageIndex-1))+","+req.query.pageSize:'')
+    if(req.query.type=='ama'){
+        from = "FROM amazon "
+        join = "FROM amazon LEFT JOIN books on iberlibro.vendorListingid = books.vendorListingid LEFT JOIN pictures on pictures.vendorListingid = books.vendorListingid "
+        fields = _fields()+',amazon.price_quantity,pictures.image as img '
+    }
+    var cadsql = "SELECT count(*) as FROM books " + filter + ";SELECT count(*) as FROM iberlibro " + filter + ";SELECT count(*) as FROM amazon " + filter + ";SELECT "+ (fields + join + filter + order) + (filter.length==0? " LIMIT "+(req.query.pageSize*(req.query.pageIndex-1))+","+req.query.pageSize:'')
     console.log(req.query._type)
     console.log(cadsql)
     mysql.connection.query(cadsql, function(err,records) {
-         res.json({err:err,cadsql : cadsql,data:records[1],itemsCount:records[0][0].total*1});
+         res.json({err:err,cadsql : cadsql,data:records[3],itemsCount:records[0][0].total*1,iberlibro:records[0][1].total*1,amazon:records[0][2].total*1});
          //debugger
      //res.send('hi')
      })
