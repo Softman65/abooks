@@ -323,6 +323,11 @@ $(document).ready(function() {
                     itemTemplate: function(value) {
                         var _t = value=='IBER'?'leanpub':'amazon'       
                         return value==null?null:$('<i class="'+_t+' icon sale">');
+                    }},
+                    {  title: "IBER", name: "C_iberlibro", type: "text", width: 40,
+                    itemTemplate: function(value) {
+                        var _t = value>0?null:true       
+                        return value==null?null:$('<i class="'+_t+' icon sale">');
                     }}
                 ]
             });
