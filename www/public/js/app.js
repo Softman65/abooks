@@ -327,7 +327,7 @@ $(document).ready(function() {
                     {  title: "IBER", name: "C_iberlibro", type: "text", width: 40,filtering: false,
                     itemTemplate: function(value,record) {
                         var _t = value>0?'green':'red'       
-                        return value==null?null:$('<i class="amazon '+_t+' icon '+(record._sale!=null?'hidden':'')+'">');
+                        return value==null?null:$('<i class="leanpub '+_t+' icon '+(record._sale!=null?'hidden':'')+'">');
                     }},
                     {  title: "AMAZON", name: "C_amazon", type: "text", width: 40,filtering: false,
                     itemTemplate: function(value,record) {
