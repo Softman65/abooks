@@ -335,7 +335,7 @@ $(document).ready(function() {
         if($(this).hasClass('new')){
             editForm('new',args)
         }else{
-            if(!(this).hasClass('flag')){
+            if(!$(this).hasClass('flag')){
                 $('.ui .item').removeClass('active');
                 $(this).addClass('active'); 
                 $("#jsGrid").jsGrid("loadData"); 
