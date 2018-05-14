@@ -329,6 +329,8 @@ $(document).ready(function() {
                         var _t = value>0?'green':'red'       
                         return value==null?null:$('<i class="leanpub '+_t+' icon large '+(record._sale!=null?'hidden':'')+'">').click(function(e){
                             e.stopPropagation()
+                            if($(this).hasClass('red'))
+                                alert('dar de alta en iberlibro')
                         })
                     }},
                     {  title: "AMAZON", name: "C_amazon", type: "text", width: 40,filtering: false,
@@ -336,6 +338,8 @@ $(document).ready(function() {
                         var _t = value>0?'green':'red'       
                         return value==null?null:$('<i class="amazon '+_t+' icon large '+(record._sale!=null?'hidden':'')+'">').click(function(e){
                             e.stopPropagation()
+                            if($(this).hasClass('red'))
+                                alert('dar de alta en amazón')
                         });
                     }}
                 ]
