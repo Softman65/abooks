@@ -330,9 +330,9 @@ $(document).ready(function() {
                         return value==null?null:$('<i class="leanpub '+_t+' icon">');
                     }},
                     {  title: "AMAZON", name: "C_amazon", type: "text", width: 40,filtering: false,
-                    itemTemplate: function(value) {
+                    itemTemplate: function(value,record) {
                         var _t = value>0?'green':'red'       
-                        return value==null?null:$('<i class="leanpub '+_t+' icon">');
+                        return value==null?null:$('<i class="amazon '+_t+' icon">');
                     }}
                 ]
             });
