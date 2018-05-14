@@ -186,7 +186,7 @@ router.get('/api/books/page', function (req, res) {
     console.log(req.query._type)
     console.log(cadsql)
     mysql.connection.query(cadsql, function(err,records) {
-         res.json({err:err,cadsql : cadsql,data:records[3],itemsCount:records[0][0].total*1,iberlibro:records[0][1].total*1,amazon:records[0][2].total*1});
+         res.json({err:err,cadsql : cadsql,data:records[3],itemsCount:records[0][0].total*1,iberlibro:records[1][0].total*1,amazon:records[2][0].total*1});
          //debugger
      //res.send('hi')
      })
