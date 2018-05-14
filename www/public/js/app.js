@@ -339,6 +339,7 @@ $(document).ready(function() {
                 $('.ui .item').removeClass('active');
                 $(this).addClass('active'); 
                 if($(this).attr('data')=='amazon'){
+                    $('.right.menu .item.flag.es').addClass('active')
                     $('.right.menu .item.flag').removeClass('hidden')
                 }else{
                     $('.right.menu .item.flag').addClass('hidden')
