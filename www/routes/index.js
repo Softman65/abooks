@@ -172,12 +172,12 @@ router.get('/api/books/page', function (req, res) {
         fields = _fields()+',books.vendorListingid,books.price_quantity,pictures.image as img '
     }
 
-    if(req.query.type=='iber'){
+    if(req.query.type=='iberlibro'){
         from = "FROM iberlibro "
         join = "FROM iberlibro LEFT JOIN books on iberlibro.vendorListingid = books.vendorListingid LEFT JOIN pictures on pictures.vendorListingid = books.vendorListingid "
         fields = _fields()+',iberlibro.vendorListingid,iberlibro.price_quantity,pictures.image as img '
     }
-    if(req.query.type=='ama'){
+    if(req.query.type=='amazon'){
         from = "FROM amazon "
         join = "FROM amazon LEFT JOIN books on iberlibro.vendorListingid = books.vendorListingid LEFT JOIN pictures on pictures.vendorListingid = books.vendorListingid "
         fields = _fields()+',amazon.price_quantity,pictures.image as img '
