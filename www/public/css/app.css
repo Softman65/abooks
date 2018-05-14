@@ -18,9 +18,9 @@
     float:right!important;
 }
 .left{
-    float:left!important;;
+    float:left!important;
 }
 
 .hidden{
-    display:none
+    display:none!important;
 }
