@@ -326,8 +326,8 @@ $(document).ready(function() {
                     }},
                     {  title: "IBER", name: "C_iberlibro", type: "text", width: 40,
                     itemTemplate: function(value) {
-                        var _t = value>0?'':'leanpub'       
-                        return value==null?null:$('<i class="'+_t+' icon">');
+                        var _t = value>0?'red':'green'       
+                        return value==null?null:$('<i class="leanpub '+_t+' icon">');
                     }}
                 ]
             });
