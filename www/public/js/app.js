@@ -338,6 +338,11 @@ $(document).ready(function() {
             if(!$(this).hasClass('flag')){
                 $('.ui .item').removeClass('active');
                 $(this).addClass('active'); 
+                if(!$(this).attr('data')=='amazon'){
+                    $('.right.menu .item.flag').removeClass('hidden')
+                }else{
+                    $('.right.menu .item.flag').addClass('hidden')
+                }
                 $("#jsGrid").jsGrid("loadData"); 
             }else{
                 if($(this).hasClass('active')){
