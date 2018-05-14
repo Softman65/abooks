@@ -345,11 +345,12 @@ $(document).ready(function() {
                 }
                 $("#jsGrid").jsGrid("loadData"); 
             }else{
-                if($(this).hasClass('active')){
-                    $(this).removeClass('active');
-                }else{
-                    $(this).addClass('active');
-                }
+                if(!$(this).hasClass('es'))
+                    if($(this).hasClass('active')){
+                        $(this).removeClass('active');
+                    }else{
+                        $(this).addClass('active');
+                    }
             }        
         }
      }); 
