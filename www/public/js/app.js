@@ -31,7 +31,7 @@ $(document).ready(function() {
 
         $('#edit .content').addClass('hidden')
         $('#edit .content.'+_content).removeClass('hidden')
-
+        
         $('#edit').modal(
             {
                 onVisible: function(){
@@ -331,8 +331,11 @@ $(document).ready(function() {
                         var _t = value>0?'green':'red'       
                         return value==null?null:$('<i class="leanpub '+_t+' icon large '+(record._sale!=null?'hidden':'')+'">').click(function(e){
                             e.stopPropagation()
-                            if($(this).hasClass('red'))
+                            if($(this).hasClass('red')){
                                editForm('formIberlibro','edit',args)
+                            }else{
+                                $('.ui.basic.modal').modal().show()
+                            }
                         })
                     }},
                     {  title: "AMAZON", name: "C_amazon", type: "text", width: 40,filtering: false,
