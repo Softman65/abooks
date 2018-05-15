@@ -334,6 +334,7 @@ $(document).ready(function() {
                             if($(this).hasClass('red')){
                                editForm('formIberlibro','edit',args)
                             }else{
+                                $('.ui.basic.modal i').removeClass('amazon').addClass('leanpub')
                                 $('.ui.basic.modal').modal('show')//.show()
                             }
                         })
@@ -343,8 +344,12 @@ $(document).ready(function() {
                         var _t = value>0?'green':'red'       
                         return value==null?null:$('<i class="amazon '+_t+' icon large '+(record._sale!=null?'hidden':'')+'">').click(function(e){
                             e.stopPropagation()
-                            if($(this).hasClass('red'))
-                                alert('dar de alta en amazón')
+                            if($(this).hasClass('red')){
+                                editForm('formAmazon','edit',args)
+                             }else{
+                                 $('.ui.basic.modal i').removeClass('leanpub').addClass('amazon')
+                                 $('.ui.basic.modal').modal('show')//.show()
+                             }
                         });
                     }}
                 ]
