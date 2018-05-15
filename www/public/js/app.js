@@ -334,7 +334,7 @@ $(document).ready(function() {
                             if($(this).hasClass('red')){
                                editForm('formIberlibro','edit',args)
                             }else{
-                                $('.ui.basic.modal').modal().show()
+                                $('.ui.basic.modal').modal('show')//.show()
                             }
                         })
                     }},
