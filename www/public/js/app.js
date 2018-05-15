@@ -28,7 +28,7 @@ $(document).ready(function() {
         }).modal('show')
     }
     function editForm(_content,_type,args){
-        
+
         $('#edit .content').addClass('hidden')
         $('#edit .content.'+_content).removeClass('hidden')
 
@@ -332,7 +332,7 @@ $(document).ready(function() {
                         return value==null?null:$('<i class="leanpub '+_t+' icon large '+(record._sale!=null?'hidden':'')+'">').click(function(e){
                             e.stopPropagation()
                             if($(this).hasClass('red'))
-                                alert('dar de alta en iberlibro')
+                               editForm('formIberlibro','edit',args)
                         })
                     }},
                     {  title: "AMAZON", name: "C_amazon", type: "text", width: 40,filtering: false,
