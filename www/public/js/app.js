@@ -27,8 +27,10 @@ $(document).ready(function() {
             } 
         }).modal('show')
     }
-    function editForm(_type,args){
-
+    function editForm(_content,_type,args){
+        
+        $('#edit .content').addClass('hidden')
+        $('#edit .content.'+_content).removeClass('hidden')
 
         $('#edit').modal(
             {
@@ -242,7 +244,7 @@ $(document).ready(function() {
                         $('.sale.icon').parent().parent().css({color:'red'})
                 },                     // handles the finish of loading data by controller.loadData
                 rowClick: function(args) {
-                    editForm('edit',args)                
+                    editForm('formEdit','edit',args)                
                 },
                 controller: {
 
@@ -351,7 +353,7 @@ $(document).ready(function() {
     $('.ui.menu .item').on('click', function() {
 
         if($(this).hasClass('new')){
-            editForm('new',args)
+            editForm('formEdit','new',args)
         }else{
             if(!$(this).hasClass('flag')){
                 $('.ui .item').removeClass('active');
