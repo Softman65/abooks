@@ -44,7 +44,17 @@ block content
   #edit.ui.modal
     .header.book(style="height:50px;") Header
     .content.formIberlibro.hidden
-    
+      form.ui.form.editIberlibro
+        .field
+          .fields
+              .five.wide.field.validate
+                  label 
+                    span
+                      span.blue PRECIO
+                      span.red *
+                  input.numeric(style="text-align:right", type='text', name='price_quantity', placeholder='PRECIO')
+
+
     .content.formAmazon.hidden
 
     .content.formEdit.hidden      
