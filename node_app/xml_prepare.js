@@ -1,6 +1,6 @@
 
 module.exports = function () {
-
+    var _ = require('lodash');
     return {
         xmlIberbooks : function(libro, imagenes, accion){
             var iberRecord = '<?xml version="1.0" encoding="ISO-8859-1"?><inventoryUpdateRequest version="1.0"><action name="bookupdate"><username>artebooks39@gmail.com</username><password>guatemala016</password></action><AbebookList><Abebook>'
