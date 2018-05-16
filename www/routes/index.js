@@ -183,7 +183,7 @@ router.get('/api/books/page', function (req, res) {
         fields = _fields()+',amazon.vendorListingid,amazon.price_quantity_ES,amazon.price_quantity_DE,amazon.price_quantity_FR,amazon.price_quantity_IT,amazon.price_quantity_UK,pictures.image as img '
     }
     const _pageSize = req.query.pageSize!=null?req.query.pageSize:10
-    const _pageIndex = req.query.pageIndex!=null?req.query.pageIndex:0 
+    const _pageIndex = req.query.pageIndex!=null?req.query.pageIndex:1 
     var cadsql = "SELECT count(*) as total FROM books " + filter + ";SELECT count(*) as total FROM iberlibro " + filter + ";SELECT count(*) as total FROM amazon " + filter + ";SELECT "+ (fields + join + filter + order) + (filter.length==0? " LIMIT "+( _pageSize *(_pageIndex-1))+","+_pageSize:'')
     console.log(req.query.type)
     console.log(cadsql)
