@@ -47,10 +47,7 @@ block content
       form.ui.form.editIberlibro
         .field
           .fields
-              .five.wide.field.validate.disabled
-                  label 
-                    span
-                      span.blue PRECIO BASE
+              
                       
                   input.numeric( style="text-align:right", type='text', name='price_quantity', placeholder='PRECIO')
               .five.wide.field.validate
@@ -59,7 +56,10 @@ block content
                       span.blue PRECIO IBERLIBRO
                       span.red *
                   input.numeric( style="text-align:right", type='text', name='price_quantity_Iberlibro', placeholder='PRECIO', tabindex="0")
-
+              .five.wide.field.validate.disabled
+                  label 
+                    span
+                      span.blue PRECIO BASE
 
 
     .content.formAmazon.hidden
