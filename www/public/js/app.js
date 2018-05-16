@@ -219,9 +219,20 @@ $(document).ready(function() {
             $('#edit .ui.dropdown.edition').dropdown('refresh')
 
           
-
+            var MyCustomDirectLoadStrategy = function(grid) {
+                jsGrid.loadStrategies.DirectLoadingStrategy.call(this, grid);
+            };
+             
+            MyCustomDirectLoadStrategy.prototype = new jsGrid.loadStrategies.DirectLoadingStrategy();
+             
+            MyCustomDirectLoadStrategy.prototype.finishLoad = function(loadedData) {
+                window.data.loadedData = loadedData
+                //var grid = this._grid;
+                //grid.option("data").splice(deletedItemIndex, 1);
+                //grid.refresh();
+            };
     
-            var grid = $("#jsGrid").jsGrid({
+            window.data.grid = $("#jsGrid").jsGrid({
                
                 width: "90%",
                 height: "auto",
@@ -241,6 +252,9 @@ $(document).ready(function() {
 
                 pageSize: 10,
                 pageIndex:1,
+                loadStrategy: function() {
+                    return new MyCustomDirectLoadStrategy(this);
+                },
                 onRefreshed: function(grid) {
                         $('.sale.icon').parent().parent().css({color:'red'})
                 },                     // handles the finish of loading data by controller.loadData
