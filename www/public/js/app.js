@@ -353,7 +353,7 @@ $(document).ready(function() {
                                 var _id = $(this).attr('data')
                                 var _item = {}
                                 //window.data.pageData
-                                _.forEach(window.data.pageData, function(record) {
+                                _.forEach(window.data.loadedData, function(record) {
                                     if(record.vendorListingid==_id){
                                         _.forEach(record, function(value, key) {
                                             
