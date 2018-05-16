@@ -191,8 +191,8 @@ $(document).ready(function() {
         url: "/api/books/tables",
         dataType: "json"
     }).done(function(tables) {
-           window.data = tables
-debugger
+           window.data = { tables :tables }
+
             var data = {}
             _.each(tables[1],function(row){
                 if(data[row.name]==null)
@@ -246,6 +246,9 @@ debugger
                 },                     // handles the finish of loading data by controller.loadData
                 rowClick: function(args) {
                     editForm('formEdit','edit',args)                
+                },
+                finishLoad: function(loadedData) {
+                    window.data.pageData = loadedData
                 },
                 controller: {
 
@@ -330,13 +333,20 @@ debugger
                     {  title: "IBER", name: "C_iberlibro", type: "text", width: 40,filtering: false,
                     itemTemplate: function(value,record) {
                         var _t = value>0?'green':'red'       
-                        return value==null?null:$('<i class="leanpub '+_t+' icon large '+(record._sale!=null?'hidden':'')+'">').click(function(e){
+                        return value==null?null:$('<i class="leanpub '+_t+' icon large '+(record._sale!=null?'hidden':'')+'">').attr('data',record.vendorListingid).click(function(e){
                             e.stopPropagation()
                             if($(this).hasClass('red')){
+                                var _id = $(this).attr('data')
                                 var _item = {}
-                                _.forEach({ 'a': 1, 'b': 2 }, function(value, key) {
-                                    if(_key!='img')
-                                        _item[key] = value
+                                //window.data.pageData
+                                _.forEach(window.data.pageData, function(record) {
+                                    if(record.vendorListingid==_id){
+                                        _.forEach(record, function(value, key) {
+                                            
+                                            if(_key!='img')
+                                                _item[key] = value
+                                        })
+                                    }
                                 })
                                editForm('formIberlibro','edit',{item:_item})
                             }else{
