@@ -226,10 +226,10 @@ $(document).ready(function() {
             MyCustomDirectLoadStrategy.prototype = new jsGrid.loadStrategies.DirectLoadingStrategy();
              
             MyCustomDirectLoadStrategy.prototype.finishLoad = function(loadedData) {
-                window.data.loadedData = loadedData
-                //var grid = this._grid;
-                //grid.option("data").splice(deletedItemIndex, 1);
-                //grid.refresh();
+                window.data.loadedData = loadedData.data
+                var grid = this._grid;
+                grid.option("data",loadedData.data)
+                grid.refresh();
             };
     
             window.data.grid = $("#jsGrid").jsGrid({
