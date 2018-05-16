@@ -28,7 +28,7 @@ $(document).ready(function() {
         }).modal('show')
     }
     function editForm(_content,_type,args){
-
+        $('#edit').attr('data',_content)
         $('#edit .content').addClass('hidden')
         $('#edit .content.'+_content).removeClass('hidden')
         
@@ -59,7 +59,7 @@ $(document).ready(function() {
                   if(_JsonArgs!=null){ 
                       $.ajax({
                           type: "POST",
-                          url: "/api/books/" + _type +(_type=='edit'?"?id="+args.item.idbooks+'&vendorListingid='+args.item.vendorListingid:''),
+                          url: "/api/books/" + _type +(_type=='edit'?"?form="+$('#edit').attr('data') +"&id="+args.item.idbooks+'&vendorListingid='+args.item.vendorListingid:''),
                           data: _JsonArgs
                       }).done(function( data ) {
                           $("#jsGrid").jsGrid( "loadData" );   
