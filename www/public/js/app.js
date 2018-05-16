@@ -355,10 +355,10 @@ $(document).ready(function() {
                                 //window.data.pageData
                                 _.forEach(window.data.loadedData, function(record) {
                                     if(record.vendorListingid==_id){
-                                        _.forEach(record, function(value, key) {
+                                        _.forEach(record, function(value, _key) {
                                             
                                             if(_key!='img')
-                                                _item[key] = value
+                                                _item[_key] = value
                                         })
                                     }
                                 })
