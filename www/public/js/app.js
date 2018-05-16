@@ -332,7 +332,7 @@ $(document).ready(function() {
                         return value==null?null:$('<i class="leanpub '+_t+' icon large '+(record._sale!=null?'hidden':'')+'">').click(function(e){
                             e.stopPropagation()
                             if($(this).hasClass('red')){
-                               editForm('formIberlibro','edit',args)
+                               editForm('formIberlibro','edit',{item:args[3]})
                             }else{
                                 $('.ui.basic.modal i').removeClass('amazon').addClass('leanpub')
                                 $('.ui.basic.modal').modal('show')//.show()
