@@ -70,7 +70,7 @@ $(document).ready(function() {
                 }
         }).modal('show')
 
-        debugger
+        //debugger
         if(_type=='edit'){
             var getData = args.item;
             var keys = Object.keys(getData);
