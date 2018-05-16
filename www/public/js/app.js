@@ -191,14 +191,15 @@ $(document).ready(function() {
         url: "/api/books/tables",
         dataType: "json"
     }).done(function(tables) {
-            //debugger
-
+           window.data = tables
+debugger
             var data = {}
             _.each(tables[1],function(row){
                 if(data[row.name]==null)
                 data[row.name]=''
                 data[row.name] = data[row.name] +'<div class="item" data-value="'+row.Description+'">'+row.Description+'</div>' 
             })
+
             $('#edit .ui.dropdown.productType .menu').html(data.productType) 
             $('#edit .ui.dropdown.productType').dropdown('refresh')
 
@@ -332,7 +333,12 @@ $(document).ready(function() {
                         return value==null?null:$('<i class="leanpub '+_t+' icon large '+(record._sale!=null?'hidden':'')+'">').click(function(e){
                             e.stopPropagation()
                             if($(this).hasClass('red')){
-                               editForm('formIberlibro','edit',{item:args[3]})
+                                var _item = {}
+                                _.forEach({ 'a': 1, 'b': 2 }, function(value, key) {
+                                    if(_key!='img')
+                                        _item[key] = value
+                                })
+                               editForm('formIberlibro','edit',{item:_item})
                             }else{
                                 $('.ui.basic.modal i').removeClass('amazon').addClass('leanpub')
                                 $('.ui.basic.modal').modal('show')//.show()
