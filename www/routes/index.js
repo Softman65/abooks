@@ -169,7 +169,7 @@ router.get('/api/books/page', function (req, res) {
     if(req.query.type=='all'){
         from = "FROM books "
         join = "FROM books LEFT JOIN pictures on pictures.vendorListingid = books.vendorListingid  LEFT JOIN iberlibro on iberlibro.vendorListingid = books.vendorListingid LEFT JOIN amazon on amazon.vendorListingid = books.vendorListingid"
-        fields = _fields()+',books.vendorListingid,books.price_quantity,iberlibro.price_quantity as price_quantity.Iberlibro,pictures.image as img,(SELECT count(0) from iberlibro where iberlibro.vendorListingid = books.vendorListingid) as C_iberlibro ,(SELECT count(0) from amazon where amazon.vendorListingid = books.vendorListingid) as C_amazon '
+        fields = _fields()+',books.vendorListingid,books.price_quantity,iberlibro.price_quantity as price_quantity_Iberlibro,pictures.image as img,(SELECT count(0) from iberlibro where iberlibro.vendorListingid = books.vendorListingid) as C_iberlibro ,(SELECT count(0) from amazon where amazon.vendorListingid = books.vendorListingid) as C_amazon '
     }
 
     if(req.query.type=='iberlibro'){
@@ -183,7 +183,7 @@ router.get('/api/books/page', function (req, res) {
         fields = _fields()+',amazon.vendorListingid,amazon.price_quantity_ES,amazon.price_quantity_DE,amazon.price_quantity_FR,amazon.price_quantity_IT,amazon.price_quantity_UK,pictures.image as img '
     }
     const _pageSize = req.query.pageSize!=null?req.query.pageSize:10
-    const _pageIndex = req.query.pageIndex!=null?req.query.pageIndex:1 
+    const _pageIndex = req.query.pageIndex!=null?req.query.pageIndex:0 
     var cadsql = "SELECT count(*) as total FROM books " + filter + ";SELECT count(*) as total FROM iberlibro " + filter + ";SELECT count(*) as total FROM amazon " + filter + ";SELECT "+ (fields + join + filter + order) + (filter.length==0? " LIMIT "+( _pageSize *(_pageIndex-1))+","+_pageSize:'')
     console.log(req.query.type)
     console.log(cadsql)
