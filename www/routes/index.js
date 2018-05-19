@@ -213,6 +213,14 @@ router.get('/api/books/page', function (req, res) {
      //res.send('hi')
      })
  });
+ router.get('/api/bookfinder', function (req, res) {
+    mysql.connection.query("SELECT DISTINCT name FROM iberTables; SELECT * FROM iberTables order by name,Description asc", function(err,records) {
+        //debugger
+        res.json(records);
+         //debugger
+     //res.send('hi')
+     })
+ });
 
 
 

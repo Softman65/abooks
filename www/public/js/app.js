@@ -357,7 +357,7 @@ $(document).ready(function() {
                     }},
                     {  title: "AMAZON", name: "C_amazon", type: "text", width: 40,filtering: false,
                     itemTemplate: function(value,record) {
-                        var _t = value>0?'green':'red'       
+                        var _t = value>0?'red':'green'       
                         return value==null?null:$('<i class="amazon '+_t+' icon large '+(record._sale!=null?'hidden':'')+'">').click(function(e){
                             e.stopPropagation()
                             if($(this).hasClass('red')){
@@ -371,9 +371,17 @@ $(document).ready(function() {
                     {  title: "FINDER", name: "C_amazon", type: "text", width: 40,filtering: false,
                     itemTemplate: function(value,record) {
                         var _t = value!=null?'green':'red'       
-                        return value==null?null:$('<i class="search '+_t+' icon large" data="'+ record.bookfinder +'">').click(function(e){
+                        return value==null?null:$('<i class="search '+_t+' icon large" data="'+ record.vendorListingid +'">').click(function(e){
                             e.stopPropagation()
                             debugger
+
+                            //if($(this).attr('data') =='null')
+                                $.ajax('/api/bookfinder/' + $(this).attr('data') )
+                                .done(function(tables) {
+                                    debugger
+                                })
+
+
                             if($(this).hasClass('red')){
                                 editForm('formAmazon','edit',args)
                              }else{
