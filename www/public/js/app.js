@@ -339,7 +339,7 @@ $(document).ready(function() {
                                 var _id = $(this).attr('data')
                                 var _item = {}
                                 //window.data.pageData
-                                _.forEach( $("#grid").jsGrid("option", "data") , function(record) {
+                                _.forEach( $("#jsGrid").jsGrid("option", "data") , function(record) {
                                     if(record.vendorListingid==_id){
                                         _.forEach(record, function(value, _key) {
                                             
