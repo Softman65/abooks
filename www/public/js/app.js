@@ -376,7 +376,7 @@ $(document).ready(function() {
                             debugger
 
                             //if($(this).attr('data') =='null')
-                                $.ajax('/api/bookfinder/' + $(this).attr('data') )
+                                $.ajax('/api/bookfinder?id=' + $(this).attr('data') )
                                 .done(function(tables) {
                                     debugger
                                 })
