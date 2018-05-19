@@ -214,9 +214,21 @@ router.get('/api/books/page', function (req, res) {
      })
  });
  router.get('/api/bookfinder', function (req, res) {
-    mysql.connection.query("SELECT DISTINCT name FROM iberTables; SELECT * FROM iberTables order by name,Description asc", function(err,records) {
-        //debugger
-        res.json(records);
+    var url = "https://www.bookfinder.com/search/"
+    var navigate = require('navigate')
+    mysql.connection.query('SELECT  CONCAT(CONCAT("'+ url +'?title=", urlencode(title) ),"&lang=any&st=xl&ac=qr"), bookfinder)  as bookfinder FROM iberTables"', function(err,records) {
+        
+        navigate({
+            // whether same origin a.href clicks are captured
+            clickHandlingEnabled : true,
+            // URL path prefix
+            basePath : records[0].bookfinder
+        });
+        navigate(function(entryPage) {
+            res.json({response:entryPage});
+            console.log('Entry page to this web app is ' + entryPage);
+        });
+        //res.json(records);
          //debugger
      //res.send('hi')
      })
