@@ -371,7 +371,7 @@ $(document).ready(function() {
                     {  title: "FINDER", name: "C_amazon", type: "text", width: 40,filtering: false,
                     itemTemplate: function(value,record) {
                         var _t = value!=null?'green':'red'       
-                        return value==null?null:$('<i class="search '+_t+' icon large">').click(function(e){
+                        return value==null?null:$('<i class="search '+_t+' icon large" data="'+ record.bookfinder +'">').click(function(e){
                             e.stopPropagation()
                             debugger
                             if($(this).hasClass('red')){
