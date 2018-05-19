@@ -220,7 +220,7 @@ router.get('/api/books/page', function (req, res) {
         req.get(record[0].bookfinder, function(err, response, body) {
     // access data from other web site here
 
-            res.json({body:entryPage});
+            res.json({body:body});
         });
         //res.json(records);
          //debugger
