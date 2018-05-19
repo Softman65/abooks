@@ -4,6 +4,7 @@ var express = require('express');
 var router = express.Router();
 var _ = require('lodash');
 var xml = require('xml');
+var request = require('request');
 
 function cint(num, opt_infinityBiased) {
     var m = Math, c = m.ceil, f = m.floor, r = m.round;
@@ -31,7 +32,7 @@ const mysql = {
     engine: require('mysql'),
     credentials: {
         multipleStatements: true,
-        host: '127.0.0.1',
+        host: 'abooks.bbdd.ovh',
         user: 'root',
         password: decrypt('1aa39d3af7a0f87f5af85f','abooks.bbdd.ovh'),
         database: decrypt('1cb49321f9be','abooks.bbdd.ovh')
@@ -216,8 +217,8 @@ router.get('/api/books/page', function (req, res) {
  router.get('/api/bookfinder', function (req, res) {
     var url = "https://www.bookfinder.com/search/"
     //var navigate = require('navigate')
-    mysql.connection.query('SELECT  CONCAT(CONCAT("'+ url +'?title=", urlencode(title) ),"&lang=any&st=xl&ac=qr"), bookfinder)  as bookfinder FROM iberTables"', function(err,records) {
-        req.get(record[0].bookfinder, function(err, response, body) {
+    mysql.connection.query('SELECT  bookfinder(vendorListingid) as bookfinder from books WHERE vendorListingid=?',[req.query.id], function(err,records) {
+        request.get(records[0].bookfinder, function(err, response, body) {
     // access data from other web site here
 
             res.send(body);
