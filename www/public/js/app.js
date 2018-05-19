@@ -241,9 +241,6 @@ $(document).ready(function() {
 
                 pageSize: 10,
                 pageIndex:1,
-                loadStrategy: function() {
-                    return new MyCustomDirectLoadStrategy(this);
-                },
                 onRefreshed: function(grid) {
                         $('.sale.icon').parent().parent().css({color:'red'})
                 },                     // handles the finish of loading data by controller.loadData
