@@ -145,6 +145,7 @@ router.get('/api/books/page', function (req, res) {
         
         
     }
+    order = " ORDER BY vendorListingid desc"
     if(req.query.sortField!=null)
         order = " ORDER BY "+req.query.sortField+" "+req.query.sortOrder
 
