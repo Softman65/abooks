@@ -170,7 +170,7 @@ router.get('/api/books/page', function (req, res) {
     if(req.query.type=='all'){
         from = "FROM books "
         join = "FROM books LEFT JOIN pictures on pictures.vendorListingid = books.vendorListingid  LEFT JOIN iberlibro on iberlibro.vendorListingid = books.vendorListingid LEFT JOIN amazon on amazon.vendorListingid = books.vendorListingid"
-        fields = _fields()+',books.vendorListingid,books.price_quantity,iberlibro.price_quantity as price_quantity_Iberlibro,pictures.image as img,(SELECT count(0) from iberlibro where iberlibro.vendorListingid = books.vendorListingid) as C_iberlibro ,(SELECT count(0) from amazon where amazon.vendorListingid = books.vendorListingid) as C_amazon , urlencode(CONCAT("https://www.bookfinder.com/search/?title=",title) )  as bookfinder'
+        fields = _fields()+',books.vendorListingid,books.price_quantity,iberlibro.price_quantity as price_quantity_Iberlibro,pictures.image as img,(SELECT count(0) from iberlibro where iberlibro.vendorListingid = books.vendorListingid) as C_iberlibro ,(SELECT count(0) from amazon where amazon.vendorListingid = books.vendorListingid) as C_amazon , urlencode(CONCAT("https://www.bookfinder.com/search/?title=",title) )  as bookfinder '
     }
 
     if(req.query.type=='iberlibro'){
