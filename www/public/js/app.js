@@ -226,9 +226,9 @@ $(document).ready(function() {
             MyCustomDirectLoadStrategy.prototype = new jsGrid.loadStrategies.DirectLoadingStrategy();
              
             MyCustomDirectLoadStrategy.prototype.finishLoad = function(loadedData) {
-                window.data.loadedData = loadedData.data
+                window.data.loadedData = loadedData
                 var grid = this._grid;
-                grid.option("data",loadedData.data)
+                grid.option("data",loadedData)
                 grid.refresh();
             };
     
