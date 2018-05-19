@@ -350,10 +350,10 @@ $(document).ready(function() {
                         return value==null?null:$('<i class="leanpub '+_t+' icon large '+(record._sale!=null?'hidden':'')+'">').attr('data',record.vendorListingid).click(function(e){
                             e.stopPropagation()
                             if($(this).hasClass('red')){
-                                
-                               editForm('formIberlibro','edit',{item: gridTorecord( $(this).attr('data') ) })
+                               var _id = $(this).attr('data') 
+                               editForm('formIberlibro','edit',{item: gridTorecord( _id ) })
                                $('#bookfinder').html('').addClass('loading')
-                               $.ajax('/api/bookfinder?id=' + $(this).attr('data') )
+                               $.ajax('/api/bookfinder?id=' + _id )
                                .done(function(tables) {
                                    //debugger
                                    var $data =$('<div>')
@@ -366,11 +366,22 @@ $(document).ready(function() {
                                    })
                                    $data.find('a').click(function(e){
                                        $('#bookfinder').addClass('loading')
-                                       $.ajax('/api/bookfinder?urlquery='+$(this).attr('href').split("?")[1])
+                                       var url = $(this).attr('href').split("?")[1]
+                                       $.ajax('/api/bookfinder?urlquery=' + url)
                                         .done(function(tables) {
                                             var $data =$('<div>').append($(tables.body).find('h3').clone())
                                             .append($(tables.body).find('table.results-table-Logo').clone())
                                             $('#bookfinder').removeClass('loading').html($data)
+                                            _.each($('#bookfinder').find('.results-explanatory-text-Logo'), function($elem){
+                                                if($($elem).html()=='Artebooks'){
+                                                    $($elem).parent().parent().addClass('red')
+                                                    //$.ajax('/api/save/bookfinder?id='+_id+'urlquery=' + url)
+                                                    //.done(function(tables) {
+                                                    //    debugger
+                                                    //})
+                                                }
+
+                                            })
                                         })
                                        return false
                                    })
