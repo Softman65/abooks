@@ -219,20 +219,7 @@ $(document).ready(function() {
             $('#edit .ui.dropdown.edition').dropdown('refresh')
 
           
-            var MyCustomDirectLoadStrategy = function(grid) {
-                jsGrid.loadStrategies.DirectLoadingStrategy.call(this, grid);
-            };
-             
-            MyCustomDirectLoadStrategy.prototype = new jsGrid.loadStrategies.DirectLoadingStrategy();
-             
-            MyCustomDirectLoadStrategy.prototype.finishLoad = function(loadedData) {
-                window.data.loadedData = loadedData
-                var grid = this._grid;
-                itemsCount
-                grid.option("itemsCount",loadedData.itemsCount)
-                grid.option("data",loadedData.data)
-                grid.refresh();
-            };
+
     
             window.data.grid = $("#jsGrid").jsGrid({
                
