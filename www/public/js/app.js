@@ -344,7 +344,7 @@ $(document).ready(function() {
                         var _t = value=='IBER'?'leanpub':'amazon'       
                         return value==null?null:$('<i class="'+_t+' icon sale">');
                     }},
-                    {  title: "IBER", name: "C_iberlibro", type: "text", width: 40,filtering: false,
+                    {  title: "", name: "C_iberlibro", type: "text", width: 40,filtering: false,
                     itemTemplate: function(value,record) {
                         var _t = value>0?'green':'red'       
                         return value==null?null:$('<i class="leanpub '+_t+' icon large '+(record._sale!=null?'hidden':'')+'">').attr('data',record.vendorListingid).click(function(e){
@@ -394,7 +394,7 @@ $(document).ready(function() {
                             }
                         })
                     }},
-                    {  title: "AMAZON", name: "C_amazon", type: "text", width: 40,filtering: false,
+                    {  title: "", name: "C_amazon", type: "text", width: 40,filtering: false,
                     itemTemplate: function(value,record) {
                         var _t = value>0?'red':'green'       
                         return value==null?null:$('<i class="amazon '+_t+' icon large '+(record._sale!=null?'hidden':'')+'">').click(function(e){
@@ -405,37 +405,6 @@ $(document).ready(function() {
                                  $('.ui.basic.modal i').removeClass('leanpub').addClass('amazon')
                                  $('.ui.basic.modal').modal('show')//.show()
                              }
-                        });
-                    }},
-                    {  title: "FINDER", name: "C_amazon", type: "text", width: 40,filtering: false,
-                    itemTemplate: function(value,record) {
-                        var _t = value!=null?'green':'red'       
-                        return value==null?null:$('<i class="search '+_t+' icon large" data="'+ record.vendorListingid +'">').click(function(e){
-                            e.stopPropagation()
-                            debugger
-
-                            //if($(this).attr('data') =='null')
-                                $.ajax('/api/bookfinder?id=' + $(this).attr('data') )
-                                .done(function(tables) {
-                                    debugger
-                                    var $data =$('<div>')
-                                    var p = $($(tables.body).find("#bd")).children()
-                                    _.each(p, function(value,key){
-                                        if($(value).hasClass('select-authorname'))
-                                            $data.append($(p).clone())
-                                        if($(value).hasClass('select-titlenames'))
-                                            $data.append($(p).clone())
-                                    })
-                                    $('#bookfinder').html($data)
-                                })
-                                editForm('formIberlibro','edit',{item:_item})
-
-                            //if($(this).hasClass('red')){
-                            //    editForm('formIberlibro','edit',{item:_item})
-                            // }else{
-                            //     $('.ui.basic.modal i').removeClass('leanpub').addClass('amazon')
-                            //     $('.ui.basic.modal').modal('show')//.show()
-                            // }
                         });
                     }}
                 ]
