@@ -41,24 +41,27 @@ block content
       canvas
 
 
-  #edit.ui.modal
+  #edit.ui.long.modal
     .header.book(style="height:50px;") Header
     .content.formIberlibro.hidden
       form.ui.form.editIberlibro
-        .field
-          .fields    
-              .five.wide.field.validate
-                  label 
-                    span
-                      span.blue PRECIO IBERLIBRO
-                      span.red *
-                  input.numeric( style="text-align:right", type='text', name='price_quantity_Iberlibro', placeholder='PRECIO', tabindex="0")
-              .five.wide.field.disabled
-                  label 
-                    span
-                      span.blue PRECIO BASE
-                  input.numeric( style="text-align:right", type='text', name='price_quantity', placeholder='PRECIO')
-
+        .ui.grid
+          .eight.wide.column
+            .field
+              .fields    
+                  .five.wide.field.validate
+                      label 
+                        span
+                          span.blue PRECIO IBERLIBRO
+                          span.red *
+                      input.numeric( style="text-align:right", type='text', name='price_quantity_Iberlibro', placeholder='PRECIO', tabindex="0")
+                  .five.wide.field.disabled
+                      label 
+                        span
+                          span.blue PRECIO BASE
+                      input.numeric( style="text-align:right", type='text', name='price_quantity', placeholder='PRECIO')
+          .eight.wide.column
+            #bookfinder.ui.loading.segment(style="max-height: 600px;overflow:auto;font-size: 0.8em;")  
 
     .content.formAmazon.hidden
 

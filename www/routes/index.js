@@ -216,17 +216,23 @@ router.get('/api/books/page', function (req, res) {
  });
  router.get('/api/bookfinder', function (req, res) {
     var url = "https://www.bookfinder.com/search/"
-    //var navigate = require('navigate')
-    mysql.connection.query('SELECT  bookfinder(vendorListingid) as bookfinder from books WHERE vendorListingid=?',[req.query.id], function(err,records) {
-        request.get(records[0].bookfinder, function(err, response, body) {
-    // access data from other web site here
-
-            res.send(body);
-        });
-        //res.json(records);
-         //debugger
-     //res.send('hi')
-     })
+    if(req.originalUrl.indexOf('?urlquery=')==-1){
+        mysql.connection.query('SELECT  bookfinder(vendorListingid) as url, bookfinder as state  from books WHERE vendorListingid=?',[req.query.id], function(err,records) {
+            //debugger
+            request.get(records[0].url, function(err, response, body) {
+        // access data from other web site here
+                res.json({ state: records[0].state , body: body});
+            });
+            //res.json(records);
+            //debugger
+        //res.send('hi')
+        })
+    }else{
+        request.get(url+"?"+req.originalUrl.split('?urlquery=')[1], function(err, response, body) {
+            // access data from other web site here
+            res.json( { err:err, response:response ,body:body} );
+        });        
+    }
  });
 
 

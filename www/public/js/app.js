@@ -186,7 +186,21 @@ $(document).ready(function() {
         })
         return _ret!={}?_ret:null
     }
-
+    function gridTorecord(_id){
+        
+        var _item = {}
+        //window.data.pageData
+        _.forEach( $("#jsGrid").jsGrid("option", "data") , function(record) {
+            if(record.vendorListingid==_id){
+                _.forEach(record, function(value, _key) {
+                    
+                    if(_key!='img')
+                        _item[_key] = value
+                })
+            }
+        })
+        return _item
+    }
     $.ajax({
         url: "/api/books/tables",
         dataType: "json"
@@ -336,19 +350,33 @@ $(document).ready(function() {
                         return value==null?null:$('<i class="leanpub '+_t+' icon large '+(record._sale!=null?'hidden':'')+'">').attr('data',record.vendorListingid).click(function(e){
                             e.stopPropagation()
                             if($(this).hasClass('red')){
-                                var _id = $(this).attr('data')
-                                var _item = {}
-                                //window.data.pageData
-                                _.forEach( $("#jsGrid").jsGrid("option", "data") , function(record) {
-                                    if(record.vendorListingid==_id){
-                                        _.forEach(record, function(value, _key) {
-                                            
-                                            if(_key!='img')
-                                                _item[_key] = value
+                                
+                               editForm('formIberlibro','edit',{item: gridTorecord( $(this).attr('data') ) })
+                               $('#bookfinder').html('').addClass('loading')
+                               $.ajax('/api/bookfinder?id=' + $(this).attr('data') )
+                               .done(function(tables) {
+                                   //debugger
+                                   var $data =$('<div>')
+                                   var p = $($(tables.body).find("#bd")).children()
+                                   _.each(p, function(value,key){
+                                       if($(value).hasClass('select-authorname'))
+                                           $data.append( $(value).clone() )
+                                       if($(value).hasClass('select-titlenames'))
+                                           $data.append($(value).clone())
+                                   })
+                                   $data.find('a').click(function(e){
+                                       $('#bookfinder').addClass('loading')
+                                       $.ajax('/api/bookfinder?urlquery='+$(this).attr('href').split("?")[1])
+                                        .done(function(tables) {
+                                            var $data =$('<div>').append($(tables.body).find('h3').clone())
+                                            .append($(tables.body).find('table.results-table-Logo').clone())
+                                            $('#bookfinder').removeClass('loading').html($data)
                                         })
-                                    }
-                                })
-                               editForm('formIberlibro','edit',{item:_item})
+                                       return false
+                                   })
+                                   $('#bookfinder').removeClass('loading').html($data)
+                               })
+
                             }else{
                                 $('.ui.basic.modal i').removeClass('amazon').addClass('leanpub')
                                 $('.ui.basic.modal').modal('show')//.show()
@@ -379,15 +407,24 @@ $(document).ready(function() {
                                 $.ajax('/api/bookfinder?id=' + $(this).attr('data') )
                                 .done(function(tables) {
                                     debugger
+                                    var $data =$('<div>')
+                                    var p = $($(tables.body).find("#bd")).children()
+                                    _.each(p, function(value,key){
+                                        if($(value).hasClass('select-authorname'))
+                                            $data.append($(p).clone())
+                                        if($(value).hasClass('select-titlenames'))
+                                            $data.append($(p).clone())
+                                    })
+                                    $('#bookfinder').html($data)
                                 })
+                                editForm('formIberlibro','edit',{item:_item})
 
-
-                            if($(this).hasClass('red')){
-                                editForm('formAmazon','edit',args)
-                             }else{
-                                 $('.ui.basic.modal i').removeClass('leanpub').addClass('amazon')
-                                 $('.ui.basic.modal').modal('show')//.show()
-                             }
+                            //if($(this).hasClass('red')){
+                            //    editForm('formIberlibro','edit',{item:_item})
+                            // }else{
+                            //     $('.ui.basic.modal i').removeClass('leanpub').addClass('amazon')
+                            //     $('.ui.basic.modal').modal('show')//.show()
+                            // }
                         });
                     }}
                 ]
