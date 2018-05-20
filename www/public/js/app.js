@@ -32,17 +32,19 @@ $(document).ready(function() {
         $('#edit .content').addClass('hidden')
         $('#edit .content.'+_content).removeClass('hidden')
         
+
         $('#edit').modal(
             {
                 onVisible: function(){
                     setTimeout(function(){
+                            $('#edit .header.iberlibro').addClass('hidden')
                             if(_type=='edit'){
                                 //debugger
                                 $('#edit [name="universalIdentifier_number"]').focus()
                             }else{
                                 $('#id').focus()
                             }
-                        },100)
+                        },10)
                 },
                 onDeny    : function(){
                   return true;
@@ -101,44 +103,12 @@ $(document).ready(function() {
         }else{
 
             $('#edit input').each(function(obj){
-                var q = $('#edit input')[obj]
-                $(q).val('')
-                if(q.hasAttribute("disabled")){
-                    $(q).removeAttr("disabled")
-                }else{
-                    $(q).attr("disabled","")
-                }
+                var q = $($('#edit input')[obj]).val('')
+                //$(q).val('')
             })
-            $('#edit textarea').attr("disabled","").text('')
-            $('#id').removeAttr("disabled").keyup(function( event ) {
-                if ( event.which == 13 ) {
-                  event.preventDefault();
-                  $.ajax({
-                    type: "POST",
-                    url: "/api/books/key?value=" + $('#id').val()
-                  }).done(function(data){
-    
-                    if(!data.ok){
-                        if(data.error){
-                            alert('problemas con el formato, causan errores\nreferencia no valida')
-                        }else{
-                            alert('referencia ya existente, prueba con otra')
-                        }
-                    }else{
-                        $('#edit input').each(function(obj){
-                            var q = $('#edit input')[obj]
-                            if(q.hasAttribute("disabled")){
-                                $(q).removeAttr("disabled")
-                            }else{
-                                $(q).attr("disabled","")
-                            }
-                        })                        
-                    }
-                
-                  });
-                }
-            }).parent().removeClass('disabled');
-
+            $('#edit textarea').text('')
+            dropdownFormEdit('restore defaults')
+            
             $('#edit .header.book').html('Nuevo Libro')
             $('#edit .ui.approve.button').addClass("disabled").html('Crear')
         }
@@ -187,6 +157,22 @@ $(document).ready(function() {
         })
         return _ret!={}?_ret:null
     }
+    function dropdownFormEdit(command, data){
+        if(command == 'refresh'){
+            $('#edit .ui.dropdown.productType .menu').html(data.productType) 
+            $('#edit .ui.dropdown.bookCondition .menu').html(data.bookCondition)
+            $('#edit .ui.dropdown.jacketCondition .menu').html(data.jacketCondition)
+            $('#edit .ui.dropdown.inscriptionType .menu').html(data.inscriptionType)
+            $('#edit .ui.dropdown.bindingText .menu').html(data.binding)
+            $('#edit .ui.dropdown.edition .menu').html(data.edition)
+        }
+        $('#edit .ui.dropdown.productType').dropdown(command)
+        $('#edit .ui.dropdown.bookCondition').dropdown(command)
+        $('#edit .ui.dropdown.jacketCondition').dropdown(command)
+        $('#edit .ui.dropdown.inscriptionType').dropdown(command)
+        $('#edit .ui.dropdown.bindingText').dropdown(command)
+        $('#edit .ui.dropdown.edition').dropdown(command)
+    }
     function gridTorecord(_id){
         
         var _item = {}
@@ -215,27 +201,8 @@ $(document).ready(function() {
                 data[row.name] = data[row.name] +'<div class="item" data-value="'+row.Description+'">'+row.Description+'</div>' 
             })
 
-            $('#edit .ui.dropdown.productType .menu').html(data.productType) 
-            $('#edit .ui.dropdown.productType').dropdown('refresh')
+            dropdownFormEdit('refresh', data)
 
-            $('#edit .ui.dropdown.bookCondition .menu').html(data.bookCondition)
-            $('#edit .ui.dropdown.bookCondition').dropdown('refresh')
-
-            $('#edit .ui.dropdown.jacketCondition .menu').html(data.jacketCondition)
-            $('#edit .ui.dropdown.jacketCondition').dropdown('refresh')
-
-            $('#edit .ui.dropdown.inscriptionType .menu').html(data.inscriptionType)
-            $('#edit .ui.dropdown.inscriptionType').dropdown('refresh')
-
-            $('#edit .ui.dropdown.bindingText .menu').html(data.binding)
-            $('#edit .ui.dropdown.bindingText').dropdown('refresh')
-
-            $('#edit .ui.dropdown.edition .menu').html(data.edition)
-            $('#edit .ui.dropdown.edition').dropdown('refresh')
-
-          
-
-    
             window.data.grid = $("#jsGrid").jsGrid({
                
                 width: "90%",
@@ -353,10 +320,12 @@ $(document).ready(function() {
                             if($(this).hasClass('red')){
                                var _id = $(this).attr('data') 
                                editForm('formIberlibro','edit',{item: gridTorecord( _id ) })
+                               //$('#edit .header.iberlibro').removeClass('hidden')
+                               //debugger
                                $('#bookfinder').html('').addClass('loading')
                                $.ajax('/api/bookfinder?id=' + _id )
                                .done(function(tables) {
-                                   //debugger
+                                    $('#edit .header.iberlibro').removeClass('hidden')
                                    var $data =$('<div>')
                                    var p = $($(tables.body).find("#bd")).children()
                                    _.each(p, function(value,key){

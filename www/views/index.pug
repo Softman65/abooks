@@ -43,7 +43,7 @@ block content
 
   #edit.ui.long.modal
     .header.book(style="height:50px;") Header
-    .header(style="height:50px;") Comercialización IberLibro
+    .header.iberlibro.hidden(style="height:50px;") Comercialización IberLibro
     .content.formIberlibro.hidden
       form.ui.form.editIberlibro
         .ui.grid
@@ -74,7 +74,7 @@ block content
         
         .field
           .fields
-              .five.wide.field.validate
+              .five.wide.field.hidden
                 label
                   span
                     span.blue REF
@@ -89,7 +89,7 @@ block content
                     span
                       span.blue PRECIO
                       span.red *
-                  input.numeric(style="text-align:right", type='text', name='price_quantity', placeholder='PRECIO')
+                  input.numeric(style="text-align:right", type='text', name='price_quantity', placeholder='PRECIO', maxlength='6')
               .five.wide.field
                   label.blue LOCALIZACIÓN
                   input(type='text', name='_loc', placeholder='estanteria....')
@@ -179,7 +179,7 @@ block content
           .thirteen.field
             label.blue Año
             input.numeric(type='text', name='publishYear', placeholder='Año',style="width:90px;text-align:right",maxlength="4")
-        .ui.button(tabindex='0') Orden de Envío
+        .ui.button.ordenEnvio.hidden(tabindex='0') Orden de Envío
     .actions
       span
         span.left.red * 

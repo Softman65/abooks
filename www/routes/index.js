@@ -68,6 +68,34 @@ router.post('/api/books/imageSave', function (req, res) {
         res.json({err:err, record:record, image: req.body.image});
     })
 })
+router.post('/api/books/new', function (req, res) {
+    debugger
+    var cadsql= "INSERT INTO books ("
+    var cadval = ""
+    var counter = 0
+    var params = []
+    if(!_.isEmpty(req.body)){
+        _.each(req.body, function(value,key){
+            counter++
+            cadsql=cadsql+(counter>1?',':'')+key
+            cadval=cadval+(counter>1?',?':'?')
+            params.push(value)
+        })
+        cadsql = cadsql + ") VALUES (" + cadval + ")"
+        debugger
+        mysql.connection.query(cadsql ,params, function(err,records) {
+            debugger
+            if(err)
+                debugger
+            
+               // var xml = require('../../node_app/xml_prepare.js')().xmlIberbooks(records[1][0],records[2],"new")
+
+            res.json({body:req.body,err:err,records:records});
+        })
+    }else{
+        res.json(req.body);
+    }
+})
 router.post('/api/books/edit', function (req, res) {
     debugger
     var cadsqlLast= "; SELECT *  FROM books WHERE vendorListingid="+ req.query.vendorListingid+";SELECT * FROM pictures WHERE vendorListingid="+req.query.vendorListingid
@@ -85,7 +113,7 @@ router.post('/api/books/edit', function (req, res) {
             if(err)
                 debugger
             
-                var xml = require('../../node_app/xml_prepare.js')().xmlIberbooks(records[1][0],records[2],"update")
+               // var xml = require('../../node_app/xml_prepare.js')().xmlIberbooks(records[1][0],records[2],"update")
 
             res.json({body:req.body,err:err,records:records});
         })
