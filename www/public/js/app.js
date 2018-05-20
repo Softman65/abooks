@@ -37,6 +37,7 @@ $(document).ready(function() {
                 onVisible: function(){
                     setTimeout(function(){
                             if(_type=='edit'){
+                                //debugger
                                 $('#edit [name="universalIdentifier_number"]').focus()
                             }else{
                                 $('#id').focus()
@@ -59,7 +60,7 @@ $(document).ready(function() {
                   if(_JsonArgs!=null){ 
                       $.ajax({
                           type: "POST",
-                          url: "/api/books/" + _type +(_type=='edit'?"?form="+$('#edit').attr('data') +"&id="+args.item.idbooks+'&vendorListingid='+args.item.vendorListingid:''),
+                          url: "/api/books/" + _type +(_type=='edit'?"?form="+$('#edit').attr('data') +'&vendorListingid='+args.item.vendorListingid:''),
                           data: _JsonArgs
                       }).done(function( data ) {
                           $("#jsGrid").jsGrid( "loadData" );   
@@ -84,7 +85,7 @@ $(document).ready(function() {
                         $('#edit .ui.toggle.checkbox').checkbox(getData[value]==null?'uncheck':getData[value].length>0?'check':'uncheck')
                     }else{
                         if($('#edit input[name="'+value+'"]').attr('type')!='hidden'){
-                            $('#edit input[name="'+value+'"]').val(getData[value]).removeAttr("disabled")
+                            $('#edit input[name="'+value+'"]').val(getData[value]) //.removeAttr("disabled")
                         }else{
                             $('#edit .'+value+' .text').removeClass('default').html(getData[value])
                             $('#edit .'+value+' [type="hidden"]').val(getData[value])
@@ -93,7 +94,7 @@ $(document).ready(function() {
                 }
               //text.push(value + " : " + getData[value])
             });
-            $('#id').val(args.item.idbooks).parent().addClass('disabled')
+           // $('#id').val(getData.vendorListingid)
             $('#edit .ui.approve.button').html('Guardar')
             $('#edit .header.book').html('<span><span class="left green">'+getData.title+'</span><span class="right">'+getData.vendorListingid+'-<span class="red">'+(getData._loc==null?'?':getData._loc)+'</span></span></span>')
            
@@ -170,7 +171,7 @@ $(document).ready(function() {
     function getFormData($form){
         var unindexed_array = $form.serializeArray();
         var indexed_array = {};
-        debugger
+        //debugger
 
         $.map(unindexed_array, function(n, i){
             indexed_array[n['name']] = n['value'];

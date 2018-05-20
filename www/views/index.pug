@@ -43,6 +43,7 @@ block content
 
   #edit.ui.long.modal
     .header.book(style="height:50px;") Header
+    .header(style="height:50px;") Comercialización IberLibro
     .content.formIberlibro.hidden
       form.ui.form.editIberlibro
         .ui.grid
@@ -50,25 +51,27 @@ block content
             .field
               .fields    
                   .five.wide.field.validate
-                      label 
+                      label PRECIO
                         span
-                          span.blue PRECIO IBERLIBRO
+                          span.blue IBERLIBRO
                           span.red *
                       input.numeric( style="text-align:right", type='text', name='price_quantity_Iberlibro', placeholder='PRECIO', tabindex="0")
                   .five.wide.field.disabled
                       label 
                         span
-                          span.blue PRECIO BASE
+                          span.blue BASE
                       input.numeric( style="text-align:right", type='text', name='price_quantity', placeholder='PRECIO')
           .eight.wide.column
-            #bookfinder.ui.loading.segment(style="max-height: 600px;overflow:auto;font-size: 0.8em;")  
+            label BookFinder
+              i.icon.find 
+            #bookfinder.ui.loading.segment(style="min-height: 200px;max-height: 600px;overflow:auto;font-size: 0.8em;")  
 
     .content.formAmazon.hidden
 
     .content.formEdit.hidden      
       form.ui.form.editForm
         h4.ui.dividing.header Información de libro
-        input.numeric(id='id' type='hidden', name='idbooks')
+        
         .field
           .fields
               .five.wide.field.validate
@@ -76,7 +79,7 @@ block content
                   span
                     span.blue REF
                     span.red * 
-                input.numeric(id='id' type='text', name='vendorListingid', placeholder='referencia',disabled="")
+                input.numeric(id='id' type='text', name='vendorListingid', placeholder='referencia',disabled="disabled")
 
               .five.wide.field
                 label.blue Isbn

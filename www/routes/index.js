@@ -70,7 +70,8 @@ router.post('/api/books/imageSave', function (req, res) {
 })
 router.post('/api/books/edit', function (req, res) {
     debugger
-    var cadsql= "SELECT *  FROM books WHERE idbooks="+ req.query.id+";SELECT * FROM pictures WHERE vendorListingid="+req.query.vendorListingid+"; UPDATE books SET "
+    var cadsqlLast= "; SELECT *  FROM books WHERE vendorListingid="+ req.query.vendorListingid+";SELECT * FROM pictures WHERE vendorListingid="+req.query.vendorListingid
+    var cadsql= "UPDATE books SET "
     var counter = 0
     var params = []
     if(!_.isEmpty(req.body)){
@@ -80,11 +81,11 @@ router.post('/api/books/edit', function (req, res) {
             params.push(value)
         })
         debugger
-        mysql.connection.query(cadsql+" WHERE idbooks="+ req.query.id ,params, function(err,records) {
+        mysql.connection.query(cadsql+" WHERE vendorListingid="+ req.query.vendorListingid + cadsqlLast ,params, function(err,records) {
             if(err)
                 debugger
             
-                var xml = require('../../node_app/xml_prepare.js')().xmlIberbooks(records[0][0],records[1],"update")
+                var xml = require('../../node_app/xml_prepare.js')().xmlIberbooks(records[1][0],records[2],"update")
 
             res.json({body:req.body,err:err,records:records});
         })
@@ -177,12 +178,12 @@ router.get('/api/books/page', function (req, res) {
     if(req.query.type=='iberlibro'){
         from = "FROM iberlibro "
         join = "FROM iberlibro LEFT JOIN books on iberlibro.vendorListingid = books.vendorListingid LEFT JOIN pictures on pictures.vendorListingid = books.vendorListingid "
-        fields = _fields()+',iberlibro.vendorListingid,books.price_quantity,iberlibro.price_quantity as price_quantity.Iberlibro,pictures.image as img '
+        fields = _fields()+',iberlibro.vendorListingid,books.price_quantity,iberlibro.price_quantity as price_quantity,books.bookfinder,pictures.image as img '
     }
     if(req.query.type=='amazon'){
         from = "FROM amazon "
         join = "FROM amazon LEFT JOIN books on amazon.vendorListingid = books.vendorListingid LEFT JOIN pictures on pictures.vendorListingid = books.vendorListingid "
-        fields = _fields()+',amazon.vendorListingid,amazon.price_quantity_ES,amazon.price_quantity_DE,amazon.price_quantity_FR,amazon.price_quantity_IT,amazon.price_quantity_UK,pictures.image as img '
+        fields = _fields()+',amazon.vendorListingid,amazon.price_quantity_ES,amazon.price_quantity_DE,amazon.price_quantity_FR,amazon.price_quantity_IT,amazon.price_quantity_UK,books.bookfinder,pictures.image as img '
     }
     const _pageSize = req.query.pageSize!=null?req.query.pageSize:10
     const _pageIndex = req.query.pageIndex!=null?req.query.pageIndex:1 
