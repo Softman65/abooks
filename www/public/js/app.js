@@ -326,7 +326,12 @@ $(document).ready(function() {
                                $('#bookfinder').html('').addClass('loading')
                                $.ajax('/api/bookfinder?id=' + _id )
                                .done(function(tables) {
+                                    
                                     $('#edit .header.iberlibro').removeClass('hidden')
+                                    $('#edit .back').click(function(){
+                                        if(window.PanelA1=null)
+                                            $('#bookfinder').html(window.PanelA)
+                                    })
                                    var $data =$('<div>')
                                    var p = $($(tables.body).find("#bd")).children()
                                    _.each(p, function(value,key){
@@ -362,6 +367,7 @@ $(document).ready(function() {
                                         })
                                        return false
                                    })
+                                   window.PanelA = $data
                                    $('#bookfinder').removeClass('loading').html($data)
                                })
 
