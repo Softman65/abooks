@@ -386,12 +386,12 @@ $(document).ready(function() {
                         var _t = value>0?'red':'green'       
                         return value==null?null:$('<i class="amazon '+_t+' icon large '+(record._sale!=null?'hidden':'')+'">').click(function(e){
                             e.stopPropagation()
-                            if($(this).hasClass('red')){
+                            //if($(this).hasClass('red')){
                                 editForm('formAmazon','edit',args)
-                             }else{
-                                 $('.ui.basic.modal i').removeClass('leanpub').addClass('amazon')
-                                 $('.ui.basic.modal').modal('show')//.show()
-                             }
+                            // }else{
+                            //     $('.ui.basic.modal i').removeClass('leanpub').addClass('amazon')
+                             //    $('.ui.basic.modal').modal('show')//.show()
+                             //}
                         });
                     }}
                 ]
