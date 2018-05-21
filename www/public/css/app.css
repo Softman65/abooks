@@ -24,3 +24,6 @@
 .hidden{
     display:none!important;
 }
+.back{
+    cursor:pointer;
+}
