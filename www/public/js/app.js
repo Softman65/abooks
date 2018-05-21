@@ -387,7 +387,8 @@ $(document).ready(function() {
                             e.stopPropagation()
                             var _id = $(this).attr('data') 
                             form = 'formAmazon'
-                            editForm( form ,'edit',args )
+                            editForm( form ,'edit',{ item: gridTorecord( _id ) } )
+                            bookfinder(form,_id)
                         });
                     }}
                 ]
