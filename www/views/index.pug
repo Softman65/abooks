@@ -64,10 +64,30 @@ block content
           .eight.wide.column
             label.back BookFinder
               i.icon.find 
-            .bookfinder.formIberlibro.ui.loading.segment(style="min-height: 200px;max-height: 600px;overflow:auto;font-size: 0.8em;")  
+            .bookfinder.editAmazon.ui.loading.segment(style="min-height: 200px;max-height: 600px;overflow:auto;font-size: 0.8em;")  
 
     .content.formAmazon.hidden
-
+      form.ui.form.editAmazon
+        .ui.grid
+          .eight.wide.column
+            .field
+              .fields    
+                  .five.wide.field.validate
+                      label PRECIO
+                        span
+                          span.blue AMAZON ES
+                          span.red *
+                      input.numeric( style="text-align:right", type='text', name='price_quantity_Iberlibro', placeholder='PRECIO', tabindex="0")
+                  .five.wide.field.disabled
+                      label 
+                        span
+                          span.blue BASE
+                      input.numeric( style="text-align:right", type='text', name='price_quantity', placeholder='PRECIO')
+          .eight.wide.column
+            label.back BookFinder
+              i.icon.find 
+            .bookfinder.editAmazon.ui.loading.segment(style="min-height: 200px;max-height: 600px;overflow:auto;font-size: 0.8em;")
+    
     .content.formEdit.hidden      
       form.ui.form.editForm
         h4.ui.dividing.header Información de libro

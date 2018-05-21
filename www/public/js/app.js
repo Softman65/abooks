@@ -27,12 +27,66 @@ $(document).ready(function() {
             } 
         }).modal('show')
     }
+    function bookfinder(form,_id){
+        var has_also = false
+        $('.bookfinder.'+form).html('').addClass('loading')
+        $.ajax('/api/bookfinder?id=' + _id )
+        .done(function(tables) {
+             
+             $('#edit .header.'+form).removeClass('hidden')
+             $('#edit .back').click(function(){
+                 if(window.PanelA!=null)
+                     $('.bookfinder.' + form).html( getClick(window.PanelA, form) )
+             })
+            var $data =$('<div>')
+            var p = $($(tables.body).find("#bd")).children()
+            _.each(p, function(value,key){
+                if($(value).hasClass('select-authorname'))
+                    $data.append( $(value).clone() )
+                if($(value).hasClass('select-titlenames'))
+                    $data.append($(value).clone())
+                if($(value).hasClass('select-see-also')){
+                    $data.append($(value).clone())
+                    has_also = true
+                 }
+                if(has_also && $(value).is('ul'))
+                    $data.append($(value).clone()) 
+            })
+
+            function getClick($data, form){
+                 $data.find('a').click(function(e){
+                     $('.bookfinder.' + form).addClass('loading')
+                     var url = $(this).attr('href').split("?")[1]
+                     $.ajax('/api/bookfinder?urlquery=' + url)
+                         .done(function(tables) {
+                             var $data =$('<div>').append($(tables.body).find('h3').clone())
+                             .append($(tables.body).find('table.results-table-Logo').clone())
+                             $('.bookfinder.' + form).removeClass('loading').html($data)
+                             _.each($('.bookfinder.' + form).find('.results-explanatory-text-Logo'), function($elem){
+                                 if($($elem).html()=='Artebooks'){
+                                     $($elem).parent().parent().addClass('red')
+                                     //$.ajax('/api/save/bookfinder?id='+_id+'urlquery=' + url)
+                                     //.done(function(tables) {
+                                     //    debugger
+                                     //})
+                                 }
+
+                             })
+                         })
+                     return false
+                 })
+                 return $data
+             }
+             
+            window.PanelA = getClick($data , form)
+            $('.bookfinder.'+form).removeClass('loading').html($data)
+        })
+    }
     function editForm(_content,_type,args){
         $('#edit').attr('data',_content)
         $('#edit .content').addClass('hidden')
         $('#edit .content.'+_content).removeClass('hidden')
         
-
         $('#edit').modal(
             {
                 onVisible: function(){
@@ -188,6 +242,7 @@ $(document).ready(function() {
         })
         return _item
     }
+
     $.ajax({
         url: "/api/books/tables",
         dataType: "json"
@@ -317,70 +372,12 @@ $(document).ready(function() {
                         var _t = value>0?'green':'red'       
                         return value==null?null:$('<i class="leanpub '+_t+' icon large '+(record._sale!=null?'hidden':'')+'">').attr('data',record.vendorListingid).click(function(e){
                             e.stopPropagation()
-                            //if($(this).hasClass('red')){
-                               var has_also = false
+                               
                                var _id = $(this).attr('data') 
                                form = 'formIberlibro'
-                               editForm('formIberlibro','edit',{ item: gridTorecord( _id ) })
-                               //$('#edit .header.iberlibro').removeClass('hidden')
-                               //debugger
-                               $('.bookfinder.'+form).html('').addClass('loading')
-                               $.ajax('/api/bookfinder?id=' + _id )
-                               .done(function(tables) {
-                                    
-                                    $('#edit .header.'+form).removeClass('hidden')
-                                    $('#edit .back').click(function(){
-                                        if(window.PanelA!=null)
-                                            $('.bookfinder.' + form).html( getClick(window.PanelA, form) )
-                                    })
-                                   var $data =$('<div>')
-                                   var p = $($(tables.body).find("#bd")).children()
-                                   _.each(p, function(value,key){
-                                       if($(value).hasClass('select-authorname'))
-                                           $data.append( $(value).clone() )
-                                       if($(value).hasClass('select-titlenames'))
-                                           $data.append($(value).clone())
-                                       if($(value).hasClass('select-see-also')){
-                                           $data.append($(value).clone())
-                                           has_also = true
-                                        }
-                                       if(has_also && $(value).is('ul'))
-                                           $data.append($(value).clone()) 
-                                   })
+                               editForm(form,'edit',{ item: gridTorecord( _id ) })
+                               bookfinder(form,_id)
 
-                                   function getClick($data, form){
-                                        $data.find('a').click(function(e){
-                                            $('.bookfinder.' + form).addClass('loading')
-                                            var url = $(this).attr('href').split("?")[1]
-                                            $.ajax('/api/bookfinder?urlquery=' + url)
-                                                .done(function(tables) {
-                                                    var $data =$('<div>').append($(tables.body).find('h3').clone())
-                                                    .append($(tables.body).find('table.results-table-Logo').clone())
-                                                    $('.bookfinder.' + form).removeClass('loading').html($data)
-                                                    _.each($('.bookfinder.' + form).find('.results-explanatory-text-Logo'), function($elem){
-                                                        if($($elem).html()=='Artebooks'){
-                                                            $($elem).parent().parent().addClass('red')
-                                                            //$.ajax('/api/save/bookfinder?id='+_id+'urlquery=' + url)
-                                                            //.done(function(tables) {
-                                                            //    debugger
-                                                            //})
-                                                        }
-
-                                                    })
-                                                })
-                                            return false
-                                        })
-                                        return $data
-                                    }
-                                    
-                                   window.PanelA = getClick($data , form)
-                                   $('.bookfinder.'+form).removeClass('loading').html($data)
-                               })
-
-                            //}else{
-                            //    $('.ui.basic.modal i').removeClass('amazon').addClass('leanpub')
-                            //    $('.ui.basic.modal').modal('show')//.show()
-                            //}
                         })
                     }},
                     {  title: "", name: "C_amazon", type: "text", width: 40,filtering: false,
@@ -388,12 +385,9 @@ $(document).ready(function() {
                         var _t = value>0?'green':'red'       
                         return value==null?null:$('<i class="amazon '+_t+' icon large '+(record._sale!=null?'hidden':'')+'">').click(function(e){
                             e.stopPropagation()
-                            //if($(this).hasClass('red')){
-                                editForm('formAmazon','edit',args)
-                            // }else{
-                            //     $('.ui.basic.modal i').removeClass('leanpub').addClass('amazon')
-                             //    $('.ui.basic.modal').modal('show')//.show()
-                             //}
+                            var _id = $(this).attr('data') 
+                            form = 'formAmazon'
+                            editForm( form ,'edit',args )
                         });
                     }}
                 ]
