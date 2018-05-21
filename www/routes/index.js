@@ -97,28 +97,35 @@ router.post('/api/books/new', function (req, res) {
     }
 })
 router.post('/api/books/edit', function (req, res) {
-    debugger
-    var cadsqlLast= "; SELECT *  FROM books WHERE vendorListingid="+ req.query.vendorListingid+";SELECT * FROM pictures WHERE vendorListingid="+req.query.vendorListingid
-    var cadsql= "UPDATE books SET "
-    var counter = 0
-    var params = []
-    if(!_.isEmpty(req.body)){
-        _.each(req.body, function(value,key){
-            counter++
-            cadsql=cadsql+(counter>1?',':'')+key+"=?"
-            params.push(value)
-        })
-        debugger
-        mysql.connection.query(cadsql+" WHERE vendorListingid="+ req.query.vendorListingid + cadsqlLast ,params, function(err,records) {
+    if(req.query.form=='formIberlibro'){
+        var cadsql = "INSERT INTO iberlibro (vendorListingid,price_quantity,fecha_add) VALUES (?,?,NOW())  ON DUPLICATE KEY UPDATE price_quantity=?"
+        var params = [req.query.vendorListingid,req.body.price_quantity_Iberlibro,req.body.price_quantity_Iberlibro]
+        mysql.connection.query(cadsql+" WHERE vendorListingid="+ req.query.vendorListingid  ,params, function(err,records) {
             if(err)
                 debugger
-            
-               // var xml = require('../../node_app/xml_prepare.js')().xmlIberbooks(records[1][0],records[2],"update")
-
             res.json({body:req.body,err:err,records:records});
         })
     }else{
-        res.json(req.body);
+        debugger
+        var cadsqlLast= "; SELECT *  FROM books WHERE vendorListingid="+ req.query.vendorListingid+";SELECT * FROM pictures WHERE vendorListingid="+req.query.vendorListingid
+        var cadsql= "UPDATE books SET "
+        var counter = 0
+        var params = []
+        if(!_.isEmpty(req.body)){
+            _.each(req.body, function(value,key){
+                counter++
+                cadsql=cadsql+(counter>1?',':'')+key+"=?"
+                params.push(value)
+            })
+            debugger
+            mysql.connection.query(cadsql+" WHERE vendorListingid="+ req.query.vendorListingid + cadsqlLast ,params, function(err,records) {
+                if(err)
+                    debugger
+                res.json({body:req.body,err:err,records:records});
+            })
+        }else{
+            res.json(req.body);
+        }
     }
 });
 router.post('/api/books/key', function (req, res) {

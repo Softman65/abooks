@@ -50,7 +50,7 @@ $(document).ready(function() {
                   return true;
                 },
                 onApprove : function() {
-                  var $form = $("form.editForm")
+                  var $form = $('#edit').attr('data') =='formIberlibro' ? $("form.editIberlibro") : $("form.editForm")
                   var _JsonArgs={}
                   if(_type=='edit'){
                     _JsonArgs = diferences(getFormData($form),args.item)
