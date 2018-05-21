@@ -104,7 +104,7 @@ $(document).ready(function() {
                   return true;
                 },
                 onApprove : function() {
-                  var $form = $('#edit').attr('data') =='formIberlibro' ? $("form.editIberlibro") : $("form.editForm")
+                  var $form = $('#edit').attr('data') =='formIberlibro' ? $("form.editIberlibro") : ($('#edit').attr('data') =='formAmazon'?$("form.editAmazon"):$("form.editForm"))
                   var _JsonArgs={}
                   if(_type=='edit'){
                     _JsonArgs = diferences(getFormData($form),args.item)
