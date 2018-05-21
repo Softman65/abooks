@@ -383,7 +383,7 @@ $(document).ready(function() {
                     }},
                     {  title: "", name: "C_amazon", type: "text", width: 40,filtering: false,
                     itemTemplate: function(value,record) {
-                        var _t = value>0?'red':'green'       
+                        var _t = value>0?'green':'red'       
                         return value==null?null:$('<i class="amazon '+_t+' icon large '+(record._sale!=null?'hidden':'')+'">').click(function(e){
                             e.stopPropagation()
                             //if($(this).hasClass('red')){
