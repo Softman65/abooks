@@ -105,26 +105,38 @@ router.post('/api/books/edit', function (req, res) {
                 debugger
             res.json({body:req.body,err:err,records:records});
         })
+        
+        
     }else{
-        debugger
-        var cadsqlLast= "; SELECT *  FROM books WHERE vendorListingid="+ req.query.vendorListingid+";SELECT * FROM pictures WHERE vendorListingid="+req.query.vendorListingid
-        var cadsql= "UPDATE books SET "
-        var counter = 0
-        var params = []
-        if(!_.isEmpty(req.body)){
-            _.each(req.body, function(value,key){
-                counter++
-                cadsql=cadsql+(counter>1?',':'')+key+"=?"
-                params.push(value)
-            })
-            debugger
-            mysql.connection.query(cadsql+" WHERE vendorListingid="+ req.query.vendorListingid + cadsqlLast ,params, function(err,records) {
+        if(req.query.form=='formAmazon'){
+            var cadsql = "INSERT INTO amazon (vendorListingid,price_quantity_ES,fecha_add) VALUES (?,?,NOW())  ON DUPLICATE KEY UPDATE price_quantity=?"
+            var params = [req.query.vendorListingid,req.body.price_quantity_ES,req.body.price_quantity_ES]
+            mysql.connection.query(cadsql ,params, function(err,records) {
                 if(err)
                     debugger
                 res.json({body:req.body,err:err,records:records});
-            })
+            })            
         }else{
-            res.json(req.body);
+            debugger
+            var cadsqlLast= "; SELECT *  FROM books WHERE vendorListingid="+ req.query.vendorListingid+";SELECT * FROM pictures WHERE vendorListingid="+req.query.vendorListingid
+            var cadsql= "UPDATE books SET "
+            var counter = 0
+            var params = []
+            if(!_.isEmpty(req.body)){
+                _.each(req.body, function(value,key){
+                    counter++
+                    cadsql=cadsql+(counter>1?',':'')+key+"=?"
+                    params.push(value)
+                })
+                debugger
+                mysql.connection.query(cadsql+" WHERE vendorListingid="+ req.query.vendorListingid + cadsqlLast ,params, function(err,records) {
+                    if(err)
+                        debugger
+                    res.json({body:req.body,err:err,records:records});
+                })
+            }else{
+                res.json(req.body);
+            }
         }
     }
 });
