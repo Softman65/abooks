@@ -329,7 +329,7 @@ $(document).ready(function() {
                                     
                                     $('#edit .header.iberlibro').removeClass('hidden')
                                     $('#edit .back').click(function(){
-                                        if(window.PanelA==null)
+                                        if(window.PanelA!=null)
                                             $('#bookfinder').html(window.PanelA)
                                     })
                                    var $data =$('<div>')
