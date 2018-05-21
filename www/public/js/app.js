@@ -317,7 +317,7 @@ $(document).ready(function() {
                         var _t = value>0?'green':'red'       
                         return value==null?null:$('<i class="leanpub '+_t+' icon large '+(record._sale!=null?'hidden':'')+'">').attr('data',record.vendorListingid).click(function(e){
                             e.stopPropagation()
-                            if($(this).hasClass('red')){
+                            //if($(this).hasClass('red')){
                                var has_also = false
                                var _id = $(this).attr('data') 
                                editForm('formIberlibro','edit',{item: gridTorecord( _id ) })
@@ -375,10 +375,10 @@ $(document).ready(function() {
                                    $('#bookfinder').removeClass('loading').html($data)
                                })
 
-                            }else{
-                                $('.ui.basic.modal i').removeClass('amazon').addClass('leanpub')
-                                $('.ui.basic.modal').modal('show')//.show()
-                            }
+                            //}else{
+                            //    $('.ui.basic.modal i').removeClass('amazon').addClass('leanpub')
+                            //    $('.ui.basic.modal').modal('show')//.show()
+                            //}
                         })
                     }},
                     {  title: "", name: "C_amazon", type: "text", width: 40,filtering: false,
