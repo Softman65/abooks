@@ -100,7 +100,7 @@ router.post('/api/books/edit', function (req, res) {
     if(req.query.form=='formIberlibro'){
         var cadsql = "INSERT INTO iberlibro (vendorListingid,price_quantity,fecha_add) VALUES (?,?,NOW())  ON DUPLICATE KEY UPDATE price_quantity=?"
         var params = [req.query.vendorListingid,req.body.price_quantity_Iberlibro,req.body.price_quantity_Iberlibro]
-        mysql.connection.query(cadsql+" WHERE vendorListingid="+ req.query.vendorListingid  ,params, function(err,records) {
+        mysql.connection.query(cadsql ,params, function(err,records) {
             if(err)
                 debugger
             res.json({body:req.body,err:err,records:records});
