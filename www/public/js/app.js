@@ -346,28 +346,32 @@ $(document).ready(function() {
                                        if(has_also && $(value).is('ul'))
                                            $data.append($(value).clone()) 
                                    })
-                                   $data.find('a').click(function(e){
-                                       $('#bookfinder').addClass('loading')
-                                       var url = $(this).attr('href').split("?")[1]
-                                       $.ajax('/api/bookfinder?urlquery=' + url)
-                                        .done(function(tables) {
-                                            var $data =$('<div>').append($(tables.body).find('h3').clone())
-                                            .append($(tables.body).find('table.results-table-Logo').clone())
-                                            $('#bookfinder').removeClass('loading').html($data)
-                                            _.each($('#bookfinder').find('.results-explanatory-text-Logo'), function($elem){
-                                                if($($elem).html()=='Artebooks'){
-                                                    $($elem).parent().parent().addClass('red')
-                                                    //$.ajax('/api/save/bookfinder?id='+_id+'urlquery=' + url)
-                                                    //.done(function(tables) {
-                                                    //    debugger
-                                                    //})
-                                                }
+                                   function getClick($data){
+                                        $data.find('a').click(function(e){
+                                            $('#bookfinder').addClass('loading')
+                                            var url = $(this).attr('href').split("?")[1]
+                                            $.ajax('/api/bookfinder?urlquery=' + url)
+                                                .done(function(tables) {
+                                                    var $data =$('<div>').append($(tables.body).find('h3').clone())
+                                                    .append($(tables.body).find('table.results-table-Logo').clone())
+                                                    $('#bookfinder').removeClass('loading').html($data)
+                                                    _.each($('#bookfinder').find('.results-explanatory-text-Logo'), function($elem){
+                                                        if($($elem).html()=='Artebooks'){
+                                                            $($elem).parent().parent().addClass('red')
+                                                            //$.ajax('/api/save/bookfinder?id='+_id+'urlquery=' + url)
+                                                            //.done(function(tables) {
+                                                            //    debugger
+                                                            //})
+                                                        }
 
-                                            })
+                                                    })
+                                                })
+                                            return false
                                         })
-                                       return false
-                                   })
-                                   window.PanelA = $data
+                                        return $data
+                                    }
+                                    
+                                   window.PanelA = getClick($data)
                                    $('#bookfinder').removeClass('loading').html($data)
                                })
 
