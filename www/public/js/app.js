@@ -320,17 +320,18 @@ $(document).ready(function() {
                             //if($(this).hasClass('red')){
                                var has_also = false
                                var _id = $(this).attr('data') 
-                               editForm('formIberlibro','edit',{item: gridTorecord( _id ) })
+                               form = 'formIberlibro'
+                               editForm('formIberlibro','edit',{ item: gridTorecord( _id ) })
                                //$('#edit .header.iberlibro').removeClass('hidden')
                                //debugger
-                               $('#bookfinder').html('').addClass('loading')
+                               $('.bookfinder.'+form).html('').addClass('loading')
                                $.ajax('/api/bookfinder?id=' + _id )
                                .done(function(tables) {
                                     
-                                    $('#edit .header.iberlibro').removeClass('hidden')
+                                    $('#edit .header.'+form).removeClass('hidden')
                                     $('#edit .back').click(function(){
                                         if(window.PanelA!=null)
-                                            $('#bookfinder').html(getClick(window.PanelA))
+                                            $('.bookfinder.' + form).html( getClick(window.PanelA, form) )
                                     })
                                    var $data =$('<div>')
                                    var p = $($(tables.body).find("#bd")).children()
@@ -346,16 +347,17 @@ $(document).ready(function() {
                                        if(has_also && $(value).is('ul'))
                                            $data.append($(value).clone()) 
                                    })
-                                   function getClick($data){
+
+                                   function getClick($data, form){
                                         $data.find('a').click(function(e){
-                                            $('#bookfinder').addClass('loading')
+                                            $('.bookfinder.' + form).addClass('loading')
                                             var url = $(this).attr('href').split("?")[1]
                                             $.ajax('/api/bookfinder?urlquery=' + url)
                                                 .done(function(tables) {
                                                     var $data =$('<div>').append($(tables.body).find('h3').clone())
                                                     .append($(tables.body).find('table.results-table-Logo').clone())
-                                                    $('#bookfinder').removeClass('loading').html($data)
-                                                    _.each($('#bookfinder').find('.results-explanatory-text-Logo'), function($elem){
+                                                    $('.bookfinder.' + form).removeClass('loading').html($data)
+                                                    _.each($('.bookfinder.' + form).find('.results-explanatory-text-Logo'), function($elem){
                                                         if($($elem).html()=='Artebooks'){
                                                             $($elem).parent().parent().addClass('red')
                                                             //$.ajax('/api/save/bookfinder?id='+_id+'urlquery=' + url)
@@ -371,8 +373,8 @@ $(document).ready(function() {
                                         return $data
                                     }
                                     
-                                   window.PanelA = getClick($data)
-                                   $('#bookfinder').removeClass('loading').html($data)
+                                   window.PanelA = getClick($data , form)
+                                   $('.bookfinder.'+form).removeClass('loading').html($data)
                                })
 
                             //}else{
