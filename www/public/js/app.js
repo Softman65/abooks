@@ -333,6 +333,10 @@ $(document).ready(function() {
                                            $data.append( $(value).clone() )
                                        if($(value).hasClass('select-titlenames'))
                                            $data.append($(value).clone())
+                                       if($(value).hasClass('select-see-also'))
+                                           $data.append($(value).clone())
+                                       if($(value).hasClass('select-titlename-frk'))
+                                           $data.append($(value).clone()) 
                                    })
                                    $data.find('a').click(function(e){
                                        $('#bookfinder').addClass('loading')
