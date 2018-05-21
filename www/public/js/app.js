@@ -318,6 +318,7 @@ $(document).ready(function() {
                         return value==null?null:$('<i class="leanpub '+_t+' icon large '+(record._sale!=null?'hidden':'')+'">').attr('data',record.vendorListingid).click(function(e){
                             e.stopPropagation()
                             if($(this).hasClass('red')){
+                               var has_also = false
                                var _id = $(this).attr('data') 
                                editForm('formIberlibro','edit',{item: gridTorecord( _id ) })
                                //$('#edit .header.iberlibro').removeClass('hidden')
