@@ -7,7 +7,7 @@ module.exports = function () {
         querystring : require('querystring'),
         url : require('url'), // url parser 
 
-        post: function(_url, xml_body){
+        post: function( _action, xml_body){
             var callback = this.url.parse('https://inventoryupdate.abebooks.com:10027');
 
             var api_agent = 'abboks.bbdd.ovh'
