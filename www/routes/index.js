@@ -6,7 +6,7 @@ var _ = require('lodash');
 var xml = require('xml');
 var request = require('request');
 
-var iberlibro = require('./node_app/Api_iberlibro')
+var iberlibro = require('./node_app/Api_iberlibro.js')
 
 
 function cint(num, opt_infinityBiased) {
