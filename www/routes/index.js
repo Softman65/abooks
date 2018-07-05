@@ -6,7 +6,7 @@ var _ = require('lodash');
 var xml = require('xml');
 var request = require('request');
 
-var iberlibro = require('../../node_app/Api_Iberlibro.js')
+var iberlibro = require('../../node_app/Api_Iberlibro.js')()
 
 
 function cint(num, opt_infinityBiased) {
@@ -106,7 +106,7 @@ router.post('/api/books/edit', function (req, res) {
                 debugger
                 var cadsql = "SELECT * FROM books WHERE vendorListingid=?"
                 mysql.connection.query(cadsql ,params, function(err,record) {
-                    if(record.insertId!=0){                    
+                    if(records.insertId!=0){                    
                         iberlibro.post('update', record[0] )
                     }else{
                         iberlibro.post('insert', record[0] )
