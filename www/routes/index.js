@@ -6,6 +6,9 @@ var _ = require('lodash');
 var xml = require('xml');
 var request = require('request');
 
+var iberlibro = require('./node_app/Api_Iberlibro')
+
+
 function cint(num, opt_infinityBiased) {
     var m = Math, c = m.ceil, f = m.floor, r = m.round;
     num = +num;
@@ -59,9 +62,7 @@ router.get('/', function (req, res) {
 router.get('/jq-selfie', function (req, res) {
     res.render('jq-selfie', { title: 'jq-selfie' });
 });
-router.get('/acems', function (req, res) {
-    res.render('acems', { title: 'acems' });
-});
+
 router.post('/api/books/imageSave', function (req, res) {
     var cadsql = "call saveImageBook(?,?)"
     mysql.connection.query(cadsql, [req.query.vendorListingid,req.body.image], function(err, record){
@@ -101,7 +102,7 @@ router.post('/api/books/edit', function (req, res) {
         var cadsql = "INSERT INTO iberlibro (vendorListingid,price_quantity,fecha_add) VALUES (?,?,NOW())  ON DUPLICATE KEY UPDATE price_quantity=?"
         var params = [req.query.vendorListingid,req.body.price_quantity_Iberlibro,req.body.price_quantity_Iberlibro]
         mysql.connection.query(cadsql ,params, function(err,records) {
-            if(err)
+            //if(err)
                 debugger
             res.json({body:req.body,err:err,records:records});
         })
