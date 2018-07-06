@@ -170,7 +170,7 @@ $(document).ready(function() {
 
         
         $(' input.numeric').keydown(function(event){
-            return ( (event.which >48 &&  event.which <63) || event.which ==13 || event.which==46 || event.which==8) 
+            return ( (event.which >47 &&  event.which <63) || event.which ==13 || event.which==46 || event.which==8) 
         })
 
         $('.validate input').keyup(function(event){
