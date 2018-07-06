@@ -4,7 +4,7 @@ module.exports = function () {
     var _v = function(e){
         return e!=null
     }
-    var newLine="Before "+ "%0D%0A"
+    var newLine= string.fromCharCode(10) + string.fromCharCode(13) // "Before "+ "%0D%0A"
     return {
         apiKey : 'fcbe644dd3ba46a797be',
         apiUser : 'artesonado60@gmail.com',
