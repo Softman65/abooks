@@ -26,7 +26,7 @@ module.exports = function () {
             iberRecord += '<Abebook>' + newLine
 
             console.log(action)
-            if(libro.vendorListingid.length>0 && (action=='delete' || action=='add')){                
+            if(libro.vendorListingid.length>0 && (action=='update' || action=='add')){                
                 iberRecord +=  '<transactionType>add</transactionType>' + newLine
                 iberRecord += (_v(libro.vendorListingid)?'<vendorBookID>'+libro.vendorListingid+'</vendorBookID>':'')+ newLine
                 iberRecord += (_v(libro.title)?'<title>'+libro.title+'</title>':'')+ newLine
