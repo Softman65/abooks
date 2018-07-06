@@ -6,7 +6,7 @@ module.exports = function () {
     }
     var newLine= String.fromCharCode(10) + String.fromCharCode(13) // "Before "+ "%0D%0A"
     return {
-        apiKey : 'fcbe644dd3ba46a797be',
+        apiKey : '08ef5d5329934397a86f',
         apiUser : 'ArteSonado',
         xmlIberbooks : function(libro, imagenes, accion){
             var iberRecord = '<?xml version="1.0" encoding="ISO-8859-1"?>' + newLine
