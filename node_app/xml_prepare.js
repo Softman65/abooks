@@ -8,7 +8,7 @@ module.exports = function () {
     return {
         apiKey : '08ef5d5329934397a86f',
         apiUser : 'ArteSonado',
-        xmlIberbooks : function(libro, action, imagenes){
+        xmlIberbooks : function(action,libro,  imagenes){
             var iberRecord = '<?xml version="1.0" encoding="ISO-8859-1"?>' + newLine
             iberRecord += '<inventoryUpdateRequest version="1.0">' + newLine
             iberRecord += '<action name="bookupdate">' + newLine
