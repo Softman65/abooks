@@ -2,7 +2,7 @@
 module.exports = function () {
     var _ = require('lodash');
     var _v = function(e){
-        if()
+        return e!=null
     }
     return {
         apiKey : 'fcbe644dd3ba46a797be',
