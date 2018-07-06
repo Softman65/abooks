@@ -8,6 +8,7 @@ module.exports = function () {
         url : require('url'), // url parser 
 
         post: function( _action, record){
+            debugger
             var _xml = this.xml_process.xmlIberbooks(record,[],_action)
             var callback = this.url.parse('https://inventoryupdate.abebooks.com:10027');
 
