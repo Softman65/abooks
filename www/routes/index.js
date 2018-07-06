@@ -99,25 +99,16 @@ router.post('/api/books/new', function (req, res) {
 })
 router.post('/api/books/edit', function (req, res) {
     if(req.query.form=='formIberlibro'){
-        mysql.connection.query("SELECT Count(*) as counter FROM iberlibro WHERE vendorListingid=?;SELECT * FROM books WHERE vendorListingid=?",[req.query.vendorListingid,req.query.vendorListingid],function(err,_IberRecord){
+        mysql.connection.query("SELECT * FROM books WHERE vendorListingid=?",[req.query.vendorListingid],function(err,_IberRecord){
 
-            //var cadsql = "SELECT * FROM books WHERE vendorListingid=?"
-            //mysql.connection.query(cadsql ,params, function(err,record) {
-                iberlibro.post(_IberRecord[0][0].counter==0?'add':'update', _IberRecord[1][0], function(response){
+                iberlibro.post( _IberRecord[0], function(response){
                     
                     var cadsql = "INSERT INTO iberlibro (vendorListingid,price_quantity,fecha_add) VALUES (?,?,NOW())  ON DUPLICATE KEY UPDATE price_quantity=?"
                     var params = [req.query.vendorListingid,req.body.price_quantity_Iberlibro,req.body.price_quantity_Iberlibro]
                     mysql.connection.query(cadsql ,params, function(err,records) {
-                        //if(err)
+                        if(err)
                             debugger
-                            var cadsql = "SELECT * FROM books WHERE vendorListingid=?"
-                            mysql.connection.query(cadsql ,params, function(err,record) {
-                                iberlibro.post(_IberRecord[0].counter==0?'add':'update', record[0], function(){
-                                    
-                                })
-                            })
-        
-                        res.json({body:req.body,err:err,records:records});
+                        res.json({body:req.body,err:err,records:records, iberlibro:response });
                     })
                 })
             //})

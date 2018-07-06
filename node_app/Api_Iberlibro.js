@@ -6,8 +6,8 @@ module.exports = function () {
         http : require('http'), // http server
         querystring : require('querystring'),
         url : require('url'), // url parser 
-
-        post: function( _action, record){
+        convert : require('xml-js'),
+        post: function(record, _cb){
            
             var _xml = this.xml_process.xmlIberbooks(record,[],_action)
             var callback = this.url.parse('https://inventoryupdate.abebooks.com:10027');
@@ -33,15 +33,19 @@ module.exports = function () {
             }
             
             protocol = this.https;
+            convert = this.convert;
             debugger
+
             var request = protocol.request(options, function (response) {
                 //response.setEncoding('ISO-8859-1');
             
                 response.on('data', function (cbresponse) {
+                    var _jsonResponse = convert.xml2js(cbresponse.toString(), {compact: true})
                     
                     console.log('response received:')
-                    console.log(cbresponse.toString());
+                    console.log( _jsonResponse );
                     console.log('***********************')
+                    cb(_jsonResponse)
                     debugger
                 });
             });
