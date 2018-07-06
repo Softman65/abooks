@@ -38,17 +38,19 @@ module.exports = function () {
                 response.setEncoding('utf8');
             
                 response.on('data', function (cbresponse) {
-                    debugger
+                    
                     console.println('response received:')
                     console.println(cbresponse);
                     console.println('***********************')
+                    debugger
                 });
             });
             
             request.on('error', function (e) {
-                    debugger
+                    
                     console.log('problem with request: ');
                     console.log(e);
+                    debugger;
             });
 
             //write data to server
