@@ -47,7 +47,7 @@ module.exports = function () {
                     console.log('***********************')
                     console.log( _jsonResponse );
                     console.log('***********************')
-                    cb(_jsonResponse)
+                    _cb(_jsonResponse)
                     debugger
                 });
             });
