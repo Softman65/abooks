@@ -9,7 +9,7 @@ module.exports = function () {
         convert : require('xml-js'),
         post: function(record, _cb){
            
-            var _xml = this.xml_process.xmlIberbooks(record,[],_action)
+            var _xml = this.xml_process.xmlIberbooks(record,[])
             var callback = this.url.parse('https://inventoryupdate.abebooks.com:10027');
 
             var api_agent = 'abboks.bbdd.ovh'
