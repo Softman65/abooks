@@ -24,7 +24,7 @@ module.exports = function () {
                 path: callback.path,
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/xml',
+                    'Content-Type': 'text/xml',
                     'Content-Length': _xml.length,
                     'User-Agent': api_agent,
                     'Referer': callback.protocol + '//' + callback.hostname
