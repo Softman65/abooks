@@ -38,12 +38,16 @@ module.exports = function () {
 
             var request = protocol.request(options, function (response) {
                 //response.setEncoding('ISO-8859-1');
-            
+                var _cbresponse = ""
                 response.on('data', function (cbresponse) {
-                    var _jsonResponse = convert.xml2js(cbresponse.toString(), {compact: true})
+                    _cbresponse+= cbresponse
+                    debugger
+                });
+                response.on('end', function () {
+                    var _jsonResponse = convert.xml2js(_cbresponse.toString(), {compact: true})
                     
                     console.log('response received:')
-                    console.log( cbresponse.toString() );
+                    console.log( _cbresponse.toString() );
                     console.log('***********************')
                     console.log( _jsonResponse );
                     console.log('***********************')
