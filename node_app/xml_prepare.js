@@ -40,6 +40,7 @@ module.exports = function () {
             }else{
                 iberRecord = null
             }
+            console.log(iberRecord)
             return iberRecord
         }       
     }
