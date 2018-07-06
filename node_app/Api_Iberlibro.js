@@ -40,7 +40,7 @@ module.exports = function () {
                 //response.setEncoding('ISO-8859-1');
             
                 response.on('data', function (cbresponse) {
-                    var _jsonResponse = convert.xml2js(cbresponse.toString(), {compact: false})
+                    var _jsonResponse = convert.xml2js(cbresponse.toString(), {compact: true})
                     
                     console.log('response received:')
                     console.log( cbresponse.toString() );
