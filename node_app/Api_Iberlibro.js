@@ -39,9 +39,9 @@ module.exports = function () {
             
                 response.on('data', function (cbresponse) {
                     
-                    console.println('response received:')
-                    console.println(cbresponse);
-                    console.println('***********************')
+                    console.log('response received:')
+                    console.log(cbresponse);
+                    console.log('***********************')
                     debugger
                 });
             });
@@ -54,7 +54,7 @@ module.exports = function () {
             });
 
             //write data to server
-            console.println(_xml)
+            console.log(_xml)
             request.write(_xml);
             request.end();
         }
