@@ -35,7 +35,7 @@ module.exports = function () {
             protocol = this.https;
             debugger
             var request = protocol.request(options, function (response) {
-                response.setEncoding('ISO-8859-1');
+                //response.setEncoding('ISO-8859-1');
             
                 response.on('data', function (cbresponse) {
                     
