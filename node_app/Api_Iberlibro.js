@@ -8,7 +8,7 @@ module.exports = function () {
         url : require('url'), // url parser 
 
         post: function( _action, record){
-            debugger
+           
             var _xml = this.xml_process.xmlIberbooks(record,[],_action)
             var callback = this.url.parse('https://inventoryupdate.abebooks.com:10027');
 
@@ -24,8 +24,8 @@ module.exports = function () {
                 path: callback.path,
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                    'Content-Length': xml_body.length,
+                    'Content-Type': 'application/xml',
+                    'Content-Length': _xml.length,
                     'User-Agent': api_agent,
                     'Referer': callback.protocol + '//' + callback.hostname
                 },
@@ -33,23 +33,25 @@ module.exports = function () {
             }
             
             protocol = this.https;
-
+            debugger
             var request = protocol.request(options, function (response) {
                 response.setEncoding('utf8');
             
                 response.on('data', function (cbresponse) {
+                    debugger
                     console.log(cbresponse);
             
                 });
             });
             
             request.on('error', function (e) {
+                    debugger
                     console.log('problem with request: ');
                     console.log(e);
             });
 
             //write data to server
-            request.write(xml_body);
+            request.write(_xml);
             request.end();
         }
     }
