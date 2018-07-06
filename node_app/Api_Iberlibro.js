@@ -1,13 +1,14 @@
 module.exports = function () {
 
     return {
-        apiKey : 'fcbe644dd3ba46a797be',
+        xml_process : require('./xml_prepare.js')(),
         https : require('https'), // https server
         http : require('http'), // http server
         querystring : require('querystring'),
         url : require('url'), // url parser 
 
-        post: function( _action, xml_body){
+        post: function( _action, record){
+            var _xml = this.xml_process.xmlIberbooks(record,[],_action)
             var callback = this.url.parse('https://inventoryupdate.abebooks.com:10027');
 
             var api_agent = 'abboks.bbdd.ovh'
