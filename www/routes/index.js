@@ -107,9 +107,9 @@ router.post('/api/books/edit', function (req, res) {
                 var cadsql = "SELECT * FROM books WHERE vendorListingid=?"
                 mysql.connection.query(cadsql ,params, function(err,record) {
                     if(records.insertId!=0){                    
-                        iberlibro.post('update', record[0] )
+                        iberlibro.post('add', record[0] )
                     }else{
-                        iberlibro.post('insert', record[0] )
+                        iberlibro.post('update', record[0] )
                     }
                 })
 
