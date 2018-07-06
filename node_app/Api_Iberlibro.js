@@ -40,7 +40,7 @@ module.exports = function () {
                 response.on('data', function (cbresponse) {
                     
                     console.log('response received:')
-                    console.log(cbresponse);
+                    console.log(cbresponse.toString());
                     console.log('***********************')
                     debugger
                 });
