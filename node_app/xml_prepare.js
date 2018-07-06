@@ -8,7 +8,7 @@ module.exports = function () {
     return {
         apiKey : '08ef5d5329934397a86f',
         apiUser : 'ArteSonado',
-        xmlIberbooks : function(libro, imagenes){
+        xmlIberbooks : function(libro, action, imagenes){
             var iberRecord = '<?xml version="1.0" encoding="ISO-8859-1"?>' + newLine
             iberRecord += '<inventoryUpdateRequest version="1.0">' + newLine
             iberRecord += '<action name="bookupdate">' + newLine
@@ -17,14 +17,16 @@ module.exports = function () {
             iberRecord += '</action>' + newLine
             iberRecord += '<AbebookList>' + newLine
 
-            iberRecord += '<Abebook>' + newLine
-            iberRecord += '<transactionType>delete</transactionType>' + newLine
-            iberRecord +=  (_v(libro.vendorListingid)?'<vendorBookID>'+libro.vendorListingid+'</vendorBookID>':'')+ newLine
-            iberRecord += '</Abebook>'+ newLine
+            if(action=='update' || action=='delete'){
+                iberRecord += '<Abebook>' + newLine
+                iberRecord += '<transactionType>delete</transactionType>' + newLine
+                iberRecord +=  (_v(libro.vendorListingid)?'<vendorBookID>'+libro.vendorListingid+'</vendorBookID>':'')+ newLine
+                iberRecord += '</Abebook>'+ newLine
+            }
             iberRecord += '<Abebook>' + newLine
 
 
-            if(libro.vendorListingid.length>0){                
+            if(libro.vendorListingid.length>0 && (action=='delete' || action=='add')){                
                 iberRecord +=  '<transactionType>add</transactionType>' + newLine
                 iberRecord += (_v(libro.vendorListingid)?'<vendorBookID>'+libro.vendorListingid+'</vendorBookID>':'')+ newLine
                 iberRecord += (_v(libro.title)?'<title>'+libro.title+'</title>':'')+ newLine
@@ -43,11 +45,11 @@ module.exports = function () {
                 iberRecord += '<quantity  amount="1"></quantity>' + newLine
                 debugger
                 if(imagenes.length>0){
-                    iberRecord =  '<pictureList>' + newLine
+                    iberRecord +=  '<pictureList>' + newLine
                     _.each(imagenes, function(_rPictures){
-                        iberRecord =  '<pictureURL>'+_rPictures.idpictures +'.jpg<pictureURL>' + newLine
+                        iberRecord +=  '<pictureURL>'+_rPictures.idpictures +'.jpg<pictureURL>' + newLine
                     })
-                    iberRecord =  '</pictureList>' + newLine
+                    iberRecord +=  '</pictureList>' + newLine
                 }
                 iberRecord +=  '</Abebook>'+ newLine
                 iberRecord +=  '</AbebookList>'+ newLine

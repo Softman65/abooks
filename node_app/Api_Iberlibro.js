@@ -7,9 +7,9 @@ module.exports = function () {
         querystring : require('querystring'),
         url : require('url'), // url parser 
         convert : require('xml-js'),
-        post: function(record, _cb){
+        post: function(record, action, _cb){
            
-            var _xml = this.xml_process.xmlIberbooks(record,[])
+            var _xml = this.xml_process.xmlIberbooks(action, record,[])
             var callback = this.url.parse('https://inventoryupdate.abebooks.com:10027');
 
             var api_agent = 'abboks.bbdd.ovh'

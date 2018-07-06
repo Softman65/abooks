@@ -99,10 +99,10 @@ router.post('/api/books/new', function (req, res) {
 })
 router.post('/api/books/edit', function (req, res) {
     if(req.query.form=='formIberlibro'){
-        mysql.connection.query("SELECT * FROM books WHERE vendorListingid=?",[req.query.vendorListingid],function(err,_IberRecord){
-
-                iberlibro.post( _IberRecord[0], function(response){
-                    
+        mysql.connection.query("SELECT * FROM books WHERE vendorListingid=?;SELECT Count(*) as counter from iberlibro WHERE vendorListingid=?",[req.query.vendorListingid,req.query.vendorListingid],function(err,_IberRecord){
+                var action = req.body.price_quantity_Iberlibro>0?_IberRecord[1][0].counter>0?'add':'update':'delete'
+                
+                iberlibro.post( _IberRecord[0][0], action, function(response){                  
                     var cadsql = "INSERT INTO iberlibro (vendorListingid,price_quantity,fecha_add) VALUES (?,?,NOW())  ON DUPLICATE KEY UPDATE price_quantity=?"
                     var params = [req.query.vendorListingid,req.body.price_quantity_Iberlibro,req.body.price_quantity_Iberlibro]
                     mysql.connection.query(cadsql ,params, function(err,records) {
@@ -111,6 +111,7 @@ router.post('/api/books/edit', function (req, res) {
                         res.json({body:req.body,err:err,records:records, iberlibro:response });
                     })
                 })
+
             //})
         })
         
