@@ -49,9 +49,14 @@ mysql.connection.connect(function(err) {
     if (err) {
       console.error('error connecting: ' + err.stack);
       return;
+    }else{
+        setInterval(function(){
+            mysql.connection.query('SELECT 1 as counter', function(){
+                console.log('reconnected')
+            })
+        }, 60000*15)
+        console.log('connected as id ' + mysql.connection.threadId);
     }
-  
-    console.log('connected as id ' + mysql.connection.threadId);
 });
 
 console.log('conected mysql')
