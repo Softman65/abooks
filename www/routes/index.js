@@ -107,6 +107,7 @@ router.post('/api/books/edit', function (req, res) {
             var cadsql = ""    
             var action = req.body.price_quantity_Iberlibro>0?_IberRecord[1][0].counter>0?'add':'update':'delete'
                 console.log(action)
+                _IberRecord[0][0].price_quantity = req.body.price_quantity_Iberlibro
                 iberlibro.post( _IberRecord[0][0], action, function(response){                  
                     if(req.body.price_quantity_Iberlibro>0){
                         cadsql = "INSERT INTO iberlibro (vendorListingid,price_quantity,fecha_add) VALUES (?,?,NOW())  ON DUPLICATE KEY UPDATE price_quantity=?"
