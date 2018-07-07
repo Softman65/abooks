@@ -23,10 +23,11 @@ module.exports = function () {
                 iberRecord +=  (_v(libro.vendorListingid)?'<vendorBookID>'+libro.vendorListingid+'</vendorBookID>':'')+ newLine
                 iberRecord += '</Abebook>'+ newLine
             }
-            iberRecord += '<Abebook>' + newLine
+            
 
             console.log(action)
-            if(libro.vendorListingid.length>0 && (action=='update' || action=='add')){                
+            if(libro.vendorListingid.length>0 && (action=='update' || action=='add')){
+                iberRecord += '<Abebook>' + newLine                
                 iberRecord +=  '<transactionType>add</transactionType>' + newLine
                 iberRecord += (_v(libro.vendorListingid)?'<vendorBookID>'+libro.vendorListingid+'</vendorBookID>':'')+ newLine
                 iberRecord += (_v(libro.title)?'<title>'+libro.title+'</title>':'')+ newLine
@@ -55,7 +56,8 @@ module.exports = function () {
                 iberRecord +=  '</AbebookList>'+ newLine
                 iberRecord +=  '</inventoryUpdateRequest>'+ newLine
             }else{
-                iberRecord = null
+                iberRecord +=  '</AbebookList>'+ newLine
+                iberRecord +=  '</inventoryUpdateRequest>'+ newLine
             }
            
             return iberRecord
