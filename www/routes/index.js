@@ -103,30 +103,22 @@ router.post('/api/books/new', function (req, res) {
 })
 router.post('/api/books/edit', function (req, res) {
     if(req.query.form=='formIberlibro'){
-        mysql.connection.query("SELECT * FROM books WHERE vendorListingid=?;SELECT Count(*) as counter from iberlibro WHERE vendorListingid=?",[req.query.vendorListingid,req.query.vendorListingid],function(err,_IberRecord){
-            var cadsql = ""    
-            var action = req.body.price_quantity_Iberlibro>0?_IberRecord[1][0].counter>0?'add':'update':'delete'
-               
-                _IberRecord[0][0].price_quantity = req.body.price_quantity_Iberlibro * 1
-                console.log(action, _IberRecord[0][0].price_quantity)
-                iberlibro.post( _IberRecord[0][0], action, function(response){                  
-                    if(_IberRecord[0][0].price_quantity>0){
-                        cadsql = "INSERT INTO iberlibro (vendorListingid,price_quantity,fecha_add) VALUES (?,?,NOW())  ON DUPLICATE KEY UPDATE price_quantity=?"
-                    }else{
-                        cadsql = "DELETE FROM iberlibro WHERE vendorListingid=?"
-                    }
-                    var params = [req.query.vendorListingid,req.body.price_quantity_Iberlibro,req.body.price_quantity_Iberlibro]
-                    mysql.connection.query(cadsql ,params, function(err,records) {
-                        if(err)
-                            debugger
-                        res.json({body:req.body,err:err,records:records, iberlibro:response });
-                    })
-                })
 
-            //})
-        })
-        
-        
+        iberlibro.askToDb(req.query.vendorListingid,req.body.price_quantity_Iberlibro,function(_IberRecord,response){
+            if(_IberRecord[0][0].price_quantity>0){
+                cadsql = "INSERT INTO iberlibro (vendorListingid,price_quantity,fecha_add) VALUES (?,?,NOW())  ON DUPLICATE KEY UPDATE price_quantity=?"
+            }else{
+                cadsql = "DELETE FROM iberlibro WHERE vendorListingid=?"
+            }
+            var params = [req.query.vendorListingid,req.body.price_quantity_Iberlibro,req.body.price_quantity_Iberlibro]
+            mysql.connection.query(cadsql ,params, function(err,records) {
+                if(err)
+                    debugger
+                res.json({body:req.body,err:err,records:records, iberlibro:response });
+            })
+
+        }) 
+  
     }else{
         if(req.query.form=='formAmazon'){
             var cadsql = "INSERT INTO amazon (vendorListingid,price_quantity_ES,fecha_add) VALUES (?,?,NOW())  ON DUPLICATE KEY UPDATE price_quantity=?"

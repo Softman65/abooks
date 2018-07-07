@@ -68,6 +68,20 @@ module.exports = function () {
             console.log(_xml)
             request.write(_xml);
             request.end();
+        },
+        askToDb:function(vendorListingid,price,callback){
+            const iberlibro = this
+            mysql.connection.query("SELECT * FROM books WHERE vendorListingid=?;SELECT Count(*) as counter from iberlibro WHERE vendorListingid=?",[vendorListingid,vendorListingid],function(err,_IberRecord){
+                    
+                var action = price>0?_IberRecord[1][0].counter>0?'add':'update':'delete'                   
+                _IberRecord[0][0].price_quantity = price * 1
+                console.log(action, _IberRecord[0][0].price_quantity)
+
+                iberlibro.post( _IberRecord[0][0], action, function(response){
+                    callback(_IberRecord,response)
+                })
+            })
+
         }
     }
 }
