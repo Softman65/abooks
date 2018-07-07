@@ -150,9 +150,13 @@ mysql.connection.connect(function(err) {
                             if(err){
                                 debugger
                             }else{
-                                iberlibro.askIberlibro(records[1],records[3],records[1][0].price_quantity , function(){
-                                    res.json({body:req.body,err:err,records:records});  
-                                }, iberlibro)
+                                if(records[3][0].counter>0){
+                                    iberlibro.askIberlibro(records[1],records[3],records[1][0].price_quantity , function(){
+                                        res.json({body:req.body,err:err,records:records});  
+                                    }, iberlibro)
+                                }else{
+                                    res.json({body:req.body,err:err,records:records})
+                                }
                             }
                             //if(records[3][0].counter)
 
