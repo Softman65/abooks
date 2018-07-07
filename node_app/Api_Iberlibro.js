@@ -76,15 +76,17 @@ module.exports = function (mysql) {
             const iberlibro = this
             mysql.query("SELECT * FROM books WHERE vendorListingid=?;SELECT Count(*) as counter from iberlibro WHERE vendorListingid=?",[vendorListingid,vendorListingid],function(err,_IberRecord){
                 debugger    
-                var action = price>0?_IberRecord[1][0].counter>0?'add':'update':'delete'                   
-                _IberRecord[0][0].price_quantity = price * 1
-                console.log(action, _IberRecord[0][0].price_quantity)
-
-                iberlibro.post( _IberRecord[0][0], action, function(response){
-                    callback(_IberRecord,response)
-                })
+                iberlibro.askIberlibro(_IberRecord[0],_IberRecord[1],price , callback, iberlibro)
             })
 
+        },
+        askIberlibro:function(books,counter,price, callback, iberlibro){
+            var action = price>0? counter[0].counter >0 ?'add':'update':'delete'                   
+            books[0].price_quantity = price * 1
+
+            iberlibro.post( books[0] , action, function(response){
+                callback([books,counter],response)
+            })
         }
     }
 }

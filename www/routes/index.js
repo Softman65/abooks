@@ -49,7 +49,9 @@ mysql.connection.connect(function(err) {
       console.error('error connecting: ' + err.stack);
       return;
     }else{
+
         var iberlibro = require('../../node_app/Api_Iberlibro.js')(mysql.connection)
+
         setInterval(function(){
             mysql.connection.query('SELECT 1 as counter', function(){
                 console.log('reconnected')
@@ -133,7 +135,7 @@ mysql.connection.connect(function(err) {
                     })            
                 }else{
                     debugger
-                    var cadsqlLast= "; SELECT *  FROM books WHERE vendorListingid="+ req.query.vendorListingid+";SELECT * FROM pictures WHERE vendorListingid="+req.query.vendorListingid
+                    var cadsqlLast= "; SELECT *  FROM books WHERE vendorListingid="+ req.query.vendorListingid + ";SELECT * FROM pictures WHERE vendorListingid="+req.query.vendorListingid + ";SELECT COUNT(*) as counter FROM iberlibro WHERE vendorListingid=" + req.query.vendorListingid
                     var cadsql= "UPDATE books SET "
                     var counter = 0
                     var params = []
@@ -145,9 +147,16 @@ mysql.connection.connect(function(err) {
                         })
                         debugger
                         mysql.connection.query(cadsql+" WHERE vendorListingid="+ req.query.vendorListingid + cadsqlLast ,params, function(err,records) {
-                            if(err)
+                            if(err){
                                 debugger
-                            res.json({body:req.body,err:err,records:records});
+                            }else{
+                                iberlibro.askIberlibro(records[1],records[3],records[1][0].price_quantity , function(){
+                                    res.json({body:req.body,err:err,records:records});  
+                                }, iberlibro)
+                            }
+                            //if(records[3][0].counter)
+
+                           // res.json({body:req.body,err:err,records:records});
                         })
                     }else{
                         res.json(req.body);
