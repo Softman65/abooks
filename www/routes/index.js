@@ -103,7 +103,7 @@ router.post('/api/books/new', function (req, res) {
 })
 router.post('/api/books/edit', function (req, res) {
     if(req.query.form=='formIberlibro'){
-
+        debugger
         iberlibro.askToDb(req.query.vendorListingid,req.body.price_quantity_Iberlibro,function(_IberRecord,response){
             if(_IberRecord[0][0].price_quantity>0){
                 cadsql = "INSERT INTO iberlibro (vendorListingid,price_quantity,fecha_add) VALUES (?,?,NOW())  ON DUPLICATE KEY UPDATE price_quantity=?"
