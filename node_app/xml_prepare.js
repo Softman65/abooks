@@ -4,7 +4,7 @@ module.exports = function () {
     var _v = function(e){
         return e!=null
     }
-    var iconv = require('iconv-lite'),
+    var iconv = require('iconv-lite')
     var newLine= String.fromCharCode(10) + String.fromCharCode(13) // "Before "+ "%0D%0A"
     return {
         apiKey : '08ef5d5329934397a86f',
