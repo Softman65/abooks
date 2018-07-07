@@ -27,3 +27,6 @@
 .back{
     cursor:pointer;
 }
+.ui.modal>.content {
+    background: #ffc10775!important;
+}
