@@ -1,4 +1,4 @@
-module.exports = function () {
+module.exports = function (mysql) {
 
     return {
         xml_process : require('./xml_prepare.js')(),
@@ -71,7 +71,7 @@ module.exports = function () {
         },
         askToDb:function(vendorListingid,price,callback){
             const iberlibro = this
-            mysql.connection.query("SELECT * FROM books WHERE vendorListingid=?;SELECT Count(*) as counter from iberlibro WHERE vendorListingid=?",[vendorListingid,vendorListingid],function(err,_IberRecord){
+            mysql.query("SELECT * FROM books WHERE vendorListingid=?;SELECT Count(*) as counter from iberlibro WHERE vendorListingid=?",[vendorListingid,vendorListingid],function(err,_IberRecord){
                 debugger    
                 var action = price>0?_IberRecord[1][0].counter>0?'add':'update':'delete'                   
                 _IberRecord[0][0].price_quantity = price * 1
