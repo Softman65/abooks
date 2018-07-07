@@ -111,7 +111,7 @@ $(document).ready(function() {
                   }else{
                     _JsonArgs = getFormData($form)
                   }
-                  debugger
+                  //debugger
     
                   if(_JsonArgs!=null){ 
                       $.ajax({
@@ -119,6 +119,7 @@ $(document).ready(function() {
                           url: "/api/books/" + _type +(_type=='edit'?"?form="+$('#edit').attr('data') +'&vendorListingid='+args.item.vendorListingid:''),
                           data: _JsonArgs
                       }).done(function( data ) {
+                          console.log(data)
                           $("#jsGrid").jsGrid( "loadData" );   
                       });
                   }else{
@@ -190,7 +191,7 @@ $(document).ready(function() {
     }
     function validateForm($form){
         var _e = $('.validate').find('input')
-        debugger
+       // debugger
     }
     function getFormData($form){
         var unindexed_array = $form.serializeArray();

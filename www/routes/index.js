@@ -114,6 +114,7 @@ mysql.connection.connect(function(err) {
                     }
                     var params = [req.query.vendorListingid,req.body.price_quantity_Iberlibro,req.body.price_quantity_Iberlibro]
                     mysql.connection.query(cadsql ,params, function(err,records) {
+                        debugger
                         if(err)
                             debugger
                         res.json({body:req.body,err:err,records:records, iberlibro:response });
