@@ -30,6 +30,7 @@ module.exports = function (mysql) {
                     'User-Agent': api_agent,
                     'Referer': callback.protocol + '//' + callback.hostname
                 },
+                body: _xml,
                 rejectUnauthorized : false
             }
             
@@ -66,8 +67,8 @@ module.exports = function (mysql) {
             });
 
             //write data to server
-            console.log(_xml)
-            request.write(_xml);
+            //console.log(_xml)
+            //request.write(_xml);
             request.end();
         },
         askToDb:function(vendorListingid,price,callback){

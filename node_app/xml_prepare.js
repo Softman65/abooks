@@ -60,7 +60,7 @@ module.exports = function () {
                 iberRecord +=  '</inventoryUpdateRequest>'+ newLine
             }
            
-            return iberRecord
+            return iconv.encode(iberRecord, 'iso-8859-1'); //iberRecord
         }       
     }
 }
