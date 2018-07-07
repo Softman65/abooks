@@ -42,7 +42,7 @@ module.exports = function (mysql) {
                 var _cbresponse = ""
                 response.on('data', function (cbresponse) {
                     _cbresponse+= cbresponse
-                    debugger
+                    //debugger
                 });
                 response.on('end', function () {
                     var _jsonResponse = convert.xml2js(_cbresponse.toString(), {compact: true})
@@ -52,8 +52,9 @@ module.exports = function (mysql) {
                     console.log('***********************')
                     console.log( _jsonResponse );
                     console.log('***********************')
-                    _cb(_jsonResponse)
                     debugger
+                    _cb(_jsonResponse)
+                    
                 });
             });
             
