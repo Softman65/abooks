@@ -28,7 +28,7 @@ function decrypt(text,secret){
     return dec;
 }
 debugger
-console.log( 'LOGIN')
+console.log( 'LOGIN mysql')
 //console.log( decrypt('1aa39d3af7a0f87f5af85f','abooks.bbdd.ovh') )
 //console.log( decrypt('1cb49321f9be','abooks.bbdd.ovh') )
 const mysql = {
@@ -41,10 +41,9 @@ const mysql = {
         database: decrypt('1cb49321f9be','abooks.bbdd.ovh')
     }
 }
-console.log(mysql.credentials.password)
+
 
 mysql.connection = mysql.engine.createConnection(mysql.credentials);
-console.log('LOGIN')
 mysql.connection.connect(function(err) {
     if (err) {
       console.error('error connecting: ' + err.stack);
