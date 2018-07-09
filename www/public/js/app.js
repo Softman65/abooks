@@ -133,7 +133,7 @@ $(document).ready(function() {
             var getData = args.item;
             var keys = Object.keys(getData);
             var text = [];
-        
+            debugger
             $.each(keys, function(idx, value) {
                 if(value == 'description'){
                     $('#edit textarea[name="'+value+'"]').text(getData[value])
