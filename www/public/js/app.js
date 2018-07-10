@@ -140,7 +140,7 @@ $(document).ready(function() {
                 }else{
                     if( value == 'C_iberlibro'){  
                         var _v = value.substr(1,value.length)                      
-                        $('#edit .ui.toggle.checkbox [name="'+_v+'"]').parent().checkbox(getData[value]==null?'uncheck':getData[value].length>0?'check':'uncheck')
+                        $('#edit .ui.toggle.checkbox [name="'+_v+'"]').parent().checkbox(getData[value]==null?'uncheck':getData[value]>0?'check':'uncheck')
                     }else{
                         if($('#edit input[name="'+value+'"]').attr('type')!='hidden'){
                             $('#edit input[name="'+value+'"]').val(getData[value]) //.removeAttr("disabled")
