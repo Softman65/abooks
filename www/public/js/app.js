@@ -138,8 +138,10 @@ $(document).ready(function() {
                 if(value == 'description'){
                     $('#edit textarea[name="'+value+'"]').text(getData[value])
                 }else{
-                    if(value == '_sale'){
-                        $('#edit .ui.toggle.checkbox').checkbox(getData[value]==null?'uncheck':getData[value].length>0?'check':'uncheck')
+                    if(value == '_sales' || value == '_iberlibro'){
+                        
+                            $('#edit .ui.toggle.checkbox [name="'+value+'"]').parent().checkbox(getData[value]==null?'uncheck':getData[value].length>0?'check':'uncheck')
+
                     }else{
                         if($('#edit input[name="'+value+'"]').attr('type')!='hidden'){
                             $('#edit input[name="'+value+'"]').val(getData[value]) //.removeAttr("disabled")
@@ -166,7 +168,7 @@ $(document).ready(function() {
             
             $('#edit .header.book').html('Nuevo Libro')
             $('#edit .ui.approve.button').addClass("disabled").html('Crear')
-            $('#edit .ui.toggle.checkbox [name="_iberlibro"]').checkbox('check')
+            $('#edit .ui.toggle.checkbox [name="_iberlibro"]').parent().checkbox('check')
             debugger
         }
 
