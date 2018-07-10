@@ -133,7 +133,7 @@ $(document).ready(function() {
             var getData = args.item;
             var keys = Object.keys(getData);
             var text = [];
-            debugger
+           
             $.each(keys, function(idx, value) {
                 if(value == 'description'){
                     $('#edit textarea[name="'+value+'"]').text(getData[value])
@@ -166,7 +166,8 @@ $(document).ready(function() {
             
             $('#edit .header.book').html('Nuevo Libro')
             $('#edit .ui.approve.button').addClass("disabled").html('Crear')
-            $('#edit .ui.toggle.checkbox').checkbox('check')
+            $('#edit .ui.toggle.checkbox [name="_iberlibro"]').checkbox('check')
+            debugger
         }
 
 
