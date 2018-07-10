@@ -138,7 +138,7 @@ $(document).ready(function() {
                 if(value == 'description'){
                     $('#edit textarea[name="'+value+'"]').text(getData[value])
                 }else{
-                    if( value == '_iberlibro'){  
+                    if( value == 'C_iberlibro'){  
                         var _v = value.substr(3,value.length)                      
                         $('#edit .ui.toggle.checkbox [name="'+_v+'"]').parent().checkbox(getData[value]==null?'uncheck':getData[value].length>0?'check':'uncheck')
                     }else{
