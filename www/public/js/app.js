@@ -138,8 +138,9 @@ $(document).ready(function() {
                 if(value == 'description'){
                     $('#edit textarea[name="'+value+'"]').text(getData[value])
                 }else{
-                    if( value == 'C_iberlibro'){                        
-                        $('#edit .ui.toggle.checkbox [name="C'+value+'"]').parent().checkbox(getData["C"+value]==null?'uncheck':getData["C"+value].length>0?'check':'uncheck')
+                    if( value == '_iberlibro'){  
+                        var _v = value.substr(3,value.length)                      
+                        $('#edit .ui.toggle.checkbox [name="'+_v+'"]').parent().checkbox(getData[value]==null?'uncheck':getData[value].length>0?'check':'uncheck')
                     }else{
                         if($('#edit input[name="'+value+'"]').attr('type')!='hidden'){
                             $('#edit input[name="'+value+'"]').val(getData[value]) //.removeAttr("disabled")
