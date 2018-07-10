@@ -166,6 +166,7 @@ $(document).ready(function() {
             
             $('#edit .header.book').html('Nuevo Libro')
             $('#edit .ui.approve.button').addClass("disabled").html('Crear')
+            $('#edit .ui.toggle.checkbox').checkbox('check')
         }
 
 
