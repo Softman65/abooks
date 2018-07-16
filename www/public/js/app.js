@@ -150,7 +150,7 @@ $(document).ready(function() {
             
             $('#edit .header.book').html('Nuevo Libro')
             $('#edit .ui.approve.button').addClass("disabled").html('Crear')
-            $('#edit .ui.toggle.checkbox [name="_iberlibro"]').parent().checkbox('set check')
+            $('#edit .ui.toggle.checkbox [name="_iberlibro"]').parent().checkbox('set checked')
             debugger
         }
 
@@ -182,7 +182,7 @@ $(document).ready(function() {
             }else{
                 if( value == 'C_iberlibro'){  
                     var _v = value.substr(1,value.length)                      
-                    $('#edit .ui.toggle.checkbox [name="'+_v+'"]').parent().checkbox('set ' + (type=='edit'?(getData[value]==null?'uncheck':getData[value]>0?'check':'uncheck'):'check'))
+                    $('#edit .ui.toggle.checkbox [name="'+_v+'"]').parent().checkbox('set ' + (type=='edit'?(getData[value]==null?'uncheck':getData[value]>0?'checked':'uncheck'):'checked'))
                 }else{
                     if($('#edit input[name="'+value+'"]').attr('type')!='hidden'){
                         $('#edit input[name="'+value+'"]').val(type=='edit'?getData[value]:'') //.removeAttr("disabled")
