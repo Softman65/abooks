@@ -362,16 +362,16 @@ $(document).ready(function() {
                     itemTemplate: function(value) {        
                         return value;
                     }},
-                    {  title: "€", name: "price_quantity", type: "text", width: 40, align: "right", 
+                    {  title: "€", name: "price_quantity", type: "text", width: 60, align: "right", 
                     itemTemplate: function(value) {        
                         return value+" €";
                     }},
-                    {  title: "sale", name: "_sale", type: "text", width: 40,
+                    {  title: "sale", name: "_sale", type: "text", width: 60,
                     itemTemplate: function(value) {
                         var _t = value=='IBER'?'leanpub':'amazon'       
                         return value==null?null:$('<i class="'+_t+' icon sale">');
                     }},
-                    {  title: "", name: "C_iberlibro", type: "text", width: 40,filtering: false,
+                    {  title: "", name: "C_iberlibro", type: "text", width: 60,filtering: false,
                     itemTemplate: function(value,record) {
                         var _t = value>0?'green':'red'       
                         return value==null?null:$('<i class="leanpub '+_t+' icon large '+(record._sale!=null?'hidden':'')+'">').attr('data',record.vendorListingid).click(function(e){
