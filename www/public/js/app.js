@@ -209,7 +209,7 @@ $(document).ready(function() {
         $.map(unindexed_array, function(n, i){
             indexed_array[n['name']] = n['value'];
         });
-    
+        indexed_array._iberlibro = $('#edit .ui.toggle.checkbox [name="_iberlibro"]').parent().checkbox('is checked')?"on":"off"
         return indexed_array;
     }
     function diferences(modificado,original){
