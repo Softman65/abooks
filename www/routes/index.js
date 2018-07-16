@@ -98,8 +98,32 @@ mysql.connection.connect(function(err) {
                         debugger
                     
                     // var xml = require('../../node_app/xml_prepare.js')().xmlIberbooks(records[1][0],records[2],"new")
+                    if(req.body._iberlibro=="on"){
+                        //iberlibro.askToDb(req.query.vendorListingid,req.body.price_quantity*1,function(_IberRecord,response){
+                            if(req.body.price_quantity*1>0){
+                                cadsql = "INSERT INTO iberlibro (vendorListingid,price_quantity,fecha_add) VALUES (?,?,NOW())  ON DUPLICATE KEY UPDATE price_quantity=?"
+                                records[3] = [ {counter:1} ]
+                            
+                                var params = [req.query.vendorListingid,req.body.price_quantity,req.body.price_quantity]
+                                mysql.connection.query(cadsql ,params, function(err,_record) {
+                                    debugger
+                                    if(err)
+                                        debugger
+                                    iberlibro.askIberlibro(records[1],records[3],records[1][0].price_quantity , function(){
+                                        
+                                        res.json({body:req.body,err:err,records:records});  
+                                    }, iberlibro)
+                                })
+                            }else{
+                                res.json({body:req.body,err:err,records:records})
+                            }
+                        //})                                     
+                        debugger
 
-                    res.json({body:req.body,err:err,records:records});
+                    }else{
+                        res.json({body:req.body,err:err,records:records})
+                    }
+                    
                 })
             }else{
                 res.json(req.body);
@@ -158,11 +182,13 @@ mysql.connection.connect(function(err) {
                                 debugger
                             }else{
                                 if(_iberlibro){
-                                    iberlibro.askToDb(req.query.vendorListingid,req.body.price_quantity*1,function(_IberRecord,response){
-                                        if(records[3][0].counter==0){
+                                    //iberlibro.askToDb(req.query.vendorListingid,req.body.price_quantity*1,function(_IberRecord,response){
+                                        if(req.body.price_quantity*1>0){
                                             cadsql = "INSERT INTO iberlibro (vendorListingid,price_quantity,fecha_add) VALUES (?,?,NOW())  ON DUPLICATE KEY UPDATE price_quantity=?"
+                                            records[3][0].counter = 1
                                         }else{
                                             cadsql = "DELETE FROM iberlibro WHERE vendorListingid=?"
+                                            records[3][0].counter = 0
                                         }
                                         var params = [req.query.vendorListingid,req.body.price_quantity,req.body.price_quantity]
                                         mysql.connection.query(cadsql ,params, function(err,_record) {
@@ -170,12 +196,11 @@ mysql.connection.connect(function(err) {
                                             if(err)
                                                 debugger
                                             iberlibro.askIberlibro(records[1],records[3],records[1][0].price_quantity , function(){
-                                                records[3][0].counter = 1
+                                                
                                                 res.json({body:req.body,err:err,records:records});  
                                             }, iberlibro)
                                         })
-                    
-                                    })                                     
+                                    //})                                     
                                     debugger
 
                                 }else{

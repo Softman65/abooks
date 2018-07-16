@@ -16,9 +16,6 @@ $(document).ready(function() {
                 alert('foto guardada')
                   
             });
-
-
-
         })
 
         $('#images').modal({
