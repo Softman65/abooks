@@ -81,7 +81,7 @@ module.exports = function (mysql) {
 
         },
         askIberlibro:function(books,counter,price, callback, iberlibro){
-            var action = price>0? counter[0].counter >0 ?'add':'update':'delete'                   
+            var action = price>0? counter[0].counter ==0 ?'add':'update':'delete'                   
             books[0].price_quantity = price * 1
 
             iberlibro.post( books[0] , action, function(response){
