@@ -114,7 +114,7 @@ mysql.connection.connect(function(err) {
                                     var params = [records.insertId,req.body.price_quantity,req.body.price_quantity]
                                     mysql.connection.query('SELECT *  FROM books WHERE vendorListingid='+records.insertId+";Select 1 as counter;"  ,params, function(err,_record) {
                                         debugger
-                                        iberlibro.askIberlibro(records[0],records[1],records[0][0].price_quantity , function(){
+                                        iberlibro.askIberlibro(_record[0],_record[1],_record[0][0].price_quantity , function(){
 
                                             res.json({body:req.body,err:err,records:records});  
                                         }, iberlibro)
