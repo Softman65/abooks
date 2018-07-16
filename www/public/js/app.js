@@ -126,22 +126,24 @@ $(document).ready(function() {
         }).modal('show')
 
 
-        var getData = args.item;
-        var keys = Object.keys(getData);
-        var text = [];
-        actualizeFields(_type,keys,getData)
+
 
         if(_type=='edit'){
+            var getData = args.item;
+            var keys = Object.keys(getData);
+            var text = [];
+            actualizeFields(_type,keys,getData)
+
             $('#edit .ui.approve.button').html('Guardar')
             $('#edit .header.book').html('<span><span class="left green">'+getData.title+'</span><span class="right">'+getData.vendorListingid+'-<span class="red">'+(getData._loc==null?'?':getData._loc)+'</span></span></span>')
            
         }else{
 
-            //$('#edit input').each(function(obj){
-            //    var q = $($('#edit input')[obj]).val('')
-                //$(q).val('')
-            //})
-            //$('#edit textarea').text('')
+            $('#edit input').each(function(obj){
+                var q = $($('#edit input')[obj]).val('')
+                $(q).val('')
+            })
+            $('#edit textarea[name="description"]').text('')
             dropdownFormEdit('restore defaults')
             
             $('#edit .header.book').html('Nuevo Libro')
