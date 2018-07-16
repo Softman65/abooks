@@ -182,7 +182,7 @@ $(document).ready(function() {
             }else{
                 if( value == 'C_iberlibro'){  
                     var _v = value.substr(1,value.length)                      
-                    $('#edit .ui.toggle.checkbox [name="'+_v+'"]').parent().checkbox((type=='edit'?(getData[value]==null?'uncheck':getData[value]>0?'check':'uncheck'):'check'))
+                    $('#edit .ui.toggle.checkbox [name="'+_v+'"]').parent().checkbox('set ' + (type=='edit'?(getData[value]==null?'uncheck':getData[value]>0?'check':'uncheck'):'check'))
                 }else{
                     if($('#edit input[name="'+value+'"]').attr('type')!='hidden'){
                         $('#edit input[name="'+value+'"]').val(type=='edit'?getData[value]:'') //.removeAttr("disabled")
