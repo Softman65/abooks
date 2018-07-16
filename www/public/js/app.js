@@ -140,8 +140,10 @@ $(document).ready(function() {
         }else{
 
             $('#edit input').each(function(obj){
-                var q = $($('#edit input')[obj]).val('')
-                $(q).val('')
+                if($('#edit input').attr('name')!="_iberlibro"){
+                    var q = $($('#edit input')[obj]).val('')
+                    $(q).val('')
+                }
             })
             $('#edit textarea[name="description"]').text('')
             dropdownFormEdit('restore defaults')
