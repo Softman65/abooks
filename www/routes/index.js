@@ -27,7 +27,7 @@ function decrypt(text,secret){
     dec += decipher.final('utf8');
     return dec;
 }
-debugger
+//debugger
 console.log( 'LOGIN mysql')
 //console.log( decrypt('1aa39d3af7a0f87f5af85f','abooks.bbdd.ovh') )
 //console.log( decrypt('1cb49321f9be','abooks.bbdd.ovh') )
