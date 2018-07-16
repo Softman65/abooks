@@ -149,7 +149,7 @@ mysql.connection.connect(function(err) {
                                 cadsql=cadsql+(counter>1?',':'')+key+"=?"
                                 params.push(value)
                             }else{
-                                _iberlibro == 'on' ? true : false
+                                _iberlibro = (value == 'on' ? true : false)
                             }
                         })
                         debugger
