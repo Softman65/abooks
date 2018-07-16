@@ -150,7 +150,7 @@ $(document).ready(function() {
             
             $('#edit .header.book').html('Nuevo Libro')
             $('#edit .ui.approve.button').addClass("disabled").html('Crear')
-            $('#edit .ui.toggle.checkbox [name="_iberlibro"]').parent().checkbox('uncheck')
+            $('#edit .ui.toggle.checkbox [name="_iberlibro"]').parent().checkbox('check')
             debugger
         }
 
