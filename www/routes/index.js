@@ -86,9 +86,11 @@ mysql.connection.connect(function(err) {
             if(!_.isEmpty(req.body)){
                 _.each(req.body, function(value,key){
                     counter++
-                    cadsql=cadsql+(counter>1?',':'')+key
-                    cadval=cadval+(counter>1?',?':'?')
-                    params.push(value)
+                    if(key.substr(0,1)!="_"){
+                        cadsql=cadsql+(counter>1?',':'')+key
+                        cadval=cadval+(counter>1?',?':'?')
+                        params.push(value)
+                    }
                 })
                 cadsql = cadsql + ") VALUES (" + cadval + ")"
                 debugger
