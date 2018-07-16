@@ -158,10 +158,26 @@ mysql.connection.connect(function(err) {
                                 debugger
                             }else{
                                 if(_iberlibro){
+                                    iberlibro.askToDb(req.query.vendorListingid,req.body.price_quantity*1,function(_IberRecord,response){
+                                        if(records[3][0].counter==0){
+                                            cadsql = "INSERT INTO iberlibro (vendorListingid,price_quantity,fecha_add) VALUES (?,?,NOW())  ON DUPLICATE KEY UPDATE price_quantity=?"
+                                        }else{
+                                            cadsql = "DELETE FROM iberlibro WHERE vendorListingid=?"
+                                        }
+                                        var params = [req.query.vendorListingid,req.body.price_quantity,req.body.price_quantity]
+                                        mysql.connection.query(cadsql ,params, function(err,_record) {
+                                            debugger
+                                            if(err)
+                                                debugger
+                                            iberlibro.askIberlibro(records[1],records[3],records[1][0].price_quantity , function(){
+                                                records[3][0].counter = 1
+                                                res.json({body:req.body,err:err,records:records});  
+                                            }, iberlibro)
+                                        })
+                    
+                                    })                                     
                                     debugger
-                                    iberlibro.askIberlibro(records[1],records[3],records[1][0].price_quantity , function(){
-                                        res.json({body:req.body,err:err,records:records});  
-                                    }, iberlibro)
+
                                 }else{
                                     res.json({body:req.body,err:err,records:records})
                                 }
