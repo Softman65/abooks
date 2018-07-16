@@ -143,6 +143,7 @@ mysql.connection.connect(function(err) {
 
                     if(!_.isEmpty(req.body)){
                         _.each(req.body, function(value,key){
+                            debugger
                             counter++
                             if(key!='_iberlibro'){
                                 cadsql=cadsql+(counter>1?',':'')+key+"=?"
