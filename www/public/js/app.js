@@ -362,11 +362,11 @@ $(document).ready(function() {
                     itemTemplate: function(value) {        
                         return value;
                     }},
-                    {  title: "€", name: "price_quantity", type: "text", width: 60, align: "right", 
+                    {  title: "€", name: "price_quantity", type: "text", width: 80, align: "right", 
                     itemTemplate: function(value) {        
                         return value+" €";
                     }},
-                    {  title: "sale", name: "_sale", type: "text", width: 60,
+                    {  title: "sale", name: "_sale", type: "text", width: 40,
                     itemTemplate: function(value) {
                         var _t = value=='IBER'?'leanpub':'amazon'       
                         return value==null?null:$('<i class="'+_t+' icon sale">');
