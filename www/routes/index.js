@@ -104,17 +104,20 @@ mysql.connection.connect(function(err) {
                         //iberlibro.askToDb(req.query.vendorListingid,req.body.price_quantity*1,function(_IberRecord,response){
                             if(req.body.price_quantity*1>0){
                                 cadsql = "INSERT INTO iberlibro (vendorListingid,price_quantity,fecha_add) VALUES (?,?,NOW())  ON DUPLICATE KEY UPDATE price_quantity=?"
-                                records[3] = [ {counter:1} ]
+                                //records[3] = [ {counter:1} ]
                             
-                                var params = [req.query.vendorListingid,req.body.price_quantity,req.body.price_quantity]
+                                var params = [records.insertId,req.body.price_quantity,req.body.price_quantity]
                                 mysql.connection.query(cadsql ,params, function(err,_record) {
                                     debugger
                                     if(err)
                                         debugger
-                                    iberlibro.askIberlibro(records[1],records[3],records[1][0].price_quantity , function(){
-                                        
-                                        res.json({body:req.body,err:err,records:records});  
-                                    }, iberlibro)
+                                    var params = [records.insertId,req.body.price_quantity,req.body.price_quantity]
+                                    mysql.connection.query('SELECT *  FROM books WHERE vendorListingid='+records.insertId+";Select 1 as counter;"  ,params, function(err,_record) {
+                                        iberlibro.askIberlibro(records[0],records[1],records[0][0].price_quantity , function(){
+
+                                            res.json({body:req.body,err:err,records:records});  
+                                        }, iberlibro)
+                                    })
                                 })
                             }else{
                                 res.json({body:req.body,err:err,records:records})
