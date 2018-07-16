@@ -139,18 +139,25 @@ mysql.connection.connect(function(err) {
                     var cadsql= "UPDATE books SET "
                     var counter = 0
                     var params = []
+                    var _iberlibro = false
+
                     if(!_.isEmpty(req.body)){
                         _.each(req.body, function(value,key){
                             counter++
-                            cadsql=cadsql+(counter>1?',':'')+key+"=?"
-                            params.push(value)
+                            if(key!='_iberlibro'){
+                                cadsql=cadsql+(counter>1?',':'')+key+"=?"
+                                params.push(value)
+                            }else{
+                                _iberlibro == 'on' ? true : false
+                            }
                         })
                         debugger
                         mysql.connection.query(cadsql+" WHERE vendorListingid="+ req.query.vendorListingid + cadsqlLast ,params, function(err,records) {
                             if(err){
                                 debugger
                             }else{
-                                if(records[3][0].counter>0){
+                                if(_iberlibro){
+                                    debugger
                                     iberlibro.askIberlibro(records[1],records[3],records[1][0].price_quantity , function(){
                                         res.json({body:req.body,err:err,records:records});  
                                     }, iberlibro)

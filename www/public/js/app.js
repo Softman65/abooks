@@ -192,10 +192,10 @@ $(document).ready(function() {
         })
 
     }
-    function validateForm($form){
+    //function validateForm($form){
         var _e = $('.validate').find('input')
        // debugger
-    }
+    //}
     function getFormData($form){
         var unindexed_array = $form.serializeArray();
         var indexed_array = {};
