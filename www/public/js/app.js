@@ -125,41 +125,23 @@ $(document).ready(function() {
                 }
         }).modal('show')
 
-        //debugger
+
+        var getData = args.item;
+        var keys = Object.keys(getData);
+        var text = [];
+        actualizeFields(_type,keys,getData)
+
         if(_type=='edit'){
-            var getData = args.item;
-            var keys = Object.keys(getData);
-            var text = [];
-           
-            $.each(keys, function(idx, value) {
-                if(value == 'description'){
-                    $('#edit textarea[name="'+value+'"]').text(getData[value])
-                }else{
-                    if( value == 'C_iberlibro'){  
-                        var _v = value.substr(1,value.length)                      
-                        $('#edit .ui.toggle.checkbox [name="'+_v+'"]').parent().checkbox(getData[value]==null?'uncheck':getData[value]>0?'check':'uncheck')
-                    }else{
-                        if($('#edit input[name="'+value+'"]').attr('type')!='hidden'){
-                            $('#edit input[name="'+value+'"]').val(getData[value]) //.removeAttr("disabled")
-                        }else{
-                            $('#edit .'+value+' .text').removeClass('default').html(getData[value])
-                            $('#edit .'+value+' [type="hidden"]').val(getData[value])
-                        }
-                    }
-                }
-              //text.push(value + " : " + getData[value])
-            });
-           // $('#id').val(getData.vendorListingid)
             $('#edit .ui.approve.button').html('Guardar')
             $('#edit .header.book').html('<span><span class="left green">'+getData.title+'</span><span class="right">'+getData.vendorListingid+'-<span class="red">'+(getData._loc==null?'?':getData._loc)+'</span></span></span>')
            
         }else{
 
-            $('#edit input').each(function(obj){
-                var q = $($('#edit input')[obj]).val('')
+            //$('#edit input').each(function(obj){
+            //    var q = $($('#edit input')[obj]).val('')
                 //$(q).val('')
-            })
-            $('#edit textarea').text('')
+            //})
+            //$('#edit textarea').text('')
             dropdownFormEdit('restore defaults')
             
             $('#edit .header.book').html('Nuevo Libro')
@@ -189,8 +171,30 @@ $(document).ready(function() {
         })
 
     }
+    function actualizeFields(type,keys,getData){
+        $.each(keys, function(idx, value) {
+            if(value == 'description'){
+                $('#edit textarea[name="'+value+'"]').text(type=='edit'?getData[value]:'')
+            }else{
+                if( value == 'C_iberlibro'){  
+                    var _v = value.substr(1,value.length)                      
+                    $('#edit .ui.toggle.checkbox [name="'+_v+'"]').parent().checkbox((type=='edit'?(getData[value]==null?'uncheck':getData[value]>0?'check':'uncheck'):'check'))
+                }else{
+                    if($('#edit input[name="'+value+'"]').attr('type')!='hidden'){
+                        $('#edit input[name="'+value+'"]').val(type=='edit'?getData[value]:'') //.removeAttr("disabled")
+                    }else{
+                        $('#edit .'+value+' .text').removeClass('default').html(type=='edit'?getData[value]:'')
+                        $('#edit .'+value+' [type="hidden"]').val(type=='edit'?getData[value]:'')
+                    }
+                }
+            }
+          //text.push(value + " : " + getData[value])
+        });
+    }
+
+
     //function validateForm($form){
-        var _e = $('.validate').find('input')
+      //  var _e = $('.validate').find('input')
        // debugger
     //}
     function getFormData($form){
