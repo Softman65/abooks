@@ -50,7 +50,7 @@ mysql.connection.connect(function(err) {
       return;
     }else{
         mysql.connection.query('SELECT * from Credentials', function(err,cred){
-            var iberlibro = require('../../node_app/Api_Iberlibro.js')(mysql.connection, cred.IberLibro_apiKey, cred.IberLibro_apiUser)
+            var iberlibro = require('../../node_app/Api_Iberlibro.js')(mysql.connection, cred[0].IberLibro_apiKey, cred[0].IberLibro_apiUser)
 
             setInterval(function(){
                 mysql.connection.query('SELECT 1 as counter', function(){
