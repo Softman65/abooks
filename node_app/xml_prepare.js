@@ -1,5 +1,5 @@
 
-module.exports = function () {
+module.exports = function (apiKey,apiUser) {
     var _ = require('lodash');
     var _v = function(e){
         return e!=null
@@ -7,8 +7,8 @@ module.exports = function () {
     var iconv = require('iconv-lite')
     var newLine= String.fromCharCode(10) + String.fromCharCode(13) // "Before "+ "%0D%0A"
     return {
-        apiKey : '08ef5d5329934397a86f',
-        apiUser : 'ArteSonado',
+        apiKey : apiKey,
+        apiUser : apiUser,
         xmlIberbooks : function(action,libro,  imagenes){
             var iberRecord = '<?xml version="1.0" encoding="ISO-8859-1"?>' + newLine
             iberRecord += '<inventoryUpdateRequest version="1.0">' + newLine

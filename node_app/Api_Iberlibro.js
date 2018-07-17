@@ -1,7 +1,7 @@
-module.exports = function (mysql) {
+module.exports = function (mysql,apiKey,apiUser) {
 
     return {
-        xml_process : require('./xml_prepare.js')(),
+        xml_process : require('./xml_prepare.js')(apiKey,apiUser),
         https : require('https'), // https server
         http : require('http'), // http server
         querystring : require('querystring'),
