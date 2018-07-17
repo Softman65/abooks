@@ -105,13 +105,13 @@ mysql.connection.connect(function(err) {
                                 if(req.body.price_quantity*1>0){
                                     cadsql = "INSERT INTO iberlibro (vendorListingid,price_quantity,fecha_add) VALUES (?,?,NOW())  ON DUPLICATE KEY UPDATE price_quantity=?"
                                     //records[3] = [ {counter:1} ]
-                                
-                                    var params = [records.insertId,req.body.price_quantity,req.body.price_quantity]
+                                    var insertId = "0".repeat( 6-(records.insertId+"").length) + records.insertId
+                                    var params = [insertId,req.body.price_quantity,req.body.price_quantity]
                                     mysql.connection.query(cadsql ,params, function(err,_record) {
                                         //debugger
                                         if(err)
                                             debugger
-                                        var params = [records.insertId,req.body.price_quantity,req.body.price_quantity]
+                                        var params = [insertId,req.body.price_quantity,req.body.price_quantity]
                                         mysql.connection.query('SELECT *  FROM books WHERE vendorListingid='+records.insertId+";Select 1 as counter;"  ,params, function(err,_record) {
                                             debugger
                                             iberlibro.askIberlibro(_record[0],_record[1],_record[0][0].price_quantity , function(){
