@@ -176,7 +176,7 @@ $(document).ready(function() {
 
     }
     function IberlibroForm(_content,_type,args){
-        alert('comming soon')
+        alert('comming')
     }
     function actualizeFields(type,keys,getData){
         $.each(keys, function(idx, value) {
@@ -382,7 +382,7 @@ $(document).ready(function() {
                     {  title: "", name: "C_iberlibro", type: "text", width: 60,filtering: false,
                     itemTemplate: function(value,record) {
                         var _t = value>0?'green':'red'       
-                        return value==null?null:$('<img src="img/iberlibro_btn.png" class="'+(record._sale!=null?'hidden':'')+'">').attr('data',record.vendorListingid).click(function(e){
+                        return value==null?null:$('<i class="leanpub '+_t+' icon large '+(record._sale!=null?'hidden':'')+'">').attr('data',record.vendorListingid).click(function(e){
                             e.stopPropagation()
                                
                                var _id = $(this).attr('data') 
