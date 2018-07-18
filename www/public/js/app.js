@@ -382,7 +382,7 @@ $(document).ready(function() {
                     {  title: "", name: "C_iberlibro", type: "text", width: 60,filtering: false,
                     itemTemplate: function(value,record) {
                         var _t = value>0?'green':'red'       
-                        return value==null?null:$('<img src="img/Iberlibro_btn" class="'+(record._sale!=null?'hidden':'')+'">').attr('data',record.vendorListingid).click(function(e){
+                        return value==null?null:$('<img src="img/Iberlibro_btn.png" class="'+(record._sale!=null?'hidden':'')+'">').attr('data',record.vendorListingid).click(function(e){
                             e.stopPropagation()
                                
                                var _id = $(this).attr('data') 
