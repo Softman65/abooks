@@ -20,7 +20,10 @@
 .left{
     float:left!important;
 }
-
+.oculto{
+    display:block;
+    visibility:none;
+}
 .hidden{
     display:none!important;
 }
