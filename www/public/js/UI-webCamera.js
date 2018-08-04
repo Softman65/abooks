@@ -2,11 +2,11 @@
  
   var isSecureOrigin = location.protocol === 'https:' ||
   location.hostname === 'localhost';
-  if (!isSecureOrigin) {
-    alert('getUserMedia() solo functiona desde origenes seguros HTTPS o localhost.' +
-      '\n\nCambiaremos automaticamente a HTTPS');
-    location.protocol = 'HTTPS';
-  }
+  //if (!isSecureOrigin) {
+  //  alert('getUserMedia() solo functiona desde origenes seguros HTTPS o localhost.' +
+  //    '\n\nCambiaremos automaticamente a HTTPS');
+  //  location.protocol = 'HTTPS';
+  //}
 
 
   $.fn.webCamera = function(method,callbackOut) {
