@@ -148,22 +148,23 @@ $(document).ready(function() {
             var keys = Object.keys(getData);
             var text = [];
             actualizeFields(_type,keys,getData)
-            $('#edit input').blur(function(){
+            $('#edit input').keyup(function(){
                 validateform()
             })
             $('#edit .ui.approve.button').html('Guardar')
             $('#edit .header.book').html('<span><span class="left green">'+getData.title+'</span><span class="right">'+getData.vendorListingid+'-<span class="red">'+(getData._loc==null?'?':getData._loc)+'</span></span></span>')
-           
+            validateform()
+            
         }else{
 
-            $('#edit input').each(function(obj){
+            $('#edit input').keyup(function(){
+                        alert()
+            }).each(function(obj){
                 if($('#edit input').attr('name')!="_iberlibro"){
                     var q = $($('#edit input')[obj]).val('')
                     $(q).val('')
                 }
-            }).blur(function(){
-                        alert()
-                    })
+            })
             $('#edit textarea[name="description"]').text('')
             dropdownFormEdit('restore defaults')
             
