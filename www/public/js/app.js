@@ -79,6 +79,9 @@ $(document).ready(function() {
             $('.bookfinder.'+form).removeClass('loading').html($data)
         })
     }
+    function validateform(){
+        $('#edit input [name="precio"]')
+    }
     function editForm(_content,_type,args){
         $('#edit').attr('data',_content)
         $('#edit .content').addClass('hidden')
@@ -134,7 +137,7 @@ $(document).ready(function() {
             var text = [];
             actualizeFields(_type,keys,getData)
             $('#edit input').blur(function(){
-                alert()
+                validateform()
             })
             $('#edit .ui.approve.button').html('Guardar')
             $('#edit .header.book').html('<span><span class="left green">'+getData.title+'</span><span class="right">'+getData.vendorListingid+'-<span class="red">'+(getData._loc==null?'?':getData._loc)+'</span></span></span>')
