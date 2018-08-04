@@ -281,7 +281,7 @@ $(document).ready(function() {
             $('#edit .ui.dropdown.bindingText .menu').html(data.binding)
             $('#edit .ui.dropdown.edition .menu').html(data.edition)
         }
-        debugger
+        //debugger
         $('#edit .ui.dropdown.productType').dropdown(command)
         $('#edit .ui.dropdown.bookCondition').dropdown(command)
         $('#edit .ui.dropdown.jacketCondition').dropdown(command)
