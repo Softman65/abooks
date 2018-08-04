@@ -251,7 +251,7 @@ mysql.connection.connect(function(err) {
             router.get('/api/iberlibro/delete', function (req, res) {
                 var _e = req.query.e*1
                 var _t = req.query.t*1
-                res.write({last: (_e++) == _t, e:_e++ })
+                res.json({last: (_e++) == _t, e:_e++ })
             })
             router.get('/api/books/totales', function (req, res) {
                 var cadsql = "SELECT * from contadores" 
