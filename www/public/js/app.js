@@ -176,7 +176,7 @@ $(document).ready(function() {
 
     }
     function IberlibroForm(_content,_type,args){
-        
+        debugger
         $('#iberlibro').modal()
     }
     function actualizeFields(type,keys,getData){
