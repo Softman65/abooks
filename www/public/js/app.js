@@ -142,7 +142,9 @@ $(document).ready(function() {
             $('#edit input').each(function(obj){
                 if($('#edit input').attr('name')!="_iberlibro"){
                     var q = $($('#edit input')[obj]).val('')
-                    $(q).val('')
+                    $(q).val('').blur(function(){
+                        alert()
+                    })
                 }
             })
             $('#edit textarea[name="description"]').text('')
