@@ -176,8 +176,20 @@ $(document).ready(function() {
 
     }
     function IberlibroForm(_content,_type,args){
-        debugger
-        $('#iberlibro').modal('show')
+        
+
+        $.ajax({
+            type: "GET",
+            url: "/api/books/totales" ,
+            data: filter
+        }).done(function(data){
+            debugger
+            $('#Tlibros').html(data.Total)
+            $('#Tiberlibro').html(data.TIberlibro)
+            $('#iberlibro').modal('show')
+        });
+
+        
     }
     function actualizeFields(type,keys,getData){
         $.each(keys, function(idx, value) {

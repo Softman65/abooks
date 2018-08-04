@@ -248,6 +248,19 @@ mysql.connection.connect(function(err) {
                 //res.send('hi')
                 })
             })
+            router.get('/api/books/totales', function (req, res) {
+                var cadsql = "SELECT * from contadores" 
+                mysql.connection.query(cadsql, function(err,records) {
+                    if(err!=null){
+                        if(records.length==1)
+                            res.write(records[0].image);
+                    }else{
+                        res.json({Total:records[0].Total,TIberlibro:records[0].TotalIberlibro});
+                    }
+                    //debugger
+                //res.send('hi')
+                })            
+            })
             router.get('/api/books/page', function (req, res) {
                 var order =""
                 var filter=""
