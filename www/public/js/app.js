@@ -148,18 +148,22 @@ $(document).ready(function() {
             var keys = Object.keys(getData);
             var text = [];
             actualizeFields(_type,keys,getData)
-            $('#edit input').keyup(function(){
+            $('.validate input').keyup(function(event){
+                if($(this).val().length==0){
+                    $(this).parent().addClass('error')
+                }else{
+                    $(this).parent().removeClass('error')
+                }
+    
                 validateform()
             })
             $('#edit .ui.approve.button').html('Guardar')
             $('#edit .header.book').html('<span><span class="left green">'+getData.title+'</span><span class="right">'+getData.vendorListingid+'-<span class="red">'+(getData._loc==null?'?':getData._loc)+'</span></span></span>')
             validateform()
-            
+
         }else{
 
-            $('#edit input').keyup(function(){
-                        alert()
-            }).each(function(obj){
+            $('#edit input').each(function(obj){
                 if($('#edit input').attr('name')!="_iberlibro"){
                     var q = $($('#edit input')[obj]).val('')
                     $(q).val('')
@@ -187,11 +191,7 @@ $(document).ready(function() {
                 $(this).parent().removeClass('error')
             }
 
-            if($('#edit .error').length>0){
-                $('.ui.approve.button').addClass('disabled')
-            }else{
-                $('.ui.approve.button').removeClass('disabled')
-            }
+            validateform()
         })
 
     }
