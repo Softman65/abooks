@@ -183,6 +183,18 @@ $(document).ready(function() {
             url: "/api/books/totales" 
         }).done(function(data){
             debugger
+            var go = function(url,fn,cb,e,last){
+                $.ajax({
+                    type: "GET",
+                    url: url + "?e="+e+"&t="+last 
+                }).done(function(data){
+                    if(data.last){
+                        fn(url,fn,cb,data.e,last)
+                    }else{
+                        cb()
+                    }
+                })
+            }
 
             $('.Blibros').removeClass('disabled')
             $('.Biberlibro').removeClass('disabled')
@@ -195,6 +207,7 @@ $(document).ready(function() {
 
             $('#iberlibro').modal('show')
             $('.Biberlibro').unbind().click(function(){
+
                 if( confirm('¿seguro que deseas borrar los libros publicados en Iberlibro?') ){
                     $('.Blibros').addClass('disabled')
                     $('.Biberlibro').addClass('disabled')
