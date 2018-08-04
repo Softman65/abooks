@@ -183,8 +183,8 @@ $(document).ready(function() {
             url: "/api/books/totales" 
         }).done(function(data){
             debugger
-            $('#Tlibros').html(data.Total)
-            $('#Tiberlibro').html(data.TIberlibro)
+            $('.Tlibros').html(data.Total)
+            $('.Tiberlibro').html(data.TIberlibro)
             $('#iberlibro').modal('show')
         });
 
