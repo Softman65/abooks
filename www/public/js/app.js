@@ -81,11 +81,11 @@ $(document).ready(function() {
     }
     function validateform(){
         var s = [ 
-            $('#edit input [name="price_quantity"]').val().length>0,
-            $('#edit input [name="title"]').val().length>0,
-            $('#edit input [name="author"]').val().length>0,
-            $('#edit input [name="publisherName"]').val().length>0,
-            $('#edit input [name="publishPlace"]').val().length>0,
+            $('#edit input[name="price_quantity"]').val().length>0,
+            $('#edit input[name="title"]').val().length>0,
+            $('#edit input[name="author"]').val().length>0,
+            $('#edit input[name="publisherName"]').val().length>0,
+            $('#edit input[name="publishPlace"]').val().length>0,
         ]
         if(_.compact(s).length!=s.length){
             $('.ui.button.approve').addClass('disabled') 
