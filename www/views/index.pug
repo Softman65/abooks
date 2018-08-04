@@ -34,14 +34,31 @@ block content
         span
           .ui.label
             i.book.icon
-            span#Tlibros  23 
+            span.Tlibros  23 
             a.detail Libros
         span
           .ui.label
             i.book.icon
-            span#Tiberlibro  23 
+            span.Tiberlibro  23 
             a.detail Publicados
     .content
+      .ui.labeled.button(tabindex='0')
+        .ui.button
+          i.eraser.icon
+          |  Eliminar
+        a.ui.basic.label.Tlibros
+          | 2,048
+      .w3-light-grey.w3-round
+        .w3-container.w3-blue.w3-round(style='width:0%') 0%
+      .ui.labeled.button(tabindex='0')
+        .ui.button
+          i.eraser.icon
+          |  Crear
+        a.ui.basic.label.Tiberlibro
+          | 2,048
+      .w3-light-grey.w3-round
+        .w3-container.w3-blue.w3-round(style='width:25%') 25%
+
 
   #images.ui.modal
     .app
