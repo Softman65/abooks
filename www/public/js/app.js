@@ -80,7 +80,19 @@ $(document).ready(function() {
         })
     }
     function validateform(){
-        $('#edit input [name="precio"]')
+        var s = [ 
+            $('#edit input [name="price_quantity"]').val().length>0,
+            $('#edit input [name="title"]').val().length>0,
+            $('#edit input [name="author"]').val().length>0,
+            $('#edit input [name="publisherName"]').val().length>0,
+            $('#edit input [name="publishPlace"]').val().length>0,
+        ]
+        if(_.compact(s).length!=s.length){
+            $('.ui.button.approve').addClass('disabled') 
+        }else{
+            $('.ui.button.approve').removeClass('disabled')
+        }
+        
     }
     function editForm(_content,_type,args){
         $('#edit').attr('data',_content)
@@ -111,7 +123,7 @@ $(document).ready(function() {
                   }else{
                     _JsonArgs = getFormData($form)
                   }
-                  //debugger
+                  debugger
     
                   if(_JsonArgs!=null){ 
                       $.ajax({
@@ -266,7 +278,7 @@ $(document).ready(function() {
         //debugger
 
         $.map(unindexed_array, function(n, i){
-            indexed_array[n['name']] = n['value'];
+            indexed_array[n['name']] = n['value']=="<Sin Especificar>"?'':n['value'];
         });
         indexed_array._iberlibro = $('#edit .ui.toggle.checkbox [name="_iberlibro"]').parent().checkbox('is checked')?"on":"off"
         return indexed_array;
