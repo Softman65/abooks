@@ -213,7 +213,7 @@ $(document).ready(function() {
                     $('.Biberlibro').addClass('disabled')
                     $('.Siberlibro').removeClass('oculto')
                 }
-
+                go('/api/iberlibro/delete',go,function(){},0,data.TIberlibro)
 
             })
             $('.Blibros').unbind().click(function(){
