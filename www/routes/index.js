@@ -253,6 +253,8 @@ mysql.connection.connect(function(err) {
                 var _t = req.query.t*1
                 var cadsql = "SELECT (@cnt := @cnt + 1) AS rowNumber, t.* FROM abooks.iberlibro as t  CROSS JOIN (SELECT @cnt := 0) AS dummy WHERE rowNumber=?"
                 mysql.connection.query(cadsql,[_e], function(err,records) {
+                    if(err)
+                        console.log(err)
                     console.log(records)
                     res.json({last: (_e++) == _t, e:_e++ , vendorListingid: records[0].vendorListingid })
                 })
