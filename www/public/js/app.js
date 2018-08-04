@@ -268,7 +268,7 @@ $(document).ready(function() {
                 data[row.name]=''
                 data[row.name] = data[row.name] +'<div class="item" data-value="'+row.Description+'">'+row.Description+'</div>' 
             })
-            debugger
+            
             dropdownFormEdit('refresh', data)
 
             window.data.grid = $("#jsGrid").jsGrid({
@@ -298,6 +298,7 @@ $(document).ready(function() {
                     editForm('formEdit','edit',args)                
                 },
                 finishLoad: function(loadedData) {
+                    debugger
                     window.data.pageData = loadedData
                 },
                 controller: {
