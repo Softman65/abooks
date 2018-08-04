@@ -257,7 +257,7 @@ mysql.connection.connect(function(err) {
                     if(err)
                         console.log(err)
                     console.log(records)
-                    res.json({next: (_e) < _t, e:_e++ , vendorListingid: records[0].vendorListingid })
+                    res.json({next: (_e) < _t, e:_e+1 , vendorListingid: records[0].vendorListingid })
                 })
             })
             router.get('/api/books/totales', function (req, res) {
