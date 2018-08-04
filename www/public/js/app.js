@@ -314,7 +314,7 @@ $(document).ready(function() {
             var data = {}
             _.each(tables[1],function(row){
                 if(data[row.name]==null)
-                data[row.name]='<div class="item" data-value="<Sin Especificar>"><Sin Especificar></div>'
+                data[row.name]='<div class="item" data-value="<Sin Especificar>">Sin Especificar</div>'
                 data[row.name] = data[row.name] +'<div class="item" data-value="'+row.Description+'">'+row.Description+'</div>' 
             })
             
