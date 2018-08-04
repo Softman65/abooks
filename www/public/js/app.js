@@ -180,8 +180,7 @@ $(document).ready(function() {
 
         $.ajax({
             type: "GET",
-            url: "/api/books/totales" ,
-            data: filter
+            url: "/api/books/totales" 
         }).done(function(data){
             debugger
             $('#Tlibros').html(data.Total)
