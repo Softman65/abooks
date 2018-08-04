@@ -251,7 +251,7 @@ mysql.connection.connect(function(err) {
             router.get('/api/iberlibro/delete', function (req, res) {
                 var _e = req.query.e*1
                 var _t = req.query.t*1
-                var cadsql = "SELECT (@cnt := @cnt + 1) AS rowNumber, t.* FROM abooks.iberlibro as t  CROSS JOIN (SELECT @cnt := 0) AS dummy WHERE rowNumber=?"
+                var cadsql = "SELECT (@cnt := @cnt + 1) AS rowNumber, t.* FROM abooks.iberlibro as t  CROSS JOIN (SELECT @cnt := 0) AS dummy ORDER by @cnt desc LIMIT ?,1"
                 mysql.connection.query(cadsql,[_e], function(err,records) {
                     if(err)
                         console.log(err)
