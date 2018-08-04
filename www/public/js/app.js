@@ -188,7 +188,7 @@ $(document).ready(function() {
                     type: "GET",
                     url: url + "?e="+e+"&t="+last 
                 }).done(function(data){
-                    if(data.last){
+                    if(!data.last){
                         fn(url,fn,cb,data.e,last)
                     }else{
                         cb()
