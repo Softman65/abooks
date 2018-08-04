@@ -252,6 +252,7 @@ mysql.connection.connect(function(err) {
                 var _e = req.query.e*1
                 var _t = req.query.t*1
                 var cadsql = "SELECT (@cnt := @cnt + 1) AS rowNumber, t.* FROM abooks.iberlibro as t  CROSS JOIN (SELECT @cnt := 0) AS dummy ORDER by @cnt desc LIMIT "+_e+",1"
+                console.log(cadsql)
                 mysql.connection.query(cadsql, function(err,records) {
                     if(err)
                         console.log(err)
