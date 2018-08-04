@@ -164,7 +164,7 @@ $(document).ready(function() {
         }else{
 
             $('#edit input').each(function(obj){
-                if($('#edit input').attr('name')!="_iberlibro"){
+                if($('#edit input').attr('name')!="_iberlibro" && $('#edit input').attr('name')!="_amazon"){
                     var q = $($('#edit input')[obj]).val('')
                     $(q).val('')
                 }
@@ -175,6 +175,7 @@ $(document).ready(function() {
             $('#edit .header.book').html('Nuevo Libro')
             $('#edit .ui.approve.button').addClass("disabled").html('Crear')
             $('#edit .ui.toggle.checkbox [name="_iberlibro"]').parent().checkbox('set checked')
+            $('#edit .ui.toggle.checkbox [name="_amazon"]').parent().checkbox('set checked')
             //debugger
         }
 
@@ -256,11 +257,16 @@ $(document).ready(function() {
                     var _v = value.substr(1,value.length)                      
                     $('#edit .ui.toggle.checkbox [name="'+_v+'"]').parent().checkbox('set ' + (type=='edit'?(getData[value]==null?'uncheck':getData[value]>0?'checked':'uncheck'):'checked'))
                 }else{
-                    if($('#edit input[name="'+value+'"]').attr('type')!='hidden'){
-                        $('#edit input[name="'+value+'"]').val(type=='edit'?getData[value]:'') //.removeAttr("disabled")
+                    if( value == 'C_amazon'){  
+                        var _v = value.substr(1,value.length)                      
+                        $('#edit .ui.toggle.checkbox [name="'+_v+'"]').parent().checkbox('set ' + (type=='edit'?(getData[value]==null?'uncheck':getData[value]>0?'checked':'uncheck'):'checked'))
                     }else{
-                        $('#edit .'+value+' .text').removeClass('default').html(type=='edit'?getData[value]:'')
-                        $('#edit .'+value+' [type="hidden"]').val(type=='edit'?getData[value]:'')
+                        if($('#edit input[name="'+value+'"]').attr('type')!='hidden'){
+                            $('#edit input[name="'+value+'"]').val(type=='edit'?getData[value]:'') //.removeAttr("disabled")
+                        }else{
+                            $('#edit .'+value+' .text').removeClass('default').html(type=='edit'?getData[value]:'')
+                            $('#edit .'+value+' [type="hidden"]').val(type=='edit'?getData[value]:'')
+                        }
                     }
                 }
             }
