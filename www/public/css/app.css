@@ -22,7 +22,7 @@
 }
 .oculto{
     display:block;
-    visibility:none;
+    visibility:hidden;
 }
 .hidden{
     display:none!important;

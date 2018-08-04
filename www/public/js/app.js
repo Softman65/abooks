@@ -183,9 +183,33 @@ $(document).ready(function() {
             url: "/api/books/totales" 
         }).done(function(data){
             debugger
+
+            $('.Blibros').removeClass('disabled')
+            $('.Biberlibro').removeClass('disabled')
+
+            $('.Slibros').addClass('oculto')
+            $('.Siberlibro').addClass('oculto')
+
             $('.Tlibros').html(data.Total)
             $('.Tiberlibro').html(data.TIberlibro)
+
             $('#iberlibro').modal('show')
+            $('.Biberlibro').unbind().click(function(){
+                if( confirm('¿seguro que deseas borrar los libros publicados en Iberlibro?') ){
+                    $('.Blibros').addClass('disabled')
+                    $('.Biberlibro').addClass('disabled')
+                    $('.Siberlibro').removeClass('oculto')
+                }
+
+
+            })
+            $('.Blibros').unbind().click(function(){
+                if( confirm('¿seguro que deseas publicar toda la base de datos en Iberlibro?') ){
+                    $('.Blibros').addClass('disabled')
+                    $('.Biberlibro').addClass('disabled')
+                    $('.Slibros').removeClass('oculto')
+                }               
+            })
         });
 
         
