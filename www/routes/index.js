@@ -354,7 +354,8 @@ mysql.connection.connect(function(err) {
                 console.log(cadsql)
 
                 mysql.connection.query(cadsql, function(err,records) {
-                    res.json({err:err,cadsql : cadsql,data:records[3],itemsCount: records[3].length ,iberlibro:records[1][0].total*1,amazon:records[2][0].total*1});
+                    const _counter = req.query.type=='all'? records[0][0].total*1: req.query.type=='iberlibro'?records[1][0].total*1:records[2][0].total*1
+                    res.json({err:err,cadsql : cadsql,data:records[3],itemsCount: _counter ,iberlibro:records[1][0].total*1,amazon:records[2][0].total*1});
                     //debugger
                 //res.send('hi')
                 })
