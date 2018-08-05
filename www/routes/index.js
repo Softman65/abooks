@@ -156,8 +156,18 @@ mysql.connection.connect(function(err) {
             
                 }else{
                     if(req.query.form=='formAmazon'){
-                        var cadsql = "INSERT INTO amazon (vendorListingid,price_quantity_ES,fecha_add) VALUES (?,?,NOW())  ON DUPLICATE KEY UPDATE price_quantity=?"
-                        var params = [req.query.vendorListingid,req.body.price_quantity_ES,req.body.price_quantity_ES]
+                        var cadsql = "INSERT INTO amazon (vendorListingid,price_quantity_ES,price_quantity_UK,price_quantity_FR,price_quantity_DE,price_quantity_IT) VALUES (?,?,?,?,?,?)  ON DUPLICATE KEY UPDATE price_quantity_ES=?,price_quantity_UK=?,price_quantity_FR=?,price_quantity_DE=?,price_quantity_IT=?"
+                        var params = [req.query.vendorListingid,
+                            req.body.price_quantity_ES,
+                            req.body.price_quantity_UK,
+                            req.body.price_quantity_FR,
+                            req.body.price_quantity_DE,
+                            req.body.price_quantity_IT,
+                            req.body.price_quantity_ES,
+                            req.body.price_quantity_UK,
+                            req.body.price_quantity_FR,
+                            req.body.price_quantity_DE,
+                            req.body.price_quantity_IT]
                         mysql.connection.query(cadsql ,params, function(err,records) {
                             if(err)
                                 debugger
