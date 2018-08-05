@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    debugger
+    //debugger
     $('.destino').hide()
 
     function imageForm(item,objdestino){
