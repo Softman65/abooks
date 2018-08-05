@@ -79,14 +79,23 @@ $(document).ready(function() {
             $('.bookfinder.'+form).removeClass('loading').html($data)
         })
     }
-    function validateform(){
-        var s = [ 
+    function validateform(_content){
+        var s = _content == 'formEdit' ? [ 
             $('#edit input[name="price_quantity"]').val().length>0,
             $('#edit input[name="title"]').val().length>0,
             $('#edit input[name="author"]').val().length>0,
             $('#edit input[name="publisherName"]').val().length>0,
             $('#edit input[name="publishPlace"]').val().length>0,
+        ] : _content == 'formIberlibro'?[
+            $('#edit input[name="price_quantity_Iberlibro"]').val().length>0,
+        ]:[ 
+            $('#edit input[name="price_quantity_ES"]').val().length>0,
+            $('#edit input[name="price_quantity_UK"]').val().length>0,
+            $('#edit input[name="price_quantity_IT"]').val().length>0,
+            $('#edit input[name="price_quantity_FR"]').val().length>0,
+            $('#edit input[name="price_quantity_DE"]').val().length>0,    
         ]
+
         if(_.compact(s).length!=s.length){
             $('.ui.button.approve').addClass('disabled') 
         }else{
@@ -155,11 +164,11 @@ $(document).ready(function() {
                     $(this).parent().removeClass('error')
                 }
     
-                validateform()
+                validateform(_content)
             })
             $('#edit .ui.approve.button').html('Guardar')
             $('#edit .header.book').html('<span><span class="left green">'+getData.title+'</span><span class="right">'+getData.vendorListingid+'-<span class="red">'+(getData._loc==null?'?':getData._loc)+'</span></span></span>')
-            validateform()
+            validateform(_content)
 
         }else{
 
@@ -192,7 +201,7 @@ $(document).ready(function() {
                 $(this).parent().removeClass('error')
             }
 
-            validateform()
+            validateform(_content)
         })
 
     }
