@@ -12,7 +12,7 @@ module.exports = function (mysql,apiKey,apiUser) {
         post: function(record, action, _cb){
             console.log(action)
             debugger
-            var _xml = this.xml_process.xmlIberbooks(action, record,[])
+            var _xml = this.xml_process.xmlIberbooks.xmlUnit(action, record,[])
             var callback = this.url.parse('https://inventoryupdate.abebooks.com:10027');
 
             var api_agent = 'abooks.bbdd.ovh'

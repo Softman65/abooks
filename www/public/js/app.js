@@ -213,13 +213,13 @@ $(document).ready(function() {
             url: "/api/books/totales" 
         }).done(function(data){
             debugger
-            var go = function(url,fn,cb,e,last){
+            var go = function(url,fn,cb,e,last,page,t){
                 $.ajax({
                     type: "GET",
-                    url: url + "?e="+e+"&t="+last 
+                    url: url + "?p="+page+"&t="+t+"&e="+e+"&l="+last 
                 }).done(function(data){
                     if(data.next){
-                        fn(url,fn,cb,data.e,last)
+                        fn(url,fn,cb,data.e,last,page,t)
                     }else{
                         cb()
                     }
@@ -243,7 +243,7 @@ $(document).ready(function() {
                     $('.Biberlibro').addClass('disabled')
                     $('.Siberlibro').removeClass('oculto')
                 }
-                go('/api/iberlibro/delete',go,function(){},0,data.TIberlibro)
+                go('/api/iberlibro/delete',go,function(){},0,data.TIberlibro,200,0)
 
             })
             $('.Blibros').unbind().click(function(){

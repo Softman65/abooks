@@ -259,16 +259,25 @@ mysql.connection.connect(function(err) {
                 })
             })
             router.get('/api/iberlibro/delete', function (req, res) {
+
                 var _e = req.query.e*1
+                var _l = req.query.l*1
+                var _p = req.query.p*1
                 var _t = req.query.t*1
+                if(_t<_p){
+                    _t = 0
+                }else{
+                    _t = _t + 1
+                }   
                 var cadsql = "SELECT (@cnt := @cnt + 1) AS rowNumber, t.* FROM abooks.iberlibro as t  CROSS JOIN (SELECT @cnt := 0) AS dummy ORDER by @cnt desc LIMIT "+_e+",1"
-                console.log(cadsql)
+                //console.log(cadsql)
                 mysql.connection.query(cadsql, function(err,records) {
                     if(err)
                         console.log(err)
                     console.log(records)
-                    res.json({next: (_e) < _t, e:_e+1 , vendorListingid: records[0].vendorListingid })
+                    res.json({next: _e < _l, e:_e+1 ,t:_t, vendorListingid: records[0].vendorListingid })
                 })
+                
             })
             router.get('/api/books/totales', function (req, res) {
                 var cadsql = "SELECT * from contadores" 
