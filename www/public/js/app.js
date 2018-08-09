@@ -260,7 +260,7 @@ $(document).ready(function() {
     function actualizeFields(type,keys,getData){
         $.each(keys, function(idx, value) {
             if(value == 'description'){
-                $('#edit textarea[name="'+value+'"]').text(type=='edit'?getData[value]:'')
+                $('#edit textarea[name="'+value+'"]').val(type=='edit'?getData[value]:'')
             }else{
                 if( value == 'C_iberlibro'){  
                     var _v = value.substr(1,value.length)                      
