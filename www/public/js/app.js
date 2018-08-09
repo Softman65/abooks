@@ -178,7 +178,7 @@ $(document).ready(function() {
                     $(q).val('')
                 }
             })
-            $('#edit textarea[name="description"]').text('')
+            $('#edit textarea[name="description"]').val('')
             dropdownFormEdit('restore defaults')
             
             $('#edit .header.book').html('Nuevo Libro')
