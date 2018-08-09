@@ -1,0 +1,346 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0f934233-29ae-4f98-a000-47d65ef07861}</ProjectGuid>
+    <ProjectHome />
+    <ProjectView>ShowAllFiles</ProjectView>
+    <StartupFile>app.js</StartupFile>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">14.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <ItemGroup>
+    <Content Include="package-lock.json" />
+    <Content Include="package.json" />
+    <Compile Include="app.js" />
+    <Compile Include="node_app\Amazon\Api_Amazon.js" />
+    <Compile Include="node_app\Amazon\xml_Amazon.js" />
+    <Compile Include="node_app\Api_Books.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="node_app\Iberlibro\Api_Iberlibro.js" />
+    <Compile Include="node_app\Iberlibro\xml_Iberlibro.js" />
+    <Compile Include="node_app\upgradeDB.js" />
+    <Content Include="www\errores.MD" />
+    <Compile Include="www\routes\index.js" />
+    <Content Include="www\views\error.pug" />
+    <Content Include="www\views\index.pug" />
+    <Content Include="www\views\jq-selfie.pug" />
+    <Content Include="www\views\layout.pug" />
+    <Content Include="www\public\css\app.css" />
+    <Content Include="www\public\css\webcam.css" />
+    <Content Include="www\public\img\iberlibro_btn.png" />
+    <Content Include="www\public\img\iberlibro_logo.png" />
+    <Compile Include="www\public\js\app.js" />
+    <Compile Include="www\public\js\mediarecorder.js" />
+    <Compile Include="www\public\js\selfie.js" />
+    <Compile Include="www\public\js\UI-webCamera.js" />
+    <Content Include="www\public\stylesheets\main.css" />
+    <Content Include="www\public\css\Semantic-UI\semantic.css" />
+    <Content Include="www\public\css\Semantic-UI\semantic.min.css" />
+    <Content Include="www\public\css\Semantic-UI\package.json" />
+    <Content Include="www\public\css\Semantic-UI\README.md" />
+    <Compile Include="www\public\css\Semantic-UI\package.js" />
+    <Compile Include="www\public\css\Semantic-UI\semantic.js" />
+    <Compile Include="www\public\css\Semantic-UI\semantic.min.js" />
+    <Content Include="www\public\css\w3css\w3.css" />
+    <Content Include="www\public\css\Semantic-UI\components\accordion.css" />
+    <Content Include="www\public\css\Semantic-UI\components\accordion.min.css" />
+    <Content Include="www\public\css\Semantic-UI\components\ad.css" />
+    <Content Include="www\public\css\Semantic-UI\components\ad.min.css" />
+    <Content Include="www\public\css\Semantic-UI\components\breadcrumb.css" />
+    <Content Include="www\public\css\Semantic-UI\components\breadcrumb.min.css" />
+    <Content Include="www\public\css\Semantic-UI\components\button.css" />
+    <Content Include="www\public\css\Semantic-UI\components\button.min.css" />
+    <Content Include="www\public\css\Semantic-UI\components\card.css" />
+    <Content Include="www\public\css\Semantic-UI\components\card.min.css" />
+    <Content Include="www\public\css\Semantic-UI\components\checkbox.css" />
+    <Content Include="www\public\css\Semantic-UI\components\checkbox.min.css" />
+    <Content Include="www\public\css\Semantic-UI\components\comment.css" />
+    <Content Include="www\public\css\Semantic-UI\components\comment.min.css" />
+    <Content Include="www\public\css\Semantic-UI\components\container.css" />
+    <Content Include="www\public\css\Semantic-UI\components\container.min.css" />
+    <Content Include="www\public\css\Semantic-UI\components\dimmer.css" />
+    <Content Include="www\public\css\Semantic-UI\components\dimmer.min.css" />
+    <Content Include="www\public\css\Semantic-UI\components\divider.css" />
+    <Content Include="www\public\css\Semantic-UI\components\divider.min.css" />
+    <Content Include="www\public\css\Semantic-UI\components\dropdown.css" />
+    <Content Include="www\public\css\Semantic-UI\components\dropdown.min.css" />
+    <Content Include="www\public\css\Semantic-UI\components\embed.css" />
+    <Content Include="www\public\css\Semantic-UI\components\embed.min.css" />
+    <Content Include="www\public\css\Semantic-UI\components\feed.css" />
+    <Content Include="www\public\css\Semantic-UI\components\feed.min.css" />
+    <Content Include="www\public\css\Semantic-UI\components\flag.css" />
+    <Content Include="www\public\css\Semantic-UI\components\flag.min.css" />
+    <Content Include="www\public\css\Semantic-UI\components\form.css" />
+    <Content Include="www\public\css\Semantic-UI\components\form.min.css" />
+    <Content Include="www\public\css\Semantic-UI\components\grid.css" />
+    <Content Include="www\public\css\Semantic-UI\components\grid.min.css" />
+    <Content Include="www\public\css\Semantic-UI\components\header.css" />
+    <Content Include="www\public\css\Semantic-UI\components\header.min.css" />
+    <Content Include="www\public\css\Semantic-UI\components\icon.css" />
+    <Content Include="www\public\css\Semantic-UI\components\icon.min.css" />
+    <Content Include="www\public\css\Semantic-UI\components\image.css" />
+    <Content Include="www\public\css\Semantic-UI\components\image.min.css" />
+    <Content Include="www\public\css\Semantic-UI\components\input.css" />
+    <Content Include="www\public\css\Semantic-UI\components\input.min.css" />
+    <Content Include="www\public\css\Semantic-UI\components\item.css" />
+    <Content Include="www\public\css\Semantic-UI\components\item.min.css" />
+    <Content Include="www\public\css\Semantic-UI\components\label.css" />
+    <Content Include="www\public\css\Semantic-UI\components\label.min.css" />
+    <Content Include="www\public\css\Semantic-UI\components\list.css" />
+    <Content Include="www\public\css\Semantic-UI\components\list.min.css" />
+    <Content Include="www\public\css\Semantic-UI\components\loader.css" />
+    <Content Include="www\public\css\Semantic-UI\components\loader.min.css" />
+    <Content Include="www\public\css\Semantic-UI\components\menu.css" />
+    <Content Include="www\public\css\Semantic-UI\components\menu.min.css" />
+    <Content Include="www\public\css\Semantic-UI\components\message.css" />
+    <Content Include="www\public\css\Semantic-UI\components\message.min.css" />
+    <Content Include="www\public\css\Semantic-UI\components\modal.css" />
+    <Content Include="www\public\css\Semantic-UI\components\modal.min.css" />
+    <Content Include="www\public\css\Semantic-UI\components\nag.css" />
+    <Content Include="www\public\css\Semantic-UI\components\nag.min.css" />
+    <Content Include="www\public\css\Semantic-UI\components\popup.css" />
+    <Content Include="www\public\css\Semantic-UI\components\popup.min.css" />
+    <Content Include="www\public\css\Semantic-UI\components\progress.css" />
+    <Content Include="www\public\css\Semantic-UI\components\progress.min.css" />
+    <Content Include="www\public\css\Semantic-UI\components\rail.css" />
+    <Content Include="www\public\css\Semantic-UI\components\rail.min.css" />
+    <Content Include="www\public\css\Semantic-UI\components\rating.css" />
+    <Content Include="www\public\css\Semantic-UI\components\rating.min.css" />
+    <Content Include="www\public\css\Semantic-UI\components\reset.css" />
+    <Content Include="www\public\css\Semantic-UI\components\reset.min.css" />
+    <Content Include="www\public\css\Semantic-UI\components\reveal.css" />
+    <Content Include="www\public\css\Semantic-UI\components\reveal.min.css" />
+    <Content Include="www\public\css\Semantic-UI\components\search.css" />
+    <Content Include="www\public\css\Semantic-UI\components\search.min.css" />
+    <Content Include="www\public\css\Semantic-UI\components\segment.css" />
+    <Content Include="www\public\css\Semantic-UI\components\segment.min.css" />
+    <Content Include="www\public\css\Semantic-UI\components\shape.css" />
+    <Content Include="www\public\css\Semantic-UI\components\shape.min.css" />
+    <Content Include="www\public\css\Semantic-UI\components\sidebar.css" />
+    <Content Include="www\public\css\Semantic-UI\components\sidebar.min.css" />
+    <Content Include="www\public\css\Semantic-UI\components\site.css" />
+    <Content Include="www\public\css\Semantic-UI\components\site.min.css" />
+    <Content Include="www\public\css\Semantic-UI\components\statistic.css" />
+    <Content Include="www\public\css\Semantic-UI\components\statistic.min.css" />
+    <Content Include="www\public\css\Semantic-UI\components\step.css" />
+    <Content Include="www\public\css\Semantic-UI\components\step.min.css" />
+    <Content Include="www\public\css\Semantic-UI\components\sticky.css" />
+    <Content Include="www\public\css\Semantic-UI\components\sticky.min.css" />
+    <Content Include="www\public\css\Semantic-UI\components\tab.css" />
+    <Content Include="www\public\css\Semantic-UI\components\tab.min.css" />
+    <Content Include="www\public\css\Semantic-UI\components\table.css" />
+    <Content Include="www\public\css\Semantic-UI\components\table.min.css" />
+    <Content Include="www\public\css\Semantic-UI\components\transition.css" />
+    <Content Include="www\public\css\Semantic-UI\components\transition.min.css" />
+    <Content Include="www\public\css\Semantic-UI\components\video.css" />
+    <Content Include="www\public\css\Semantic-UI\components\video.min.css" />
+    <Compile Include="www\public\css\Semantic-UI\components\accordion.js" />
+    <Compile Include="www\public\css\Semantic-UI\components\accordion.min.js" />
+    <Compile Include="www\public\css\Semantic-UI\components\api.js" />
+    <Compile Include="www\public\css\Semantic-UI\components\api.min.js" />
+    <Compile Include="www\public\css\Semantic-UI\components\checkbox.js" />
+    <Compile Include="www\public\css\Semantic-UI\components\checkbox.min.js" />
+    <Compile Include="www\public\css\Semantic-UI\components\colorize.js" />
+    <Compile Include="www\public\css\Semantic-UI\components\colorize.min.js" />
+    <Compile Include="www\public\css\Semantic-UI\components\dimmer.js" />
+    <Compile Include="www\public\css\Semantic-UI\components\dimmer.min.js" />
+    <Compile Include="www\public\css\Semantic-UI\components\dropdown.js" />
+    <Compile Include="www\public\css\Semantic-UI\components\dropdown.min.js" />
+    <Compile Include="www\public\css\Semantic-UI\components\embed.js" />
+    <Compile Include="www\public\css\Semantic-UI\components\embed.min.js" />
+    <Compile Include="www\public\css\Semantic-UI\components\form.js" />
+    <Compile Include="www\public\css\Semantic-UI\components\form.min.js" />
+    <Compile Include="www\public\css\Semantic-UI\components\modal.js" />
+    <Compile Include="www\public\css\Semantic-UI\components\modal.min.js" />
+    <Compile Include="www\public\css\Semantic-UI\components\nag.js" />
+    <Compile Include="www\public\css\Semantic-UI\components\nag.min.js" />
+    <Compile Include="www\public\css\Semantic-UI\components\popup.js" />
+    <Compile Include="www\public\css\Semantic-UI\components\popup.min.js" />
+    <Compile Include="www\public\css\Semantic-UI\components\progress.js" />
+    <Compile Include="www\public\css\Semantic-UI\components\progress.min.js" />
+    <Compile Include="www\public\css\Semantic-UI\components\rating.js" />
+    <Compile Include="www\public\css\Semantic-UI\components\rating.min.js" />
+    <Compile Include="www\public\css\Semantic-UI\components\search.js" />
+    <Compile Include="www\public\css\Semantic-UI\components\search.min.js" />
+    <Compile Include="www\public\css\Semantic-UI\components\shape.js" />
+    <Compile Include="www\public\css\Semantic-UI\components\shape.min.js" />
+    <Compile Include="www\public\css\Semantic-UI\components\sidebar.js" />
+    <Compile Include="www\public\css\Semantic-UI\components\sidebar.min.js" />
+    <Compile Include="www\public\css\Semantic-UI\components\site.js" />
+    <Compile Include="www\public\css\Semantic-UI\components\site.min.js" />
+    <Compile Include="www\public\css\Semantic-UI\components\state.js" />
+    <Compile Include="www\public\css\Semantic-UI\components\state.min.js" />
+    <Compile Include="www\public\css\Semantic-UI\components\sticky.js" />
+    <Compile Include="www\public\css\Semantic-UI\components\sticky.min.js" />
+    <Compile Include="www\public\css\Semantic-UI\components\tab.js" />
+    <Compile Include="www\public\css\Semantic-UI\components\tab.min.js" />
+    <Compile Include="www\public\css\Semantic-UI\components\transition.js" />
+    <Compile Include="www\public\css\Semantic-UI\components\transition.min.js" />
+    <Compile Include="www\public\css\Semantic-UI\components\video.js" />
+    <Compile Include="www\public\css\Semantic-UI\components\video.min.js" />
+    <Compile Include="www\public\css\Semantic-UI\components\visibility.js" />
+    <Compile Include="www\public\css\Semantic-UI\components\visibility.min.js" />
+    <Compile Include="www\public\css\Semantic-UI\components\visit.js" />
+    <Compile Include="www\public\css\Semantic-UI\components\visit.min.js" />
+    <Content Include="www\public\css\Semantic-UI\themes\default\assets\fonts\brand-icons.svg" />
+    <Content Include="www\public\css\Semantic-UI\themes\default\assets\fonts\icons.svg" />
+    <Content Include="www\public\css\Semantic-UI\themes\default\assets\fonts\outline-icons.svg" />
+    <Content Include="www\public\css\Semantic-UI\themes\default\assets\images\flags.png" />
+    <Compile Include="www\public\js\plugins\jquery-3.3.1.min.js" />
+    <Content Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\LICENSE.txt" />
+    <Content Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\angularjs.html" />
+    <Content Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\basic-plus.html" />
+    <Content Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\basic.html" />
+    <Content Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\index.html" />
+    <Content Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\jquery-ui.html" />
+    <Content Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\bower.json" />
+    <Content Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\package.json" />
+    <Content Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\CONTRIBUTING.md" />
+    <Content Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\README.md" />
+    <Compile Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\bower-version-update.js" />
+    <Content Include="www\public\js\plugins\jsgrid-1.5.3\jsgrid-theme.css" />
+    <Content Include="www\public\js\plugins\jsgrid-1.5.3\jsgrid-theme.min.css" />
+    <Content Include="www\public\js\plugins\jsgrid-1.5.3\jsgrid.css" />
+    <Content Include="www\public\js\plugins\jsgrid-1.5.3\jsgrid.min.css" />
+    <Compile Include="www\public\js\plugins\jsgrid-1.5.3\jsgrid.js" />
+    <Compile Include="www\public\js\plugins\jsgrid-1.5.3\jsgrid.min.js" />
+    <Compile Include="www\public\js\plugins\lodash\lodash-4.17.10.js" />
+    <Content Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\cors\postmessage.html" />
+    <Content Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\cors\result.html" />
+    <Content Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\css\jquery-ui-demo-ie8.css" />
+    <Content Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\css\jquery-ui-demo.css" />
+    <Content Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\css\jquery.fileupload-noscript.css" />
+    <Content Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\css\jquery.fileupload-ui-noscript.css" />
+    <Content Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\css\jquery.fileupload-ui.css" />
+    <Content Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\css\jquery.fileupload.css" />
+    <Content Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\css\style.css" />
+    <Content Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\img\loading.gif" />
+    <Content Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\img\progressbar.gif" />
+    <Compile Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\js\app.js" />
+    <Compile Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\js\jquery.fileupload-angular.js" />
+    <Compile Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\js\jquery.fileupload-audio.js" />
+    <Compile Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\js\jquery.fileupload-image.js" />
+    <Compile Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\js\jquery.fileupload-jquery-ui.js" />
+    <Compile Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\js\jquery.fileupload-process.js" />
+    <Compile Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\js\jquery.fileupload-ui.js" />
+    <Compile Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\js\jquery.fileupload-validate.js" />
+    <Compile Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\js\jquery.fileupload-video.js" />
+    <Compile Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\js\jquery.fileupload.js" />
+    <Compile Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\js\jquery.iframe-transport.js" />
+    <Compile Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\js\main.js" />
+    <Content Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\test\index.html" />
+    <Compile Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\test\test.js" />
+    <Compile Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\js\cors\jquery.postmessage-transport.js" />
+    <Compile Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\js\cors\jquery.xdr-transport.js" />
+    <Compile Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\js\vendor\jquery.ui.widget.js" />
+    <Content Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\server\gae-go\static\robots.txt" />
+    <Content Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\server\gae-go\static\favicon.ico" />
+    <Content Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\server\gae-python\static\robots.txt" />
+    <Content Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\server\gae-python\static\favicon.ico" />
+    <Compile Include="www\public\js\plugins\jsgrid-1.5.3\i18n\jsgrid-de.js" />
+    <Compile Include="www\public\js\plugins\jsgrid-1.5.3\i18n\jsgrid-es.js" />
+    <Compile Include="www\public\js\plugins\jsgrid-1.5.3\i18n\jsgrid-fr.js" />
+    <Compile Include="www\public\js\plugins\jsgrid-1.5.3\i18n\jsgrid-he.js" />
+    <Compile Include="www\public\js\plugins\jsgrid-1.5.3\i18n\jsgrid-ja.js" />
+    <Compile Include="www\public\js\plugins\jsgrid-1.5.3\i18n\jsgrid-ka.js" />
+    <Compile Include="www\public\js\plugins\jsgrid-1.5.3\i18n\jsgrid-pl.js" />
+    <Compile Include="www\public\js\plugins\jsgrid-1.5.3\i18n\jsgrid-pt-br.js" />
+    <Compile Include="www\public\js\plugins\jsgrid-1.5.3\i18n\jsgrid-pt.js" />
+    <Compile Include="www\public\js\plugins\jsgrid-1.5.3\i18n\jsgrid-ru.js" />
+    <Compile Include="www\public\js\plugins\jsgrid-1.5.3\i18n\jsgrid-tr.js" />
+    <Compile Include="www\public\js\plugins\jsgrid-1.5.3\i18n\jsgrid-zh-cn.js" />
+    <Compile Include="www\public\js\plugins\jsgrid-1.5.3\i18n\jsgrid-zh-tw.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="abooks" />
+    <Folder Include="node_app" />
+    <Folder Include="node_app\Amazon\" />
+    <Folder Include="node_app\Iberlibro\" />
+    <Folder Include="www" />
+    <Folder Include="www\public" />
+    <Folder Include="www\public\css" />
+    <Folder Include="www\public\css\Semantic-UI" />
+    <Folder Include="www\public\css\Semantic-UI\components" />
+    <Folder Include="www\public\css\Semantic-UI\themes" />
+    <Folder Include="www\public\css\Semantic-UI\themes\default" />
+    <Folder Include="www\public\css\Semantic-UI\themes\default\assets" />
+    <Folder Include="www\public\css\Semantic-UI\themes\default\assets\fonts" />
+    <Folder Include="www\public\css\Semantic-UI\themes\default\assets\images" />
+    <Folder Include="www\public\css\w3css" />
+    <Folder Include="www\public\img" />
+    <Folder Include="www\public\js" />
+    <Folder Include="www\public\js\plugins" />
+    <Folder Include="www\public\js\plugins\jQuery-File-Upload-9.21.0" />
+    <Folder Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\cors" />
+    <Folder Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\css" />
+    <Folder Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\img" />
+    <Folder Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\js" />
+    <Folder Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\js\cors" />
+    <Folder Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\js\vendor" />
+    <Folder Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\server" />
+    <Folder Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\server\gae-go" />
+    <Folder Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\server\gae-go\app" />
+    <Folder Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\server\gae-go\static" />
+    <Folder Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\server\gae-python" />
+    <Folder Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\server\gae-python\static" />
+    <Folder Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\server\php" />
+    <Folder Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\server\php\files" />
+    <Folder Include="www\public\js\plugins\jQuery-File-Upload-9.21.0\test" />
+    <Folder Include="www\public\js\plugins\jsgrid-1.5.3" />
+    <Folder Include="www\public\js\plugins\jsgrid-1.5.3\i18n" />
+    <Folder Include="www\public\js\plugins\lodash" />
+    <Folder Include="www\public\stylesheets" />
+    <Folder Include="www\routes" />
+    <Folder Include="www\views" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <!--Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them.-->
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />
+  <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:48022/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost:1337</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

@@ -81,19 +81,19 @@ $(document).ready(function() {
     }
     function validateform(_content){
         var s = _content == 'formEdit' ? [ 
-            $('#edit input[name="price_quantity"]').val().length>0,
-            $('#edit input[name="title"]').val().length>0,
-            $('#edit input[name="author"]').val().length>0,
-            $('#edit input[name="publisherName"]').val().length>0,
-            $('#edit input[name="publishPlace"]').val().length>0,
+            $('#edit .formEdit input[name="price_quantity"]').val().length>0,
+            $('#edit .formEdit input[name="title"]').val().length>0,
+            $('#edit .formEdit input[name="author"]').val().length>0,
+            $('#edit .formEdit input[name="publisherName"]').val().length>0,
+            $('#edit .formEdit input[name="publishPlace"]').val().length>0,
         ] : _content == 'formIberlibro'?[
-            $('#edit input[name="price_quantity_Iberlibro"]').val().length>0,
+                $('#edit .formIberlibro input[name="price_quantity_Iberlibro"]').val().length>0,
         ]:[ 
-            $('#edit input[name="price_quantity_ES"]').val().length>0,
-            $('#edit input[name="price_quantity_UK"]').val().length>0,
-            $('#edit input[name="price_quantity_IT"]').val().length>0,
-            $('#edit input[name="price_quantity_FR"]').val().length>0,
-            $('#edit input[name="price_quantity_DE"]').val().length>0,    
+            $('#edit .formAmazon input[name="price_quantity_ES"]').val().length>0,
+            $('#edit .formAmazon input[name="price_quantity_UK"]').val().length>0,
+            $('#edit .formAmazon input[name="price_quantity_IT"]').val().length>0,
+            $('#edit .formAmazon input[name="price_quantity_FR"]').val().length>0,
+            $('#edit .formAmazon input[name="price_quantity_DE"]').val().length>0,    
         ]
 
         if(_.compact(s).length!=s.length){
