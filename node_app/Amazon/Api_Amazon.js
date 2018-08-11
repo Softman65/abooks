@@ -1,4 +1,4 @@
-﻿module.exports = function (mysql, apiKey, apiUser) {
+﻿module.exports = function (_, mysql, apiKey, apiUser) {
     console.log('Amazon Api login')
     console.log(apiKey, apiUser)
     return {

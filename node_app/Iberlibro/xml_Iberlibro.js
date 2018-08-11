@@ -4,10 +4,17 @@ module.exports = function (apiKey,apiUser) {
     var _v = function(e){
         return e!=null
     }
-    var iconv = require('iconv-lite')
-    var newLine= String.fromCharCode(10) + String.fromCharCode(13) // "Before "+ "%0D%0A"
+
+    String.prototype.replaceAll = function (search, replacement) {
+        var target = this;
+        return target.split(search).join(replacement);
+    };
+
+    var newLine = String.fromCharCode(10) + String.fromCharCode(13) // "Before "+ "%0D%0A"
+
     return {
  //       xmlIberbooks: {
+            iconv : require('iconv-lite'),
             file:"",
             xmlUnit: function (action, libro, imagenes) {
                 var xml = this.functions().header(this.apiUser, this.apiKey)
@@ -18,7 +25,7 @@ module.exports = function (apiKey,apiUser) {
                     xml += this.functions().action.add(libro, imagenes)
                 }
                 xml += this.functions().footer()
-                return iconv.encode(xml, 'iso-8859-1'); //xmlRecord
+                return this.iconv.encode(xml, 'iso-8859-1'); //xmlRecord
             },
             functions: function () {
                 return {
@@ -41,16 +48,27 @@ module.exports = function (apiKey,apiUser) {
                             return xmlRecord
                         },
                         add: function (libro, imagenes) {
+                            var normalize = function (Str) {
+                                if (Str.indexOf('&endash;') > -1)
+                                    debugger
+
+                                Str = Str.replaceAll('/', '\/')
+                                Str = Str.replaceAll('&endash;', "\/")
+                                Str = Str.replaceAll('&amp;', "&")
+                                Str = Str.replace(/&\b/g, '\/')
+                                Str = Str.replace(/&\B/g, "&amp;")
+                                return Str
+                            }
                             var xmlRecord = '<Abebook>' + newLine
                             xmlRecord += '<transactionType>add</transactionType>' + newLine
                             xmlRecord += (_v(libro.vendorListingid) ? '<vendorBookID>' + libro.vendorListingid + '</vendorBookID>' : '') + newLine
-                            xmlRecord += (_v(libro.title) ? '<title>' + libro.title + '</title>' : '') + newLine
-                            xmlRecord += (_v(libro.author) ? '<author>' + libro.author + '</author>' : '') + newLine
-                            xmlRecord += (_v(libro.publisherName) ? '<publisher>' + libro.publisherName + '</publisher>' : '') + newLine
-                            xmlRecord += (_v(libro.subject) ? '<subject>' + libro.subject + '</subject>' : '') + newLine
+                            xmlRecord += (_v(libro.title) ? '<title>' + normalize(libro.title) + '</title>' : '') + newLine
+                            xmlRecord += (_v(libro.author) ? '<author>' + normalize(libro.author) + '</author>' : '') + newLine
+                            xmlRecord += (_v(libro.publisherName) ? '<publisher>' + normalize(libro.publisherName) + '</publisher>' : '') + newLine
+                            xmlRecord += (_v(libro.subject) ? '<subject>' + normalize(libro.subject) + '</subject>' : '') + newLine
                             xmlRecord += (_v(libro.price_currency) ? '<price currency="' + libro.price_currency + '">' + libro.price_quantity + '</price>' : '') + newLine
                             xmlRecord += (_v(libro.bindingText) ? '<binding>' + libro.bindingText + '</binding>' : '') + newLine
-                            xmlRecord += (_v(libro.description) ? '<description>' + libro.description + '</description>' : '') + newLine
+                            xmlRecord += (_v(libro.description) ? '<description>' + normalize(libro.description) + '</description>' : '') + newLine
                             xmlRecord += (_v(libro.bookCondition) ? '<bookCondition>' + libro.bookCondition + '</bookCondition>' : '') + newLine
                             xmlRecord += (_v(libro.jacketCondition) ? '<jacketCondition>' + libro.jacketCondition + '</jacketCondition>' : '') + newLine
                             xmlRecord += (_v(libro.universalIdentifier_number) ? '<isbn>' + libro.universalIdentifier_number + '</isbn>' : '') + newLine

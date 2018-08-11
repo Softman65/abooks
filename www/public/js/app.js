@@ -212,16 +212,28 @@ $(document).ready(function() {
             type: "GET",
             url: "/api/books/totales" 
         }).done(function(data){
-            debugger
-            var go = function(url,fn,cb,e,last,page,t){
+            //debugger
+
+
+
+            var go = function (url, fn, cb, e, last, page, t) {
                 $.ajax({
                     type: "GET",
-                    url: url + "?p="+page+"&t="+t+"&e="+e+"&l="+last 
-                }).done(function(data){
-                    if(data.next){
-                        fn(url,fn,cb,data.e,last,page,t)
-                    }else{
-                        cb()
+                    url: url + "?p="+page+"&t="+t+"&e="+e+"&l="+last+"&lap=100" 
+                }).done(function (data) {
+                    $( '.ui.basic.label'+ (url == '/api/iberlibro/xml/createAll' ? '.Tlibros' : '.Tiberlibro')).html(last - data.e)
+                    if (data.lapsus != null) {
+                        $((url == '/api/iberlibro/xml/createAll' ? '.Slibros' : '.Siberlibro') + ' .w3-container.w3-blue.w3-round').css('width', ((data.e / last) * 100).toFixed(0) + "%").html(((data.e / last) * 100).toFixed(0) + "%").removeClass('oculto')
+                        setTimeout(function () {
+                            fn(url, fn, cb, data.e, last, page , 0)
+                        }, data.lapsus)
+                    } else {
+                        if (data.next) {
+                            fn(url, fn, cb, data.e, last, page, data.t)
+                        } else {
+                            console.log(data)
+                            $("#jsGrid").jsGrid("loadData");
+                        }
                     }
                 })
             }
@@ -243,7 +255,7 @@ $(document).ready(function() {
                     $('.Biberlibro').addClass('disabled')
                     $('.Siberlibro').removeClass('oculto')
                 }
-                go('/api/iberlibro/delete',go,function(){},0,data.TIberlibro,200,0)
+                go('/api/iberlibro/xml/deleteAll',go,function(){},0,data.TIberlibro, 1,0)
 
             })
             $('.Blibros').unbind().click(function(){
@@ -251,8 +263,12 @@ $(document).ready(function() {
                     $('.Blibros').addClass('disabled')
                     $('.Biberlibro').addClass('disabled')
                     $('.Slibros').removeClass('oculto')
-                }               
+                } 
+                go('/api/iberlibro/xml/createAll', go, function () { }, 0, data.Total, 1, 0)
             })
+            $('.Slibros .w3-container.w3-blue.w3-round').addClass('oculto')
+            $('.Siberlibro .w3-container.w3-blue.w3-round').addClass('oculto')
+
         });
 
         
@@ -282,12 +298,6 @@ $(document).ready(function() {
           //text.push(value + " : " + getData[value])
         });
     }
-
-
-    //function validateForm($form){
-      //  var _e = $('.validate').find('input')
-       // debugger
-    //}
     function getFormData($form){
         var unindexed_array = $form.serializeArray();
         var indexed_array = {};
@@ -357,12 +367,20 @@ $(document).ready(function() {
 
             window.data.grid = $("#jsGrid").jsGrid({
                
-                width: "90%",
+                width: "100%",
                 height: "auto",
 
                 viewrecords : true,
-                gridview : true,
-
+                gridview: true,
+                pageButtonCount: 10,
+                pagerContainer: "#externalPager",
+                pagerFormat: "current page: {pageIndex} &nbsp;&nbsp; {first} {prev} {pages} {next} {last} &nbsp;&nbsp; total pages: {pageCount}",
+                pagePrevText: "<",
+                pageNextText: ">",
+                pageFirstText: "<<",
+                pageLastText: ">>",
+                pageNavigatorNextText: "&#8230;",
+                pageNavigatorPrevText: "&#8230;",
                 autoload: true,
                 paging: true,
                 pageLoading: true,
@@ -373,7 +391,7 @@ $(document).ready(function() {
                 selecting: true,
                 sorting: true,
 
-                pageSize: 10,
+                pageSize: 100,
                 pageIndex:1,
                 onRefreshed: function(grid) {
                         $('.sale.icon').parent().parent().css({color:'red'})
@@ -410,7 +428,7 @@ $(document).ready(function() {
         
                 fields: [
                     { title: "id", name: "idbooks", type: "number", width: 25, visible:false },
-                    { title: "img", type: "number", visible:true , width: 50,  filtering: false,
+                    { title: "img", type: "number", visible:false , width: 50,  filtering: false,
                         itemTemplate: function(val,item) {
                             var _src ='/api/books/img?ref='+item.vendorListingid
                             return $("<img>").attr("src", item.img).attr("data", item.vendorListingid)
@@ -465,33 +483,42 @@ $(document).ready(function() {
                         var _t = value=='IBER'?'leanpub':'amazon'       
                         return value==null?null:$('<i class="'+_t+' icon sale">');
                     }},
-                    {  title: "", name: "C_iberlibro", type: "text", width: 60,filtering: false,
+                    {  title: "", name: "C_iberlibro", type: "text", width: 110,filtering: false,
                     itemTemplate: function(value,record) {
                         var _t = value>0?'green':'red'       
-                        return value==null?null:$('<i class="leanpub '+_t+' icon large '+(record._sale!=null?'hidden':'')+'">').attr('data',record.vendorListingid).click(function(e){
-                            e.stopPropagation()
+                        return value==null?null:$('<span>').append( $('<i class="leanpub '+_t+' icon large '+(record._sale!=null?'hidden':'')+'">').attr('data',record.vendorListingid).click(function(e){
+                                e.stopPropagation()
                                
-                               var _id = $(this).attr('data') 
-                               form = 'formIberlibro'
-                               editForm(form,'edit',{ item: gridTorecord( _id ) })
-                               bookfinder(form,_id)
+                                   var _id = $(this).attr('data') 
+                                   form = 'formIberlibro'
+                                   editForm(form,'edit',{ item: gridTorecord( _id ) })
+                                   bookfinder(form,_id)
 
-                        })
+                            })
+                        ).append(record.price_quantity_Iberlibro ? $('<div class="ui ' + _t + ' label">').html(record.price_quantity_Iberlibro + " &euro;") : $('<span>'))
                     }},
-                    {  title: "", name: "C_amazon", type: "text", width: 40,filtering: false,
+                    { title: "", name: "C_amazon", type: "text", width: '100%',filtering: false,
                     itemTemplate: function(value,record) {
                         var _t = value>0?'green':'red'       
-                        return value==null?null:$('<i class="amazon '+_t+' icon large '+(record._sale!=null?'hidden':'')+'">').attr('data',record.vendorListingid).click(function(e){
-                            e.stopPropagation()
-                            var _id = $(this).attr('data') 
-                            form = 'formAmazon'
-                            editForm( form ,'edit',{ item: gridTorecord( _id ) } )
-                            bookfinder(form,_id)
-                        });
-                    }}
+                        return value == null ? null : $('<span>').append($('<i class="amazon '+_t+' icon large '+(record._sale!=null?'hidden':'')+'">').attr('data',record.vendorListingid).click(function(e){
+                                e.stopPropagation()
+                                var _id = $(this).attr('data') 
+                                form = 'formAmazon'
+                                editForm( form ,'edit',{ item: gridTorecord( _id ) } )
+                                bookfinder(form,_id)
+                        })
+
+                        ).append(record.price_quantity_ES ? $('<span>').html(record.price_quantity_ES + " &euro; " + '<i class="es flag"></i>' ) : $('<span>'))
+                            .append(record.price_quantity_UK ? $('<span>').html(record.price_quantity_ES + " &euro; " + '<i class="gb flag"></i>')  : $('<span>'))
+                            .append(record.price_quantity_FR ? $('<span>').html(record.price_quantity_ES + " &euro; " + '<i class="fr flag"></i>')  : $('<span>'))
+                            .append(record.price_quantity_IT ? $('<span>').html(record.price_quantity_ES + " &euro; " + '<i class="it flag"></i>')  : $('<span>'))
+                            .append(record.price_quantity_DE ? $('<span>').html(record.price_quantity_ES + " &euro; " + '<i class="de flag"></i>')  : $('<span>'))
+
+                        }
+                    }
                 ]
             });
-    
+   
 
 
 

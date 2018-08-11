@@ -3,9 +3,9 @@
     console.log('Books Api login')
     //console.log(apiKey, apiUser)
     return {
-
-        iberlibro : require('./Iberlibro/Api_Iberlibro.js')(mysql.connection, cred[0].IberLibro_apiKey, cred[0].IberLibro_apiUser),
-        amazon : require('./Amazon/Api_Amazon.js')(mysql.connection, cred[0].IberLibro_apiKey, cred[0].IberLibro_apiUser),
+        fileXml:"",
+        iberlibro : require('./Iberlibro/Api_Iberlibro.js')(_ , mysql.connection, cred[0].IberLibro_apiKey, cred[0].IberLibro_apiUser),
+        amazon : require('./Amazon/Api_Amazon.js')(_ , mysql.connection, cred[0].IberLibro_apiKey, cred[0].IberLibro_apiUser),
 
         new: function (req,cb) {
             var _this = this
@@ -102,7 +102,7 @@
                     `subject`]
                 return arr.join(",")
             }
-            order = " ORDER BY vendorListingid desc"
+            order = " ORDER BY books.vendorListingid desc"
             if (req.query.sortField != null)
                 order = " ORDER BY " + req.query.sortField + " " + req.query.sortOrder
 
@@ -122,7 +122,7 @@
                 filter = filter + (filter.length == 0 ? " WHERE " : " AND ") + "price_quantity = '" + req.query.price_quantity + "' "
 
             if (req.query.vendorListingid.length > 0)
-                filter = filter + (filter.length == 0 ? " WHERE " : " AND ") + "vendorListingid = '" + req.query.vendorListingid + "' "
+                filter = filter + (filter.length == 0 ? " WHERE " : " AND ") + "books.vendorListingid = '" + req.query.vendorListingid + "' "
 
             if (req.query.type == 'all') {
                 from = "FROM books "
@@ -147,6 +147,8 @@
             console.log(cadsql)
 
             mysql.connection.query(cadsql, function (err, records) {
+                if (err)
+                    debugger
                 cb(err, records, cadsql)
             })
         },

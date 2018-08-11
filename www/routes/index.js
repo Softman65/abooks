@@ -102,29 +102,6 @@ mysql.connection.connect(function(err) {
                 }
             });
 
-
-
-            router.get('/api/iberlibro/delete', function (req, res) {
-
-                var _e = req.query.e*1
-                var _l = req.query.l*1
-                var _p = req.query.p*1
-                var _t = req.query.t*1
-                if(_t<_p){
-                    _t = 0
-                }else{
-                    _t = _t + 1
-                }   
-                var cadsql = "SELECT (@cnt := @cnt + 1) AS rowNumber, t.* FROM abooks.iberlibro as t  CROSS JOIN (SELECT @cnt := 0) AS dummy ORDER by @cnt desc LIMIT "+_e+",1"
-                //console.log(cadsql)
-                mysql.connection.query(cadsql, function(err,records) {
-                    if(err)
-                        console.log(err)
-                    console.log(records)
-                    res.json({next: _e < _l, e:_e+1 ,t:_t, vendorListingid: records[0].vendorListingid })
-                })
-                
-            })
             router.get('/api/books/totales', function (req, res) {
                 books.totales(req, function (err, records) {
                     if(err!=null){
@@ -188,6 +165,22 @@ mysql.connection.connect(function(err) {
                 })
             })
 
+            router.get('/api/iberlibro/xml/deleteAll', function (req, res) {
+                books.iberlibro.xml.bulk(false, true, req, res, function (response) {
+                    res.json({
+                        next: false,
+                        response: response
+                    })
+                })
+            })
+            router.get('/api/iberlibro/xml/createAll', function (req, res) {
+                books.iberlibro.xml.bulk(true, false, req, res, function (response, file) {
+                    res.json({
+                        next: false,
+                        response: response
+                    })
+                })
+            })
             router.get('/api/bookfinder', function (req, res) {
                 var url = "https://www.bookfinder.com/search/"
                 if(req.originalUrl.indexOf('?urlquery=')==-1){

@@ -1,5 +1,6 @@
 .ui-jqgrid-view {
-    max-height: 642px!important;;
+    max-height: 642px!important;
+    max-width:100%;
 }
 .ui-jqgrid-bdiv {
     overflow-y: scroll !important;
