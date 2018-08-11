@@ -7,9 +7,8 @@ module.exports = function (apiKey,apiUser) {
     var iconv = require('iconv-lite')
     var newLine= String.fromCharCode(10) + String.fromCharCode(13) // "Before "+ "%0D%0A"
     return {
-        xmlIberbooks: {
-            apiKey: apiKey,
-            apiUser: apiUser,
+ //       xmlIberbooks: {
+            file:"",
             xmlUnit: function (action, libro, imagenes) {
                 var xml = this.functions().header(this.apiUser, this.apiKey)
                 if (action == 'update' || action == 'delete') {
@@ -23,7 +22,7 @@ module.exports = function (apiKey,apiUser) {
             },
             functions: function () {
                 return {
-                    header: function (apiUser, apiKey) {
+                    header: function () {
                         var xmlRecord = '<?xml version="1.0" encoding="ISO-8859-1"?>' + newLine
                         xmlRecord += '<inventoryUpdateRequest version="1.0">' + newLine
                         xmlRecord += '<action name="bookupdate">' + newLine
@@ -79,7 +78,7 @@ module.exports = function (apiKey,apiUser) {
                 }
             }
 
-        }
+      // }
 
     }
 }
