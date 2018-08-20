@@ -146,7 +146,7 @@ module.exports = function (_, mysql,apiKey,apiUser) {
                     cb()
 
             if ((_.isArray(array) ? array[e].code._text == "600" : array.code._text == "600") ) {
-                mysql.query(cadsql, [_.isArray(array) ? array[e].vendorBookID._text : array.vendorBookID._text], function (err, records) {
+                mysql.query(cadsql, [_.isArray(array) ? array[e].vendorBookID._text.split("-")[0] : array.vendorBookID._text], function (err, records) {
                     if (_.isArray(array) ? e < (array.length-1): false) {
                         _this.delete(e+1, array, cb)
                     } else {
@@ -185,7 +185,7 @@ module.exports = function (_, mysql,apiKey,apiUser) {
             }
         },
         xml: {
-            bulk: function (add, del, req, res, _cb) {
+            bulk: function (add, del, req, res, _cb ) {
                 var _e = req.query.e * 1
                 var _l = req.query.l * 1
                 var _p = req.query.p * 1
@@ -206,12 +206,13 @@ module.exports = function (_, mysql,apiKey,apiUser) {
                     }
                     cb()
                 }
-                var cadsql = "SELECT (@cnt := @cnt + 1) AS rowNumber, t.* FROM " + (add ? "books" :"iberlibro") + " as t  CROSS JOIN (SELECT @cnt := 0) AS dummy ORDER by @cnt desc LIMIT " + _e + ",1"
+                var cadsql = "SELECT (@cnt := @cnt + 1) AS rowNumber, libro.* FROM " + (add ? 'books' : 'iberlibro') + " as t  CROSS JOIN (SELECT @cnt := 0) AS dummy LEFT JOIN books as libro ON t.vendorListingid=libro.vendorListingid " + (add ?" where isnull(libro._dateSale) and length(libro._loc)>0 ":" ORDER by fecha_add asc ")+ " LIMIT " + (add ? _e : (_t-1) ) + "," + _p
                 mysql.query(cadsql, function (err, records) {
 
                     if (err)
                         console.log(err,cadsql)
 
+                    //console.log(records[0])
                     if (records.length > 0) {
                         populate(_e, _l, _t, records[0], function () {
                             if (_t == _p) {
@@ -224,20 +225,20 @@ module.exports = function (_, mysql,apiKey,apiUser) {
                                     if (response.inventoryUpdateResponse) {
                                         _this[add ? 'create' : 'delete'](0, response.inventoryUpdateResponse.AbebookList.Abebook, function () {
                                             _this.xml_process.file = ""
-                                            res.json({ lapsus: lapsus ? lapsus:60000 , next: _e < _l, e: _e + 1, t: 0 })
+                                            _cb({ lapsus: lapsus ? lapsus:60000 , next: _e < _l, e: _e + 1, t: 0 })
                                         })
                                     } else {
                                         var fs = require("fs")
                                         fs.writeFile('/error.xml', _this.xml_process.file, function () {
                                             debugger
-                                            res.json({ next: _e < _l, e: _e + 1, t: _t  })
+                                            _cb({ next: _e < _l, e: _e + 1, t: _t  })
                                         })
                                         
                                     }
                                 })
                             } else {
                                 var resp = { next: _e < _l, e: _e + 1, t: _t  }
-                                res.json(resp)
+                                _cb(resp)
                             }
                         })
 
@@ -258,13 +259,13 @@ module.exports = function (_, mysql,apiKey,apiUser) {
                                     var fs = require("fs")
                                     fs.writeFile('/error.xml', _this.xml_process.file, function () {
                                         debugger
-                                        res.json({ next: _e < _l, e: _e + 1, t: _t })
+                                        _cb({ next: _e < _l, e: _e + 1, t: _t })
                                     })
 
                                 }
                             })
                         } else {
-                            _cb({})
+                            _cb({ next:false })
                         }
                     }
                 })

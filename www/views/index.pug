@@ -283,7 +283,25 @@ block content
         span.left.red * 
           span campos obligatorios
           
-      .ui.button.disabled Orden de Envío          
+      .ui.button.sale Orden de Envío          
+      .ui.flowing.popup.top.left.transition
+
+         .ui.icon.buttons
+            button.ui.button(data="IBER")
+              img(src="img/iberlibro_btn.png")
+            button.ui.button(data="AMASP")
+              i.es.flag
+            button.ui.button(data="AMAUK")
+              i.gb.flag
+            button.ui.button(data="AMAFR")
+              i.fr.flag
+            button.ui.button(data="AMADE")
+              i.de.flag
+            button.ui.button(data="AMAIT")
+              i.it.flag
+
+
+
       .ui.button.approve.disabled(tabindex='9') Crear
       .ui.cancel.button(tabindex='10') Cancelar
 

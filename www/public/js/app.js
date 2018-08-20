@@ -166,6 +166,27 @@ $(document).ready(function() {
     
                 validateform(_content)
             })
+            if (getData._sale !=null) {
+                $('#edit .ui.sale.button').addClass('disabled')
+            } else {
+                $('#edit .ui.sale.button').popup({
+                    popup: $('.ui.flowing.popup'),
+                    on: 'click'
+                })
+                $('.ui.flowing.popup .ui.button').click(function () {
+                    var code = $(this).attr('data')
+                    if (confirm('¿estas seguro de querer dar de baja este libro?')) {
+                        $.ajax({
+                            type: "POST",
+                            url: "/api/books/sale",
+                            data: { id: getData.vendorListingid, iber: getData.C_iberlibro, amazon: getData.C_amazon, code:code ,loc:getData._loc }
+                        }).done(function (data) {
+                            $('#edit').modal('hide')
+                            $("#jsGrid").jsGrid("loadData");
+                        })
+                    }
+                })
+            }
             $('#edit .ui.approve.button').html('Guardar')
             $('#edit .header.book').html('<span><span class="left green">'+getData.title+'</span><span class="right">'+getData.vendorListingid+'-<span class="red">'+(getData._loc==null?'?':getData._loc)+'</span></span></span>')
             validateform(_content)
@@ -255,7 +276,7 @@ $(document).ready(function() {
                     $('.Biberlibro').addClass('disabled')
                     $('.Siberlibro').removeClass('oculto')
                 }
-                go('/api/iberlibro/xml/deleteAll',go,function(){},0,data.TIberlibro, 1,0)
+                go('/api/iberlibro/xml/deleteAll',go,function(){},0,data.TIberlibro, 100,0)
 
             })
             $('.Blibros').unbind().click(function(){

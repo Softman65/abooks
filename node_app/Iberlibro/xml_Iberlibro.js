@@ -43,7 +43,7 @@ module.exports = function (apiKey,apiUser) {
                         delete: function (libro) {
                             var xmlRecord = '<Abebook>' + newLine
                             xmlRecord += '<transactionType>delete</transactionType>' + newLine
-                            xmlRecord += (_v(libro.vendorListingid) ? '<vendorBookID>' + libro.vendorListingid + '</vendorBookID>' : '') + newLine
+                            xmlRecord += (_v(libro.vendorListingid) ? '<vendorBookID>' + libro.vendorListingid + "-" + libro._loc + '</vendorBookID>' : '') + newLine
                             xmlRecord += '</Abebook>' + newLine
                             return xmlRecord
                         },
@@ -61,7 +61,7 @@ module.exports = function (apiKey,apiUser) {
                             }
                             var xmlRecord = '<Abebook>' + newLine
                             xmlRecord += '<transactionType>add</transactionType>' + newLine
-                            xmlRecord += (_v(libro.vendorListingid) ? '<vendorBookID>' + libro.vendorListingid + '</vendorBookID>' : '') + newLine
+                            xmlRecord += (_v(libro.vendorListingid) ? '<vendorBookID>' + libro.vendorListingid+"-"+libro._loc + '</vendorBookID>' : '') + newLine
                             xmlRecord += (_v(libro.title) ? '<title>' + normalize(libro.title) + '</title>' : '') + newLine
                             xmlRecord += (_v(libro.author) ? '<author>' + normalize(libro.author) + '</author>' : '') + newLine
                             xmlRecord += (_v(libro.publisherName) ? '<publisher>' + normalize(libro.publisherName) + '</publisher>' : '') + newLine

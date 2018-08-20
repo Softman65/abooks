@@ -61,6 +61,27 @@
                 cb(err, records)
             }) 
         },
+        sale: function (reg, cb) {
+            var iberlibro = this.iberlibro
+            if (reg.body.loc.length>0) {
+                iberlibro.xml_process.file = iberlibro.xml_process.functions().header()
+                iberlibro.xml_process.file += iberlibro.xml_process.functions().action.delete({ vendorListingid: reg.body.id + "-" + reg.body.loc })
+                iberlibro.xml_process.file += iberlibro.xml_process.functions().footer()
+            }
+            debugger
+            cadsql = "DELETE FROM iberlibro WHERE vendorListingid=?;DELETE FROM iberlibro WHERE vendorListingid=?;UPDATE books SET _sale=?,_dateSale=now() WHERE  vendorListingid=?;"
+            mysql.connection.query(cadsql, [reg.body.id, reg.body.id, reg.body.code, reg.body.id], function (err, records) {
+                if (err)
+                    debugger
+                if (reg.body.loc.length > 0) {
+                    iberlibro.post(iberlibro.xml_process.file, function (response) {
+                        cb({}, response)
+                    })
+                } else {
+                    cb({}, {})
+                }
+            })
+        },
         total: function (req, cb) {
             mysql.connection.query("SELECT count(*) as total FROM books ", function (err, records) {
                 //debugger

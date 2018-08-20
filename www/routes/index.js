@@ -120,6 +120,10 @@ mysql.connection.connect(function(err) {
                 //res.send('hi')
                 })
             });
+
+            
+
+
             router.get('/api/books/total', function (req, res) {
                 books.totales(req, function (err, records) {
                     res.json(records[0]);
@@ -164,21 +168,21 @@ mysql.connection.connect(function(err) {
                     }
                 })
             })
+            router.post('/api/books/sale', function (req, res) {
+                books.sale(req, function (err, records) {
+                    res.json(records);
+                })
+            });
 
             router.get('/api/iberlibro/xml/deleteAll', function (req, res) {
-                books.iberlibro.xml.bulk(false, true, req, res, function (response) {
-                    res.json({
-                        next: false,
-                        response: response
-                    })
+                books.iberlibro.xml.bulk(false, true, req, res, function (Jresponse) {
+                    res.json(Jresponse)
                 })
             })
             router.get('/api/iberlibro/xml/createAll', function (req, res) {
-                books.iberlibro.xml.bulk(true, false, req, res, function (response, file) {
-                    res.json({
-                        next: false,
-                        response: response
-                    })
+                books.iberlibro.xml.bulk(true, false, req, res, function (Jresponse) {
+                    res.json(Jresponse)
+
                 })
             })
             router.get('/api/bookfinder', function (req, res) {
