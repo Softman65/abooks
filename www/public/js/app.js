@@ -541,35 +541,41 @@ $(document).ready(function() {
             });
    
 
-
+            //a.ui.item.new
+            //i.big.plus.circle.icon.blue
 
     $('.ui.menu .item').on('click', function() {
 //btnIberlibro
-        if($(this).hasClass('new')){
-            editForm('formEdit','new',args)
-        }else{
-            if($(this).hasClass('btnIberlibro')){
-                IberlibroForm('Iberlibro','',args)
-            }else{
-                if(!$(this).hasClass('flag')){
-                    $('.ui .item').removeClass('active');
-                    $(this).addClass('active'); 
-                    if($(this).attr('data')=='amazon'){
-                        $('.right.menu .item.flag.es').addClass('active')
-                        $('.right.menu .item.flag').removeClass('hidden')
-                    }else{
-                        $('.right.menu .item.flag').addClass('hidden')
-                    }
-                    $("#jsGrid").jsGrid("loadData"); 
-                }else{
-                    if(!$(this).hasClass('es'))
-                        if($(this).hasClass('active')){
-                            $(this).removeClass('active');
-                        }else{
-                            $(this).addClass('active');
+        if ($(this).hasClass('clear')) {
+            $(".jsgrid-grid-header.jsgrid-header-scrollbar input").val("")
+            $("#jsGrid").jsGrid("loadData"); 
+        } else {
+            if ($(this).hasClass('new')) {
+                editForm('formEdit', 'new', args)
+            } else {
+                if ($(this).hasClass('btnIberlibro')) {
+                    IberlibroForm('Iberlibro', '', args)
+                } else {
+                    if (!$(this).hasClass('flag')) {
+                        $('.ui .item').removeClass('active');
+                        $(this).addClass('active');
+                        if ($(this).attr('data') == 'amazon') {
+                            $('.right.menu .item.flag.es').addClass('active')
+                            $('.right.menu .item.flag').removeClass('hidden')
+                        } else {
+                            $('.right.menu .item.flag').addClass('hidden')
                         }
+                        $("#jsGrid").jsGrid("loadData");
+                    } else {
+                        if (!$(this).hasClass('es'))
+                            if ($(this).hasClass('active')) {
+                                $(this).removeClass('active');
+                            } else {
+                                $(this).addClass('active');
+                            }
+                    }
                 }
-            }        
+            }
         }
      }); 
 
