@@ -4,7 +4,7 @@ module.exports = function (apiKey,apiUser) {
     var _v = function(e){
         return e!=null
     }
-    var iconv = require('iconv-lite')
+
     var newLine= String.fromCharCode(10) + String.fromCharCode(13) // "Before "+ "%0D%0A"
     return {      
         
@@ -27,6 +27,28 @@ module.exports = function (apiKey,apiUser) {
                         return xmlRecord
                     },
                     Message : {
+                        converters:{ 
+                            ConditionType : function(_c){
+                                Aceptable
+                                var _out = ['Aceptable',
+                                    'Bueno',
+                                    'Muy Bueno',
+                                    'Como Nuevo',
+                                    'Como Nuevo','Muy Bueno','Muy Bueno','Nuevo','Muy Bueno','Muy Bueno','Muy Bueno','Muy Bueno','Muy Bueno','Muy Bueno','Muy Bueno','Muy Bueno','Muy Bueno','Muy Bueno']
+                                var _in = ['Bien','Buen estado','Casi nuevo','Como nuevo','Excelente','excelente estado','Libro Nuevo',
+                                        'Muy bien',
+                                        'Muy buen estado',
+                                        'Muy bueno',
+                                        'Nueva',
+                                        'Nueva cubierta',
+                                        'Nueva sobrecubierta',
+                                        'nuevas cubiertas',
+                                        'Nuevo',
+                                        'Nuevo',
+                                        'Perfecto']
+                                return _in.indexOf(_c)>-1?_out[_in.indexOf(_c)]:''
+                            }
+                        },
                         constructor:function(operation,libros){
                             var xmlRecord = this.head()
                             libros.each(function(e,i){
@@ -48,9 +70,24 @@ module.exports = function (apiKey,apiUser) {
                         producto:function(libro){
                             var xmlRecord = '<Product>'+ newLine
                             xmlRecord += '<SKU>' + libro.vendorListingid + '</SKU>' + newLine
-                            
-                            //... http://docs.developer.amazonservices.com/en_ES/feeds/Feeds_SubmitFeed.html
-
+                            if(libro.isbn!=null){
+                                xmlRecord +='<StandardProductID>'+ newLine 
+                                xmlRecord +='<Type>ISBN</Type>'+ newLine 
+                                xmlRecord +='<Value>'+libro.isbn+'</Value>'+ newLine 
+                                xmlRecord +='</StandardProductID>'+ newLine
+                            }
+                            xmlRecord +='<ProductTaxCode>A_GEN_TAX</ProductTaxCode>' + newLine
+                            xmlRecord +='<LaunchDate>'+new Date().toISOString()+'</LaunchDate>' + newLine
+                            xmlRecord +='<Condition>'+ newLine
+                            xmlRecord +='<ConditionType>'+this.converters.ConditionType(libro.bookCondition)+'</ConditionType>' + newLine
+                            xmlRecord +='</Condition>'+ newLine
+                            xmlRecord +='<DescriptionData>'+ newLine
+                            xmlRecord +='<title>'+ libro.title + '</title>'+ newLine
+                            xmlRecord +='<author>'+ libro.author + '</author>'+ newLine
+                            xmlRecord +='<publisher>'+ libro.publisherName + '</publisher>'+ newLine
+                            xmlRecord +='<pub-date>'+ libro.publishYear + '</pub-date>'+ newLine
+                            xmlRecord +='<binding>'+ libro.bindingText + '</binding>'+ newLine
+                            xmlRecord +='</DescriptionData>'+ newLine
                             xmlRecord += '</Product>'+ newLine
                             
                         },

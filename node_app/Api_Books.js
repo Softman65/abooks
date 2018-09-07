@@ -6,7 +6,6 @@
         fileXml:"",
         iberlibro : require('./Iberlibro/Api_Iberlibro.js')(_ , mysql.connection, cred[0].IberLibro_apiKey, cred[0].IberLibro_apiUser),
         amazon : require('./Amazon/Api_Amazon.js')(_ , mysql.connection, cred[0].IberLibro_apiKey, cred[0].IberLibro_apiUser),
-
         new: function (req,cb) {
             var _this = this
             var cadsql = "INSERT INTO books ("

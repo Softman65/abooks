@@ -10,6 +10,7 @@
     "body-parser": "^1.18.3",
     "cookie-parser": "^1.4.3",
     "crypto": "^1.0.1",
+    "encode-3986": "^1.0.0",
     "encoding": "^0.1.12",
     "express": "^4.16.3",
     "iconv-lite": "^0.4.23",
