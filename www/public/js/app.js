@@ -300,12 +300,14 @@ $(document).ready(function() {
                 $('#edit textarea[name="'+value+'"]').val(type=='edit'?getData[value]:'')
             }else{
                 if( value == 'C_iberlibro'){  
-                    var _v = value.substr(1,value.length)                      
-                    $('#edit .ui.toggle.checkbox [name="'+_v+'"]').parent().checkbox('set ' + (type=='edit'?(getData[value]==null?'uncheck':getData[value]>0?'checked':'uncheck'):'checked'))
+                    var _v = value.substr(1,value.length)   
+                    var _p = (type=="edit"?(getData[value]==null?'unchecked':getData[value]>0?'checked':'unchecked'):'checked')                   
+                    $('#edit .ui.toggle.checkbox [name="'+_v+'"]').parent().checkbox('set ' + _p )
                 }else{
                     if( value == 'C_amazon'){  
-                        var _v = value.substr(1,value.length)                      
-                        $('#edit .ui.toggle.checkbox [name="'+_v+'"]').parent().checkbox('set ' + (type=='edit'?(getData[value]==null?'uncheck':getData[value]>0?'checked':'uncheck'):'checked'))
+                        var _v = value.substr(1,value.length)   
+                        var _p = (type=='edit'?(getData[value]==null?'unchecked':getData[value]>0?'checked':'unchecked'):'checked')                   
+                        $('#edit .ui.toggle.checkbox [name="'+_v+'"]').parent().checkbox('set ' + _p)
                     }else{
                         if($('#edit input[name="'+value+'"]').attr('type')!='hidden'){
                             $('#edit input[name="'+value+'"]').val(type=='edit'?getData[value]:'') //.removeAttr("disabled")
