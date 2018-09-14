@@ -448,9 +448,7 @@ $(document).ready(function() {
                       //  return d.promise();
                     }
                 },
-                rowRenderer: function(item) {
-                    return $("<tr>").addClass("custom-row").append($("<td>").append(item.Name));
-                        },
+        
                 fields: [
                     { title: "id", name: "idbooks", type: "number", width: 25, visible:false },
                     { title: "img", type: "number", visible:false , width: 50,  filtering: false,
