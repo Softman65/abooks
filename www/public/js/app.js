@@ -451,8 +451,8 @@ $(document).ready(function() {
                     }
                 },
                 rowRenderer: function(item) {
-                    debugger
-                    return $("<tr>").addClass(item._sale!=null?"custom-row":'')//.append();
+                    //debugger
+                    return $("<tr>").addClass(item._sale!=null?"sale-row":'')//.append();
                 },
                 fields: [
                     { title: "id", name: "idbooks", type: "number", width: 25, visible:false },

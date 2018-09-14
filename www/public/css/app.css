@@ -44,3 +44,8 @@
 .jsgrid-filter-row input{
     background-color: #ffffb3;
 }
+.sale-row{
+    background-color: #50504f;
+    color:whitesmoke;
+    text-decoration-line: line-through;
+}
