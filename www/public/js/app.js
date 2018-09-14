@@ -417,7 +417,7 @@ $(document).ready(function() {
                 pageSize: 100,
                 pageIndex:1,
                 onRefreshed: function(grid) {
-                        $('.sale.icon').parent().parent().css({color:'red'})
+                        $('.sale.icon').parent().parent().addClass('sale-row')
                 },                     // handles the finish of loading data by controller.loadData
                 rowClick: function(args) {
                     editForm('formEdit','edit',args)                
