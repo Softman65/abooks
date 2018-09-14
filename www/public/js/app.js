@@ -168,7 +168,6 @@ $(document).ready(function() {
             })
             if (getData._sale !=null) {
                 $('#edit .ui.sale.button').addClass('disabled')
-                $('#edit .ui.toggle.checkbox [name="_sale"]').parent().checkbox('set checked')
             } else {
                 $('#edit .ui.sale.button').popup({
                     popup: $('.ui.flowing.popup'),
@@ -187,7 +186,6 @@ $(document).ready(function() {
                         })
                     }
                 })
-                $('#edit .ui.toggle.checkbox [name="_sale"]').parent().checkbox('set unchecked')
             }
             $('#edit .ui.approve.button').html('Guardar')
             $('#edit .header.book').html('<span><span class="left green">'+getData.title+'</span><span class="right">'+getData.vendorListingid+'-<span class="red">'+(getData._loc==null?'?':getData._loc)+'</span></span></span>')
@@ -451,8 +449,7 @@ $(document).ready(function() {
                     }
                 },
                 rowRenderer: function(item) {
-                    //debugger
-                    return $("<tr>").addClass(item._sale!=null?"sale-row":'')//.append();
+                    return $("<tr>").addClass("custom-row")//.append();
                 },
                 fields: [
                     { title: "id", name: "idbooks", type: "number", width: 25, visible:false },
