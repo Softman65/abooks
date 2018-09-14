@@ -449,7 +449,8 @@ $(document).ready(function() {
                     }
                 },
                 rowRenderer: function(item) {
-                    return $("<tr>").addClass(item._sale!=null?"custom-row":'')//.append();
+                    
+                    return $("<tr>").addClass(item._sale!=null?"custom-row":'').append($("<td>").append(item.Name));
                 },
                 fields: [
                     { title: "id", name: "idbooks", type: "number", width: 25, visible:false },
