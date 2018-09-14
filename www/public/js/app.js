@@ -168,7 +168,9 @@ $(document).ready(function() {
             })
             if (getData._sale !=null) {
                 $('#edit .ui.sale.button').addClass('disabled')
+                $('#edit .ui.toggle.checkbox [name="_sale"]').parent().checkbox('set checked')
             } else {
+                $('#edit .ui.toggle.checkbox [name="_sale"]').parent().checkbox('set unchecked')
                 $('#edit .ui.sale.button').popup({
                     popup: $('.ui.flowing.popup'),
                     on: 'click'
