@@ -87,6 +87,7 @@ block content
     .header.book(style="height:50px;") Header
     .header.iberlibro.hidden(style="height:50px;") Comercialización IberLibro
     .content.formIberlibro.hidden
+
       form.ui.form.editIberlibro
         .ui.grid
           .eight.wide.column
@@ -108,133 +109,7 @@ block content
               i.icon.find 
             .bookfinder.formIberlibro.ui.loading.segment(style="min-height: 200px;max-height: 600px;overflow:auto;font-size: 0.8em;")  
 
-	.content.formAmazon.hidden
-		#apicallForm
-			h3 API Selection
-			.row
-			  label.left API Section:
-			  .right
-				select#apisection(name='apisection')
-				  option(value='Feeds') Feeds
-				  option(value='Reports') Reports
-				  option(value='FulfillmentByAmazon') Fulfilment
-				  option(value='Orders') Orders
-				  option(value='Sellers') Sellers
-				  option(value='Products') Products
-				  option(value='Recommendations') Recommendations
-				  option(value='Subscriptions') Subscriptions
-				  option(value='Finances') Finances
-				  option(value='MerchantFulfillment') Merchant Fulfillment
-				  option(value='OffAmazonPayments-Sandbox') Off-Amazon Payments Sandbox
-				  option(value='OffAmazonPayments') Off-Amazon Payments
-			.row
-			  label.left Operation:
-			  .right
-				select#apicall(name='apicall')
-				  option Select an operation...
-				  optgroup(label='Feeds')
-				  option(value='CancelFeedSubmissions')   CancelFeedSubmissions
-				  option(value='GetFeedSubmissionList')   GetFeedSubmissionList
-				  option(value='GetFeedSubmissionListByNextToken')   GetFeedSubmissionListByNextToken
-				  option(value='GetFeedSubmissionCount')   GetFeedSubmissionCount
-				  option(value='GetFeedSubmissionResult')   GetFeedSubmissionResult
-				  option(value='SubmitFeed')   SubmitFeed
-			.clear
-		  #required-api-parameters
-			h3 Authentication
-			.row
-			  label.left(for='merchantID', title='Merchant ID:') SellerId: 
-			  .right
-				input#merchantID(type='text', name='merchantID')
-			.row
-			  label.left(for='authToken', title='Auth Token:') MWSAuthToken: 
-			  .right
-				input#authToken(type='text', name='authToken', autocomplete='off')
-			.row
-			  label.left(for='awsAccountId', title='AWS Access Key ID:') AWSAccessKeyId: 
-			  .right
-				input#awsAccountID(type='text', name='awsAccountID', autocomplete='off')
-			.row
-			  label.left(for='secretKey', title='Secret Key:') Secret Key: 
-			  .right
-				input#secretKey(type='text', name='secretKey', autocomplete='off')
-			.warning
-			  | Note: Never enter your MWS credentials into a non-Amazon site.
-			#divAuthExtra(style='display:none')
-			  .row
-				label.left(for='appName') App Name:
-				.right
-				  input#appName(type='text', name='appName')
-			  .row
-				label.left(for='appVersion') App Version:
-				.right
-				  input#appVersion(type='text', name='appVersion')
-			  .row
-				label.left(for='appLanguage') Language:
-				.right
-				  input#appLanguage(type='text', name='appLanguage')
-			  #rowTimestamp.row(style='display: none;')
-				label.left(for='mytimestamp') Time stamp:
-				.right
-				  input#mytimestamp(type='text', name='mytimestamp', disabled='disabled')
-			  #rowTimestampCalc.row(style='display: none;')
-				label.left(for='calcTimestamp')  
-				.right
-				  input#calcTimestamp(type='checkbox', name='calcTimestamp', checked='checked', onclick='toggleTimestamp();', style='width: 32px')
-				  | Use local time
-			  .row
-				label.left(for='signatureVersion') Signature Version:
-				.right
-				  input#signatureVersion(type='text', name='signatureVersion', disabled='disabled')
-			  .row
-				label.left(for='request-path') Path
-				.right
-				  input#request-path(type='text', name='request-path', disabled='disabled')
-			  .row
-				label.left(for='signatureMethod') Signature Method:
-				.right
-				  input#signatureMethod(type='text', name='signatureMethod', disabled='disabled')
-			  .row
-				label.left(for='apiVersion') API Version
-				.right
-				  input#apiVersion(type='text', name='apiVersion', disabled='disabled')
-			  #rowEndpint.row
-				label.left(for='endpoint') Endpoint:
-				.right
-				  input#endpoint(type='text', name='endpoint', disabled='')
-			.clear
-			.more(style='text-align: center')
-			  a#linkMore(href='javascript://', onclick='toggleMore();') More...
-		  #required-parameters
-			h3 Required API Parameters
-			#required-parameters-content
-			  .row(title='Feed Type')
-				.left FeedType
-				.right
-				  input#FeedType(type='text')
-			.clear
-		  #optional-parameters
-			h3 Optional API Parameters
-			#optional-parameters-content
-			  .row(title='FeedOptions')
-				.left FeedOptions
-				.right
-				  input#FeedOptions(type='text')
-			  .row(title='Marketplace ID')
-				.left MarketplaceIdList.Id.1
-				.right
-				  input(type='text', id='MarketplaceIdList.Id.-')
-				  a(href='javascript://')
-					img(src='https://images-na.ssl-images-amazon.com/images/G/02/mwsportal/scratchpad/plus._CB168617915_.gif')
-			  .row(title='Purge and Replace')
-				.left PurgeAndReplace
-				.right
-				  input#PurgeAndReplace(type='checkbox')
-			.clear
-	  .form(style='border: 0')
-		div(style='text-align: center')
-		  button#submit(name='submit', onclick='postRequest();') Submit
-		.clear
+
 
 
 

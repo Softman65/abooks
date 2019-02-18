@@ -1,0 +1,244 @@
+
+#edit.ui.long.modal
+	.header.book(style="height:50px;") Header
+	.header.iberlibro.hidden(style="height:50px;") Comercialización IberLibro
+	.content.formIberlibro.hidden
+		form.ui.form.editIberlibro
+			.ui.grid
+				.eight.wide.column
+					.field
+						.fields    
+							.five.wide.field.validate
+								label PRECIO
+								span
+									span.blue IBERLIBRO
+									span.red *
+								input.numeric( style="text-align:right", type='text', name='price_quantity_Iberlibro', placeholder='PRECIO', tabindex="0")
+							.five.wide.field.disabled
+								label 
+								span
+									span.blue BASE
+								input.numeric( style="text-align:right", type='text', name='price_quantity', placeholder='PRECIO', tabindex='1')
+		.eight.wide.column
+			label.back BookFinder
+				i.icon.find 
+				.bookfinder.formIberlibro.ui.loading.segment(style="min-height: 200px;max-height: 600px;overflow:auto;font-size: 0.8em;")
+	
+	.content.formAmazon.hidden
+
+
+
+
+
+
+	form.ui.form.editAmazon
+		.ui.grid
+          .eight.wide.column
+            .field
+              .fields    
+                  .five.wide.field.validate
+                      label
+                        span
+                          span.blue AMAZON ES
+                          span.red *
+                      input.numeric( style="text-align:right", type='text', name='price_quantity_ES', placeholder='PRECIO', tabindex="0")
+                  .five.wide.field.disabled
+                      label 
+                        span
+                          span.blue BASE
+                      input.numeric( style="text-align:right", type='text', name='price_quantity', placeholder='PRECIO')
+
+ 
+              .fields    
+                  .five.wide.field.validate
+                      label
+                        span
+                          span.blue AMAZON UK
+                          span.red *
+                      input.numeric( style="text-align:right", type='text', name='price_quantity_UK', placeholder='PRECIO', tabindex="1")
+                  
+                  .five.wide.field.validate
+                      label
+                        span
+                          span.blue AMAZON FR
+                          span.red *
+                      input.numeric( style="text-align:right", type='text', name='price_quantity_FR', placeholder='PRECIO', tabindex="1")
+              .fields    
+                  .five.wide.field.validate
+                      label
+                        span
+                          span.blue AMAZON IT
+                          span.red *
+                      input.numeric( style="text-align:right", type='text', name='price_quantity_IT', placeholder='PRECIO', tabindex="1")
+                  
+                  .five.wide.field.validate
+                      label
+                        span
+                          span.blue AMAZON DE
+                          span.red *
+                      input.numeric( style="text-align:right", type='text', name='price_quantity_DE', placeholder='PRECIO', tabindex="1")
+
+
+          .eight.wide.column
+            label.back BookFinder
+              i.icon.find 
+            .bookfinder.formAmazon.ui.loading.segment(style="min-height: 200px;max-height: 600px;overflow:auto;font-size: 0.8em;")
+    
+    .content.formEdit.hidden      
+      form.ui.form.editForm
+        h4.ui.dividing.header Información de libro
+        
+        .field
+          .fields
+              .five.wide.field.hidden
+                label
+                  span
+                    span.blue REF
+                    span.red * 
+                input.numeric(id='id' type='text', name='vendorListingid', placeholder='referencia',disabled="disabled")
+
+              .five.wide.field
+                label.blue Isbn
+                input(type='text', name='universalIdentifier_number', placeholder='ISBN', tabindex='0')
+              .five.wide.field.validate
+                  label 
+                    span
+                      span.blue PRECIO
+                      span.red *
+                  input.numeric(style="text-align:right", type='text', name='price_quantity', placeholder='PRECIO', maxlength='6', tabindex='1')
+              .five.wide.field
+                  label.blue LOCALIZACIÓN
+                  input(type='text', name='_loc', placeholder='estanteria....', tabindex='2')
+
+              .five.wide.field(style="margin-top:30px;")                  
+                  .ui.toggle.checkbox
+                    input.hidden(type='checkbox', name='_sales') 
+                    label.blue Vendido      
+        .field
+          .two.fields
+            .field.validate
+              label
+                span
+                  span.blue TITULO
+                  span.red *
+              input(type='text', name='title', placeholder='Titulo de la obra', tabindex='3')
+            .field.validate
+              label 
+                span
+                  span.blue AUTOR
+                  span.red *
+              input(type='text', name='author', placeholder='Autor de la Obra', tabindex='4')
+        .field
+          label.blue Descripcion
+          .fields
+            textarea(name='description', rows="4", tabindex='5')
+        .field
+          .two.fields
+            .field
+              label.blue Tipo
+              .ui.search.selection.dropdown.productType
+                input(type='hidden', name='productType', value='')
+                i.dropdown.icon
+                .default.text  Tipo 
+                .menu 
+            .field
+              label.blue Estado General
+              .ui.search.selection.dropdown.bookCondition
+                input(type='hidden', name='bookCondition', value='')
+                i.dropdown.icon
+                .default.text  Estado General 
+                .menu  
+            .field
+              label.blue Estado Cubierta
+              .ui.search.selection.dropdown.jacketCondition
+                input(type='hidden', name='jacketCondition', value='')
+                i.dropdown.icon
+                .default.text  Estado cubierta 
+                .menu
+        .field
+          .two.fields 
+            .field
+              label.blue Encuadernación
+              .ui.search.selection.dropdown.bindingText
+                input(type='hidden', name='bindingText', value='')
+                i.dropdown.icon
+                .default.text Encuadernación 
+                .menu
+            .field
+              label.blue Firmas y dedicatorias
+              .ui.search.selection.dropdown.inscriptionType
+                input(type='hidden', name='inscriptionType', value='')
+                i.dropdown.icon
+                .default.text Firmas y dedicatorias 
+                .menu
+            .field
+              label.blue Edición
+              .ui.search.selection.dropdown.edition
+                input(type='hidden', name='edition', value='')
+                i.dropdown.icon
+                .default.text Edición 
+                .menu
+        h4.ui.dividing.header Datos de publicación
+        .four.fields
+          .field.validate
+            label
+              span
+                span.blue PUBLICADO POR
+                span.red *            
+            input(type='text', name='publisherName', placeholder='Nombre', tabindex='6')
+          .field.validate
+            label
+              span
+                span.blue PUBLICADO EN
+                span.red *            
+            input(type='text', name='publishPlace', placeholder='Lugar', tabindex='7')
+          .thirteen.field
+            label.blue Año
+            input.numeric(type='text', name='publishYear', placeholder='Año',style="width:90px;text-align:right",maxlength="4", tabindex='8')
+          .field
+            .ui.toggle.checkbox
+              input.hidden(type='checkbox', name='_iberlibro') 
+              label.blue IberLibro
+            .ui.toggle.checkbox
+              input.hidden(type='checkbox', name='_amazon') 
+              label.blue Amazon
+        
+    .actions
+      span
+        span.left.red * 
+          span campos obligatorios
+          
+      .ui.button.sale Orden de Envío          
+      .ui.flowing.popup.top.left.transition
+
+         .ui.icon.buttons
+            button.ui.button(data="IBER")
+              img(src="img/iberlibro_btn.png")
+            button.ui.button(data="AMASP")
+              i.es.flag
+            button.ui.button(data="AMAUK")
+              i.gb.flag
+            button.ui.button(data="AMAFR")
+              i.fr.flag
+            button.ui.button(data="AMADE")
+              i.de.flag
+            button.ui.button(data="AMAIT")
+              i.it.flag
+
+
+
+      .ui.button.approve.disabled(tabindex='9') Crear
+      .ui.cancel.button(tabindex='10') Cancelar
+
+  .ui.basic.modal
+    .ui.icon.header
+      i.leanpub.icon
+      |     libro ya a la venta
+    .content
+
+    .actions
+      .ui.red.basic.cancel.inverted.button
+        i.remove.icon
+        |       Cancelar
+
+  

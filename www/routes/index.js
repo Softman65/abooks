@@ -66,7 +66,7 @@ mysql.connection.connect(function(err) {
             /* GET home page. */
 
             router.get('/', function (req, res) {
-                res.render('main/xmain', { title: 'Express' });
+                res.render('index_OK', { title: 'Express' });
             });
 
             router.get('/jq-selfie', function (req, res) {
