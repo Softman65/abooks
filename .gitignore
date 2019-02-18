@@ -288,3 +288,4 @@ __pycache__/
 *.xsd.cs
 package-lock.json
 www/public/js/mediarecorder.js
+/node_app/Amazon/product.xml

@@ -13,13 +13,13 @@ module.exports = function (_, mysql,apiKey,apiUser) {
             //console.log(action)
             //debugger
             //var _xml = this.xml_process.xmlUnit(action, record,[])
-            var callback = this.url.parse('https://inventoryupdate.abebooks.com:10027');
+            var callback = this.url.parse('https://orderupdate.abebooks.com:10003');
 
             var api_agent = 'mislibros.bbdd.ovh'
             var text = {};
             text.success = true;
             text.data = {};
-            text.data.site_name = 'inventoryupdate.abebooks.com';
+            text.data.site_name = 'orderupdate.abebooks.com';
 
             var options = {
                 host: callback.hostname,
