@@ -304,26 +304,31 @@ $(document).ready(function() {
 
         
     }
-    function actualizeFields(type,keys,getData){
-        $.each(keys, function(idx, value) {
-            if(value == 'description'){
-                $('#edit textarea[name="'+value+'"]').val(type=='edit'?getData[value]:'')
-            }else{
-                if( value == 'C_iberlibro'){  
-                    var _v = value.substr(1,value.length)   
-                    var _p = (type=="edit"?(getData[value]==null?'unchecked':getData[value]>0?'checked':'unchecked'):'checked')                   
-                    $('#edit .ui.toggle.checkbox [name="'+_v+'"]').parent().checkbox('set ' + _p )
-                }else{
-                    if( value == 'C_amazon'){  
-                        var _v = value.substr(1,value.length)   
-                        var _p = (type=='edit'?(getData[value]==null?'unchecked':getData[value]>0?'checked':'unchecked'):'checked')                   
-                        $('#edit .ui.toggle.checkbox [name="'+_v+'"]').parent().checkbox('set ' + _p)
-                    }else{
-                        if($('#edit input[name="'+value+'"]').attr('type')!='hidden'){
-                            $('#edit input[name="'+value+'"]').val(type=='edit'?getData[value]:'') //.removeAttr("disabled")
-                        }else{
-                            $('#edit .'+value+' .text').removeClass('default').html(type=='edit'?getData[value]:'')
-                            $('#edit .'+value+' [type="hidden"]').val(type=='edit'?getData[value]:'')
+    function actualizeFields(type, keys, getData) {
+        //debugger
+        $.each(keys, function (idx, value) {
+            if (value == '_sale') {                       
+                    $('.ui.button.sale').removeClass('disabled')
+            } else {
+                if (value == 'description') {
+                    $('#edit textarea[name="' + value + '"]').val(type == 'edit' ? getData[value] : '')
+                } else {
+                    if (value == 'C_iberlibro') {
+                        var _v = value.substr(1, value.length)
+                        var _p = (type == "edit" ? (getData[value] == null ? 'unchecked' : getData[value] > 0 ? 'checked' : 'unchecked') : 'checked')
+                        $('#edit .ui.toggle.checkbox [name="' + _v + '"]').parent().checkbox('set ' + _p)
+                    } else {
+                        if (value == 'C_amazon') {
+                            var _v = value.substr(1, value.length)
+                            var _p = (type == 'edit' ? (getData[value] == null ? 'unchecked' : getData[value] > 0 ? 'checked' : 'unchecked') : 'checked')
+                            $('#edit .ui.toggle.checkbox [name="' + _v + '"]').parent().checkbox('set ' + _p)
+                        } else {
+                            if ($('#edit input[name="' + value + '"]').attr('type') != 'hidden') {
+                                $('#edit input[name="' + value + '"]').val(type == 'edit' ? getData[value] : '') //.removeAttr("disabled")
+                            } else {
+                                $('#edit .' + value + ' .text').removeClass('default').html(type == 'edit' ? getData[value] : '')
+                                $('#edit .' + value + ' [type="hidden"]').val(type == 'edit' ? getData[value] : '')
+                            }
                         }
                     }
                 }
