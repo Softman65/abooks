@@ -182,17 +182,20 @@ $(document).ready(function() {
                     })
                     $('.ui.flowing.popup .ui.button').click(function () {
                         var code = $(this).attr('data')
-                        debugger
-                        if (confirm('¿estas seguro de querer dar de baja este libro?')) {
-                            $.ajax({
-                                type: "POST",
-                                url: "/api/books/sale",
-                                data: { id: getData.vendorListingid, iber: getData.C_iberlibro, amazon: getData.C_amazon, code:code ,loc:getData._loc }
-                            }).done(function (data) {
+                        setTimeout(function () { 
+                            if (confirm('¿estas seguro de querer dar de baja este libro?')) {
+                                $.ajax({
+                                    type: "POST",
+                                    url: "/api/books/sale",
+                                    data: { id: getData.vendorListingid, iber: getData.C_iberlibro, amazon: getData.C_amazon, code: code, loc: getData._loc }
+                                }).done(function (data) {
+                                    $('#edit').modal('hide')
+                                    $("#jsGrid").jsGrid("loadData");
+                                })
+                            } else {
                                 $('#edit').modal('hide')
-                                $("#jsGrid").jsGrid("loadData");
-                            })
-                        }
+                                }
+                        }, 100)
                     })
                 }
                 $('#edit .ui.approve.button').html('Guardar')
