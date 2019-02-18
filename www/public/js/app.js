@@ -180,7 +180,7 @@ $(document).ready(function() {
                         popup: $('.ui.flowing.popup'),
                         on: 'click'
                     })
-                    $('.ui.flowing.popup .ui.button').click(function () {
+                    $('.ui.flowing.popup .ui.button').unbind().click(function () {
                         var code = $(this).attr('data')
                         setTimeout(function () { 
                             if (confirm('¿estas seguro de querer dar de baja este libro?')) {
