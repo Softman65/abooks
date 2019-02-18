@@ -104,128 +104,136 @@ $(document).ready(function() {
         
     }
     function editForm(_content,_type,args){
-        $('#edit').attr('data',_content)
-        $('#edit .content').addClass('hidden')
-        $('#edit .content.'+_content).removeClass('hidden')
-        
-        $('#edit').modal(
-            {
-                onVisible: function(){
-                    setTimeout(function(){
+
+        if (_content == 'formEdit' || args.item._loc.length > 0) {
+            $('#edit').attr('data', _content)
+            $('#edit .content').addClass('hidden')
+            $('#edit .content.' + _content).removeClass('hidden')
+            $('#edit').modal(
+                {
+                    onVisible: function () {
+                        setTimeout(function () {
                             $('#edit .header.iberlibro').addClass('hidden')
-                            if(_type=='edit'){
+                            if (_type == 'edit') {
                                 //debugger
                                 $('#edit [name="universalIdentifier_number"]').focus()
-                            }else{
+                            } else {
                                 $('#id').focus()
                             }
-                        },10)
-                },
-                onDeny    : function(){
-                  return true;
-                },
-                onApprove : function() {
-                  var $form = $('#edit').attr('data') =='formIberlibro' ? $("form.editIberlibro") : ($('#edit').attr('data') =='formAmazon'?$("form.editAmazon"):$("form.editForm"))
-                  var _JsonArgs={}
-                  if(_type=='edit'){
-                    _JsonArgs = diferences(getFormData($form),args.item)
-                  }else{
-                    _JsonArgs = getFormData($form)
-                  }
-                  debugger
+                        }, 10)
+                    },
+                    onDeny: function () {
+                        return true;
+                    },
+                    onApprove: function () {
+                        var $form = $('#edit').attr('data') == 'formIberlibro' ? $("form.editIberlibro") : ($('#edit').attr('data') == 'formAmazon' ? $("form.editAmazon") : $("form.editForm"))
+                        var _JsonArgs = {}
+                        if (_type == 'edit') {
+                            _JsonArgs = diferences(getFormData($form), args.item)
+                            if (_.isEmpty(_JsonArgs)) {
+                                if (!confirm('si no hay cambios en los precios se entiende que desea eliminar el libro del MarketPlaces  ¿es eso Correcto?')) {
+                                    return false
+                                }
+                            }
+                        } else {
+                            _JsonArgs = getFormData($form)
+                        }
+                        debugger
+
+                        if (_JsonArgs != null) {
+                            $.ajax({
+                                type: "POST",
+                                url: "/api/books/" + _type + (_type == 'edit' ? "?form=" + $('#edit').attr('data') + '&vendorListingid=' + args.item.vendorListingid : ''),
+                                data: _JsonArgs
+                            }).done(function (data) {
+                                console.log(data)
+                                $("#jsGrid").jsGrid("loadData");
+                            });
+                        } else {
+                            alert('Sin cambios que guardar')
+                        }
+                    }
+                }).modal('show')
+
+
+
+            if(_type=='edit'){
+                var getData = args.item;
+                var keys = Object.keys(getData);
+                var text = [];
+                actualizeFields(_type,keys,getData)
+                $('.validate input').keyup(function(event){
+                    if($(this).val().length==0){
+                        $(this).parent().addClass('error')
+                    }else{
+                        $(this).parent().removeClass('error')
+                    }
     
-                  if(_JsonArgs!=null){ 
-                      $.ajax({
-                          type: "POST",
-                          url: "/api/books/" + _type +(_type=='edit'?"?form="+$('#edit').attr('data') +'&vendorListingid='+args.item.vendorListingid:''),
-                          data: _JsonArgs
-                      }).done(function( data ) {
-                          console.log(data)
-                          $("#jsGrid").jsGrid( "loadData" );   
-                      });
-                  }else{
-                      alert('Sin cambios que guardar')
-                  }
+                    validateform(_content)
+                })
+                if (getData._sale !=null) {
+                    $('#edit .ui.sale.button').addClass('disabled')
+                    $('#edit .ui.toggle.checkbox [name="_sales"]').parent().checkbox('set checked')
+                } else {
+                    $('#edit .ui.toggle.checkbox [name="_sales"]').parent().checkbox('set unchecked')
+                    $('#edit .ui.sale.button').popup({
+                        popup: $('.ui.flowing.popup'),
+                        on: 'click'
+                    })
+                    $('.ui.flowing.popup .ui.button').click(function () {
+                        var code = $(this).attr('data')
+                        if (confirm('¿estas seguro de querer dar de baja este libro?')) {
+                            $.ajax({
+                                type: "POST",
+                                url: "/api/books/sale",
+                                data: { id: getData.vendorListingid, iber: getData.C_iberlibro, amazon: getData.C_amazon, code:code ,loc:getData._loc }
+                            }).done(function (data) {
+                                $('#edit').modal('hide')
+                                $("#jsGrid").jsGrid("loadData");
+                            })
+                        }
+                    })
                 }
-        }).modal('show')
+                $('#edit .ui.approve.button').html('Guardar')
+                $('#edit .header.book').html('<span><span class="left green">'+getData.title+'</span><span class="right">'+getData.vendorListingid+'-<span class="red">'+(getData._loc==null?'?':getData._loc)+'</span></span></span>')
+                validateform(_content)
+
+            }else{
+
+                $('#edit input').each(function(obj){
+                    if($('#edit input').attr('name')!="_iberlibro" && $('#edit input').attr('name')!="_amazon"){
+                        var q = $($('#edit input')[obj]).val('')
+                        $(q).val('')
+                    }
+                })
+                $('#edit textarea[name="description"]').val('')
+                dropdownFormEdit('restore defaults')
+            
+                $('#edit .header.book').html('Nuevo Libro')
+                $('#edit .ui.approve.button').addClass("disabled").html('Crear')
+                $('#edit .ui.toggle.checkbox [name="_iberlibro"]').parent().checkbox('set checked')
+                $('#edit .ui.toggle.checkbox [name="_amazon"]').parent().checkbox('set checked')
+                //debugger
+            }
 
 
+        
+            $(' input.numeric').keydown(function(event){
+                return ( (event.which >47 &&  event.which <63) || event.which ==13 || event.which==46 || event.which==8) 
+            })
 
-
-        if(_type=='edit'){
-            var getData = args.item;
-            var keys = Object.keys(getData);
-            var text = [];
-            actualizeFields(_type,keys,getData)
             $('.validate input').keyup(function(event){
                 if($(this).val().length==0){
                     $(this).parent().addClass('error')
                 }else{
                     $(this).parent().removeClass('error')
                 }
-    
+
                 validateform(_content)
             })
-            if (getData._sale !=null) {
-                $('#edit .ui.sale.button').addClass('disabled')
-                $('#edit .ui.toggle.checkbox [name="_sales"]').parent().checkbox('set checked')
-            } else {
-                $('#edit .ui.toggle.checkbox [name="_sales"]').parent().checkbox('set unchecked')
-                $('#edit .ui.sale.button').popup({
-                    popup: $('.ui.flowing.popup'),
-                    on: 'click'
-                })
-                $('.ui.flowing.popup .ui.button').click(function () {
-                    var code = $(this).attr('data')
-                    if (confirm('¿estas seguro de querer dar de baja este libro?')) {
-                        $.ajax({
-                            type: "POST",
-                            url: "/api/books/sale",
-                            data: { id: getData.vendorListingid, iber: getData.C_iberlibro, amazon: getData.C_amazon, code:code ,loc:getData._loc }
-                        }).done(function (data) {
-                            $('#edit').modal('hide')
-                            $("#jsGrid").jsGrid("loadData");
-                        })
-                    }
-                })
-            }
-            $('#edit .ui.approve.button').html('Guardar')
-            $('#edit .header.book').html('<span><span class="left green">'+getData.title+'</span><span class="right">'+getData.vendorListingid+'-<span class="red">'+(getData._loc==null?'?':getData._loc)+'</span></span></span>')
-            validateform(_content)
-
-        }else{
-
-            $('#edit input').each(function(obj){
-                if($('#edit input').attr('name')!="_iberlibro" && $('#edit input').attr('name')!="_amazon"){
-                    var q = $($('#edit input')[obj]).val('')
-                    $(q).val('')
-                }
-            })
-            $('#edit textarea[name="description"]').val('')
-            dropdownFormEdit('restore defaults')
-            
-            $('#edit .header.book').html('Nuevo Libro')
-            $('#edit .ui.approve.button').addClass("disabled").html('Crear')
-            $('#edit .ui.toggle.checkbox [name="_iberlibro"]').parent().checkbox('set checked')
-            $('#edit .ui.toggle.checkbox [name="_amazon"]').parent().checkbox('set checked')
-            //debugger
+        } else {
+            alert('si no hay Localización no se puede poner en venta')
         }
-
-
-        
-        $(' input.numeric').keydown(function(event){
-            return ( (event.which >47 &&  event.which <63) || event.which ==13 || event.which==46 || event.which==8) 
-        })
-
-        $('.validate input').keyup(function(event){
-            if($(this).val().length==0){
-                $(this).parent().addClass('error')
-            }else{
-                $(this).parent().removeClass('error')
-            }
-
-            validateform(_content)
-        })
 
     }
     function IberlibroForm(_content,_type,args){
@@ -331,7 +339,12 @@ $(document).ready(function() {
         $.map(unindexed_array, function(n, i){
             indexed_array[n['name']] = n['value']=="<Sin Especificar>"?'':n['value'];
         });
-        indexed_array._iberlibro = $('#edit .ui.toggle.checkbox [name="_iberlibro"]').parent().checkbox('is checked')?"on":"off"
+
+        if ($($form).hasClass('edit')) {
+            indexed_array._iberlibro = $('#edit .ui.toggle.checkbox [name="_iberlibro"]').parent().checkbox('is checked') ? "on" : "off"
+            indexed_array._amazon = $('#edit .ui.toggle.checkbox [name="_amazon"]').parent().checkbox('is checked') ? "on" : "off"
+        }
+        //indexed_array._iberlibro = $('#edit .ui.toggle.checkbox [name="_iberlibro"]').parent().checkbox('is checked')?"on":"off"
         return indexed_array;
     }
     function diferences(modificado,original){
@@ -499,16 +512,16 @@ $(document).ready(function() {
                     itemTemplate: function(value) {        
                         return value;
                     }},
-                    {  title: "€", name: "price_quantity", type: "text", width: 80, align: "right", 
+                    {  title: "€", name: "price_quantity", type: "text", width: 60, align: "right", 
                     itemTemplate: function(value) {        
-                        return value+" €";
+                        return value + '<span class="Moneda">€</span>';
                     }},
                     {  title: "sale", name: "_sale", type: "text", width: 40,
                     itemTemplate: function(value) {
                         var _t = value=='IBER'?'leanpub':'amazon'       
                         return value==null?null:$('<i class="'+_t+' icon sale">');
                     }},
-                    {  title: "", name: "C_iberlibro", type: "text", width: 110,filtering: false,
+                    {  title: "", name: "C_iberlibro", type: "text", width: 89,filtering: false,
                     itemTemplate: function(value,record) {
                         var _t = value>0?'green':'red'       
                         return value==null?null:$('<span>').append( $('<i class="leanpub '+_t+' icon large '+(record._sale!=null?'hidden':'')+'">').attr('data',record.vendorListingid).click(function(e){
@@ -520,7 +533,7 @@ $(document).ready(function() {
                                    bookfinder(form,_id)
 
                             })
-                        ).append(record.price_quantity_Iberlibro ? $('<div class="ui ' + _t + ' label">').html(record.price_quantity_Iberlibro + " &euro;") : $('<span>'))
+                        ).append(record.price_quantity_Iberlibro ? $('<div class="ui ' + _t + ' label small">').html(record.price_quantity_Iberlibro + " &euro;") : $('<span>'))
                     }},
                     { title: "", name: "C_amazon", type: "text", width: '100%',filtering: false,
                     itemTemplate: function(value,record) {
@@ -532,11 +545,11 @@ $(document).ready(function() {
                                 editForm( form ,'edit',{ item: gridTorecord( _id ) } )
                                 bookfinder(form,_id)
                             })
-                        ).append(record.price_quantity_ES ? $('<span>').html(record.price_quantity_ES + " &euro; " + '<i class="es flag"></i>' ) : $('<span>'))
-                            .append(record.price_quantity_UK ? $('<span>').html(record.price_quantity_ES + " &euro; " + '<i class="gb flag"></i>')  : $('<span>'))
-                            .append(record.price_quantity_FR ? $('<span>').html(record.price_quantity_ES + " &euro; " + '<i class="fr flag"></i>')  : $('<span>'))
-                            .append(record.price_quantity_IT ? $('<span>').html(record.price_quantity_ES + " &euro; " + '<i class="it flag"></i>')  : $('<span>'))
-                            .append(record.price_quantity_DE ? $('<span>').html(record.price_quantity_ES + " &euro; " + '<i class="de flag"></i>')  : $('<span>'))
+                        ).append(record.price_quantity_ES ? $('<span class="Moneda">').html('<i class="es flag"></i>'+ record.price_quantity_ES + " &euro; "  ) : $('<span>'))
+                            .append(record.price_quantity_UK ? $('<span class="Moneda">').html( '<i class="gb flag"></i>' + record.price_quantity_UK + " &euro; ")  : $('<span>'))
+                            .append(record.price_quantity_FR ? $('<span class="Moneda">').html('<i class="fr flag"></i>'+ record.price_quantity_FR + " &euro; ")  : $('<span>'))
+                            .append(record.price_quantity_IT ? $('<span class="Moneda">').html('<i class="it flag"></i>' + record.price_quantity_IT + " &euro; ")  : $('<span>'))
+                            .append(record.price_quantity_DE ? $('<span class="Moneda">').html('<i class="de flag"></i>'+ record.price_quantity_DE + " &euro; ")  : $('<span>'))
 
                         }
                     }

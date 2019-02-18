@@ -174,8 +174,8 @@
         },
 
         form: function (req, cb) {
-
-           var _this = this
+            debugger
+            var _this = this
             var cadsqlLast = "; SELECT *  FROM books WHERE vendorListingid=" + req.query.vendorListingid + ";SELECT * FROM pictures WHERE vendorListingid=" + req.query.vendorListingid + ";SELECT COUNT(*) as counter FROM iberlibro WHERE vendorListingid=" + req.query.vendorListingid
             var cadsql = "UPDATE books SET "
             var counter = 0

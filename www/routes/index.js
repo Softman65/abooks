@@ -64,14 +64,21 @@ mysql.connection.connect(function(err) {
             console.log('connected as id ' + mysql.connection.threadId);
             console.log('conected mysql')
             /* GET home page. */
+
             router.get('/', function (req, res) {
-                res.render('index', { title: 'Express' });
+                res.render('main/xmain', { title: 'Express' });
             });
+
             router.get('/jq-selfie', function (req, res) {
                 res.render('jq-selfie', { title: 'jq-selfie' });
             });
 
-
+            router.get('/amazon/set*', function (_req, res) {
+                var url = 'https://mws.amazonservices.es' + _req.originalUrl.substr(7, _req.originalUrl.length)
+                var body = JSON.stringify(_req.body, null, 2)
+                debugger
+                res.render('main/xmain', { title: 'Express' });
+            });
 
             router.post('/api/books/edit', function (req, res) {
                 if(req.query.form=='formIberlibro'){

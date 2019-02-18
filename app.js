@@ -25,9 +25,11 @@ var app =   express() //.createServer(credentials);
 // view engine setup
 app.set('views', path.join(__dirname, 'www/views'));
 app.set('view engine', 'pug');
+app.locals.basedir = app.get('views');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
+
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({ limit: '50mb',extended: false }));
 app.use(cookieParser());

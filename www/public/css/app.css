@@ -32,7 +32,7 @@
     cursor:pointer;
 }
 .ui.modal>.content {
-    background: #ffc10775!important;
+    background: #ffc177!important;
 }
 .btnIberlibro{
     height: 50px;
@@ -45,7 +45,15 @@
     background-color: #ffffb3;
 }
 .sale-row{
-    color:#a5a3b3;;
+    color:#a5a3b3;
     text-decoration-line: line-through;
+}
+.Moneda{
+    font-size: smaller;
+}
+.jsgrid-row {
+
+    background-color: #CCC!important;
+
 }
 /*  */
