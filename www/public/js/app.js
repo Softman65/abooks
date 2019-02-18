@@ -182,6 +182,7 @@ $(document).ready(function() {
                     })
                     $('.ui.flowing.popup .ui.button').click(function () {
                         var code = $(this).attr('data')
+                        debugger
                         if (confirm('¿estas seguro de querer dar de baja este libro?')) {
                             $.ajax({
                                 type: "POST",
