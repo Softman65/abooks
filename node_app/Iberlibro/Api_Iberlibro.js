@@ -207,7 +207,7 @@ module.exports = function (_, mysql,apiKey,apiUser) {
                     }
                     cb()
                 }
-                var cadsql = "SELECT (@cnt := @cnt + 1) AS rowNumber, libro.* FROM " + (add ? 'books' : 'iberlibro') + " as t  CROSS JOIN (SELECT @cnt := 0) AS dummy LEFT JOIN books as libro ON t.vendorListingid=libro.vendorListingid " + (add ?" where isnull(libro._dateSale) and length(libro._loc)>0 ":" ORDER by fecha_add asc ")+ " LIMIT " + (add ? _e : (_t-1) ) + "," + _p
+                var cadsql = "SELECT (@cnt := @cnt + 1) AS rowNumber, libro.* FROM " + (add ? 'books' : 'iberlibro') + " as t  CROSS JOIN (SELECT @cnt := 0) AS dummy LEFT JOIN books as libro ON t.vendorListingid=libro.vendorListingid " +(add && del ? "LEFT JOIN iberlibro ON iberlibro.vendorListingid=libro.vendorListingid ":"") + (add ?" where isnull(libro._dateSale) and isnull(iberlibro.vendorListingid) and length(libro._loc)>0 ":" ORDER by fecha_add asc ")+ " LIMIT " + (add ? _e : (_t-1) ) + "," + _p
                 mysql.query(cadsql, function (err, records) {
 
                     if (err)
@@ -230,6 +230,7 @@ module.exports = function (_, mysql,apiKey,apiUser) {
                                         })
                                     } else {
                                         var fs = require("fs")
+                                        console.log(_this.xml_process.file.toString())
                                         fs.writeFile('/error.xml', _this.xml_process.file, function () {
                                             debugger
                                             _cb({ next: _e < _l, e: _e + 1, t: _t  })

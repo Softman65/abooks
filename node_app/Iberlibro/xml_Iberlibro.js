@@ -55,8 +55,9 @@ module.exports = function (apiKey,apiUser) {
                                 Str = Str.replaceAll('/', '\/')
                                 Str = Str.replaceAll('&endash;', "\/")
                                 Str = Str.replaceAll('&amp;', "&")
-                                Str = Str.replace(/&\b/g, '\/')
-                                Str = Str.replace(/&\B/g, "&amp;")
+                                Str = Str.replaceAll('&', "&#038;")
+                                ///Str = Str.replace(/&\b/g, '\/')
+                                //Str = Str.replace(/&\B/g, "&amp;")
                                 return Str
                             }
                             var xmlRecord = '<Abebook>' + newLine
@@ -72,7 +73,7 @@ module.exports = function (apiKey,apiUser) {
                             xmlRecord += (_v(libro.bookCondition) ? '<bookCondition>' + libro.bookCondition + '</bookCondition>' : '') + newLine
                             xmlRecord += (_v(libro.jacketCondition) ? '<jacketCondition>' + libro.jacketCondition + '</jacketCondition>' : '') + newLine
                             xmlRecord += (_v(libro.universalIdentifier_number) ? '<isbn>' + libro.universalIdentifier_number + '</isbn>' : '') + newLine
-                            xmlRecord += (_v(libro.publishPlace) ? '<publishPlace>' + libro.publishPlace + '</publishPlace>' : '') + newLine
+                            xmlRecord += (_v(libro.publishPlace) ? '<publishPlace>' + normalize(libro.publishPlace) + '</publishPlace>' : '') + newLine
                             xmlRecord += (_v(libro.publishYear) ? '<publishYear>' + libro.publishYear + '</publishYear>' : '') + newLine
                             xmlRecord += (_v(libro.edition) ? '<edition>' + libro.publishYear + '</edition>' : '') + newLine
                             xmlRecord += '<quantity  amount="1"></quantity>' + newLine

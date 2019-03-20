@@ -186,6 +186,11 @@ mysql.connection.connect(function(err) {
                     res.json(Jresponse)
                 })
             })
+            router.get('/api/iberlibro/xml/upgradeAll', function (req, res) {
+                books.iberlibro.xml.bulk(true, true, req, res, function (Jresponse) {
+                    res.json(Jresponse)
+                })
+            })
             router.get('/api/iberlibro/xml/createAll', function (req, res) {
                 books.iberlibro.xml.bulk(true, false, req, res, function (Jresponse) {
                     res.json(Jresponse)

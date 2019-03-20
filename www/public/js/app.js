@@ -247,18 +247,19 @@ $(document).ready(function() {
             type: "GET",
             url: "/api/books/totales" 
         }).done(function(data){
-            //debugger
+            debugger
 
 
 
             var go = function (url, fn, cb, e, last, page, t) {
+                console.log(url + "?p=" + page + "&t=" + t + "&e=" + e + "&l=" + last + "&lap=50")
                 $.ajax({
                     type: "GET",
                     url: url + "?p="+page+"&t="+t+"&e="+e+"&l="+last+"&lap=100" 
                 }).done(function (data) {
-                    $( '.ui.basic.label'+ (url == '/api/iberlibro/xml/createAll' ? '.Tlibros' : '.Tiberlibro')).html(last - data.e)
+                    $('.ui.basic.label' + (url == '/api/iberlibro/xml/deleteAll' ? '.Tiberlibro' : url == '/api/iberlibro/xml/addAll' ? '.Tlibros':'.Uiberlibro' )).html(last - data.e)
                     if (data.lapsus != null) {
-                        $((url == '/api/iberlibro/xml/createAll' ? '.Slibros' : '.Siberlibro') + ' .w3-container.w3-blue.w3-round').css('width', ((data.e / last) * 100).toFixed(0) + "%").html(((data.e / last) * 100).toFixed(0) + "%").removeClass('oculto')
+                        $((url == '/api/iberlibro/xml/deleteAll' ? '.Siberlibro' : url == '/api/iberlibro/xml/createAll'?'.Slibros': '.Uiberlibro' ) + ' .w3-container.w3-blue.w3-round').css('width', ((data.e / last) * 100).toFixed(0) + "%").html(((data.e / last) * 100).toFixed(0) + "%").removeClass('oculto')
                         setTimeout(function () {
                             fn(url, fn, cb, data.e, last, page , 0)
                         }, data.lapsus)
@@ -280,6 +281,8 @@ $(document).ready(function() {
             $('.Siberlibro').addClass('oculto')
 
             $('.Tlibros').html(data.Total)
+            $('.Tlibros.label').html(data.Total)
+            $('.Uiberlibro.label').html(data.Total - data.TIberlibro)
             $('.Tiberlibro').html(data.TIberlibro)
 
             $('#iberlibro').modal('show')
@@ -300,6 +303,14 @@ $(document).ready(function() {
                     $('.Slibros').removeClass('oculto')
                 } 
                 go('/api/iberlibro/xml/createAll', go, function () { }, 0, data.Total, 1, 0)
+            })
+            $('.UBiberlibro').unbind().click(function () {
+                if (confirm('¿seguro que deseas actualizar la base de datos en Iberlibro con los pendientes de publicar?')) {
+                    $('.Ulibros').addClass('disabled')
+                    $('.UBiberlibro').addClass('disabled')
+                    $('.Uiberlibro').removeClass('oculto')
+                }
+                go('/api/iberlibro/xml/upgradeAll', go, function () { }, 0, data.Total - data.TIberlibro, 1, 0)
             })
             $('.Slibros .w3-container.w3-blue.w3-round').addClass('oculto')
             $('.Siberlibro .w3-container.w3-blue.w3-round').addClass('oculto')

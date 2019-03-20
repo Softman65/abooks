@@ -55,7 +55,7 @@
                 y = date[_ + "FullYear"](),
                 H = date[_ + "Hours"](),
                 M = date[_ + "Minutes"](),
-                s = date[_ + "Seconds"](),
+                s = date[_ + "seconds"](),
                 L = date[_ + "Milliseconds"](),
                 o = utc ? 0 : date.getTimezoneOffset(),
                 flags = {
