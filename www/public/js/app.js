@@ -252,7 +252,7 @@ $(document).ready(function() {
 
 
             var go = function (url, fn, cb, e, last, page, t) {
-                console.log(url + "?p=" + page + "&t=" + t + "&e=" + e + "&l=" + last + "&lap=50")
+                console.log(url + "?p=" + page + "&t=" + t + "&e=" + e + "&l=" + last + "&lap=100")
                 $.ajax({
                     type: "GET",
                     url: url + "?p="+page+"&t="+t+"&e="+e+"&l="+last+"&lap=100" 
