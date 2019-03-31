@@ -15,6 +15,7 @@
     <LastActiveSolutionConfig>Debug|Any CPU</LastActiveSolutionConfig>
     <StartWebBrowser>False</StartWebBrowser>
     <SaveNodeJsSettingsInProjectFile>True</SaveNodeJsSettingsInProjectFile>
+    <ScriptArguments>PARSER BORME 2010 VERBOSE</ScriptArguments>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
