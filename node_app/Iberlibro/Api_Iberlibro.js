@@ -1,7 +1,7 @@
 module.exports = function (_, mysql,apiKey,apiUser) {
     console.log('Iberlibro Api login')
     console.log(apiKey, apiUser)
-    debugger
+    //debugger
     var _this = {
         xml_process : require('./xml_Iberlibro.js')(apiKey,apiUser),
         https : require('https'), // https server

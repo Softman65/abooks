@@ -3,7 +3,7 @@ var crypto = require('crypto')
 var express = require('express');
 var router = express.Router();
 var _ = require('lodash');
-var xml = require('xml');
+//var xml = require('xml');
 var request = require('request');
 
 
@@ -180,7 +180,11 @@ mysql.connection.connect(function(err) {
                     res.json(records);
                 })
             });
-
+            router.get('/api/amazon/getexcelldata', function (req, res) {
+                books.amazon.getDb( req, res, function (file) {
+                    res.download(file)
+                })
+            })
             router.get('/api/iberlibro/xml/deleteAll', function (req, res) {
                 books.iberlibro.xml.bulk(false, true, req, res, function (Jresponse) {
                     res.json(Jresponse)

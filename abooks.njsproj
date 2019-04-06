@@ -25,8 +25,11 @@
     <Content Include="package-lock.json" />
     <Content Include="package.json" />
     <Compile Include="app.js" />
+    <Compile Include="node_app\Amazon\Api_Amazon.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="node_app\Amazon\Api_AmazonV0.js" />
-    <Compile Include="node_app\Amazon\Api_Amazon.js" />
+    <Compile Include="node_app\Amazon\Api_Amazonv1.js" />
     <Compile Include="node_app\Amazon\Scratchpad.js">
       <SubType>Code</SubType>
     </Compile>
