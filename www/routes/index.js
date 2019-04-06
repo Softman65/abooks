@@ -181,8 +181,10 @@ mysql.connection.connect(function(err) {
                 })
             });
             router.get('/api/amazon/getexcelldata', function (req, res) {
-                books.amazon.getDb( req, res, function (file) {
-                    res.download(file)
+                books.amazon.getDb(req, res, function (data) {
+                    res.setHeader('Content-Disposition', 'attachment; filename=abooks-amazon.txt');
+                    res.setHeader('Content-Type', 'text/plain')
+                    res.end(data.join('\n'))
                 })
             })
             router.get('/api/iberlibro/xml/deleteAll', function (req, res) {
