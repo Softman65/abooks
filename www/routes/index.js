@@ -5,7 +5,7 @@ var router = express.Router();
 var _ = require('lodash');
 //var xml = require('xml');
 var request = require('request');
-
+var iconv = require('iconv-lite');
 
 
 
@@ -185,7 +185,7 @@ mysql.connection.connect(function(err) {
                     res.ContentType = "text/plain;charset=utf-8";
                     res.setHeader('Content-Disposition', 'attachment; filename=abooks-amazon.txt');
                     res.setHeader('Content-Type', 'text/plain')
-                    res.end(data.join('\n'))
+                    res.end(iconv.encode(data.join('\n'), 'win1252'))
                 })
             })
             router.get('/api/iberlibro/xml/deleteAll', function (req, res) {
