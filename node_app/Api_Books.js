@@ -162,7 +162,7 @@
             }
             const _pageSize = req.query.pageSize != null ? req.query.pageSize : 10
             const _pageIndex = req.query.pageIndex != null ? req.query.pageIndex : 1
-            var cadsql = "SELECT count(*) as total FROM books " + filter + ";SELECT count(*) as total FROM iberlibro LEFT JOIN books on iberlibro.vendorListingid = books.vendorListingid " + filter + ";SELECT count(*) as total FROM amazon LEFT JOIN books on amazon.vendorListingid = books.vendorListingid" + filter + ";SELECT " + (fields + join + filter + order) + (filter.length == 0 ? " LIMIT " + (_pageSize * (_pageIndex - 1)) + "," + _pageSize : '')
+            var cadsql = "SELECT count(*) as total FROM books " + filter + ";SELECT count(*) as total FROM iberlibro LEFT JOIN books on iberlibro.vendorListingid = books.vendorListingid " + filter + ";SELECT count(*) as total FROM amazon LEFT JOIN books on amazon.vendorListingid = books.vendorListingid" + filter + ";SELECT " + fields + join + filter + order + ( " LIMIT " + (_pageSize * (_pageIndex - 1)) + "," + _pageSize )
             console.log(req.query.type)
             console.log(cadsql)
 

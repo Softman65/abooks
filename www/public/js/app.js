@@ -252,10 +252,10 @@ $(document).ready(function() {
 
 
             var go = function (url, fn, cb, e, last, page, t) {
-                console.log(url + "?p=" + page + "&t=" + t + "&e=" + e + "&l=" + last + "&lap=100")
+                console.log(url + "?p=" + page + "&t=" + t + "&e=" + e + "&l=" + last + "&lap=50")
                 $.ajax({
                     type: "GET",
-                    url: url + "?p="+page+"&t="+t+"&e="+e+"&l="+last+"&lap=100" 
+                    url: url + "?p="+page+"&t="+t+"&e="+e+"&l="+last+"&lap=50" 
                 }).done(function (data) {
                     $('.ui.basic.label' + (url == '/api/iberlibro/xml/deleteAll' ? '.Tiberlibro' : url == '/api/iberlibro/xml/addAll' ? '.Tlibros':'.Uiberlibro' )).html(last - data.e)
                     if (data.lapsus != null) {
@@ -449,7 +449,7 @@ $(document).ready(function() {
                 selecting: true,
                 sorting: true,
 
-                pageSize: 100,
+                pageSize: 10,
                 pageIndex:1,
                 onRefreshed: function(grid) {
                         $('.sale.icon').parent().parent().addClass('sale-row')
@@ -528,7 +528,7 @@ $(document).ready(function() {
                         }
                         return $("<div>").append(value);
                     }},
-                    {  title: "loc", name: "_loc", type: "text", width: 40,
+                    {  title: "loc", name: "_loc", type: "text", width: 80,
                     itemTemplate: function(value) {        
                         return value;
                     }},
@@ -579,8 +579,9 @@ $(document).ready(function() {
 
             //a.ui.item.new
             //i.big.plus.circle.icon.blue
-
-    $('.ui.menu .item').on('click', function() {
+       
+        $('.ui.menu .item').on('click', function () {
+        debugger
 //btnIberlibro
         if ($(this).hasClass('clear')) {
             $(".jsgrid-grid-header.jsgrid-header-scrollbar input").val("")
@@ -603,12 +604,18 @@ $(document).ready(function() {
                         }
                         $("#jsGrid").jsGrid("loadData");
                     } else {
-                        if (!$(this).hasClass('es'))
-                            if ($(this).hasClass('active')) {
-                                $(this).removeClass('active');
-                            } else {
-                                $(this).addClass('active');
-                            }
+                        debugger
+                        if ($(this).hasClass('hasAmazon')) {
+                            var getUrl = window.location;
+                            window.location = getUrl.protocol + "//" + getUrl.host + '/api/amazon/getexcelldata'
+                        } else {
+                            if (!$(this).hasClass('es'))
+                                if ($(this).hasClass('active')) {
+                                    $(this).removeClass('active');
+                                } else {
+                                    $(this).addClass('active');
+                                }
+                        }
                     }
                 }
             }
