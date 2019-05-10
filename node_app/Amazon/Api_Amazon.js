@@ -27,7 +27,7 @@
                         p.description == null ? '...' : p.description.substr(0, 1999).replace(/[^ -~]+/g, ""), //.replace(/\n/g,''),      //product_description
                         'update',           //update_delete
                         p.author=='.'? 'Sin Autor' : p.author.substr(0,198) ,           //author1
-                        'Library',          //binding
+                        'PaperBack',          //binding
                         p.publishYear,      //publication_date
                         p.edition,          //edition
 
