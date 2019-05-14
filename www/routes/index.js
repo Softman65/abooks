@@ -24,7 +24,7 @@ function cint(num, opt_infinityBiased) {
 function decrypt(text,secret){
     var decipher = crypto.createDecipher('aes-256-ctr',secret)
     var dec = decipher.update(text,'hex','utf8')
-    dec += decipher.final('utf8');
+   // dec += decipher.update.final('utf8');
     return dec;
 }
 //debugger
@@ -37,7 +37,7 @@ const mysql = {
         multipleStatements: true,
         host: 'abooks.bbdd.ovh',
         user: 'root',
-        password: decrypt('1aa39d3af7a0f87f5af85f','abooks.bbdd.ovh'),
+        password: decrypt('3eb78f3af7a1f57255a8589e40','abooks.bbdd.ovh'),
         database: decrypt('1cb49321f9be','abooks.bbdd.ovh')
     }
 }
